@@ -1,1 +1,1 @@
-# Vaibhav Singhal Portfolio
+# [Vaibhav Singhal Portfolio](vaibhavsinghal.dev)
