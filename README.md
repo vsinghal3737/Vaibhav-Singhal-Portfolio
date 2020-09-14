@@ -1,1 +1,1 @@
-## [Vaibhav Singhal Portfolio](vaibhavsinghal.dev)
+## [Vaibhav Singhal Portfolio](https://vaibhavsinghal.dev)
