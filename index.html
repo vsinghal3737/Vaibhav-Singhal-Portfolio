@@ -30,7 +30,7 @@
                 <div class="col">
                     <br>
                     <figure class="figure">
-                        <img src="img/Vaibhav Singhal.jpg" class="img-fluid rounded-circle" alt="Responsive image">
+                        <img src="img/Vaibhav Singhal.jpg" class="img-fluid rounded-circle" alt="Responsive image" style="width: 50%">
                         <!-- <img src="img/Vaibhav Singhal.jpg" class="figure-img img-fluid rounded" border_radius=50%> -->
                     </figure>
                 </div>
@@ -84,14 +84,18 @@
                         <li><b>Cloudera Certified Associate Spark and Hadoop Developer</b> (CCA-175)</li>
                         <li><b>PythonInstitute Certified Associate in Python Language</b> (PCAP-31-02)</li>
                         <li><b>Oracle Certified Associate in Database SQL</b> (1Z0-071)</li>
+                        <li><b>Google Associate Cloud Engineer</b></li>
                     </ul>
                     <br>
                     <h4 id="Certifications">Udemy Certificates</h4>
                     <ul class="list-unstyled">
+                        <li>Software Architecture & Design of Modern Large Scale Systems</li>
+                        <li>Micronaut - cloud native microservices with Java</li>
+                        <li>GCP Associate Cloud Engineer - Google Cloud Certification</li>
                         <li>Spark and Hadoop Developer - Python (PySpark)</li>
                         <li>Spark and Python for Big Data with PySpark</li>
                         <li>REST APIs with Flask and Python </li>
-                        <li> Advanced REST APIs with Flask and Python</li>
+                        <li>Advanced REST APIs with Flask and Python</li>
                         <li>GCP: Complete Google Data Engineer & Cloud Architect Guide</li>
                         <li>Oracle SQL Developer From Scratch</li>
                     </ul>
@@ -110,30 +114,42 @@
                     <h2 class="text-center">Work Experience</h2>
                     <br><br><br>
                     <h5>
-                        <p class="text-center"><b>Software Engineer at LivePerson, Inc., New York City, New York <br>Jan 2022 – Present</p>
+                        <p class="text-center"><b>Software Engineer at LivePerson, Inc. <br>Jan. 2022 – Jun. 2023 (NYU, USA) | Jun. 2023 - Present (Toronto, ON, CA)</p>
                     </h5>
                     </b>
+                    <h6>Architectural Expertise:</h6>
                     <ul>
-                        <li>Working under the Voice Bot Team, responsible for the design and development of Voice Bot Services</li>
-                        <li>Designing and developing Voice APIs integrated with Telnyx SDK and AudioCodes using Java and Micronaut Framework.</li>
-                        <li>Creating a new Kafka Client and Topic for the services to handle DTMF event data</li>
-                        <li>Implemented Voice bot Recovery back-end feature, to handle call resets in Voice Bot using Redis, Kafka</li>
-                        <li>Created Inbound call automation bot for end-to-end performance testing and acceptance testing, using EC2, Selenium, etc</li>
+                        <li>Contributed to the VoiceCore Team, leading the design and development of Voice Bot Microservices.</li>
+                        <li>Redesigned the core bridge connector microservice, executing a complete overhaul to facilitate seamless interaction between Voice services and diverse conversational AI features.</li>
+                        <li>Collaborated to architecturally enhance the VoiceCore microservice by separating Telnyx SDK, Text-to-Speech (TTS), and media services using Lucidchart and Swagger.</li>
+                        <li>Utilized GKE, Google Cloud Deployment Manager, APIgee, and GitLab CI/CD for container orchestration, asynchronous communication, resulting in a modular and efficient architecture. Contributed to improved system performance and scalability.</li>
+                        <li>Orchestrated GKE for integrating the Speech-to-Text (STT) service into VoiceCore. Efficiently deployed and managed containerized applications, leveraging GKE, APIGEE.</li>
+                        <li>Revamped the Kafka schema to standardize the modeling of messages and events, facilitating streamlined communication.</li>
+                        <li>Designed and developed Voice APIs integrated with Telnyx SDK and AudioCodes using Java and the Micronaut Framework.</li>
+                        <li>Implemented the Voice Bot Recovery back-end feature to handle call resets using Java, Redis, and Kafka.</li>
+                    </ul>
+                    <h6>Software Engineering Expertise</h6>
+                    <ul>
+                        <li>Optimized utility libraries, leading to a 22% enhancement in code efficiency across VoiceCore's internal services, fostering consistent and standardized code practices while leveraging technologies such as Redis, Log4j, GCP Buckets, Firestore.</li>
+                        <li>Enhanced microservices pods by implementing automated backups of thread dumps and heap dumps to GCP buckets in the event of Out-of-Memory (OOM) incidents. This proactive measure resulted in at least a 25% reduction in debugging time.</li>
+                        <li>Developed bash scripts to secure transaction logs from pods, reducing on-call debugging time by 3-4 hours for developers.</li>
+                        <li>Enhanced data security in production by concealing NPIs, Auths, and tokens in GCP Logs Explorer logs and Kubernetes pods.</li>
+                        <li>Boosted test coverage, in multiple microservices using Junit and Jmeter, from 36% to 87%, cutting testing costs by 20%.</li>
+                        <li>Initiated and developed a new Inbound call automation bot, collaborating with external teams for E2E testing. Provided knowledge transfer after creating the initial POC for a seamless transition, resulting in reduced debugging time for on-call production.</li>
                     </ul>
                     <br>
                     <h5>
-                        <p class="text-center"><b>Software Engineer at Black Knight, Inc., Philadelphia, Pennsylvania <br>June 2020 – Jan 2022</p>
+                        <p class="text-center"><b>Software Engineer at Black Knight, Inc., Philadelphia, PA, USA <br>June 2020 – Jan 2022</p>
                     </h5>
                     </b>
                     <ul>
-                        <li>Worked in multiple teams in AIVA application (Artificial Intelligence Virtual Assistant) to re-architect & develop APIs for Input & output handler Service.</li>
-                        <li>Developed APIs to handle multiple environments of each customer using AWS API Gateway, Lambda, S3, DynamoDB, SSM.</li>
-                        <li>Implemented Micro-services for data extraction, by creating multiple data points from data coming from the OCR component.</li>
-                        <li>Developed new robust services along with new stack configuration from the ground up, using Python, CloudFormation and S3, resolving provision and build failures, reduced load time for testing, resulting in a reduction in AWS cost.</li>
-                        <li>Developed libraries that handle all the calls to S3, DynamoDB, SSM and CloudFormation, which is being used in multiple services by developers, resulting in standardization in code across the AIVA platform.</li>
-                        <li>Built scripts to resolve rare anomalies in transactions caused by either code defect or AWS outage using python and Boto3.</li>
-                        <li>Improved data security and production support by hiding NPIs, Auths, and tokens in AWS cloudwatch logs using categories in logging.</li>
-                        <li>Improved test coverage in services; created acceptance & integration tests using Pytest, Junit, Python Behave & Java Cucumber.</li>
+                        <li>Worked in the AIVA (Artificial Intelligence Virtual Assistant) team to re-architect and develop APIs for Input & output handler Services.</li>
+                        <li>Developed APIs for managing multiple customer environments using AWS services; API Gateway, Lambda, S3, DynamoDB, and SSM.</li>
+                        <li>Implemented Microservices to extract data from OCR-generated content, creating multiple data points.</li>
+                        <li>Led the development of new, resilient services and orchestrated stacks from the ground up using Python, CloudFormation, and S3.</li>
+                        <li>Effectively addressed provisioning and build failures, leading to decreased testing load times and reduced AWS costs.</li>
+                        <li>Developed Python scripts using Boto3 to address rare anomalies in transactions caused by code defects or AWS outages.</li>
+                        <li>Enhanced microservices tests by creating acceptance and integration tests using Pytest, Junit, Python Behave, and Java Cucumber.</li>
                     </ul>
                     <br>
                     <h5>
@@ -302,9 +318,8 @@
                 <div class="col text-center">
                     <a href="https://www.linkedin.com/in/-singhal-vaibhav-/" target="_blank"><img src="img/linkedin.png" padding ="200px" width="50px" height="50px" class="img-fluid" alt="Responsive image"></a>&nbsp;&nbsp;&nbsp;
                     <a href="https://github.com/vsinghal3737" target="_blank"><img src="img/github.ico" class="img-fluid" width="50px" height="50px" alt="Responsive image"></a>&nbsp;&nbsp;&nbsp;
-                    <a href="mailto:vaibhav.singhal3737@gmail.com?Subject=Hello%20Vaibhav%20Singhal" target="_blank"><img src="img/gmail.png"  width="50px" height="50px" class="img-fluid" alt="Responsive image"></a>&nbsp;&nbsp;&nbsp;
-                    <a href="skype:live:vsinghal3737_1?chat"><img src="img/skype.png"  width="50px" height="50px" class="img-fluid" alt="Responsive image"></a>&nbsp;&nbsp;&nbsp;
-                    <a href="tel:4807993440"><img src="img/call.jfif"  width="50px" height="50px" class="img-fluid" alt="Responsive image"></a>
+                    <a href="mailto:vaibhav.singhal5858@gmail.com?Subject=Hello%20Vaibhav%20Singhal" target="_blank"><img src="img/gmail.png"  width="50px" height="50px" class="img-fluid" alt="Responsive image"></a>&nbsp;&nbsp;&nbsp;
+                    <a href="tel:+14374195770"><img src="img/call.jfif"  width="50px" height="50px" class="img-fluid" alt="Responsive image"></a>
                 </div>
             </div>
         </div>
