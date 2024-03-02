@@ -36,7 +36,7 @@
                 <div class="col text-center mt-5">
                     <h3>Vaibhav Singhal</h3>
                     <p class="lead">Software Engineer</p>
-                    <small class="text-muted"><a href="https://drive.google.com/file/d/16zhF37AHBP8CkG_vuYztwyGRQ5qd_FCh/view?usp=sharing" target="_blank">Resume</a></small>
+                    <small class="text-muted"><a href="https://drive.google.com/file/d/1RuUcGGgb677GgiyJAbxm02en1Bdz-Pln/view?usp=sharing" target="_blank">Resume</a></small>
                 </div>
             </div>
 
@@ -98,14 +98,35 @@
                     <h6><span style="font-weight: 550;">Architectural Expertise:</span></h6>
                     <ul>
                         <li>Contributed to the VoiceCore Team, leading the design and development of Voice Bot Microservices.</li>
-                        <li>Redesigned the core bridge connector microservice, executing a complete overhaul to facilitate seamless interaction between Voice services and diverse conversational AI features.</li>
-                        <li>Collaborated to architecturally enhance the VoiceCore microservice by separating Telnyx SDK, Text-to-Speech (TTS), and media services using Lucidchart and Swagger.</li>
-                        <li>Utilized GKE, Google Cloud Deployment Manager, APIgee, and GitLab CI/CD for container orchestration, asynchronous communication, resulting in a modular and efficient architecture. Contributed to improved system performance and scalability.</li>
-                        <li>Orchestrated GKE for integrating the Speech-to-Text (STT) service into VoiceCore. Efficiently deployed and managed containerized applications, leveraging GKE, APIGEE.</li>
-                        <li>Revamped the Kafka schema to standardize the modeling of messages and events, facilitating streamlined communication.</li>
-                        <li>Designed and developed Voice APIs integrated with Telnyx SDK and AudioCodes using Java and the Micronaut Framework.</li>
-                        <li>Implemented the Voice Bot Recovery back-end feature to handle call resets using Java, Redis, and Kafka.</li>
-                    </ul>
+                        <li>Revamped the core bridge connector microservice, from the ground up to enhance the interaction within the Voice Team and various conversational AI features. 
+                          <ul>
+                            <li>Results: A remarkable 40% reduction in data event size, subsequently leading to a 35% decrease in latency.</li>
+                          </ul>
+                        </li>
+                        <li>Collaboratively optimized the VoiceCore media microservice architecture by segregating key components like Text-to-Speech (TTS), Speech-To-Text (STT), and media services.
+                          <ul>
+                            <li>Tools: GKE, APIgee, Kafka, and GitLab CI/CD for container orchestration and asynchronous communication.</li>
+                            <li>Results: 25% reduction in system downtime in production and a notable 50% increase in performance during concurrent calls, scaling up from 450 calls to 700 concurrent calls.</li>
+                          </ul>
+                        </li>
+                        <li>Led the design and development of the AudioFilesRepository microservice, enabling voice samples and customized audio file generation via SSML in various languages for new production accounts, utilizing Azure Text-to-Speech for synthesis.
+                          <ul>
+                            <li>Tools: Google Cloud Storage and Redis, for storage and lookup of audio blobs and azure client key.</li>
+                            <li>Results: 40% reduction in brand setup time and a 25% boost in user engagement.</li>
+                          </ul>
+                        </li>
+                        <li>Revamped the Kafka schema to standardize the modeling events, ensuring seamless communication across VoiceCore Services. Implemented a Common Library to facilitate all kafka events for publishing and subscribing, supporting schema evolution, maintaining consistency, and providing a clear documentation and guidelines.
+                          <ul>
+                            <li>Results: 50% and 40% reduction in integration overhead and troubleshooting time respectively, 30% increase in cross-team efficiency.</li>
+                          </ul>
+                        </li>
+                        <li>Designed and developed APIs for establishing SIP connections (IP, FQDN, and Credentials) using Telnyx SDKs, Java, and the Micronaut Framework. Integrated Kafka for event streaming to ensure real-time communication.
+                          <ul>
+                            <li>Tools: Employed Lucidchart and Swagger for architectural planning and API documentation.</li>
+                            <li>Result: Conducted feedback analysis, resulting in a documented 20% increase in customer satisfaction.</li>
+                          </ul>
+                        </li>
+                      </ul>
                     <h6><span style="font-weight: 550;">Software Engineering Expertise:</span></h6>
                     <ul>
                         <li>Optimized utility libraries, leading to a 22% enhancement in code efficiency across VoiceCore's internal services, fostering consistent and standardized code practices while leveraging technologies such as Redis, Log4j, GCP Buckets, Firestore.</li>
@@ -130,7 +151,7 @@
                         <li>Led the development of new, resilient services and orchestrated stacks from the ground up using Python, CloudFormation, and S3.</li>
                         <li>Effectively addressed provisioning and build failures, leading to decreased testing load times and reduced AWS costs.</li>
                         <li>Developed Python scripts using Boto3 to address rare anomalies in transactions caused by code defects or AWS outages.</li>
-                        <li>Enhanced microservices tests by creating acceptance and integration tests using Pytest, Junit, Python Behave, and Java Cucumber.</li>
+                        <li>Enhanced microservices tests by 70% by creating acceptance and integration tests using Pytest, Junit, Python Behave, and Java Cucumber.</li>
                     </ul>
 
                     <br>
