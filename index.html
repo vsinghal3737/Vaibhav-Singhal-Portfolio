@@ -18,6 +18,7 @@
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item"><a class="nav-link" href="#Education">Education</a></li>
                         <li class="nav-item"><a class="nav-link" href="#Certifications">Certifications</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#TechnicalSkills">Technical Skills</a></li>
                         <li class="nav-item"><a class="nav-link" href="#WorkExperience">Work Experience</a></li>
                         <li class="nav-item"><a class="nav-link" href="#Projects">Projects</a></li>
                         <li class="nav-item"><a class="nav-link" href="#Contact">Contact</a></li>
@@ -86,71 +87,92 @@
             </div>
 
             <hr>
+            <h2 class="mt-2" id="TechnicalSkills">Technical Skills</h2>
+            <div class="row mt-4">
+                <div class="col">
+                    <ul class="list-unstyled">
+                        <li><b>Programming Languages:</b> Python, Java, Bash, C/C++, SSML</li>
+                        <li><b>Database:</b> MySQL (SQLAlchemy), MongoDB (NoSQL) (MongoAlchemy), Redis, SQLite, Hive, Impala</li>
+                        <li><b>Back-end:</b> RESTful API (Micronaut, Flask), Apache Kafka, JWT (Tokens & Sessions for Security), uWSGI</li>
+                        <li><b>GCP Services:</b> GKE, Compute Engine, Load Balancing, Cloud Storage, Firestore, Cloud Build, Apigee, Deployment Manager</li>
+                        <li><b>AWS Services:</b> EKS, EC2, ELB, S3, DynamoDB, RDS, AWS CodeBuild, API Gateway, AWS CloudFormation</li>
+                        <li><b>Big Data:</b> Spark Streaming, Hadoop HDFS, Spark RDD & Data Frames APIs, Data Analysis, Sqoop, Apache Flume</li>
+                        <li><b>Misc:</b> GitLab CI/CD, Docker, Kubernetes, Gradle, OAuth, SAML, Scikit-Learn</li>
+                        <li><b>Tools:</b> Jmeter, Jira, Lucidchart, Swagger, Prometheus, Grafana, Agile with SCRUM, SDLC</li>
+                    </ul>
+                </div>
+                <div class="col text-center">
+                        <img src="img/skills.jpg" class="img-fluid rounded" alt="Technical Skills ALT">
+                </div>
+            </div>
+
+            <hr>
             <h2 class="mt-2" id="WorkExperience">Work Experience</h2>
             <div class="row mt-4">
                 <div class="col">
-                    <h5>
-                        <p>
-                            <span style="font-weight: 600;">Software Development Engineer at LivePerson, Inc.</span>
-                            <br>
-                            Jun. 2023 - Present (Toronto, ON, CA) | Jan. 2022 – Jun. 2023 (NYU, USA)</p>
-                    </h5>
-                    <h6><span style="font-weight: 550;">Architectural Expertise:</span></h6>
+                    <h4><span style="font-weight: 600;">LivePerson, Inc: Software Development Engineer</span></h4>
+                    <p style="margin-left: 40px;">Jun. 2023 - Present (Toronto, ON, CA) | Jan. 2022 – Jun. 2023 (NYU, USA)</p>
+
+                    <h5><span style="font-variant: small-caps;">Architectural Expertise:</span></h6>
                     <ul>
-                        <li>Contributed to the VoiceCore Team, leading the design and development of Voice Bot Microservices.</li>
-                        <li>Revamped the core bridge connector microservice, from the ground up to enhance the interaction within the Voice Team and various conversational AI features. 
-                          <ul>
-                            <li>Results: A remarkable 40% reduction in data event size, subsequently leading to a 35% decrease in latency.</li>
-                          </ul>
+                        <li>Developed a strategy to rebuild the connector service for <b><span style="font-variant: small-caps; background-color: #d6f5e3;">seamless communication for internal services with conversational AI</span></b>.
+                            <ul>
+                                <li>Implemented optimized data processing by leveraging Redis for fast lookups of brand configurations.</li>
+                                <li><b>Results:</b> A remarkable <span style="font-variant: small-caps; background-color: #f8fac4;">40% reduction in data event size</span>, subsequently leading to a <span style="font-variant: small-caps; background-color: #f8fac4;">35% decrease in latency</span>.</li>
+                                <li><b>Technologies Utilized:</b> Redis for caching, Java for backend logic, GCP (Google Cloud Platform) for cloud infrastructure, and APIgee for API management.</li>
+                            </ul>
                         </li>
-                        <li>Collaboratively optimized the VoiceCore media microservice architecture by segregating key components like Text-to-Speech (TTS), Speech-To-Text (STT), and media services.
-                          <ul>
-                            <li>Tools: GKE, APIgee, Kafka, and GitLab CI/CD for container orchestration and asynchronous communication.</li>
-                            <li>Results: 25% reduction in system downtime in production and a notable 50% increase in performance during concurrent calls, scaling up from 450 calls to 700 concurrent calls.</li>
-                          </ul>
+                        <li>Optimized the VoiceCore key service to <b><span style="font-variant: small-caps; background-color: #d6f5e3;">handle increasing concurrent calls efficiently</span></b>.
+                            <ul>
+                                <li>Segregated the service into Text-to-Speech (TTS), Speech-To-Text (STT), and media microservices.</li>
+                                <li>Implemented metrics for monitoring and alerting systems to detect and address issues proactively.</li>
+                                <li><b>Results:</b> <span style="font-variant: small-caps; background-color: #f8fac4;">Reduced system downtime by 25%</span> and <span style="font-variant: small-caps; background-color: #f8fac4;">increased concurrent calls by 50%</span>, scaling from 450 to 700 calls.</li>
+                                <li><b>Technologies Utilized:</b> Kafka for event streaming, Prometheus and Grafana for monitoring and alerting, GKE (Google Kubernetes Engine) for container orchestration, APIgee for API management, and GitLab CI/CD for continuous integration and deployment.</li>
+                            </ul>
                         </li>
-                        <li>Led the design and development of the AudioFilesRepository microservice, enabling voice samples and customized audio file generation via SSML in various languages for new production accounts, utilizing Azure Text-to-Speech for synthesis.
-                          <ul>
-                            <li>Tools: Google Cloud Storage and Redis, for storage and lookup of audio blobs and azure client key.</li>
-                            <li>Results: 40% reduction in brand setup time and a 25% boost in user engagement.</li>
-                          </ul>
+                        <li>Led the design and development of the Audio File Management service to <b><span style="font-variant: small-caps; background-color: #d6f5e3;">streamline customized voice audio files</span></b>.
+                            <ul>
+                                <li>Created a robust storage and lookup system for audio blobs and Azure client keys using Google Cloud Storage and Redis.</li>
+                                <li>Integrated Azure Text-to-Speech, enabling voice samples & customized audio file generation via SSML in a multi-language model.</li>
+                                <li><b>Results:</b> <span style="font-variant: small-caps; background-color: #f8fac4;">Received positive feedback from stakeholders with a 25% boost in user engagement</span>.</li>
+                                <li><b>Technologies Utilized:</b> Google Cloud Storage for storage solutions, Redis for fast data lookup, Azure Text-to-Speech for audio generation, SSML for voice customization, and Java for backend development.</li>
+                            </ul>
                         </li>
-                        <li>Revamped the Kafka schema to standardize the modeling events, ensuring seamless communication across VoiceCore Services. Implemented a Common Library to facilitate all kafka events for publishing and subscribing, supporting schema evolution, maintaining consistency, and providing a clear documentation and guidelines.
-                          <ul>
-                            <li>Results: 50% and 40% reduction in integration overhead and troubleshooting time respectively, 30% increase in cross-team efficiency.</li>
-                          </ul>
+                        <li>Proposed and implemented a new centralized event schema service to <b><span style="font-variant: small-caps; background-color: #d6f5e3;">resolve schema inconsistencies across VoiceCore services</span></b>.
+                            <ul>
+                                <li>Facilitated all Kafka events for publishing and subscribing, supporting schema evolution, maintaining consistency, and providing clear documentation and guidelines.</li>
+                                <li><b>Results:</b> Achieved <span style="font-variant: small-caps; background-color: #f8fac4;">40% reduction in integration overhead</span> and <span style="font-variant: small-caps; background-color: #f8fac4;">25% improvement in debugging time</span>.</li>
+                                <li><b>Technologies Utilized:</b> Apache Kafka for event streaming, Java for backend development, GitLab CI/CD for continuous integration and deployment, and Swagger for API documentation.</li>
+                            </ul>
                         </li>
-                        <li>Designed and developed APIs for establishing SIP connections (IP, FQDN, and Credentials) using Telnyx SDKs, Java, and the Micronaut Framework. Integrated Kafka for event streaming to ensure real-time communication.
-                          <ul>
-                            <li>Tools: Employed Lucidchart and Swagger for architectural planning and API documentation.</li>
-                            <li>Result: Conducted feedback analysis, resulting in a documented 20% increase in customer satisfaction.</li>
-                          </ul>
+                        <li>Designed and developed <b><span style="font-variant: small-caps; background-color: #d6f5e3;">APIs for establishing SIP connections</span></b> (IP, FQDN, and Credentials) using Telnyx SDKs, Java, and the Micronaut Framework. Integrated Kafka for event streaming to ensure real-time SIP connections.
+                            <ul>
+                                <li><b>Results:</b> Conducted feedback analysis, resulting in a documented <span style="font-variant: small-caps; background-color: #f8fac4;">20% increase in customer satisfaction</span>.</li>
+                                <li><b>Technologies Utilized:</b> Telnyx SDKs for SIP connections, Java and the Micronaut Framework for API development, Apache Kafka for event streaming, and Junit for testing.</li>
+                            </ul>
                         </li>
-                      </ul>
-                    <h6><span style="font-weight: 550;">Software Engineering Expertise:</span></h6>
+                    </ul>
+
+                    <h5><span style="font-variant: small-caps; ">Development Expertise:</span></h6>
                     <ul>
-                        <li>Optimized utility libraries, leading to a 22% enhancement in code efficiency across VoiceCore's internal services, fostering consistent and standardized code practices while leveraging technologies such as Redis, Log4j, GCP Buckets, Firestore.</li>
-                        <li>Enhanced microservices pods by implementing automated backups of thread dumps and heap dumps to GCP buckets in the event of Out-of-Memory (OOM) incidents. This proactive measure resulted in at least a 25% reduction in debugging time.</li>
-                        <li>Developed bash scripts to secure transaction logs from pods, reducing on-call debugging time by 3-4 hours for developers.</li>
+                        <li>Optimized utility libraries, <span style="font-variant: small-caps; background-color: #f8fac4;">leading to a 22% enhancement in code efficiency</span> across VoiceCore's internal services, fostering consistent and standardized code practices while leveraging technologies such as Redis, Log4j, GCP Buckets, Firestore.</li>
+                        <li>Enhanced microservices pods by implementing automated backups of thread dumps and heap dumps to GCP buckets in the event of Out-of-Memory (OOM) incidents. This proactive measure resulted in at least a <span style="font-variant: small-caps; background-color: #f8fac4;">25% reduction in debugging time</span>.</li>
+                        <li><b><span style="font-variant: small-caps; background-color: #d6f5e3;">Developed bash scripts</span></b> to secure transaction logs from pods, <span style="font-variant: small-caps; background-color: #f8fac4;">reducing on-call debugging time by 3-4 hours weekly</span> for developers.</li>
                         <li>Enhanced data security in production by concealing NPIs, Auths, and tokens in GCP Logs Explorer logs and Kubernetes pods.</li>
-                        <li>Boosted test coverage, in multiple microservices using Junit and Jmeter, from 36% to 87%, cutting testing costs by 20%.</li>
-                        <li>Initiated and developed a new Inbound call automation bot, collaborating with external teams for E2E testing. Provided knowledge transfer after creating the initial POC for a seamless transition, resulting in reduced debugging time for on-call production.</li>
+                        <li>Boosted test coverage, in multiple microservices using Junit and Jmeter, from 36% to 87%, <span style="font-variant: small-caps; background-color: #f8fac4;">cutting testing costs by 20%</span>.</li>
+                        <li>Initiated and developed a <b><span style="font-variant: small-caps; background-color: #d6f5e3;">new Inbound call automation bot</span></b>, collaborating with external teams for E2E testing. Provided knowledge transfer after creating the initial POC for a seamless transition, resulting in <span style="font-variant: small-caps; background-color: #f8fac4;">reduced debugging time for on-call production</span>.</li>
                     </ul>
                     <br>
 
-                    <h5>
-                        <p>
-                            <span style="font-weight: 600;">Software Engineer at Black Knight, Inc., Philadelphia, PA, USA</span>
-                            <br>
-                            June 2020 – Jan 2022</p>
-                    </h5>
+                    <h4><span style="font-weight: 600;">Software Engineer at Black Knight, Inc., Philadelphia, PA, USA</span></h4>
+                    <p style="margin-left: 40px;">June 2020 – Jan 2022</p>
                     <ul>
                         <li>Worked in the AIVA (Artificial Intelligence Virtual Assistant) team to re-architect and develop APIs for Input & output handler Services.</li>
-                        <li>Developed APIs for managing multiple customer environments using AWS services; API Gateway, Lambda, S3, DynamoDB, and SSM.</li>
-                        <li>Implemented Microservices to extract data from OCR-generated content, creating multiple data points.</li>
+                        <li>Developed APIs for <b><span style="font-variant: small-caps; background-color: #d6f5e3;">managing multiple customer environments</span></b> using AWS services; API Gateway, Lambda, S3, DynamoDB, and SSM.</li>
+                        <li>Implemented Microservices to <b><span style="font-variant: small-caps; background-color: #d6f5e3;">extract data from OCR-generated content</span></b>, creating multiple data points.</li>
                         <li>Led the development of new, resilient services and orchestrated stacks from the ground up using Python, CloudFormation, and S3.</li>
-                        <li>Effectively addressed provisioning and build failures, leading to decreased testing load times and reduced AWS costs.</li>
-                        <li>Developed Python scripts using Boto3 to address rare anomalies in transactions caused by code defects or AWS outages.</li>
+                        <li>Effectively <b><span style="font-variant: small-caps; background-color: #d6f5e3;">addressed provisioning and build failures</span></b>, leading to decreased testing load times and reduced AWS costs.</li>
+                        <li>Developed Python scripts using Boto3 to <b><span style="font-variant: small-caps; background-color: #d6f5e3;">address rare anomalies in transactions</span></b> caused by code defects or AWS outages.</li>
                         <li>Enhanced microservices tests by 70% by creating acceptance and integration tests using Pytest, Junit, Python Behave, and Java Cucumber.</li>
                     </ul>
 
