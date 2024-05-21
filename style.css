@@ -1,16 +1,50 @@
-/*body {
-  background: linear-gradient(to right, red, blue);
-}
-*/
-
-.footer{
-  margin: 0px;
+/* Background Gradient */
+body {
+  background: linear-gradient(to right, #3a1c71, #d76d77, #ffaf7b);
+  color: #1c1a1a;
 }
 
-.spaces{
-	padding: 20px;
+/* Navbar */
+.navbar {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+/* Profile Image */
+figure img {
+  border: 5px solid #000000;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Cards */
+.card {
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card-title {
+  color: #ffaf7b;
+}
+
+.card img {
+  border-bottom: 3px solid #44ff00;
+}
+
+/* Footer */
+.footer {
+  background: #02fac8;
+}
+
+.footer a img {
+  filter: grayscale(100%);
+  transition: filter 0.3s ease;
+}
+
+.footer a img:hover {
+  filter: grayscale(0%);
+}
+
+/* Smooth Scroll */
 html {
   scroll-behavior: smooth;
 }
