@@ -1,370 +1,556 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Vaibhav Singhal Portfolio</title>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-        <link rel="stylesheet" href="style.css">
-    </head>
-    <body id="Top">
-        <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
-            <div class="container collapse navbar-collapse" id="navbarNav">
-                <a class="navbar-brand" href="#Top">Vaibhav Singhal</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav ml-auto">
-                        <li class="nav-item"><a class="nav-link" href="#Education">Education</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#Certifications">Certifications</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#TechnicalSkills">Technical Skills</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#WorkExperience">Work Experience</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#Projects">Projects</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#Contact">Contact</a></li>
-                    </ul>
-                </div>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vaibhav Singhal — Senior Software Engineer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- NOISE OVERLAY -->
+<svg class="noise-overlay" width="100%" height="100%"><filter id="noiseFilter"><feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(#noiseFilter)"/></svg>
+
+<!-- MESH GRADIENT BG -->
+<div class="mesh-bg">
+    <div class="mesh-blob blob-1"></div>
+    <div class="mesh-blob blob-2"></div>
+    <div class="mesh-blob blob-3"></div>
+    <div class="mesh-blob blob-4"></div>
+</div>
+
+<!-- LOADING SCREEN -->
+<div id="loader">
+    <svg class="loader-logo" viewBox="0 0 120 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <text x="5" y="38" font-family="JetBrains Mono, monospace" font-size="36" font-weight="700" fill="none" stroke="#6c63ff" stroke-width="1.5" class="loader-text">{VS}</text>
+    </svg>
+    <div class="loader-bar"><div class="loader-bar-fill"></div></div>
+</div>
+
+<!-- SCROLL PROGRESS -->
+<div id="scrollProgress"></div>
+
+<!-- CURSOR GLOW -->
+<div class="cursor-glow" id="cursorGlow"></div>
+
+<!-- CONFETTI CANVAS (easter egg) -->
+<canvas id="confettiCanvas"></canvas>
+
+<nav id="navbar">
+    <div class="nav-inner">
+        <a href="#hero" class="nav-brand">
+            <span class="brand-bracket">{</span>VS<span class="brand-bracket">}</span>
+        </a>
+        <button class="nav-toggle" aria-label="Toggle menu">
+            <span></span><span></span><span></span>
+        </button>
+        <ul class="nav-links">
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#education">Education</a></li>
+            <li><a href="#certifications">Certs</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- ═══════════════ HERO ═══════════════ -->
+<section id="hero">
+    <div class="hero-content">
+        <div class="hero-photo-wrap reveal" style="--delay:0s">
+            <img src="img/Vaibhav_Singhal.jpg" alt="Vaibhav Singhal" class="hero-photo">
+            <div class="hero-photo-ring"></div>
+            <div class="hero-photo-ring ring-2"></div>
+        </div>
+        <h1 class="hero-name reveal" style="--delay:0.1s">
+            <span class="hero-first">Vaibhav</span>
+            <span class="hero-last">Singhal</span>
+        </h1>
+
+        <!-- TERMINAL -->
+        <div class="terminal reveal" style="--delay:0.2s">
+            <div class="terminal-bar">
+                <div class="terminal-dots"><span class="dot-red"></span><span class="dot-yellow"></span><span class="dot-green"></span></div>
+                <span class="terminal-title">vaibhav@portfolio ~ %</span>
+                <div style="width:52px"></div>
             </div>
-        </nav>
-
-        <div class="container mt-5">
-            <div class="row">
-                <div class="col">
-                    <figure class="text-center">
-                        <img src="img/Vaibhav_Singhal.jpg" class="img-fluid rounded-circle" alt="Vaibhav Singhal Profile Photo" style="width: 50%">
-                    </figure>
-                </div>
-                <div class="col text-center mt-5">
-                    <h2>Vaibhav Singhal</h2>
-                    <p class="lead"><h4>Software Engineer</h4></p>
-                    <small class="text-muted"><a href="https://drive.google.com/file/d/1K2TrH9oHgLV0AFN2zZt8CFKWAu1pUGVr" target="_blank"><p class="lead"><h4>Resume</h4></p></a></small>
-                </div>
+            <div class="terminal-body" id="terminalBody">
+                <div class="terminal-cursor" id="terminalCursor">_</div>
             </div>
+        </div>
 
-            <hr>
-            <h2 class="mt-2" id="Education">Education</h2>
-            <div class="row mt-4">
-                <div class="col">
-                    <h5><span style="font-weight: 600;">Arizona State University, Tempe, Arizona</span></h5>
-                    <p>Master’s of Science & Engineering<br>Software Engineering<br>Aug. 2018 – May 2020</p>
-                    <h5><span style="font-weight: 600;">Guru Gobind Singh Indraprastha University, Delhi, India</span></h5>
-                    <p>Bachelor's of Technology<br>Computer Science<br>Aug. 2014 – June 2017</p>
-                    <h5><span style="font-weight: 600;">Guru Nanak Dev Institute of Technology, Delhi, India</span></h5>
-                    <p>Associate Degree<br>Electronics & Communications Engineering<br>Aug. 2011 – May 2014</p>
-                </div>
-                <div class="col text-center">
-                        <img src="img/teamwork.png" class="figure-img img-fluid rounded" alt="Teamwork">
-                </div>
+        <div class="hero-stats reveal" style="--delay:0.3s">
+            <div class="stat">
+                <span class="stat-number" data-target="7">0</span><span class="stat-suffix">+</span>
+                <span class="stat-label">Years Experience</span>
             </div>
-
-            <hr>
-            <h2 class="mt-2" id="Certifications">Certifications</h2>
-            <div class="row mt-4">
-                <div class="col">
-                    <ul class="list-unstyled">
-                        <li><b>Cloudera Certified Associate Spark and Hadoop Developer</b> (CCA-175)</li>
-                        <li><b>PythonInstitute Certified Associate in Python Language</b> (PCAP-31-02)</li>
-                        <li><b>Oracle Certified Associate in Database SQL</b> (1Z0-071)</li>
-                        <li><b>Google Associate Cloud Engineer</b></li>
-                    </ul>
-                    <h4 class="mt-4">Udemy Certificates</h4>
-                    <ul class="list-unstyled">
-                        <li>Data Warehouse - The Ultimate Guide</li>
-                        <li>Software Architecture & Design of Modern Large Scale Systems</li>
-                        <li>Micronaut - cloud native microservices with Java</li>
-                        <li>GCP Associate Cloud Engineer - Google Cloud Certification</li>
-                        <li>Spark and Hadoop Developer - Python (PySpark)</li>
-                        <li>Spark and Python for Big Data with PySpark</li>
-                        <li>REST APIs with Flask and Python </li>
-                        <li>Advanced REST APIs with Flask and Python</li>
-                        <li>GCP: Complete Google Data Engineer & Cloud Architect Guide</li>
-                        <li>Oracle SQL Developer From Scratch</li>
-                    </ul>
-                </div>
-                <div class="col text-center">
-                        <img src="img/education-certificate.png" class="img-fluid rounded" alt="Education Certificates">
-                </div>
+            <div class="stat-divider"></div>
+            <div class="stat">
+                <span class="stat-number" data-target="3">0</span>
+                <span class="stat-label">Companies</span>
             </div>
-
-            <hr>
-            <h2 class="mt-2" id="TechnicalSkills">Technical Skills</h2>
-            <div class="row mt-4">
-                <div class="col">
-                    <ul class="list-unstyled">
-                        <li><b>Programming Languages:</b> Python, Java, Bash, C/C++, SSML</li>
-                        <li><b>Database:</b> MySQL (SQLAlchemy), MongoDB (NoSQL) (MongoAlchemy), Redis, SQLite, Hive, Impala</li>
-                        <li><b>Back-end:</b> RESTful API (Micronaut, Flask), Apache Kafka, JWT (Tokens & Sessions for Security), uWSGI</li>
-                        <li><b>GCP Services:</b> GKE, Compute Engine, Load Balancing, Cloud Storage, Firestore, Cloud Build, Apigee, Deployment Manager</li>
-                        <li><b>AWS Services:</b> EKS, EC2, ELB, S3, DynamoDB, RDS, AWS CodeBuild, API Gateway, AWS CloudFormation</li>
-                        <li><b>Big Data:</b> Spark Streaming, Hadoop HDFS, Spark RDD & Data Frames APIs, Data Analysis, Sqoop, Apache Flume</li>
-                        <li><b>Misc:</b> GitLab CI/CD, Docker, Kubernetes, Gradle, OAuth, SAML, Scikit-Learn</li>
-                        <li><b>Tools:</b> Jmeter, Jira, Lucidchart, Swagger, Prometheus, Grafana, Agile with SCRUM, SDLC</li>
-                    </ul>
-                </div>
-                <div class="col text-center">
-                        <img src="img/skills.png" class="img-fluid rounded" alt="Technical Skills ALT">
-                </div>
+            <div class="stat-divider"></div>
+            <div class="stat">
+                <span class="stat-number" data-target="30">0</span><span class="stat-suffix">+</span>
+                <span class="stat-label">Systems Built</span>
             </div>
-
-            <hr>
-            <h2 class="mt-2" id="WorkExperience">Work Experience</h2>
-            <div class="row mt-4">
-                <div class="col">
-                    <h4><span style="font-weight: 600;">LivePerson, Inc: Software Development Engineer</span></h4>
-                    <p style="margin-left: 40px;">Jun. 2023 - Present (Toronto, ON, CA) | Jan. 2022 – Jun. 2023 (NYU, USA)</p>
-
-                    <h5><span style="font-variant: small-caps;">Architectural Expertise:</span></h6>
-                    <ul>
-                        <li>Developed a strategy to rebuild the connector service for <b><span style="font-variant: small-caps; background-color: #d6f5e3;">seamless communication for internal services with conversational AI</span></b>.
-                            <ul>
-                                <li>Implemented optimized data processing by leveraging Redis for fast lookups of brand configurations.</li>
-                                <li><b>Results:</b> A remarkable <span style="font-variant: small-caps; background-color: #f8fac4;">40% reduction in data event size</span>, subsequently leading to a <span style="font-variant: small-caps; background-color: #f8fac4;">35% decrease in latency</span>.</li>
-                                <li><b>Technologies Utilized:</b> Redis for caching, Java for backend logic, GCP (Google Cloud Platform) for cloud infrastructure, and APIgee for API management.</li>
-                            </ul>
-                        </li>
-                        <li>Optimized the VoiceCore key service to <b><span style="font-variant: small-caps; background-color: #d6f5e3;">handle increasing concurrent calls efficiently</span></b>.
-                            <ul>
-                                <li>Segregated the service into Text-to-Speech (TTS), Speech-To-Text (STT), and media microservices.</li>
-                                <li>Implemented metrics for monitoring and alerting systems to detect and address issues proactively.</li>
-                                <li><b>Results:</b> <span style="font-variant: small-caps; background-color: #f8fac4;">Reduced system downtime by 25%</span> and <span style="font-variant: small-caps; background-color: #f8fac4;">increased concurrent calls by 50%</span>, scaling from 450 to 700 calls.</li>
-                                <li><b>Technologies Utilized:</b> Kafka for event streaming, Prometheus and Grafana for monitoring and alerting, GKE (Google Kubernetes Engine) for container orchestration, APIgee for API management, and GitLab CI/CD for continuous integration and deployment.</li>
-                            </ul>
-                        </li>
-                        <li>Led the design and development of the Audio File Management service to <b><span style="font-variant: small-caps; background-color: #d6f5e3;">streamline customized voice audio files</span></b>.
-                            <ul>
-                                <li>Created a robust storage and lookup system for audio blobs and Azure client keys using Google Cloud Storage and Redis.</li>
-                                <li>Integrated Azure Text-to-Speech, enabling voice samples & customized audio file generation via SSML in a multi-language model.</li>
-                                <li><b>Results:</b> <span style="font-variant: small-caps; background-color: #f8fac4;">Received positive feedback from stakeholders with a 25% boost in user engagement</span>.</li>
-                                <li><b>Technologies Utilized:</b> Google Cloud Storage for storage solutions, Redis for fast data lookup, Azure Text-to-Speech for audio generation, SSML for voice customization, and Java for backend development.</li>
-                            </ul>
-                        </li>
-                        <li>Proposed and implemented a new centralized event schema service to <b><span style="font-variant: small-caps; background-color: #d6f5e3;">resolve schema inconsistencies across VoiceCore services</span></b>.
-                            <ul>
-                                <li>Facilitated all Kafka events for publishing and subscribing, supporting schema evolution, maintaining consistency, and providing clear documentation and guidelines.</li>
-                                <li><b>Results:</b> Achieved <span style="font-variant: small-caps; background-color: #f8fac4;">40% reduction in integration overhead</span> and <span style="font-variant: small-caps; background-color: #f8fac4;">25% improvement in debugging time</span>.</li>
-                                <li><b>Technologies Utilized:</b> Apache Kafka for event streaming, Java for backend development, GitLab CI/CD for continuous integration and deployment, and Swagger for API documentation.</li>
-                            </ul>
-                        </li>
-                        <li>Designed and developed <b><span style="font-variant: small-caps; background-color: #d6f5e3;">APIs for establishing SIP connections</span></b> (IP, FQDN, and Credentials) using Telnyx SDKs, Java, and the Micronaut Framework. Integrated Kafka for event streaming to ensure real-time SIP connections.
-                            <ul>
-                                <li><b>Results:</b> Conducted feedback analysis, resulting in a documented <span style="font-variant: small-caps; background-color: #f8fac4;">20% increase in customer satisfaction</span>.</li>
-                                <li><b>Technologies Utilized:</b> Telnyx SDKs for SIP connections, Java and the Micronaut Framework for API development, Apache Kafka for event streaming, and Junit for testing.</li>
-                            </ul>
-                        </li>
-                    </ul>
-
-                    <h5><span style="font-variant: small-caps; ">Development Expertise:</span></h6>
-                    <ul>
-                        <li>Optimized utility libraries, <span style="font-variant: small-caps; background-color: #f8fac4;">leading to a 22% enhancement in code efficiency</span> across VoiceCore's internal services, fostering consistent and standardized code practices while leveraging technologies such as Redis, Log4j, GCP Buckets, Firestore.</li>
-                        <li>Enhanced microservices pods by implementing automated backups of thread dumps and heap dumps to GCP buckets in the event of Out-of-Memory (OOM) incidents. This proactive measure resulted in at least a <span style="font-variant: small-caps; background-color: #f8fac4;">25% reduction in debugging time</span>.</li>
-                        <li><b><span style="font-variant: small-caps; background-color: #d6f5e3;">Developed bash scripts</span></b> to secure transaction logs from pods, <span style="font-variant: small-caps; background-color: #f8fac4;">reducing on-call debugging time by 3-4 hours weekly</span> for developers.</li>
-                        <li>Enhanced data security in production by concealing NPIs, Auths, and tokens in GCP Logs Explorer logs and Kubernetes pods.</li>
-                        <li>Boosted test coverage, in multiple microservices using Junit and Jmeter, from 36% to 87%, <span style="font-variant: small-caps; background-color: #f8fac4;">cutting testing costs by 20%</span>.</li>
-                        <li>Initiated and developed a <b><span style="font-variant: small-caps; background-color: #d6f5e3;">new Inbound call automation bot</span></b>, collaborating with external teams for E2E testing. Provided knowledge transfer after creating the initial POC for a seamless transition, resulting in <span style="font-variant: small-caps; background-color: #f8fac4;">reduced debugging time for on-call production</span>.</li>
-                    </ul>
-                    <br>
-
-                    <h4><span style="font-weight: 600;">Software Engineer at Black Knight, Inc., Philadelphia, PA, USA</span></h4>
-                    <p style="margin-left: 40px;">June 2020 – Jan 2022</p>
-                    <ul>
-                        <li>Worked in the AIVA (Artificial Intelligence Virtual Assistant) team to re-architect and develop APIs for Input & output handler Services.</li>
-                        <li>Developed APIs for <b><span style="font-variant: small-caps; background-color: #d6f5e3;">managing multiple customer environments</span></b> using AWS services; API Gateway, Lambda, S3, DynamoDB, and SSM.</li>
-                        <li>Implemented Microservices to <b><span style="font-variant: small-caps; background-color: #d6f5e3;">extract data from OCR-generated content</span></b>, creating multiple data points.</li>
-                        <li>Led the development of new, resilient services and orchestrated stacks from the ground up using Python, CloudFormation, and S3.</li>
-                        <li>Effectively <b><span style="font-variant: small-caps; background-color: #d6f5e3;">addressed provisioning and build failures</span></b>, leading to decreased testing load times and reduced AWS costs.</li>
-                        <li>Developed Python scripts using Boto3 to <b><span style="font-variant: small-caps; background-color: #d6f5e3;">address rare anomalies in transactions</span></b> caused by code defects or AWS outages.</li>
-                        <li>Enhanced microservices tests by 70% by creating acceptance and integration tests using Pytest, Junit, Python Behave, and Java Cucumber.</li>
-                    </ul>
-
-                    <br>
-                    <h5>
-                        <p>
-                            <span style="font-weight: 600;">Research Scholar at Bharati Vidyapeeth's College of Engineering in CSE Department under Dr. Rachna Jain</span>
-                            <br>
-                            Jan. 2017 – Sept. 2017</p>
-                    </h5>
-                    <ul>
-                        <h6>
-                            <li><a href="http://www.recentscientific.com/enhance-data-security-cloud-using-steganography" target="_blank">Enhance data security in cloud using Steganography</a></li>
-                        </h6>
-                        <ul>
-                            <li>Studied about Cloud Service Providers vs Internet Service Providers based on cost, speed, scalability, performance, etc.</li>
-                            <li>Reviewed techniques of steganography (Least-Significant-Bits) & digital watermarking (Discrete Fourier Transform) in spatial & frequency domain.</li>
-                            <li>In-depth study on Symmetric Key Encryption (DES, AES) & Asymmetric Key Encryption (RSA) major attacks like brute force, frequency analysis.</li>
-                            <li>Proposed the model for Image Steganography using LSB, which mapped every bit of data & encryption key in RGB pixels of the image.</li>
-                        </ul>
-                        <br>
-                        <h6>
-                            <li><a href="http://www.recentscientific.com/medical-application-using-nlp-over-cloud" target="_blank">Medical application using NLP over cloud</a></li>
-                        </h6>
-                        <ul>
-                            <li>Knowledge acquisition on NLP system and existing open source libraries (NLTK, Polyglot, Pattern) in the market.</li>
-                            <li>Studied about Morphological Processing, Syntax, Semantic and Pragmatic Analysis.</li>
-                            <li>Comparative study on 3 different types of clouds (public, private and hybrid) based on reliability, cost, scalability, etc.</li>
-                            <li>Proposed a computerized Clinical Decision Support (CDS) System using cloud services to improve the accuracy & the availability.</li>
-                        </ul>
-                    </ul>
-
-                    
-                    <br>
-                    <h5>
-                        <p>
-                            <span style="font-weight: 600;">Consulting & Software Internship at TATA - Computer Management Corp, Delhi, India</span>
-                            <br>
-                            May 2016 – Aug. 2016</p>
-                    </h5>
-                    <ul>
-                        <li>Responsible for full stack API-driven web application, Increased sales of products by 45% & reduced data storage inventory by 38%.</li>
-                        <li>Implemented Agile process across the teams, improved customer interaction and feedbacks on sprints.</li>
-                        <li>Developed RESTful-APIs using Python with flask framework, with JWT Session Management for user security.</li>
-                        <li>Performed ETL on old database, to get new & optimized Data, improved performance w.r.t. to time, by 30% in each query.</li>
-                        <li>Interacted with the DB using MongoDB Alchemy (NoSQL), which improved the flexibility & provided Object-Oriented Structure to DB.</li>
-                    </ul>
-                    
-                    <br>
-                    <h5>
-                        <p>
-                            <span style="font-weight: 600;">Android App Development Trainee at Bharati Vidyapeeth's College of Engineering, Delhi, India</span>
-                            <br>
-                            May 2015 – Jul. 2015</p>
-                    </h5>
-                    <ul>
-                        <li>Developed a Video player using Android studio that will access video files from the storage in List or Grid View.</li>
-                        <li>Users can play, organize and use hand gestures to control the flow of the video.</li>
-                        <li> Worked in App. UI, deep functionality and Third-Party SDK (like Android Studio).</li>
-                        <li>Gained experience in Java and Android Studio.</li>
-                    </ul>
-                </div>
+            <div class="stat-divider"></div>
+            <div class="stat">
+                <span class="stat-number" data-target="4">0</span>
+                <span class="stat-label">Certifications</span>
             </div>
- 
-            <hr>
-            <h2 class="mt-2" id="Projects">Projects</h2>
-            <div class="row mt-4">
-                <div class="col">
-                    <div class="card">
-                        <img src="img/ice-hockey.jpg" class="card-img-top">
-                        <div class="card-body">
-                            <h5 class="card-title">RosterData Website for Ice Hockey Statistics Inc. Version 2 [Capstone]</h5>
-                            <p align="right"><small class="text-muted">Jan. 2020 – Apr. 2020</small></p>
-                            <p class="card-text">
-                                <i>Enhanced RosterData for Ice Hockey by developing Version 2, which integrates three additional leagues alongside existing ones. The new leagues were scraped from shl.se, liiga.fi, and en.khl.ru.</i></p>
+            <div class="stat-divider"></div>
+            <div class="stat">
+                <span class="stat-number" data-target="10">0</span>
+                <span class="stat-label">Certificates</span>
+            </div>
+        </div>
+
+        <div class="hero-links reveal" style="--delay:0.4s">
+            <a href="mailto:vsvsinghal3737@gmail.com" class="hero-btn magnetic">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                Email
+            </a>
+            <a href="https://linkedin.com/in/-singhal-vaibhav-/" target="_blank" class="hero-btn magnetic">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+                LinkedIn
+            </a>
+            <a href="https://github.com/vsinghal3737" target="_blank" class="hero-btn magnetic">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+                GitHub
+            </a>
+            <a href="tel:+14374195770" class="hero-btn magnetic">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                Contact
+            </a>
+            <a href="https://drive.google.com/drive/folders/14P5q0XW5jiU3eIH2igkKzJ6LDOcdwyKn?usp=sharing" target="_blank" class="hero-btn magnetic">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+                Resume
+            </a>
+        </div>
+
+        <div class="scroll-indicator reveal" style="--delay:0.6s">
+            <div class="scroll-mouse"><div class="scroll-wheel"></div></div>
+            <span>Scroll to explore</span>
+        </div>
+    </div>
+</section>
+
+<!-- WAVE DIVIDER -->
+<div class="section-divider wave-1"><svg viewBox="0 0 1440 100" preserveAspectRatio="none"><path d="M0,60 C360,120 720,0 1080,60 C1260,90 1380,40 1440,60 L1440,100 L0,100 Z"/></svg></div>
+
+<!-- ═══════════════ EXPERIENCE ═══════════════ -->
+<section id="experience">
+    <div class="container">
+        <div class="section-header reveal">
+            <span class="section-number">01</span>
+            <h2 class="section-title">Work Experience</h2>
+            <p class="section-subtitle">Building distributed systems at scale across identity, voice, and fintech.</p>
+        </div>
+        <div class="timeline" id="timeline">
+            <div class="timeline-track" id="timelineTrack"></div>
+
+            <!-- Workday -->
+            <div class="timeline-item reveal">
+                <div class="timeline-dot active-dot"><div class="timeline-dot-pulse"></div></div>
+                <div class="timeline-card glass-card tilt-card">
+                    <div class="tilt-glow"></div>
+                    <div class="job-header">
+                        <div class="job-header-left">
+                            <div class="company-logo">W</div>
+                            <div>
+                                <h3>Senior Software Engineer</h3>
+                                <p class="company-name">Workday (Evisort)</p>
+                                <div class="job-tags"><span class="job-tag">Identity</span><span class="job-tag">SCIM</span><span class="job-tag">OIDC</span><span class="job-tag">Multi-tenant</span></div>
+                            </div>
                         </div>
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item">Contributed to the implementation of multiple ice hockey leagues on the main website within an Agile team environment.</li>
-                            <li class="list-group-item">Developed web scraping scripts using Python and Scrapy Framework to gather statistics from new leagues.</li>
-                            <li class="list-group-item">Modeled scraped data into JSON format and imported it into PostgreSQL on Amazon RDS.</li>
-                            <li class="list-group-item">Collaborated on the development of APIs to fetch scraped data from AWS PostgreSQL, integrated with the front-end.</li>
-                        </ul>
+                        <div class="job-header-right">
+                            <span class="job-date">Oct 2024 – Present</span>
+                            <span class="job-location">Toronto, ON</span>
+                            <span class="toggle-arrow"></span>
+                        </div>
                     </div>
-                </div>
-                <div class="col">
-                    <div class="card">
-                        <img src="img/tfidf.png" class="card-img-top">
-                        <div class="card-body">
-                            <h5 class="card-title">Latent Semantic Analysis Classification and Prediction</h5>
-                            <p align="right"><small class="text-muted">Mar. 2020 – Apr. 2020</small></p>
-                            <p class="card-text"><i>Trained a machine learning model on sensitive financial encoded documents for classification and prediction.</i></p>
+                    <div class="job-details">
+                        <div class="job-section">
+                            <h4><span class="h4-icon">&#9670;</span> Architecture &amp; System Design</h4>
+                            <div class="exp-item"><strong>Built SCIM API endpoints for Workday-Evisort user provisioning</strong><ul><li>Delivered the first Workday-Evisort integration post-acquisition (CRUD + Restore) in Rolodex.</li><li>Implemented dynamic model creation for provisioning flexibility across Workday and Stytch.</li><li>Led GA hardening: deterministic role mapping ("highest role wins"), SCIM import failure fixes, and WDID handling for migration stability.</li></ul></div>
+                            <div class="exp-item"><strong>Implemented unified authentication via OIDC</strong><ul><li>Built the core <code>POST /token/{for}</code> endpoint handling tens of thousands of requests per minute.</li><li>Designed OIDC callback handling across Rolodex and Evi2Ken (JWT generation, token verification, identifier resolution).</li><li>Integrated cookie-based session management and state-based redirection for deep linking.</li></ul></div>
+                            <div class="exp-item"><strong>Designed end-to-end unified logout between Evisort and Workday</strong><ul><li>Implemented frontchannel (Evisort-initiated) and backchannel (Workday-initiated) Single Logout flows.</li><li>Built dynamic JWT logout token validation using Fugu certificate discovery.</li><li>Demoed the complete logout flow to the engineering team and company-wide.</li></ul></div>
+                            <div class="exp-item"><strong>Owned the Super Admin Toggles EPIC for migration-safe identity architecture</strong><ul><li>Drove full technical design, ticket decomposition, and implementation across Rolodex, Evi2Ken, Pilot, and UI.</li><li>Introduced per-client toggles (<code>user_management</code>, <code>authentication_provider</code>) to decouple tenant mapping from login enforcement.</li><li>Designed backward-compatible data migration with feature flag controls for safe rollout.</li></ul></div>
+                            <div class="exp-item"><strong>Architecting per-client PostgreSQL schema isolation for Evi2Ken</strong><ul><li>Replacing shared public schema with per-tenant isolation to reduce cross-tenant blast radius.</li><li>Implementing dual-write architecture with feature-flagged reads for zero-downtime migration.</li></ul></div>
                         </div>
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item">Mapped sensitive financial encoded documents into unique IDs for analysis.</li>
-                            <li class="list-group-item">Trained and deployed a document classification model based on encoded patterns using Python, pandas, and scikit-learn.</li>
-                            <li class="list-group-item">Developed Flask RESTful APIs for serving machine learning predictions.</li>
-                            <li class="list-group-item">Achieved 98% accuracy and 87% confidence on average in model testing.</li>
-                            <li class="list-group-item">Deployed machine learning APIs on Google Cloud Platform for integration testing.</li>
-                        </ul>
+                        <div class="job-section">
+                            <h4><span class="h4-icon">&#9670;</span> Technical Leadership</h4>
+                            <div class="exp-item"><strong>Conducted live engineering demos and led design reviews</strong><ul><li>Presented SCIM, UPW, and unified authentication at Evisort Tech Demo and Eng Syncs.</li><li>Documented workflows and recorded sessions to support team onboarding.</li></ul></div>
+                            <div class="exp-item"><strong>Owned on-call rotations and incident response</strong><ul><li>Reviewed and documented 5+ past incidents (SCIM sync failures, token verification issues).</li><li>Built a Confluence debugging playbook and mapped service ownership across Rolodex, Pilot, Evi2Ken, and Everest.</li></ul></div>
+                            <div class="exp-item"><strong>Buddied 2 new hires; participated in 14 interview loops (3 successful hires)</strong><ul><li>Created a repeatable onboarding reference guide.</li><li>Provided feedback to improve onboarding documentation and materials.</li></ul></div>
+                            <div class="exp-item"><strong>Led Operational Readiness Reviews (ORR) for Evi2Ken</strong><ul><li>Authored ORR documentation aligned with Workday reliability standards.</li><li>Enabled Prometheus-based observability and alerting; extended instrumentation to Yolk-NestJS.</li><li>Raised authentication test coverage to 80%+.</li></ul></div>
+                        </div>
+                        <div class="job-section">
+                            <h4><span class="h4-icon">&#9670;</span> Development &amp; Operations</h4>
+                            <div class="exp-item"><strong>Improved platform stability and scalability across Rolodex and Pilot</strong><ul><li>Resolved key integration bugs and profiled high-traffic endpoints (<code>/token/{for}</code>).</li><li>Refactored core components for maintainability and increased test coverage.</li></ul></div>
+                            <div class="exp-item"><strong>Drove cross-service integration resilience</strong><ul><li>Built robust SSO token validation using Fugu certificate discovery.</li><li>Enabled Evi2Ken observability via <code>/ping</code> and <code>/health</code> endpoints.</li><li>Standardized metadata propagation across Pilot, Rolodex, and UI.</li><li>Refactored Authlib naming conventions across Python and TypeScript codebases.</li></ul></div>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <div class="row mt-4">
-                <div class="col">
-                    <div class="card">
-                        <img src="img/sklearn.png" class="card-img-top">
-                        <div class="card-body">
-                            <h5 class="card-title">Diabetes Patient Classifier & Clustering on Meal Data</h5>
-                            <p align="right"><small class="text-muted" >Aug. 2019 – Nov. 2019</small></p>
-                            <p class="card-text"><i>Implemented a machine learning model to classify diabetes patients based on diet and sugar level readings, along with clustering meal data according to carbohydrate intake.</i></p>
+            <!-- LivePerson -->
+            <div class="timeline-item reveal">
+                <div class="timeline-dot"></div>
+                <div class="timeline-card glass-card tilt-card">
+                    <div class="tilt-glow"></div>
+                    <div class="job-header">
+                        <div class="job-header-left">
+                            <div class="company-logo lp-logo">LP</div>
+                            <div>
+                                <h3>Software Engineer</h3>
+                                <p class="company-name">LivePerson Inc</p>
+                                <div class="job-tags"><span class="job-tag">Voice AI</span><span class="job-tag">Kafka</span><span class="job-tag">Microservices</span><span class="job-tag">GCP</span></div>
+                            </div>
                         </div>
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item">Extracted features from raw patient data after preprocessing and cleaning using Python, Pandas, and NumPy.</li>
-                            <li class="list-group-item">Developed and implemented APIs for dimensionality reduction using Principal Component Analysis (PCA) with Matplotlib and Scikit-Learn.</li>
-                            <li class="list-group-item">Conducted in-depth analysis using K-fold Cross Validation to select the best classifier and clustering algorithms with Scikit-Learn.</li>
-                            <li class="list-group-item">Achieved 85% accuracy on patient testing data with an 83% confidence level on new predictions.</li>
-                        </ul>
+                        <div class="job-header-right">
+                            <span class="job-date">Jan 2022 – May 2024</span>
+                            <span class="job-location">NYC &rarr; Toronto</span>
+                            <span class="toggle-arrow"></span>
+                        </div>
                     </div>
-                </div>
-                <div class="col">
-                    <div class="card">
-                        <img src="img/math.jpg" class="card-img-top">
-                        <div class="card-body">
-                            <h5 class="card-title">Online Visual Learning Portal</h5>
-                            <p align="right"><small class="text-muted">Aug. 2019 – Nov. 2019</small></p>
-                            <p class="card-text"><i>Designed and developed an interactive Online Visual Learning Portal where students of varying grades engage with mathematical concepts through drag-and-drop functionality, solving questions assigned by their professors.</i></p>
+                    <div class="job-details">
+                        <div class="job-section">
+                            <h4><span class="h4-icon">&#9670;</span> Architecture &amp; System Design</h4>
+                            <div class="exp-item"><strong>Rebuilt Connector Service</strong> — Reduced data event size by 40% and latency by 35%.<ul><li>Identified bottlenecks in inter-service communication.</li><li>Designed an optimized event pipeline with Redis-backed brand configuration lookups.</li></ul></div>
+                            <div class="exp-item"><strong>Redesigned Media Service into microservices</strong> — Increased concurrent calls by 50% (450 to 700).<ul><li>Decomposed monolithic service into TTS, STT, and media microservices.</li><li>Defined and implemented the observability strategy (metrics, monitoring, alerting).</li></ul></div>
+                            <div class="exp-item"><strong>Owned Audio File Management Service end-to-end</strong> — Drove 25% increase in user engagement.<ul><li>Architected storage and retrieval layer for audio blobs and Azure client keys using GCS and Redis.</li><li>Integrated Azure Text-to-Speech for multi-language support via SSML.</li></ul></div>
+                            <div class="exp-item"><strong>Proposed and drove adoption of Centralized Schema Service</strong> — Reduced integration overhead by 40% and debugging time by 25%.<ul><li>Identified fragmented Kafka schema management as a cross-team pain point.</li><li>Designed the service to enforce schema evolution and consistency.</li><li>Authored internal documentation and onboarding guides adopted across teams.</li></ul></div>
+                            <div class="exp-item"><strong>Designed and delivered SIP Connection APIs</strong> — Increased customer retention by 20%.<ul><li>Built SIP connection support (IP, FQDN, Credentials) using Telnyx SDKs, Java, and Micronaut with Kafka.</li></ul></div>
                         </div>
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item">Collaborated within a team of 5 to develop the portal using Agile methodology with Scrum.</li>
-                            <li class="list-group-item">Implemented design patterns like Facade, Factory, and Iterator to construct RESTful APIs for seamless application functionality.</li>
-                            <li class="list-group-item">Designed and implemented the backend service in Python using Flask-Framework, incorporating Flask-Login for enhanced user security.</li>
-                            <li class="list-group-item">Utilized SQL-Alchemy for standardized database interactions, promoting an object-oriented approach over hard SQL queries.</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="row mt-4">
-                <div class="col">
-                    <div class="card">
-                        <img src="img/lang.jpg" class="card-img-top">
-                        <div class="card-body">
-                            <h5 class="card-title">!Xobile Programming Language</h5>
-                            <p align="right"><small class="text-muted">Jan. 2019 – May 2019</small></p>
-                            <p class="card-text"><i>Developed our own programming language based on java & python, which can handle all basics functions plus object oriented programming, with some unique features.</i></p>
+                        <div class="job-section">
+                            <h4><span class="h4-icon">&#9670;</span> Development &amp; Operations</h4>
+                            <div class="exp-item"><strong>Optimized shared utility libraries</strong> — Improved code efficiency by 22% across internal services.<ul><li>Tools: Redis, Log4j, GCS, Firestore.</li></ul></div>
+                            <div class="exp-item"><strong>Built automated OOM diagnostics</strong> — Reduced debugging time by 25%.<ul><li>Automated thread and heap dump backups to GCP buckets during Out-of-Memory incidents.</li></ul></div>
+                            <div class="exp-item"><strong>Secured transaction logs and reduced on-call burden</strong> — Cut on-call debugging time by 4 hours weekly.<ul><li>Built bash tooling for log retrieval from Kubernetes pods and GCP Logs Explorer.</li></ul></div>
+                            <div class="exp-item"><strong>Drove data security improvements</strong><ul><li>Implemented data redaction for NPIs, auth tokens, and credentials across GCP logs and Kubernetes pods.</li><li>Eliminated sensitive data exposure in production logs, enabling compliance with enterprise data handling requirements.</li></ul></div>
+                            <div class="exp-item"><strong>Raised test coverage from 36% to 87%</strong> — Cut testing costs by 20%.<ul><li>Used JUnit and JMeter; established testing standards for the team.</li></ul></div>
+                            <div class="exp-item"><strong>Led Inbound Call Automation Bots initiative</strong><ul><li>Established a fully operational system for weekly performance runs.</li><li>Built the initial proof of concept and coordinated cross-team end-to-end testing.</li><li>Delivered knowledge transfer to ensure long-term ownership.</li></ul></div>
                         </div>
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item">Worked in a team of 4, to develop !Xobile programming language similar to any Object-Oriented Language using Python & Prolog.</li>
-                            <li class="list-group-item">Designed and developed the Grammar of the language, Tokenization using Python, Syntax Parse Tree & Semantics using Prolog.</li>
-                            <li class="list-group-item">Developed scripts using Python for automation, which executes all the files and produces the output for the given lines of code.</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card">
-                        <img src="img/hadoop.png" class="card-img-top">
-                        <div class="card-body">
-                            <h5 class="card-title">Hadoop Cluster Implementation and MapReduce API Development</h5>
-                            <p align="right"><small class="text-muted">Mar. 2017 – Jun. 2017</small></p>
-                            <p class="card-text"><i>Established a Hadoop cluster on a local system using virtual nodes and developed a MapReduce API for YouTube raw data analysis.</i></p>
-                        </div>
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item">Designed and implemented a MapReduce application to extract top YouTube video creators for a given week using Python.</li>
-                            <li class="list-group-item">Processed 300 million YouTube video logs, further subsampled into 10 sets.</li>
-                            <li class="list-group-item">Created an eight-node Hadoop cluster and automated the process.</li>
-                            <li class="list-group-item">Conducted a comparison study on multiple Hadoop versions to ensure backward compatibility.</li>
-                        </ul>
                     </div>
                 </div>
             </div>
-            
-            <hr>
-            <h2 class="mt-2 text-center" id="Contact">Contact Me</h2>
-            <div class="row">
-                <div class="col text-center">
-                    <a href="https://www.linkedin.com/in/-singhal-vaibhav-/" target="_blank"><img src="img/linkedin.png" padding ="200px" width="50px" height="50px" class="img-fluid" alt="linkedin Icon Image"></a>&nbsp;&nbsp;&nbsp;&nbsp;
-                    <a href="https://github.com/vsinghal3737" target="_blank"><img src="img/github.ico" class="img-fluid" width="50px" height="50px" alt="Github Icon Image"></a>&nbsp;&nbsp;&nbsp;&nbsp;
-                    <a href="mailto:vsvsinghal3737@gmail.com?Subject=Hello%20Vaibhav%20Singhal" target="_blank"><img src="img/gmail.png"  width="50px" height="50px" class="img-fluid" alt="E-Mail Icon Image"></a>&nbsp;&nbsp;&nbsp;&nbsp;
-                    <a href="tel:+14374195770"><img src="img/call.jfif"  width="50px" height="50px" class="img-fluid" alt="Call Icon Image"></a>
+
+            <!-- Black Knight -->
+            <div class="timeline-item reveal">
+                <div class="timeline-dot"></div>
+                <div class="timeline-card glass-card tilt-card">
+                    <div class="tilt-glow"></div>
+                    <div class="job-header">
+                        <div class="job-header-left">
+                            <div class="company-logo bk-logo">BK</div>
+                            <div>
+                                <h3>Software Engineer</h3>
+                                <p class="company-name">Black Knight Inc</p>
+                                <div class="job-tags"><span class="job-tag">AWS</span><span class="job-tag">OCR</span><span class="job-tag">Python</span><span class="job-tag">Serverless</span></div>
+                            </div>
+                        </div>
+                        <div class="job-header-right">
+                            <span class="job-date">Jun 2020 – Jan 2022</span>
+                            <span class="job-location">Philadelphia, PA</span>
+                            <span class="toggle-arrow"></span>
+                        </div>
+                    </div>
+                    <div class="job-details">
+                        <div class="job-section">
+                            <p class="job-intro">Architected and developed APIs for Input &amp; Output Handler Services on the <strong>AIVA</strong> (Artificial Intelligence Virtual Assistant) team.</p>
+                            <div class="exp-item"><strong>Built customer environment management APIs</strong> — Reduced production costs by 20%.<ul><li>Utilized AWS services (API Gateway, Lambda, S3, DynamoDB, SSM).</li></ul></div>
+                            <div class="exp-item"><strong>Designed OCR data extraction microservices</strong><ul><li>Increased data accuracy from 80% to 89% and improved performance by 25%.</li></ul></div>
+                            <div class="exp-item"><strong>Led greenfield service development</strong><ul><li>Built resilient services and orchestrated infrastructure stacks using Python, CloudFormation, and S3.</li></ul></div>
+                            <div class="exp-item"><strong>Resolved provisioning and build pipeline failures</strong><ul><li>Reduced testing load times and lowered AWS costs across environments.</li></ul></div>
+                            <div class="exp-item"><strong>Automated transaction anomaly recovery</strong> using Python and Boto3.<ul><li>Eliminated 80% of manual retry attempts caused by code defects or AWS outages.</li></ul></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Earlier Experience divider -->
+            <div class="timeline-divider reveal">
+                <span>Earlier Experience</span>
+            </div>
+
+            <!-- Research Scholar -->
+            <div class="timeline-item reveal">
+                <div class="timeline-dot"></div>
+                <div class="timeline-card glass-card tilt-card">
+                    <div class="tilt-glow"></div>
+                    <div class="job-header">
+                        <div class="job-header-left">
+                            <div class="company-logo rs-logo">RS</div>
+                            <div>
+                                <h3>Research Scholar</h3>
+                                <p class="company-name">Bharati Vidyapeeth's College of Engineering</p>
+                                <div class="job-tags"><span class="job-tag">Steganography</span><span class="job-tag">NLP</span><span class="job-tag">Cloud Security</span></div>
+                            </div>
+                        </div>
+                        <div class="job-header-right">
+                            <span class="job-date">Jan 2017 – Sep 2017</span>
+                            <span class="job-location">Delhi, India</span>
+                            <span class="toggle-arrow"></span>
+                        </div>
+                    </div>
+                    <div class="job-details">
+                        <div class="job-section">
+                            <p class="job-intro">CSE Department under Dr. Rachna Jain — Published two research papers.</p>
+                            <div class="exp-item"><strong><a href="http://www.recentscientific.com/enhance-data-security-cloud-using-steganography" target="_blank">Enhance Data Security in Cloud Using Steganography</a></strong><ul><li>Studied Cloud Service Providers vs Internet Service Providers based on cost, speed, scalability, and performance.</li><li>Reviewed techniques of steganography (LSB) and digital watermarking (DFT) in spatial and frequency domain.</li><li>In-depth study on Symmetric Key Encryption (DES, AES) and Asymmetric Key Encryption (RSA).</li><li>Proposed a model for Image Steganography using LSB, mapping every bit of data and encryption key in RGB pixels.</li></ul></div>
+                            <div class="exp-item"><strong><a href="http://www.recentscientific.com/medical-application-using-nlp-over-cloud" target="_blank">Medical Application Using NLP Over Cloud</a></strong><ul><li>Knowledge acquisition on NLP systems and open source libraries (NLTK, Polyglot, Pattern).</li><li>Studied Morphological Processing, Syntax, Semantic and Pragmatic Analysis.</li><li>Comparative study on public, private, and hybrid clouds based on reliability, cost, and scalability.</li><li>Proposed a computerized Clinical Decision Support (CDS) System using cloud services.</li></ul></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TATA Internship -->
+            <div class="timeline-item reveal">
+                <div class="timeline-dot"></div>
+                <div class="timeline-card glass-card tilt-card">
+                    <div class="tilt-glow"></div>
+                    <div class="job-header">
+                        <div class="job-header-left">
+                            <div class="company-logo tc-logo">TC</div>
+                            <div>
+                                <h3>Consulting &amp; Software Intern</h3>
+                                <p class="company-name">TATA Computer Management Corp</p>
+                                <div class="job-tags"><span class="job-tag">Python</span><span class="job-tag">Flask</span><span class="job-tag">MongoDB</span><span class="job-tag">ETL</span></div>
+                            </div>
+                        </div>
+                        <div class="job-header-right">
+                            <span class="job-date">May 2016 – Aug 2016</span>
+                            <span class="job-location">Delhi, India</span>
+                            <span class="toggle-arrow"></span>
+                        </div>
+                    </div>
+                    <div class="job-details">
+                        <div class="job-section">
+                            <div class="exp-item"><strong>Full stack API-driven web application</strong> — Increased sales by 45% and reduced data storage inventory by 38%.<ul><li>Implemented Agile process across teams, improved customer interaction and sprint feedback.</li><li>Developed RESTful APIs using Python with Flask, JWT Session Management for security.</li><li>Performed ETL on legacy database, improved query performance by 30%.</li><li>Interacted with the DB using MongoDB Alchemy (NoSQL), improving flexibility and providing Object-Oriented structure.</li></ul></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bharati Vidyapeeth Trainee -->
+            <div class="timeline-item reveal">
+                <div class="timeline-dot"></div>
+                <div class="timeline-card glass-card tilt-card">
+                    <div class="tilt-glow"></div>
+                    <div class="job-header">
+                        <div class="job-header-left">
+                            <div class="company-logo bv-logo">BV</div>
+                            <div>
+                                <h3>Android App Development Trainee</h3>
+                                <p class="company-name">Bharati Vidyapeeth's College of Engineering</p>
+                                <div class="job-tags"><span class="job-tag">Android</span><span class="job-tag">Java</span></div>
+                            </div>
+                        </div>
+                        <div class="job-header-right">
+                            <span class="job-date">May 2015 – Jul 2015</span>
+                            <span class="job-location">Delhi, India</span>
+                            <span class="toggle-arrow"></span>
+                        </div>
+                    </div>
+                    <div class="job-details">
+                        <div class="job-section">
+                            <div class="exp-item"><strong>Developed a video player application</strong> using Android Studio.<ul><li>Built list/grid view and gesture controls.</li><li>Worked on app UI, deep functionality, and third-party SDKs.</li></ul></div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-        
-        <footer class="mt-5 py-4 bg-dark text-white-50">
-            <div class="container text-center">
-                <small>&copy; 2024 Vaibhav Singhal</small>
+    </div>
+</section>
+
+<div class="section-divider diag-1"><svg viewBox="0 0 1440 80" preserveAspectRatio="none"><polygon points="0,80 1440,0 1440,80"/></svg></div>
+
+<!-- ═══════════════ SKILLS (ORBIT) ═══════════════ -->
+<section id="skills">
+    <div class="container">
+        <div class="section-header reveal">
+            <span class="section-number">02</span>
+            <h2 class="section-title">Technical Arsenal</h2>
+            <p class="section-subtitle">Technologies I work with daily and at depth.</p>
+        </div>
+        <div class="orbit-container reveal">
+            <div class="orbit-core">CORE</div>
+            <!-- Ring 1: Languages -->
+            <div class="orbit-ring ring-1">
+                <div class="orbit-node" data-cat="Languages" style="--i:0;--total:6">Python</div>
+                <div class="orbit-node" data-cat="Languages" style="--i:1;--total:6">Java</div>
+                <div class="orbit-node" data-cat="Languages" style="--i:2;--total:6">TypeScript</div>
+                <div class="orbit-node" data-cat="Languages" style="--i:3;--total:6">Bash</div>
+                <div class="orbit-node" data-cat="Languages" style="--i:4;--total:6">C/C++</div>
+                <div class="orbit-node" data-cat="Languages" style="--i:5;--total:6">SSML</div>
             </div>
-        </footer>
-        
-        <!-- Scripts -->
-        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-    </body>
+            <!-- Ring 2: Backend & Protocols -->
+            <div class="orbit-ring ring-2">
+                <div class="orbit-node" data-cat="Backend" style="--i:0;--total:11">FastAPI</div>
+                <div class="orbit-node" data-cat="Backend" style="--i:1;--total:11">Micronaut</div>
+                <div class="orbit-node" data-cat="Backend" style="--i:2;--total:11">NestJS</div>
+                <div class="orbit-node" data-cat="Backend" style="--i:3;--total:11">Flask</div>
+                <div class="orbit-node" data-cat="Backend" style="--i:4;--total:11">Django</div>
+                <div class="orbit-node" data-cat="Backend" style="--i:5;--total:11">Kafka</div>
+                <div class="orbit-node" data-cat="Backend" style="--i:6;--total:11">RabbitMQ</div>
+                <div class="orbit-node" data-cat="Backend" style="--i:7;--total:11">OIDC</div>
+                <div class="orbit-node" data-cat="Backend" style="--i:8;--total:11">SCIM</div>
+                <div class="orbit-node" data-cat="Backend" style="--i:9;--total:11">JWT</div>
+                <div class="orbit-node" data-cat="Backend" style="--i:10;--total:11">Docker</div>
+            </div>
+            <!-- Ring 3: Data & Cloud -->
+            <div class="orbit-ring ring-3">
+                <div class="orbit-node" data-cat="Data &amp; Cloud" style="--i:0;--total:12">PostgreSQL</div>
+                <div class="orbit-node" data-cat="Data &amp; Cloud" style="--i:1;--total:12">Redis</div>
+                <div class="orbit-node" data-cat="Data &amp; Cloud" style="--i:2;--total:12">MySQL</div>
+                <div class="orbit-node" data-cat="Data &amp; Cloud" style="--i:3;--total:12">MongoDB</div>
+                <div class="orbit-node" data-cat="Data &amp; Cloud" style="--i:4;--total:12">Firestore</div>
+                <div class="orbit-node" data-cat="Data &amp; Cloud" style="--i:5;--total:12">DynamoDB</div>
+                <div class="orbit-node" data-cat="Data &amp; Cloud" style="--i:6;--total:12">S3</div>
+                <div class="orbit-node" data-cat="Data &amp; Cloud" style="--i:7;--total:12">GKE</div>
+                <div class="orbit-node" data-cat="Data &amp; Cloud" style="--i:8;--total:12">Kubernetes</div>
+                <div class="orbit-node" data-cat="Data &amp; Cloud" style="--i:9;--total:12">CloudFormation</div>
+                <div class="orbit-node" data-cat="Data &amp; Cloud" style="--i:10;--total:12">API Gateway</div>
+                <div class="orbit-node" data-cat="Data &amp; Cloud" style="--i:11;--total:12">Compute Engine</div>
+            </div>
+            <!-- Ring 4: Tools & Big Data -->
+            <div class="orbit-ring ring-4">
+                <div class="orbit-node" data-cat="Tools &amp; Big Data" style="--i:0;--total:11">Prometheus</div>
+                <div class="orbit-node" data-cat="Tools &amp; Big Data" style="--i:1;--total:11">Grafana</div>
+                <div class="orbit-node" data-cat="Tools &amp; Big Data" style="--i:2;--total:11">Sentry</div>
+                <div class="orbit-node" data-cat="Tools &amp; Big Data" style="--i:3;--total:11">GitLab CI/CD</div>
+                <div class="orbit-node" data-cat="Tools &amp; Big Data" style="--i:4;--total:11">JMeter</div>
+                <div class="orbit-node" data-cat="Tools &amp; Big Data" style="--i:5;--total:11">Swagger</div>
+                <div class="orbit-node" data-cat="Tools &amp; Big Data" style="--i:6;--total:11">Gradle</div>
+                <div class="orbit-node" data-cat="Tools &amp; Big Data" style="--i:7;--total:11">Spark</div>
+                <div class="orbit-node" data-cat="Tools &amp; Big Data" style="--i:8;--total:11">Hadoop</div>
+                <div class="orbit-node" data-cat="Tools &amp; Big Data" style="--i:9;--total:11">Sqoop</div>
+                <div class="orbit-node" data-cat="Tools &amp; Big Data" style="--i:10;--total:11">Jira</div>
+            </div>
+        </div>
+        <div class="orbit-tooltip" id="orbitTooltip"></div>
+        <!-- Fallback grid for mobile -->
+        <div class="skills-grid-fallback">
+            <div class="skill-category glass-card tilt-card reveal"><div class="tilt-glow"></div><h4>Languages</h4><div class="tags"><span class="tag" data-level="expert">Python</span><span class="tag" data-level="expert">Java</span><span class="tag" data-level="advanced">TypeScript</span><span class="tag" data-level="advanced">Bash</span><span class="tag" data-level="intermediate">C/C++</span><span class="tag" data-level="intermediate">SSML</span></div></div>
+            <div class="skill-category glass-card tilt-card reveal"><div class="tilt-glow"></div><h4>Database &amp; Storage</h4><div class="tags"><span class="tag" data-level="expert">PostgreSQL</span><span class="tag" data-level="expert">Redis</span><span class="tag" data-level="advanced">MySQL</span><span class="tag" data-level="advanced">MongoDB</span><span class="tag" data-level="advanced">Firestore</span><span class="tag" data-level="advanced">DynamoDB</span><span class="tag" data-level="intermediate">Cloud Storage</span><span class="tag" data-level="intermediate">S3</span></div></div>
+            <div class="skill-category glass-card tilt-card reveal"><div class="tilt-glow"></div><h4>Back-end</h4><div class="tags"><span class="tag" data-level="expert">FastAPI</span><span class="tag" data-level="expert">Micronaut</span><span class="tag" data-level="expert">NestJS</span><span class="tag" data-level="advanced">Flask</span><span class="tag" data-level="advanced">Django</span><span class="tag" data-level="expert">Kafka</span><span class="tag" data-level="advanced">RabbitMQ</span><span class="tag" data-level="expert">OIDC</span><span class="tag" data-level="expert">SCIM</span><span class="tag" data-level="expert">JWT</span><span class="tag" data-level="advanced">Docker</span></div></div>
+            <div class="skill-category glass-card tilt-card reveal"><div class="tilt-glow"></div><h4>Cloud (GCP &amp; AWS)</h4><div class="tags"><span class="tag" data-level="expert">GKE</span><span class="tag" data-level="expert">Kubernetes</span><span class="tag" data-level="advanced">Compute Engine</span><span class="tag" data-level="advanced">Load Balancing</span><span class="tag" data-level="advanced">Cloud Build</span><span class="tag" data-level="advanced">CloudFormation</span><span class="tag" data-level="advanced">API Gateway</span></div></div>
+            <div class="skill-category glass-card tilt-card reveal"><div class="tilt-glow"></div><h4>Big Data</h4><div class="tags"><span class="tag" data-level="advanced">Spark Streaming</span><span class="tag" data-level="advanced">Hadoop HDFS</span><span class="tag" data-level="advanced">Spark RDD</span><span class="tag" data-level="advanced">DataFrames</span><span class="tag" data-level="intermediate">Sqoop</span><span class="tag" data-level="intermediate">Apache Flume</span></div></div>
+            <div class="skill-category glass-card tilt-card reveal"><div class="tilt-glow"></div><h4>Tools &amp; Observability</h4><div class="tags"><span class="tag" data-level="expert">GitLab CI/CD</span><span class="tag" data-level="expert">Prometheus</span><span class="tag" data-level="expert">Grafana</span><span class="tag" data-level="advanced">Sentry</span><span class="tag" data-level="advanced">JMeter</span><span class="tag" data-level="advanced">Swagger</span><span class="tag" data-level="advanced">Gradle</span><span class="tag" data-level="intermediate">Jira</span></div></div>
+        </div>
+    </div>
+</section>
+
+<div class="section-divider curve-1"><svg viewBox="0 0 1440 80" preserveAspectRatio="none"><path d="M0,0 C480,80 960,80 1440,0 L1440,80 L0,80 Z"/></svg></div>
+
+<!-- ═══════════════ EDUCATION ═══════════════ -->
+<section id="education">
+    <div class="container">
+        <div class="section-header reveal"><span class="section-number">03</span><h2 class="section-title">Education</h2></div>
+        <div class="edu-grid">
+            <div class="edu-card glass-card tilt-card reveal"><div class="tilt-glow"></div><div class="edu-year">2018 – 2020</div><h4>Arizona State University</h4><p class="edu-location">Tempe, Arizona, USA</p><p class="edu-degree">M.S. Software Engineering</p></div>
+            <div class="edu-card glass-card tilt-card reveal"><div class="tilt-glow"></div><div class="edu-year">2014 – 2017</div><h4>Guru Gobind Singh Indraprastha University</h4><p class="edu-location">Delhi, India</p><p class="edu-degree">B.Tech Computer Science</p></div>
+            <div class="edu-card glass-card tilt-card reveal"><div class="tilt-glow"></div><div class="edu-year">2011 – 2014</div><h4>Guru Nanak Dev Institute of Technology</h4><p class="edu-location">Delhi, India</p><p class="edu-degree">Associate — Electronics &amp; Communications</p></div>
+        </div>
+    </div>
+</section>
+
+<div class="section-divider wave-2"><svg viewBox="0 0 1440 100" preserveAspectRatio="none"><path d="M0,40 C240,100 480,0 720,50 C960,100 1200,20 1440,60 L1440,100 L0,100 Z"/></svg></div>
+
+<!-- Certifications -->
+<section id="certifications">
+    <div class="container">
+        <div class="section-header reveal"><span class="section-number">04</span><h2 class="section-title">Certifications</h2></div>
+        <div class="cert-grid">
+            <div class="cert-card glass-card tilt-card reveal"><div class="tilt-glow"></div><div class="cert-badge">CCA-175</div><h4>Cloudera Certified Associate</h4><p>Spark and Hadoop Developer</p></div>
+            <div class="cert-card glass-card tilt-card reveal"><div class="tilt-glow"></div><div class="cert-badge">PCAP</div><h4>PythonInstitute Certified Associate</h4><p>Python Programming (PCAP-31-02)</p></div>
+            <div class="cert-card glass-card tilt-card reveal"><div class="tilt-glow"></div><div class="cert-badge">OCA</div><h4>Oracle Certified Associate</h4><p>Database SQL (1Z0-071)</p></div>
+            <div class="cert-card glass-card tilt-card reveal"><div class="tilt-glow"></div><div class="cert-badge">GCP</div><h4>Google Associate Cloud Engineer</h4><p>Google Cloud Platform</p></div>
+        </div>
+        <div class="collapsible-section reveal">
+            <button class="collapsible-toggle glass-card" onclick="toggleCollapsible(this)"><span>Udemy Certificates</span><span class="toggle-arrow open"></span></button>
+            <div class="collapsible-content open">
+                <div class="udemy-grid">
+                    <span class="udemy-item">Data Warehouse — The Ultimate Guide</span><span class="udemy-item">Software Architecture &amp; Design of Modern Large Scale Systems</span><span class="udemy-item">Micronaut — Cloud Native Microservices with Java</span><span class="udemy-item">GCP Associate Cloud Engineer — Google Cloud Certification</span><span class="udemy-item">Spark and Hadoop Developer — Python (PySpark)</span><span class="udemy-item">Spark and Python for Big Data with PySpark</span><span class="udemy-item">REST APIs with Flask and Python</span><span class="udemy-item">Advanced REST APIs with Flask and Python</span><span class="udemy-item">GCP: Complete Google Data Engineer &amp; Cloud Architect Guide</span><span class="udemy-item">Oracle SQL Developer From Scratch</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════ PROJECTS (FLIP CARDS) ═══════════════ -->
+<section id="projects">
+    <div class="container">
+        <div class="section-header reveal"><span class="section-number">05</span><h2 class="section-title">Projects</h2><p class="section-subtitle flip-hint">Hover to flip and see details.</p></div>
+        <div class="project-grid">
+            <div class="flip-card reveal">
+                <div class="flip-inner">
+                    <div class="flip-front"><img src="img/ice-hockey.jpg" alt="Ice Hockey"><div class="flip-front-overlay"><h4>RosterData — Ice Hockey v2</h4><div class="project-tags"><span>Python</span><span>Scrapy</span><span>PostgreSQL</span><span>AWS</span></div></div></div>
+                    <div class="flip-back glass-card"><h4>RosterData — Ice Hockey Statistics v2</h4><p class="project-date">Jan 2020 – Apr 2020</p><p>Enhanced RosterData by integrating three additional leagues (SHL, Liiga, KHL).</p><ul><li>Contributed to the implementation of multiple ice hockey leagues within an Agile team.</li><li>Developed web scraping scripts using Python and Scrapy Framework.</li><li>Modeled scraped data into JSON and imported into PostgreSQL on Amazon RDS.</li><li>Collaborated on APIs to fetch data from AWS PostgreSQL, integrated with the front-end.</li></ul></div>
+                </div>
+            </div>
+            <div class="flip-card reveal">
+                <div class="flip-inner">
+                    <div class="flip-front"><img src="img/tfidf.png" alt="TF-IDF"><div class="flip-front-overlay"><h4>LSA Classification &amp; Prediction</h4><div class="project-tags"><span>Python</span><span>scikit-learn</span><span>Flask</span><span>GCP</span></div></div></div>
+                    <div class="flip-back glass-card"><h4>Latent Semantic Analysis — Classification &amp; Prediction</h4><p class="project-date">Mar 2020 – Apr 2020</p><p>Trained a ML model on sensitive financial encoded documents.</p><ul><li>Mapped sensitive financial encoded documents into unique IDs for analysis.</li><li>Achieved 98% accuracy and 87% confidence on average in model testing.</li><li>Developed Flask RESTful APIs for serving ML predictions.</li><li>Deployed on Google Cloud Platform for integration testing.</li></ul></div>
+                </div>
+            </div>
+            <div class="flip-card reveal">
+                <div class="flip-inner">
+                    <div class="flip-front"><img src="img/sklearn.png" alt="Scikit-Learn"><div class="flip-front-overlay"><h4>Diabetes Classifier &amp; Clustering</h4><div class="project-tags"><span>Python</span><span>Pandas</span><span>NumPy</span><span>scikit-learn</span></div></div></div>
+                    <div class="flip-back glass-card"><h4>Diabetes Patient Classifier &amp; Meal Clustering</h4><p class="project-date">Aug 2019 – Nov 2019</p><p>ML model to classify diabetes patients based on diet and sugar level readings.</p><ul><li>Extracted features from raw patient data using Python, Pandas, and NumPy.</li><li>Conducted K-fold Cross Validation to select the best classifier.</li><li>Achieved 85% accuracy with 83% confidence on new predictions.</li></ul></div>
+                </div>
+            </div>
+            <div class="flip-card reveal">
+                <div class="flip-inner">
+                    <div class="flip-front"><img src="img/math.jpg" alt="Math Portal"><div class="flip-front-overlay"><h4>Visual Learning Portal</h4><div class="project-tags"><span>Python</span><span>Flask</span><span>SQL-Alchemy</span><span>Agile</span></div></div></div>
+                    <div class="flip-back glass-card"><h4>Online Visual Learning Portal</h4><p class="project-date">Aug 2019 – Nov 2019</p><p>Interactive portal for math concepts through drag-and-drop functionality.</p><ul><li>Team of 5 using Agile methodology with Scrum.</li><li>Implemented Facade, Factory, and Iterator design patterns for RESTful APIs.</li><li>Backend in Python using Flask with SQL-Alchemy.</li></ul></div>
+                </div>
+            </div>
+            <div class="flip-card reveal">
+                <div class="flip-inner">
+                    <div class="flip-front"><img src="img/lang.jpg" alt="Programming Language"><div class="flip-front-overlay"><h4>!Xobile Programming Language</h4><div class="project-tags"><span>Python</span><span>Prolog</span><span>Compiler Design</span></div></div></div>
+                    <div class="flip-back glass-card"><h4>!Xobile Programming Language</h4><p class="project-date">Jan 2019 – May 2019</p><p>Custom OOP programming language based on Java and Python.</p><ul><li>Designed grammar, tokenization (Python), syntax parse tree and semantics (Prolog).</li><li>Developed automation scripts for execution and output generation.</li></ul></div>
+                </div>
+            </div>
+            <div class="flip-card reveal">
+                <div class="flip-inner">
+                    <div class="flip-front"><img src="img/hadoop.png" alt="Hadoop"><div class="flip-front-overlay"><h4>Hadoop Cluster &amp; MapReduce</h4><div class="project-tags"><span>Hadoop</span><span>MapReduce</span><span>Python</span><span>HDFS</span></div></div></div>
+                    <div class="flip-back glass-card"><h4>Hadoop Cluster &amp; MapReduce API</h4><p class="project-date">Mar 2017 – Jun 2017</p><p>Hadoop cluster on local system for YouTube data analysis.</p><ul><li>Processed 300 million YouTube video logs across 10 subsampled sets.</li><li>Created an eight-node Hadoop cluster with automated processing.</li><li>Conducted comparison study on multiple Hadoop versions for backward compatibility.</li></ul></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="section-divider wave-3"><svg viewBox="0 0 1440 100" preserveAspectRatio="none"><path d="M0,80 C360,20 720,100 1080,40 C1260,10 1380,60 1440,40 L1440,100 L0,100 Z"/></svg></div>
+
+<!-- ═══════════════ CONTACT ═══════════════ -->
+<section id="contact">
+    <div class="container">
+        <div class="section-header reveal"><span class="section-number">06</span><h2 class="section-title">Let's Connect</h2><p class="section-subtitle">Open to conversations about distributed systems, identity platforms, and interesting engineering challenges.</p></div>
+        <div class="contact-grid reveal">
+            <a href="https://www.linkedin.com/in/-singhal-vaibhav-/" target="_blank" class="contact-card glass-card tilt-card magnetic"><div class="tilt-glow"></div><img src="img/linkedin.png" alt="LinkedIn"><span>LinkedIn</span></a>
+            <a href="https://github.com/vsinghal3737" target="_blank" class="contact-card glass-card tilt-card magnetic"><div class="tilt-glow"></div><img src="img/github.ico" alt="GitHub"><span>GitHub</span></a>
+            <a href="mailto:vsvsinghal3737@gmail.com" class="contact-card glass-card tilt-card magnetic"><div class="tilt-glow"></div><img src="img/gmail.png" alt="Email"><span>Email</span></a>
+            <a href="tel:+14374195770" class="contact-card glass-card tilt-card magnetic"><div class="tilt-glow"></div><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--accent-bright)" stroke-width="1.5" style="padding:10px;border:1px solid var(--glass-border);border-radius:12px"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg><span>Contact</span></a>
+            <a href="https://drive.google.com/drive/folders/14P5q0XW5jiU3eIH2igkKzJ6LDOcdwyKn?usp=sharing" target="_blank" class="contact-card glass-card tilt-card magnetic"><div class="tilt-glow"></div><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--accent-bright)" stroke-width="1.5" style="padding:10px;border:1px solid var(--glass-border);border-radius:12px"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg><span>Resume</span></a>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="footer-inner">
+        <p>Designed &amp; built by <strong>Vaibhav Singhal</strong></p>
+        <p class="footer-year">&copy; 2026</p>
+    </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
 </html>
