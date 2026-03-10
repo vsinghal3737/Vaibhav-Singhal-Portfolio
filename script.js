@@ -120,8 +120,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const navLinks = document.querySelector('.nav-links');
     const sections = document.querySelectorAll('section[id]');
 
-    navToggle.addEventListener('click', () => { navToggle.classList.toggle('active'); navLinks.classList.toggle('open'); });
-    navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { navToggle.classList.remove('active'); navLinks.classList.remove('open'); }));
+    navToggle.setAttribute('aria-expanded', 'false');
+    function closeNav() { navToggle.classList.remove('active'); navLinks.classList.remove('open'); navToggle.setAttribute('aria-expanded', 'false'); }
+    navToggle.addEventListener('click', () => {
+        navToggle.classList.toggle('active');
+        navLinks.classList.toggle('open');
+        navToggle.setAttribute('aria-expanded', navLinks.classList.contains('open'));
+    });
+    navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', closeNav));
+    document.addEventListener('click', (e) => { if (navLinks.classList.contains('open') && !e.target.closest('#navbar')) closeNav(); });
+    window.addEventListener('scroll', () => { if (navLinks.classList.contains('open')) closeNav(); }, { passive: true });
 
     // ═══════════════ CONSOLIDATED RAF LOOP ═══════════════
     (function mainLoop() {
@@ -172,10 +180,76 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // ═══════════════ JOB HEADER CLICK ═══════════════
+    // ═══════════════ JOB DETAIL SPLIT PANEL ═══════════════
+    const timeline = document.getElementById('timeline');
+    const detailPanel = document.getElementById('jobDetailPanel');
+    const detailHeader = document.getElementById('detailPanelHeader');
+    const detailBody = document.getElementById('detailPanelBody');
+    const detailClose = document.getElementById('detailPanelClose');
+
+    function openDetail(header) {
+        const item = header.closest('.timeline-item');
+        const card = item.querySelector('.timeline-card');
+        const details = card.querySelector('.job-details');
+
+        detailHeader.innerHTML = header.innerHTML;
+        detailBody.innerHTML = details ? details.innerHTML : '';
+        detailPanel.scrollTop = 0;
+
+        document.querySelectorAll('.timeline-item.active-job').forEach(el => el.classList.remove('active-job'));
+        item.classList.add('active-job');
+
+        if (!timeline.classList.contains('detail-open')) {
+            timeline.classList.add('detail-open');
+        }
+
+        timeline.closest('section').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    function closeDetail() {
+        const activeItem = document.querySelector('.timeline-item.active-job');
+        timeline.classList.remove('detail-open');
+        document.querySelectorAll('.timeline-item.active-job').forEach(el => el.classList.remove('active-job'));
+        if (activeItem) {
+            requestAnimationFrame(() => activeItem.scrollIntoView({ behavior: 'smooth', block: 'center' }));
+        }
+    }
+
     document.querySelectorAll('.job-header').forEach(header => {
-        header.addEventListener('click', () => toggleJob(header));
+        header.addEventListener('click', () => openDetail(header));
+        header.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                openDetail(header);
+            }
+        });
     });
+
+    detailClose.addEventListener('click', closeDetail);
+    document.addEventListener('click', (e) => {
+        if (!timeline.classList.contains('detail-open')) return;
+        if (e.target.closest('#jobDetailPanel') || e.target.closest('.timeline-item')) return;
+        closeDetail();
+    });
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && timeline.classList.contains('detail-open')) closeDetail();
+    });
+
+    let swipeStartX = 0, swipeStartY = 0;
+    detailPanel.addEventListener('touchstart', (e) => {
+        swipeStartX = e.touches[0].clientX;
+        swipeStartY = e.touches[0].clientY;
+    }, { passive: true });
+    detailPanel.addEventListener('touchend', (e) => {
+        if (!timeline.classList.contains('detail-open')) return;
+        const dx = e.changedTouches[0].clientX - swipeStartX;
+        const dy = Math.abs(e.changedTouches[0].clientY - swipeStartY);
+        if (dx > 100 && dy < 80) closeDetail();
+    }, { passive: true });
+
+    // ═══════════════ UDEMY COLLAPSIBLE TOGGLE ═══════════════
+    const udemyBtn = document.getElementById('udemyToggle');
+    if (udemyBtn) udemyBtn.addEventListener('click', () => toggleCollapsible(udemyBtn));
 
     // ═══════════════ MAGNETIC BUTTONS (desktop only) ═══════════════
     if (!isTouch) {
@@ -248,13 +322,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ═══════════════ KONAMI CODE EASTER EGG ═══════════════
-    const konami = [38,38,40,40,37,39,37,39,66,65];
+    const konami = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
     let konamiIdx = 0;
     const confettiCanvas = document.getElementById('confettiCanvas');
     const cctx = confettiCanvas.getContext('2d');
 
     document.addEventListener('keydown', (e) => {
-        if (e.keyCode === konami[konamiIdx]) {
+        if (e.key === konami[konamiIdx]) {
             konamiIdx++;
             if (konamiIdx === konami.length) {
                 konamiIdx = 0;
@@ -311,17 +385,6 @@ document.addEventListener('DOMContentLoaded', () => {
         draw();
     }
 });
-
-// ═══════════════ TOGGLE JOB DETAILS ═══════════════
-function toggleJob(header) {
-    const details = header.nextElementSibling;
-    const arrow = header.querySelector('.toggle-arrow');
-    document.querySelectorAll('.job-details.open').forEach(d => {
-        if (d !== details) { d.classList.remove('open'); const a = d.previousElementSibling.querySelector('.toggle-arrow'); if (a) a.classList.remove('open'); }
-    });
-    details.classList.toggle('open');
-    if (arrow) arrow.classList.toggle('open');
-}
 
 // ═══════════════ TOGGLE COLLAPSIBLE ═══════════════
 function toggleCollapsible(button) {
