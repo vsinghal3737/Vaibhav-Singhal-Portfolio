@@ -229,6 +229,7 @@ section { padding: 100px 0; position: relative; z-index: 2; }
 @keyframes detailSlideIn { from { opacity: 0; transform: translateX(30px); } to { opacity: 1; transform: translateX(0); } }
 .detail-panel-close { position: sticky; top: 0; z-index: 3; display: flex; align-items: center; gap: 6px; width: 100%; padding: 14px 20px; margin: 0; background: rgba(10,10,26,0.95); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: none; border-bottom: 1px solid var(--glass-border); border-radius: 0; color: var(--text-muted); font-family: var(--font-main); font-size: 0.85rem; font-weight: 500; cursor: pointer; transition: all var(--transition); }
 .detail-panel-close:hover { color: var(--accent-bright); border-bottom-color: rgba(108,99,255,0.3); }
+.detail-panel-close-bottom { display: none; }
 .detail-panel-header { padding: 24px 28px 16px; }
 .detail-panel-header .job-header-left { display: flex; gap: 16px; align-items: flex-start; }
 .detail-panel-header .job-header-right { margin-top: 12px; display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
@@ -412,6 +413,7 @@ html { scrollbar-width: thin; scrollbar-color: rgba(108,99,255,0.3) transparent;
     .timeline.detail-open .timeline-item { display: none; }
     .timeline.detail-open .timeline-divider { display: none; }
     .timeline.detail-open .job-detail-panel { grid-column: 1; grid-row: 1; position: static; max-height: 90vh; overflow-y: auto; -webkit-overflow-scrolling: touch; border-radius: 0; border: none; box-shadow: none; background: rgba(10,10,26,0.97); }
+    .detail-panel-close-bottom { display: flex; position: static; border-top: 1px solid var(--glass-border); border-bottom: none; margin-top: 8px; }
     .detail-panel-header { padding: 20px 16px 12px; }
     .detail-panel-body { padding: 0 16px 20px; }
     .edu-grid, .cert-grid { grid-template-columns: 1fr; }

@@ -226,6 +226,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     detailClose.addEventListener('click', closeDetail);
+    const detailCloseBottom = detailPanel.querySelector('.detail-panel-close-bottom');
+    if (detailCloseBottom) detailCloseBottom.addEventListener('click', closeDetail);
     document.addEventListener('click', (e) => {
         if (!timeline.classList.contains('detail-open')) return;
         if (e.target.closest('#jobDetailPanel') || e.target.closest('.timeline-item')) return;
