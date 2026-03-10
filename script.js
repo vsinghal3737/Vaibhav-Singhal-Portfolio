@@ -203,7 +203,7 @@ document.addEventListener('DOMContentLoaded', () => {
             timeline.classList.add('detail-open');
         }
 
-        timeline.closest('section').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        requestAnimationFrame(() => detailPanel.scrollIntoView({ behavior: 'smooth', block: 'start' }));
     }
 
     function closeDetail() {
