@@ -353,6 +353,17 @@ a, button, .hero-btn, .flip-card, .cover, .job-header { touch-action: manipulati
 /* Firefox scrollbar */
 html { scrollbar-width: thin; scrollbar-color: rgba(108,99,255,0.3) transparent; }
 
+/* ═══ WIDE DESKTOP ═══ */
+@media (min-width: 1025px) {
+    .container { max-width: min(90vw, 1600px); }
+    .nav-inner { max-width: min(90vw, 1600px); }
+    .hero-stats { gap: clamp(24px, 3vw, 56px); }
+    .contact-grid { gap: clamp(16px, 2vw, 28px); }
+    .orbit-container { max-width: clamp(500px, 55vw, 900px); height: clamp(500px, 55vw, 900px); }
+    .timeline.detail-open { grid-template-columns: clamp(260px, 22vw, 380px) 1fr; }
+    .project-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
 /* ═══ RESPONSIVE ═══ */
 @media (max-width: 1200px) {
     .orbit-container { max-width: 650px; height: 650px; }
