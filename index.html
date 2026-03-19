@@ -87,6 +87,10 @@
             </div>
         </div>
 
+        <p class="hero-blurb reveal" style="--delay:0.25s">
+            I build the systems that let millions of users log in, get provisioned, and stay secure &mdash; identity &amp; auth infrastructure at <strong>Workday</strong>. Previously shipped voice AI at <strong>LivePerson</strong> and serverless pipelines at <strong>Black Knight</strong>.
+        </p>
+
         <div class="hero-stats reveal" style="--delay:0.3s">
             <div class="stat">
                 <span class="stat-number" data-target="7">0</span><span class="stat-suffix">+</span>
@@ -142,6 +146,7 @@
 <!-- WAVE DIVIDER -->
 <div class="section-divider wave-1"><svg viewBox="0 0 1440 100" preserveAspectRatio="none"><path d="M0,60 C360,120 720,0 1080,60 C1260,90 1380,40 1440,60 L1440,100 L0,100 Z"/></svg></div>
 
+
 <!-- ═══════════════ EXPERIENCE ═══════════════ -->
 <section id="experience">
     <div class="container">
@@ -164,8 +169,8 @@
                             <div>
                                 <h3>Senior Software Engineer</h3>
                                 <p class="company-name">Workday (Evisort)</p>
-                                <div class="job-tags"><span class="job-tag">Identity</span><span class="job-tag">SCIM</span><span class="job-tag">OIDC</span><span class="job-tag">Multi-tenant</span></div>
-                                <p class="job-summary">Owned the identity platform post-acquisition — built SCIM provisioning, unified OIDC authentication, single logout flows, and per-tenant schema isolation. Serving thousands of auth requests/min across Workday and Evisort.</p>
+                                <div class="job-tags"><span class="job-tag">Identity</span><span class="job-tag">SCIM</span><span class="job-tag">OIDC</span><span class="job-tag">Multi-tenant</span><span class="job-tag">CPS</span></div>
+                                <p class="job-summary">Owning the identity platform post-acquisition &mdash; SCIM provisioning, unified OIDC auth, single logout, per-tenant schema isolation, and a resilient CPS publish queue with exponential backoff retries. Serving thousands of auth requests/min across Workday and Evisort.</p>
                             </div>
                         </div>
                         <div class="job-header-right">
@@ -177,10 +182,12 @@
                         <div class="job-section">
                             <h4><span class="h4-icon">&#9670;</span> Architecture &amp; System Design</h4>
                             <div class="exp-item"><strong>Built SCIM API endpoints for Workday-Evisort user provisioning</strong><ul><li>Delivered the first Workday-Evisort integration post-acquisition (CRUD + Restore) in Rolodex.</li><li>Implemented dynamic model creation for provisioning flexibility across Workday and Stytch.</li><li>Led GA hardening: deterministic role mapping ("highest role wins"), SCIM import failure fixes, and WDID handling for migration stability.</li></ul></div>
+                            <div class="exp-item"><strong>Improved Rolodex and Pilot for Workday user provisioning</strong><ul><li>Established secure Pilot-Rolodex internal channel (HTTP Signature Auth, dedicated port) for service-to-service provisioning.</li><li>Fixed 2 critical IDOR vulnerabilities in Pilot document version endpoints &mdash; changed cross-tenant access from 403 to 404.</li><li>Built async <code>create_pilot_user_task</code> for post-SCIM Pilot user creation with retry logic and outbox events.</li></ul></div>
                             <div class="exp-item"><strong>Implemented unified authentication via OIDC</strong><ul><li>Built the core <code>POST /token/{for}</code> endpoint handling tens of thousands of requests per minute.</li><li>Designed OIDC callback handling across Rolodex and Evi2Ken (JWT generation, token verification, identifier resolution).</li><li>Integrated cookie-based session management and state-based redirection for deep linking.</li></ul></div>
                             <div class="exp-item"><strong>Designed end-to-end unified logout between Evisort and Workday</strong><ul><li>Implemented frontchannel (Evisort-initiated) and backchannel (Workday-initiated) Single Logout flows.</li><li>Built dynamic JWT logout token validation using Fugu certificate discovery.</li><li>Demoed the complete logout flow to the engineering team and company-wide.</li></ul></div>
                             <div class="exp-item"><strong>Owned the Super Admin Toggles EPIC for migration-safe identity architecture</strong><ul><li>Drove full technical design, ticket decomposition, and implementation across Rolodex, Evi2Ken, Pilot, and UI.</li><li>Introduced per-client toggles (<code>user_management</code>, <code>authentication_provider</code>) to decouple tenant mapping from login enforcement.</li><li>Designed backward-compatible data migration with feature flag controls for safe rollout.</li></ul></div>
                             <div class="exp-item"><strong>Architecting per-client PostgreSQL schema isolation for Evi2Ken</strong><ul><li>Replacing shared public schema with per-tenant isolation to reduce cross-tenant blast radius.</li><li>Implementing dual-write architecture with feature-flagged reads for zero-downtime migration.</li></ul></div>
+                            <div class="exp-item"><strong>Built CPS Publish Queue with retries and exponential backoff</strong><ul><li>Designed a DB-backed task queue so all CPS publish operations (REGISTER, DEREGISTER, UPDATE, RECREATE) are enqueued asynchronously and processed by a dedicated worker.</li><li>Implemented exponential backoff retries (base 30s, max 600s, 6 retries) &mdash; CPS publishes survive 12+ hours of downtime during quarterly hybrid patching.</li><li>Built atomic RECREATE (deregister old &rarr; register new) with partial-failure recovery and snapshot-based DEREGISTER resilience.</li><li>Reduced Sentry alerts from ~50 per task to max 6; created a datapatch to re-enqueue previously failed tasks.</li></ul></div>
                         </div>
                         <div class="job-section">
                             <h4><span class="h4-icon">&#9670;</span> Technical Leadership</h4>
@@ -496,37 +503,37 @@
             <div class="flip-card reveal">
                 <div class="flip-inner">
                     <div class="flip-front"><img src="img/ice-hockey.jpg" alt="Ice Hockey" loading="lazy"><div class="flip-front-overlay"><h4>RosterData — Ice Hockey v2</h4><div class="project-tags"><span>Python</span><span>Scrapy</span><span>PostgreSQL</span><span>AWS</span></div></div></div>
-                    <div class="flip-back glass-card"><h4>RosterData — Ice Hockey Statistics v2</h4><p class="project-date">Jan 2020 – Apr 2020</p><p>Enhanced RosterData by integrating three additional leagues (SHL, Liiga, KHL).</p><ul><li>Contributed to the implementation of multiple ice hockey leagues within an Agile team.</li><li>Developed web scraping scripts using Python and Scrapy Framework.</li><li>Modeled scraped data into JSON and imported into PostgreSQL on Amazon RDS.</li><li>Collaborated on APIs to fetch data from AWS PostgreSQL, integrated with the front-end.</li></ul></div>
+                    <div class="flip-back glass-card"><h4>RosterData — Ice Hockey Statistics v2</h4><p class="project-date">Jan 2020 – Apr 2020</p><p>Expanded RosterData from NHL-only to 4-league coverage (NHL, SHL, Liiga, KHL) with cross-league player comparison.</p><ul><li>Built league-specific Scrapy pipelines for SHL, Liiga, and KHL — each with unique HTML structures and pagination patterns.</li><li>Designed a normalized JSON data model for cross-league consistency (player identity, season stats, team associations).</li><li>Stored normalized data in PostgreSQL on AWS RDS with query-optimized indexing for player lookup and league standings.</li><li>Built REST APIs for player search, team rosters, and cross-league career timelines.</li></ul></div>
                 </div>
             </div>
             <div class="flip-card reveal">
                 <div class="flip-inner">
                     <div class="flip-front"><img src="img/tfidf.png" alt="TF-IDF" loading="lazy"><div class="flip-front-overlay"><h4>LSA Classification &amp; Prediction</h4><div class="project-tags"><span>Python</span><span>scikit-learn</span><span>Flask</span><span>GCP</span></div></div></div>
-                    <div class="flip-back glass-card"><h4>Latent Semantic Analysis — Classification &amp; Prediction</h4><p class="project-date">Mar 2020 – Apr 2020</p><p>Trained a ML model on sensitive financial encoded documents.</p><ul><li>Mapped sensitive financial encoded documents into unique IDs for analysis.</li><li>Achieved 98% accuracy and 87% confidence on average in model testing.</li><li>Developed Flask RESTful APIs for serving ML predictions.</li><li>Deployed on Google Cloud Platform for integration testing.</li></ul></div>
+                    <div class="flip-back glass-card"><h4>Latent Semantic Analysis — Classification &amp; Prediction</h4><p class="project-date">Mar 2020 – Apr 2020</p><p>End-to-end ML pipeline for financial document classification &mdash; 98% accuracy, deployed as a REST API on GCP.</p><ul><li>Preprocessed financial documents: tokenization, stop-word removal, TF-IDF vectorization into numerical feature vectors.</li><li>Applied LSA (SVD on TF-IDF matrix) for dimensionality reduction while preserving discriminative dimensions.</li><li>Evaluated Naive Bayes, SVM, Random Forest, and Logistic Regression with grid search and cross-validation.</li><li>Built Flask REST APIs for real-time inference and deployed containerized on GCP Compute Engine.</li></ul></div>
                 </div>
             </div>
             <div class="flip-card reveal">
                 <div class="flip-inner">
                     <div class="flip-front"><img src="img/sklearn.png" alt="Scikit-Learn" loading="lazy"><div class="flip-front-overlay"><h4>Diabetes Classifier &amp; Clustering</h4><div class="project-tags"><span>Python</span><span>Pandas</span><span>NumPy</span><span>scikit-learn</span></div></div></div>
-                    <div class="flip-back glass-card"><h4>Diabetes Patient Classifier &amp; Meal Clustering</h4><p class="project-date">Aug 2019 – Nov 2019</p><p>ML model to classify diabetes patients based on diet and sugar level readings.</p><ul><li>Extracted features from raw patient data using Python, Pandas, and NumPy.</li><li>Conducted K-fold Cross Validation to select the best classifier.</li><li>Achieved 85% accuracy with 83% confidence on new predictions.</li></ul></div>
+                    <div class="flip-back glass-card"><h4>Diabetes Patient Classifier &amp; Meal Clustering</h4><p class="project-date">Aug 2019 – Nov 2019</p><p>Rigorous ML classification on clinical data with K-fold validation &mdash; 85% accuracy, plus unsupervised meal clustering.</p><ul><li>Preprocessed Pima Indians Diabetes Dataset: median imputation for missing values, feature normalization, class imbalance analysis.</li><li>Evaluated Decision Tree, SVM, and KNN classifiers using K-fold cross-validation for generalizability.</li><li>Applied K-Means and DBSCAN clustering on meal/glucose data to identify dietary patterns correlated with glucose response.</li><li>Achieved 85% accuracy / 83% confidence validated across folds &mdash; not an artifact of a favorable split.</li></ul></div>
                 </div>
             </div>
             <div class="flip-card reveal">
                 <div class="flip-inner">
                     <div class="flip-front"><img src="img/math.jpg" alt="Math Portal" loading="lazy"><div class="flip-front-overlay"><h4>Visual Learning Portal</h4><div class="project-tags"><span>Python</span><span>Flask</span><span>SQL-Alchemy</span><span>Agile</span></div></div></div>
-                    <div class="flip-back glass-card"><h4>Online Visual Learning Portal</h4><p class="project-date">Aug 2019 – Nov 2019</p><p>Interactive portal for math concepts through drag-and-drop functionality.</p><ul><li>Team of 5 using Agile methodology with Scrum.</li><li>Implemented Facade, Factory, and Iterator design patterns for RESTful APIs.</li><li>Backend in Python using Flask with SQL-Alchemy.</li></ul></div>
+                    <div class="flip-back glass-card"><h4>Online Visual Learning Portal</h4><p class="project-date">Aug 2019 – Nov 2019</p><p>Interactive math portal with drag-and-drop, built by a team of 5 using Agile/Scrum and formal design patterns.</p><ul><li>Applied Facade (simplified complex subsystems), Factory (dynamic content creation), and Iterator (collection traversal) patterns.</li><li>Built Flask REST APIs with SQLAlchemy ORM; drag-and-drop frontend for interactive math exploration.</li><li>Ran 2-week sprints with backlog grooming, standups, and retrospectives across a 5-person team.</li></ul></div>
                 </div>
             </div>
             <div class="flip-card reveal">
                 <div class="flip-inner">
                     <div class="flip-front"><img src="img/lang.jpg" alt="Programming Language" loading="lazy"><div class="flip-front-overlay"><h4>!Xobile Programming Language</h4><div class="project-tags"><span>Python</span><span>Prolog</span><span>Compiler Design</span></div></div></div>
-                    <div class="flip-back glass-card"><h4>!Xobile Programming Language</h4><p class="project-date">Jan 2019 – May 2019</p><p>Custom OOP programming language based on Java and Python.</p><ul><li>Designed grammar, tokenization (Python), syntax parse tree and semantics (Prolog).</li><li>Developed automation scripts for execution and output generation.</li></ul></div>
+                    <div class="flip-back glass-card"><h4>!Xobile Programming Language</h4><p class="project-date">Jan 2019 – May 2019</p><p>Custom OOP language with full compilation pipeline &mdash; grammar spec, tokenizer, parser, and semantic analyzer.</p><ul><li>Designed formal grammar: class declarations, inheritance, control flow, expressions, and OOP constructs (<code>this</code>, constructors, method dispatch).</li><li>Built regex-based tokenizer in Python (keywords, identifiers, operators, string literals with escape chars).</li><li>Implemented parser and semantic analyzer in Prolog: type checking, variable scoping, inheritance cycle detection, and method resolution.</li><li>End-to-end pipeline: valid programs produce semantically validated parse trees; invalid programs yield meaningful error messages.</li></ul></div>
                 </div>
             </div>
             <div class="flip-card reveal">
                 <div class="flip-inner">
                     <div class="flip-front"><img src="img/hadoop.png" alt="Hadoop" loading="lazy"><div class="flip-front-overlay"><h4>Hadoop Cluster &amp; MapReduce</h4><div class="project-tags"><span>Hadoop</span><span>MapReduce</span><span>Python</span><span>HDFS</span></div></div></div>
-                    <div class="flip-back glass-card"><h4>Hadoop Cluster &amp; MapReduce API</h4><p class="project-date">Mar 2017 – Jun 2017</p><p>Hadoop cluster on local system for YouTube data analysis.</p><ul><li>Processed 300 million YouTube video logs across 10 subsampled sets.</li><li>Created an eight-node Hadoop cluster with automated processing.</li><li>Conducted comparison study on multiple Hadoop versions for backward compatibility.</li></ul></div>
+                    <div class="flip-back glass-card"><h4>Hadoop Cluster &amp; MapReduce API</h4><p class="project-date">Mar 2017 – Jun 2017</p><p>8-node Hadoop cluster processing 300M+ YouTube video logs with MapReduce and cross-version benchmarking.</p><ul><li>Configured 1 NameNode + 7 DataNodes with HDFS replication and YARN resource management.</li><li>Designed MapReduce jobs (Hadoop Streaming, Python): most-viewed by category, upload trends, viral video detection.</li><li>Benchmarked identical jobs across Hadoop versions &mdash; measured job time, CPU/memory, shuffle overhead, and speculative execution.</li><li>Documented quantitative speedups in scheduling and data shuffle across framework versions.</li></ul></div>
                 </div>
             </div>
         </div>
