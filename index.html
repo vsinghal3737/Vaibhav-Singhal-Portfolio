@@ -1,568 +1,2035 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Vaibhav Singhal — Senior Software Engineer specializing in distributed systems, identity platforms (OIDC, SCIM), and cloud-native microservices at Workday.">
-    <meta name="theme-color" content="#030308">
-    <title>Vaibhav Singhal — Senior Software Engineer</title>
-    <link rel="apple-touch-icon" href="img/140-512.png">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0%25' stop-color='%236c63ff'/><stop offset='100%25' stop-color='%2300d4aa'/></linearGradient></defs><rect width='32' height='32' rx='6' fill='%230a0a1a'/><text x='16' y='22' text-anchor='middle' font-family='sans-serif' font-weight='700' font-size='16' fill='url(%23g)'>VS</text></svg>">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-
-<!-- NOISE OVERLAY -->
-<svg class="noise-overlay" width="100%" height="100%"><filter id="noiseFilter"><feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(#noiseFilter)"/></svg>
-
-<!-- MESH GRADIENT BG -->
-<div class="mesh-bg">
-    <div class="mesh-blob blob-1"></div>
-    <div class="mesh-blob blob-2"></div>
-    <div class="mesh-blob blob-3"></div>
-    <div class="mesh-blob blob-4"></div>
-</div>
-
-<!-- LOADING SCREEN -->
-<div id="loader">
-    <svg class="loader-logo" viewBox="0 0 120 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <text x="5" y="38" font-family="JetBrains Mono, monospace" font-size="36" font-weight="700" fill="none" stroke="#6c63ff" stroke-width="1.5" class="loader-text">{VS}</text>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Vaibhav Singhal — Senior Software Engineer specializing in distributed systems, identity platforms (OIDC, SCIM), and cloud-native microservices at Workday."
+    />
+    <meta name="theme-color" content="#030308" />
+    <title>Vaibhav Singhal — Senior Software Engineer | Toronto</title>
+    <link rel="canonical" href="https://vaibhavsinghal.dev/" />
+    <link rel="apple-touch-icon" href="img/140-512.png" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0%25' stop-color='%236c63ff'/><stop offset='100%25' stop-color='%2300d4aa'/></linearGradient></defs><rect width='32' height='32' rx='6' fill='%230a0a1a'/><text x='16' y='22' text-anchor='middle' font-family='sans-serif' font-weight='700' font-size='16' fill='url(%23g)'>VS</text></svg>"
+    />
+    <!-- Open Graph -->
+    <meta
+      property="og:title"
+      content="Vaibhav Singhal — Senior Software Engineer"
+    />
+    <meta
+      property="og:description"
+      content="Senior SWE specializing in distributed systems, identity platforms (OIDC, SCIM), and cloud-native microservices at Workday."
+    />
+    <meta
+      property="og:image"
+      content="https://vaibhavsinghal.dev/img/og-card.png"
+    />
+    <meta property="og:url" content="https://vaibhavsinghal.dev" />
+    <meta property="og:type" content="website" />
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="Vaibhav Singhal — Senior Software Engineer"
+    />
+    <meta
+      name="twitter:description"
+      content="Senior SWE specializing in distributed systems, identity platforms, and cloud-native microservices."
+    />
+    <meta
+      name="twitter:image"
+      content="https://vaibhavsinghal.dev/img/og-card.png"
+    />
+    <!-- Preload LCP image -->
+    <link
+      rel="preload"
+      as="image"
+      href="img/Vaibhav_Singhal.webp"
+      type="image/webp"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Vaibhav Singhal",
+        "jobTitle": "Senior Software Engineer",
+        "worksFor": { "@type": "Organization", "name": "Workday" },
+        "url": "https://vaibhavsinghal.dev",
+        "email": "vsvsinghal3737@gmail.com",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Toronto",
+          "addressCountry": "CA"
+        },
+        "sameAs": [
+          "https://www.linkedin.com/in/-singhal-vaibhav-/",
+          "https://github.com/vsinghal3737"
+        ]
+      }
+    </script>
+  </head>
+  <body>
+    <!-- NOISE OVERLAY -->
+    <svg class="noise-overlay" width="100%" height="100%">
+      <filter id="noiseFilter">
+        <feTurbulence
+          type="fractalNoise"
+          baseFrequency="0.65"
+          numOctaves="3"
+          stitchTiles="stitch"
+        />
+      </filter>
+      <rect width="100%" height="100%" filter="url(#noiseFilter)" />
     </svg>
-    <div class="loader-bar"><div class="loader-bar-fill"></div></div>
-</div>
 
-<!-- SCROLL PROGRESS -->
-<div id="scrollProgress"></div>
+    <!-- MESH GRADIENT BG -->
+    <div class="mesh-bg">
+      <div class="mesh-blob blob-1"></div>
+      <div class="mesh-blob blob-2"></div>
+      <div class="mesh-blob blob-3"></div>
+      <div class="mesh-blob blob-4"></div>
+    </div>
 
-<!-- CURSOR GLOW -->
-<div class="cursor-glow" id="cursorGlow"></div>
+    <!-- LOADING SCREEN -->
+    <div id="loader">
+      <svg
+        class="loader-logo"
+        viewBox="0 0 120 50"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <text
+          x="5"
+          y="38"
+          font-family="JetBrains Mono, monospace"
+          font-size="36"
+          font-weight="700"
+          fill="none"
+          stroke="#6c63ff"
+          stroke-width="1.5"
+          class="loader-text"
+        >
+          {VS}
+        </text>
+      </svg>
+      <div class="loader-bar"><div class="loader-bar-fill"></div></div>
+    </div>
 
-<!-- CONFETTI CANVAS (easter egg) -->
-<canvas id="confettiCanvas"></canvas>
+    <!-- SCROLL PROGRESS -->
+    <div id="scrollProgress"></div>
 
-<nav id="navbar">
-    <div class="nav-inner">
+    <!-- CURSOR GLOW -->
+    <div class="cursor-glow" id="cursorGlow"></div>
+
+    <!-- CONFETTI CANVAS (easter egg) -->
+    <canvas id="confettiCanvas"></canvas>
+
+    <nav id="navbar">
+      <div class="nav-inner">
         <a href="#hero" class="nav-brand">
-            <span class="brand-bracket">{</span>VS<span class="brand-bracket">}</span>
+          <span class="brand-bracket">{</span>VS<span class="brand-bracket"
+            >}</span
+          >
         </a>
         <button class="nav-toggle" aria-label="Toggle menu">
-            <span></span><span></span><span></span>
+          <span></span><span></span><span></span>
         </button>
         <ul class="nav-links">
-            <li><a href="#experience">Experience</a></li>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#education">Education</a></li>
-            <li><a href="#certifications">Certs</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#contact">Contact</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#education">Education</a></li>
+          <li><a href="#certifications">Certs</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#contact">Contact</a></li>
         </ul>
-    </div>
-</nav>
+      </div>
+    </nav>
 
-<!-- ═══════════════ HERO ═══════════════ -->
-<section id="hero">
-    <div class="hero-content">
-        <div class="hero-photo-wrap reveal" style="--delay:0s">
-            <img src="img/Vaibhav_Singhal.jpg" alt="Vaibhav Singhal" class="hero-photo">
-            <div class="hero-photo-ring"></div>
-            <div class="hero-photo-ring ring-2"></div>
+    <!-- ═══════════════ HERO ═══════════════ -->
+    <section id="hero">
+      <div class="hero-content">
+        <div class="hero-photo-wrap reveal" style="--delay: 0s">
+          <picture>
+            <source srcset="img/Vaibhav_Singhal.webp" type="image/webp" />
+            <img
+              src="img/Vaibhav_Singhal.jpg"
+              alt="Vaibhav Singhal"
+              class="hero-photo"
+              width="300"
+              height="300"
+            />
+          </picture>
+          <div class="hero-photo-ring"></div>
+          <div class="hero-photo-ring ring-2"></div>
         </div>
-        <h1 class="hero-name reveal" style="--delay:0.1s">
-            <span class="hero-first">Vaibhav</span>
-            <span class="hero-last">Singhal</span>
+        <h1 class="hero-name reveal" style="--delay: 0.1s">
+          <span class="hero-first">Vaibhav</span>
+          <span class="hero-last">Singhal</span>
         </h1>
 
         <!-- TERMINAL -->
-        <div class="terminal reveal" style="--delay:0.2s">
-            <div class="terminal-bar">
-                <div class="terminal-dots"><span class="dot-red"></span><span class="dot-yellow"></span><span class="dot-green"></span></div>
-                <span class="terminal-title">vaibhav@portfolio ~ %</span>
-                <div style="width:52px"></div>
+        <div class="terminal reveal" style="--delay: 0.2s">
+          <div class="terminal-bar">
+            <div class="terminal-dots">
+              <span class="dot-red"></span><span class="dot-yellow"></span
+              ><span class="dot-green"></span>
             </div>
-            <div class="terminal-body" id="terminalBody">
-                <div class="terminal-cursor" id="terminalCursor">_</div>
-            </div>
+            <span class="terminal-title">vaibhav@portfolio ~ %</span>
+            <div style="width: 52px"></div>
+          </div>
+          <div class="terminal-body" id="terminalBody">
+            <div class="terminal-cursor" id="terminalCursor">_</div>
+          </div>
         </div>
 
-        <p class="hero-blurb reveal" style="--delay:0.25s">
-            I build backend systems that serve millions &mdash; identity platforms at <strong>Workday</strong>, voice AI at <strong>LivePerson</strong>, serverless pipelines at <strong>Black Knight</strong>. I care about resilient architecture, clean APIs, and making other engineers faster.
+        <p class="hero-blurb reveal" style="--delay: 0.25s">
+          I build backend systems that serve millions &mdash; identity platforms
+          at <strong>Workday</strong>, voice AI at <strong>LivePerson</strong>,
+          serverless pipelines at <strong>Black Knight</strong>. I care about
+          resilient architecture, clean APIs, and making other engineers faster.
         </p>
 
-        <div class="hero-stats reveal" style="--delay:0.3s">
-            <div class="stat">
-                <span class="stat-number" data-target="7">0</span><span class="stat-suffix">+</span>
-                <span class="stat-label">Years Experience</span>
-            </div>
-            <div class="stat-divider"></div>
-            <div class="stat">
-                <span class="stat-number" data-target="30">0</span><span class="stat-suffix">+</span>
-                <span class="stat-label">Systems Built</span>
-            </div>
-            <div class="stat-divider"></div>
-            <div class="stat">
-                <span class="stat-number" data-target="4">0</span>
-                <span class="stat-label">Certifications</span>
-            </div>
-            <div class="stat-divider"></div>
-            <div class="stat">
-                <span class="stat-number" data-target="10">0</span><span class="stat-suffix">+</span>
-                <span class="stat-label">Certificates</span>
-            </div>
+        <div class="hero-stats reveal" style="--delay: 0.3s">
+          <div class="stat">
+            <span class="stat-number" data-target="7">0</span
+            ><span class="stat-suffix">+</span>
+            <span class="stat-label">Years Experience</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat">
+            <span class="stat-number" data-target="30">0</span
+            ><span class="stat-suffix">+</span>
+            <span class="stat-label">Systems Built</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat">
+            <span class="stat-number" data-target="4">0</span>
+            <span class="stat-label">Certifications</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat">
+            <span class="stat-number" data-target="10">0</span
+            ><span class="stat-suffix">+</span>
+            <span class="stat-label">Certificates</span>
+          </div>
         </div>
 
-        <div class="hero-links reveal" style="--delay:0.4s">
-            <a href="mailto:vsvsinghal3737@gmail.com" class="hero-btn magnetic">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-                Email
-            </a>
-            <a href="https://linkedin.com/in/-singhal-vaibhav-/" target="_blank" rel="noopener noreferrer" class="hero-btn magnetic">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-                LinkedIn
-            </a>
-            <a href="https://github.com/vsinghal3737" target="_blank" rel="noopener noreferrer" class="hero-btn magnetic">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
-                GitHub
-            </a>
-            <a href="tel:+14374195770" class="hero-btn magnetic">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-                Contact
-            </a>
-            <a href="https://drive.google.com/drive/folders/14P5q0XW5jiU3eIH2igkKzJ6LDOcdwyKn?usp=sharing" target="_blank" rel="noopener noreferrer" class="hero-btn hero-btn-resume magnetic">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
-                Resume
-            </a>
+        <div class="hero-links reveal" style="--delay: 0.4s">
+          <a href="mailto:vsvsinghal3737@gmail.com" class="hero-btn magnetic">
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path
+                d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+              />
+              <polyline points="22,6 12,13 2,6" />
+            </svg>
+            Email
+          </a>
+          <a
+            href="https://linkedin.com/in/-singhal-vaibhav-/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="hero-btn magnetic"
+          >
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path
+                d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"
+              />
+              <rect x="2" y="9" width="4" height="12" />
+              <circle cx="4" cy="4" r="2" />
+            </svg>
+            LinkedIn
+          </a>
+          <a
+            href="https://github.com/vsinghal3737"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="hero-btn magnetic"
+          >
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path
+                d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"
+              />
+            </svg>
+            GitHub
+          </a>
+          <a
+            href="https://drive.google.com/drive/folders/14P5q0XW5jiU3eIH2igkKzJ6LDOcdwyKn?usp=sharing"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="hero-btn hero-btn-resume magnetic"
+          >
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path
+                d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
+              />
+              <polyline points="14 2 14 8 20 8" />
+              <line x1="16" y1="13" x2="8" y2="13" />
+              <line x1="16" y1="17" x2="8" y2="17" />
+              <polyline points="10 9 9 9 8 9" />
+            </svg>
+            Resume
+          </a>
         </div>
 
-        <div class="scroll-indicator reveal" style="--delay:0.6s">
-            <div class="scroll-mouse"><div class="scroll-wheel"></div></div>
-            <span>Scroll to explore</span>
+        <div class="scroll-indicator reveal" style="--delay: 0.6s">
+          <div class="scroll-mouse"><div class="scroll-wheel"></div></div>
+          <span>Scroll to explore</span>
         </div>
+      </div>
+    </section>
+
+    <!-- WAVE DIVIDER -->
+    <div class="section-divider wave-1">
+      <svg viewBox="0 0 1440 100" preserveAspectRatio="none">
+        <path
+          d="M0,60 C360,120 720,0 1080,60 C1260,90 1380,40 1440,60 L1440,100 L0,100 Z"
+        />
+      </svg>
     </div>
-</section>
 
-<!-- WAVE DIVIDER -->
-<div class="section-divider wave-1"><svg viewBox="0 0 1440 100" preserveAspectRatio="none"><path d="M0,60 C360,120 720,0 1080,60 C1260,90 1380,40 1440,60 L1440,100 L0,100 Z"/></svg></div>
-
-
-<!-- ═══════════════ EXPERIENCE ═══════════════ -->
-<section id="experience">
-    <div class="container">
+    <!-- ═══════════════ EXPERIENCE ═══════════════ -->
+    <section id="experience">
+      <div class="container">
         <div class="section-header reveal">
-            <span class="section-number">01</span>
-            <h2 class="section-title">Work Experience</h2>
-            <p class="section-subtitle">Building distributed systems at scale across identity, voice, and fintech.</p>
+          <span class="section-number">01</span>
+          <h2 class="section-title">Work Experience</h2>
+          <p class="section-subtitle">
+            Building distributed systems at scale across identity, voice, and
+            fintech.
+          </p>
         </div>
         <div class="timeline" id="timeline">
-            <div class="timeline-track" id="timelineTrack"></div>
+          <div class="timeline-track" id="timelineTrack"></div>
 
-            <!-- Workday -->
-            <div class="timeline-item reveal">
-                <div class="timeline-dot active-dot"><div class="timeline-dot-pulse"></div></div>
-                <div class="timeline-card glass-card tilt-card">
-                    <div class="tilt-glow"></div>
-                    <div class="job-header" role="button" tabindex="0">
-                        <div class="job-header-left">
-                            <div class="company-logo">W</div>
-                            <div>
-                                <h3>Senior Software Engineer</h3>
-                                <p class="company-name">Workday (Evisort)</p>
-                                <div class="job-tags"><span class="job-tag">Identity</span><span class="job-tag">SCIM</span><span class="job-tag">OIDC</span><span class="job-tag">Multi-tenant</span><span class="job-tag">CPS</span></div>
-                                <p class="job-summary">Owning the identity platform post-acquisition &mdash; SCIM provisioning, unified OIDC auth, single logout, per-tenant schema isolation, and a resilient CPS publish queue with exponential backoff retries. Serving thousands of auth requests/min across Workday and Evisort.</p>
-                            </div>
-                        </div>
-                        <div class="job-header-right">
-                            <span class="job-date">Oct 2024 – Present</span>
-                            <span class="job-location">Toronto, ON</span>
-                        </div>
+          <!-- Workday -->
+          <div class="timeline-item reveal">
+            <div class="timeline-dot active-dot">
+              <div class="timeline-dot-pulse"></div>
+            </div>
+            <div class="timeline-card glass-card tilt-card">
+              <div class="tilt-glow"></div>
+              <div class="job-header" role="button" tabindex="0">
+                <div class="job-header-left">
+                  <div class="company-logo">W</div>
+                  <div>
+                    <h3>Senior Software Engineer</h3>
+                    <p class="company-name">Workday (Evisort)</p>
+                    <div class="job-tags">
+                      <span class="job-tag">Identity</span
+                      ><span class="job-tag">SCIM</span
+                      ><span class="job-tag">OIDC</span
+                      ><span class="job-tag">Multi-tenant</span
+                      ><span class="job-tag">CPS</span>
                     </div>
-                    <div class="job-details">
-                        <div class="job-section">
-                            <h4><span class="h4-icon">&#9670;</span> Architecture &amp; System Design</h4>
-                            <div class="exp-item"><strong>Built SCIM API endpoints for Workday-Evisort user provisioning</strong><ul><li>Delivered the first Workday-Evisort integration post-acquisition (CRUD + Restore) in the identity service.</li><li>Implemented dynamic model creation for provisioning flexibility across Workday and the legacy identity provider.</li><li>Led GA hardening: deterministic role mapping ("highest role wins"), SCIM import failure fixes, and Workday identifier handling for migration stability.</li></ul></div>
-                            <div class="exp-item"><strong>Improved identity and document platform services for Workday user provisioning</strong><ul><li>Established a dedicated internal service-to-service channel (HTTP Signature Auth, dedicated port) for secure provisioning.</li><li>Fixed 2 critical IDOR vulnerabilities in document version endpoints &mdash; changed cross-tenant access from 403 to 404.</li><li>Built an async user creation task for post-SCIM user provisioning with retry logic and outbox events.</li></ul></div>
-                            <div class="exp-item"><strong>Implemented unified authentication via OIDC</strong><ul><li>Built a high-throughput token exchange endpoint handling tens of thousands of requests per minute.</li><li>Designed OIDC callback handling across identity and auth services (JWT generation, token verification, identifier resolution).</li><li>Integrated cookie-based session management and state-based redirection for deep linking.</li></ul></div>
-                            <div class="exp-item"><strong>Designed end-to-end unified logout between Evisort and Workday</strong><ul><li>Implemented frontchannel (Evisort-initiated) and backchannel (Workday-initiated) Single Logout flows.</li><li>Built dynamic JWT logout token validation using internal certificate authority discovery.</li><li>Demoed the complete logout flow to the engineering team and company-wide.</li></ul></div>
-                            <div class="exp-item"><strong>Owned the Super Admin Toggles EPIC for migration-safe identity architecture</strong><ul><li>Drove full technical design, ticket decomposition, and implementation across 4 services and the UI.</li><li>Introduced per-client toggles (<code>user_management</code>, <code>authentication_provider</code>) to decouple tenant mapping from login enforcement.</li><li>Designed backward-compatible data migration with feature flag controls for safe rollout.</li></ul></div>
-                            <div class="exp-item"><strong>Architecting per-client PostgreSQL schema isolation for the auth gateway</strong><ul><li>Replacing shared public schema with per-tenant isolation to reduce cross-tenant blast radius.</li><li>Implementing dual-write architecture with feature-flagged reads for zero-downtime migration.</li></ul></div>
-                            <div class="exp-item"><strong>Built CPS Publish Queue with retries and exponential backoff</strong><ul><li>Designed a DB-backed task queue so all CPS publish operations (REGISTER, DEREGISTER, UPDATE, RECREATE) are enqueued asynchronously and processed by a dedicated worker.</li><li>Implemented exponential backoff retries (base 30s, max 600s, 6 retries) &mdash; CPS publishes survive 12+ hours of downtime during quarterly hybrid patching.</li><li>Built atomic RECREATE (deregister old &rarr; register new) with partial-failure recovery and snapshot-based DEREGISTER resilience.</li><li>Reduced Sentry alerts from ~50 per task to max 6; created a datapatch to re-enqueue previously failed tasks.</li></ul></div>
-                        </div>
-                        <div class="job-section">
-                            <h4><span class="h4-icon">&#9670;</span> Technical Leadership</h4>
-                            <div class="exp-item"><strong>Conducted live engineering demos and led design reviews</strong><ul><li>Presented SCIM, UPW, and unified authentication at Evisort Tech Demo and Eng Syncs.</li><li>Documented workflows and recorded sessions to support team onboarding.</li></ul></div>
-                            <div class="exp-item"><strong>Owned on-call rotations and incident response</strong><ul><li>Reviewed and documented 5+ past incidents (SCIM sync failures, token verification issues).</li><li>Built a Confluence debugging playbook and mapped service ownership across 4+ platform services.</li></ul></div>
-                            <div class="exp-item"><strong>Buddied 2 new hires; participated in 14 interview loops (3 successful hires)</strong><ul><li>Created a repeatable onboarding reference guide.</li><li>Provided feedback to improve onboarding documentation and materials.</li></ul></div>
-                            <div class="exp-item"><strong>Led Operational Readiness Reviews (ORR) for the auth gateway</strong><ul><li>Authored ORR documentation aligned with Workday reliability standards.</li><li>Enabled Prometheus-based observability and alerting; extended instrumentation to the NestJS gateway.</li><li>Raised authentication test coverage to 80%+.</li></ul></div>
-                        </div>
-                        <div class="job-section">
-                            <h4><span class="h4-icon">&#9670;</span> Development &amp; Operations</h4>
-                            <div class="exp-item"><strong>Improved platform stability and scalability across identity and document platform services</strong><ul><li>Resolved key integration bugs and profiled the high-traffic token exchange endpoint.</li><li>Refactored core components for maintainability and increased test coverage.</li></ul></div>
-                            <div class="exp-item"><strong>Drove cross-service integration resilience</strong><ul><li>Built robust SSO token validation using internal CA certificate discovery.</li><li>Enabled auth gateway observability via <code>/ping</code> and <code>/health</code> endpoints.</li><li>Standardized metadata propagation across platform services and UI.</li><li>Refactored auth library naming conventions across Python and TypeScript codebases.</li></ul></div>
-                        </div>
-                    </div>
+                    <p class="job-summary">
+                      Owning the identity platform post-acquisition &mdash; SCIM
+                      provisioning, unified OIDC auth, single logout, per-tenant
+                      schema isolation, and a resilient CPS publish queue with
+                      exponential backoff retries. Serving thousands of auth
+                      requests/min across Workday and Evisort.
+                    </p>
+                  </div>
                 </div>
-            </div>
-
-            <!-- LivePerson -->
-            <div class="timeline-item reveal">
-                <div class="timeline-dot"></div>
-                <div class="timeline-card glass-card tilt-card">
-                    <div class="tilt-glow"></div>
-                    <div class="job-header" role="button" tabindex="0">
-                        <div class="job-header-left">
-                            <div class="company-logo lp-logo">LP</div>
-                            <div>
-                                <h3>Software Engineer</h3>
-                                <p class="company-name">LivePerson Inc</p>
-                                <div class="job-tags"><span class="job-tag">Voice AI</span><span class="job-tag">Kafka</span><span class="job-tag">Microservices</span><span class="job-tag">GCP</span></div>
-                                <p class="job-summary">Built Voice AI platform end-to-end — media microservices, SIP APIs, and Kafka schema service. Cut latency 35% and scaled concurrent calls to 700.</p>
-                            </div>
-                        </div>
-                        <div class="job-header-right">
-                            <span class="job-date">Jan 2022 – May 2024</span>
-                            <span class="job-location">NYC &rarr; Toronto</span>
-                        </div>
-                    </div>
-                    <div class="job-details">
-                        <div class="job-section">
-                            <h4><span class="h4-icon">&#9670;</span> Architecture &amp; System Design</h4>
-                            <div class="exp-item"><strong>Rebuilt Connector Service</strong> — Reduced data event size by 40% and latency by 35%.<ul><li>Identified bottlenecks in inter-service communication.</li><li>Designed an optimized event pipeline with Redis-backed brand configuration lookups.</li></ul></div>
-                            <div class="exp-item"><strong>Redesigned Media Service into microservices</strong> — Increased concurrent calls by 50% (450 to 700).<ul><li>Decomposed monolithic service into TTS, STT, and media microservices.</li><li>Defined and implemented the observability strategy (metrics, monitoring, alerting).</li></ul></div>
-                            <div class="exp-item"><strong>Owned Audio File Management Service end-to-end</strong> — Drove 25% increase in user engagement.<ul><li>Architected storage and retrieval layer for audio blobs and Azure client keys using GCS and Redis.</li><li>Integrated Azure Text-to-Speech for multi-language support via SSML.</li></ul></div>
-                            <div class="exp-item"><strong>Proposed and drove adoption of Centralized Schema Service</strong> — Reduced integration overhead by 40% and debugging time by 25%.<ul><li>Identified fragmented Kafka schema management as a cross-team pain point.</li><li>Designed the service to enforce schema evolution and consistency.</li><li>Authored internal documentation and onboarding guides adopted across teams.</li></ul></div>
-                            <div class="exp-item"><strong>Designed and delivered SIP Connection APIs</strong> — Increased customer retention by 20%.<ul><li>Built SIP connection support (IP, FQDN, Credentials) using Telnyx SDKs, Java, and Micronaut with Kafka.</li></ul></div>
-                        </div>
-                        <div class="job-section">
-                            <h4><span class="h4-icon">&#9670;</span> Development &amp; Operations</h4>
-                            <div class="exp-item"><strong>Optimized shared utility libraries</strong> — Improved code efficiency by 22% across internal services.<ul><li>Tools: Redis, Log4j, GCS, Firestore.</li></ul></div>
-                            <div class="exp-item"><strong>Built automated OOM diagnostics</strong> — Reduced debugging time by 25%.<ul><li>Automated thread and heap dump backups to GCP buckets during Out-of-Memory incidents.</li></ul></div>
-                            <div class="exp-item"><strong>Secured transaction logs and reduced on-call burden</strong> — Cut on-call debugging time by 4 hours weekly.<ul><li>Built bash tooling for log retrieval from Kubernetes pods and GCP Logs Explorer.</li></ul></div>
-                            <div class="exp-item"><strong>Drove data security improvements</strong><ul><li>Implemented data redaction for NPIs, auth tokens, and credentials across GCP logs and Kubernetes pods.</li><li>Eliminated sensitive data exposure in production logs, enabling compliance with enterprise data handling requirements.</li></ul></div>
-                            <div class="exp-item"><strong>Raised test coverage from 36% to 87%</strong> — Cut testing costs by 20%.<ul><li>Used JUnit and JMeter; established testing standards for the team.</li></ul></div>
-                            <div class="exp-item"><strong>Led Inbound Call Automation Bots initiative</strong><ul><li>Established a fully operational system for weekly performance runs.</li><li>Built the initial proof of concept and coordinated cross-team end-to-end testing.</li><li>Delivered knowledge transfer to ensure long-term ownership.</li></ul></div>
-                        </div>
-                    </div>
+                <div class="job-header-right">
+                  <span class="job-date">Oct 2024 – Present</span>
+                  <span class="job-location">Toronto, ON</span>
                 </div>
-            </div>
-
-            <!-- Black Knight -->
-            <div class="timeline-item reveal">
-                <div class="timeline-dot"></div>
-                <div class="timeline-card glass-card tilt-card">
-                    <div class="tilt-glow"></div>
-                    <div class="job-header" role="button" tabindex="0">
-                        <div class="job-header-left">
-                            <div class="company-logo bk-logo">BK</div>
-                            <div>
-                                <h3>Software Engineer</h3>
-                                <p class="company-name">Black Knight Inc</p>
-                                <div class="job-tags"><span class="job-tag">AWS</span><span class="job-tag">OCR</span><span class="job-tag">Python</span><span class="job-tag">Serverless</span></div>
-                                <p class="job-summary">Architected serverless APIs on AWS — improved OCR accuracy to 89%, cut production costs 20%, and automated 80% of manual transaction retries.</p>
-                            </div>
-                        </div>
-                        <div class="job-header-right">
-                            <span class="job-date">Jun 2020 – Jan 2022</span>
-                            <span class="job-location">Philadelphia, PA</span>
-                        </div>
-                    </div>
-                    <div class="job-details">
-                        <div class="job-section">
-                            <p class="job-intro">Architected and developed APIs for Input &amp; Output Handler Services on the <strong>AIVA</strong> (Artificial Intelligence Virtual Assistant) team.</p>
-                            <div class="exp-item"><strong>Built customer environment management APIs</strong> — Reduced production costs by 20%.<ul><li>Utilized AWS services (API Gateway, Lambda, S3, DynamoDB, SSM).</li></ul></div>
-                            <div class="exp-item"><strong>Designed OCR data extraction microservices</strong><ul><li>Increased data accuracy from 80% to 89% and improved performance by 25%.</li></ul></div>
-                            <div class="exp-item"><strong>Led greenfield service development</strong><ul><li>Built resilient services and orchestrated infrastructure stacks using Python, CloudFormation, and S3.</li></ul></div>
-                            <div class="exp-item"><strong>Resolved provisioning and build pipeline failures</strong><ul><li>Reduced testing load times and lowered AWS costs across environments.</li></ul></div>
-                            <div class="exp-item"><strong>Automated transaction anomaly recovery</strong> using Python and Boto3.<ul><li>Eliminated 80% of manual retry attempts caused by code defects or AWS outages.</li></ul></div>
-                        </div>
-                    </div>
+              </div>
+              <div class="job-details">
+                <div class="job-section">
+                  <h4>
+                    <span class="h4-icon">&#9670;</span> Architecture &amp;
+                    System Design
+                  </h4>
+                  <div class="exp-item">
+                    <strong
+                      >Built SCIM API endpoints for Workday-Evisort user
+                      provisioning</strong
+                    >
+                    <ul>
+                      <li>
+                        Delivered the first Workday-Evisort integration
+                        post-acquisition (CRUD + Restore) in the identity
+                        service.
+                      </li>
+                      <li>
+                        Implemented dynamic model creation for provisioning
+                        flexibility across Workday and the legacy identity
+                        provider.
+                      </li>
+                      <li>
+                        Led GA hardening: deterministic role mapping ("highest
+                        role wins"), SCIM import failure fixes, and Workday
+                        identifier handling for migration stability.
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="exp-item">
+                    <strong
+                      >Improved identity and document platform services for
+                      Workday user provisioning</strong
+                    >
+                    <ul>
+                      <li>
+                        Established a dedicated internal service-to-service
+                        channel (HTTP Signature Auth, dedicated port) for secure
+                        provisioning.
+                      </li>
+                      <li>
+                        Fixed 2 critical IDOR vulnerabilities in document
+                        version endpoints &mdash; changed cross-tenant access
+                        from 403 to 404.
+                      </li>
+                      <li>
+                        Built an async user creation task for post-SCIM user
+                        provisioning with retry logic and outbox events.
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="exp-item">
+                    <strong>Implemented unified authentication via OIDC</strong>
+                    <ul>
+                      <li>
+                        Built a high-throughput token exchange endpoint handling
+                        tens of thousands of requests per minute.
+                      </li>
+                      <li>
+                        Designed OIDC callback handling across identity and auth
+                        services (JWT generation, token verification, identifier
+                        resolution).
+                      </li>
+                      <li>
+                        Integrated cookie-based session management and
+                        state-based redirection for deep linking.
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="exp-item">
+                    <strong
+                      >Designed end-to-end unified logout between Evisort and
+                      Workday</strong
+                    >
+                    <ul>
+                      <li>
+                        Implemented frontchannel (Evisort-initiated) and
+                        backchannel (Workday-initiated) Single Logout flows.
+                      </li>
+                      <li>
+                        Built dynamic JWT logout token validation using internal
+                        certificate authority discovery.
+                      </li>
+                      <li>
+                        Demoed the complete logout flow to the engineering team
+                        and company-wide.
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="exp-item">
+                    <strong
+                      >Owned the Super Admin Toggles EPIC for migration-safe
+                      identity architecture</strong
+                    >
+                    <ul>
+                      <li>
+                        Drove full technical design, ticket decomposition, and
+                        implementation across 4 services and the UI.
+                      </li>
+                      <li>
+                        Introduced per-client toggles
+                        (<code>user_management</code>,
+                        <code>authentication_provider</code>) to decouple tenant
+                        mapping from login enforcement.
+                      </li>
+                      <li>
+                        Designed backward-compatible data migration with feature
+                        flag controls for safe rollout.
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="exp-item">
+                    <strong
+                      >Architecting per-client PostgreSQL schema isolation for
+                      the auth gateway</strong
+                    >
+                    <ul>
+                      <li>
+                        Replacing shared public schema with per-tenant isolation
+                        to reduce cross-tenant blast radius.
+                      </li>
+                      <li>
+                        Implementing dual-write architecture with
+                        feature-flagged reads for zero-downtime migration.
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="exp-item">
+                    <strong
+                      >Built CPS Publish Queue with retries and exponential
+                      backoff</strong
+                    >
+                    <ul>
+                      <li>
+                        Designed a DB-backed task queue so all CPS publish
+                        operations (REGISTER, DEREGISTER, UPDATE, RECREATE) are
+                        enqueued asynchronously and processed by a dedicated
+                        worker.
+                      </li>
+                      <li>
+                        Implemented exponential backoff retries (base 30s, max
+                        600s, 6 retries) &mdash; CPS publishes survive 12+ hours
+                        of downtime during quarterly hybrid patching.
+                      </li>
+                      <li>
+                        Built atomic RECREATE (deregister old &rarr; register
+                        new) with partial-failure recovery and snapshot-based
+                        DEREGISTER resilience.
+                      </li>
+                      <li>
+                        Reduced Sentry alerts from ~50 per task to max 6;
+                        created a datapatch to re-enqueue previously failed
+                        tasks.
+                      </li>
+                    </ul>
+                  </div>
                 </div>
-            </div>
-
-            <!-- Earlier Experience divider -->
-            <div class="timeline-divider reveal">
-                <span>Earlier Experience</span>
-            </div>
-
-            <!-- Research Scholar -->
-            <div class="timeline-item reveal">
-                <div class="timeline-dot"></div>
-                <div class="timeline-card glass-card tilt-card">
-                    <div class="tilt-glow"></div>
-                    <div class="job-header" role="button" tabindex="0">
-                        <div class="job-header-left">
-                            <div class="company-logo rs-logo">RS</div>
-                            <div>
-                                <h3>Research Scholar</h3>
-                                <p class="company-name">Bharati Vidyapeeth's College of Engineering</p>
-                                <div class="job-tags"><span class="job-tag">Steganography</span><span class="job-tag">NLP</span><span class="job-tag">Cloud Security</span></div>
-                                <p class="job-summary">Published two research papers on cloud security steganography and NLP-based clinical decision support systems.</p>
-                            </div>
-                        </div>
-                        <div class="job-header-right">
-                            <span class="job-date">Jan 2017 – Sep 2017</span>
-                            <span class="job-location">Delhi, India</span>
-                        </div>
-                    </div>
-                    <div class="job-details">
-                        <div class="job-section">
-                            <p class="job-intro">CSE Department under Dr. Rachna Jain — Published two research papers.</p>
-                            <div class="exp-item"><strong><a href="http://www.recentscientific.com/enhance-data-security-cloud-using-steganography" target="_blank" rel="noopener noreferrer">Enhance Data Security in Cloud Using Steganography</a></strong><ul><li>Studied Cloud Service Providers vs Internet Service Providers based on cost, speed, scalability, and performance.</li><li>Reviewed techniques of steganography (LSB) and digital watermarking (DFT) in spatial and frequency domain.</li><li>In-depth study on Symmetric Key Encryption (DES, AES) and Asymmetric Key Encryption (RSA).</li><li>Proposed a model for Image Steganography using LSB, mapping every bit of data and encryption key in RGB pixels.</li></ul></div>
-                            <div class="exp-item"><strong><a href="http://www.recentscientific.com/medical-application-using-nlp-over-cloud" target="_blank" rel="noopener noreferrer">Medical Application Using NLP Over Cloud</a></strong><ul><li>Knowledge acquisition on NLP systems and open source libraries (NLTK, Polyglot, Pattern).</li><li>Studied Morphological Processing, Syntax, Semantic and Pragmatic Analysis.</li><li>Comparative study on public, private, and hybrid clouds based on reliability, cost, and scalability.</li><li>Proposed a computerized Clinical Decision Support (CDS) System using cloud services.</li></ul></div>
-                        </div>
-                    </div>
+                <div class="job-section">
+                  <h4>
+                    <span class="h4-icon">&#9670;</span> Technical Leadership
+                  </h4>
+                  <div class="exp-item">
+                    <strong
+                      >Conducted live engineering demos and led design
+                      reviews</strong
+                    >
+                    <ul>
+                      <li>
+                        Presented SCIM, UPW, and unified authentication at
+                        Evisort Tech Demo and Eng Syncs.
+                      </li>
+                      <li>
+                        Documented workflows and recorded sessions to support
+                        team onboarding.
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="exp-item">
+                    <strong
+                      >Owned on-call rotations and incident response</strong
+                    >
+                    <ul>
+                      <li>
+                        Reviewed and documented 5+ past incidents (SCIM sync
+                        failures, token verification issues).
+                      </li>
+                      <li>
+                        Built a Confluence debugging playbook and mapped service
+                        ownership across 4+ platform services.
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="exp-item">
+                    <strong
+                      >Buddied 2 new hires; participated in 14 interview loops
+                      (3 successful hires)</strong
+                    >
+                    <ul>
+                      <li>Created a repeatable onboarding reference guide.</li>
+                      <li>
+                        Provided feedback to improve onboarding documentation
+                        and materials.
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="exp-item">
+                    <strong
+                      >Led Operational Readiness Reviews (ORR) for the auth
+                      gateway</strong
+                    >
+                    <ul>
+                      <li>
+                        Authored ORR documentation aligned with Workday
+                        reliability standards.
+                      </li>
+                      <li>
+                        Enabled Prometheus-based observability and alerting;
+                        extended instrumentation to the NestJS gateway.
+                      </li>
+                      <li>Raised authentication test coverage to 80%+.</li>
+                    </ul>
+                  </div>
                 </div>
-            </div>
-
-            <!-- TATA Internship -->
-            <div class="timeline-item reveal">
-                <div class="timeline-dot"></div>
-                <div class="timeline-card glass-card tilt-card">
-                    <div class="tilt-glow"></div>
-                    <div class="job-header" role="button" tabindex="0">
-                        <div class="job-header-left">
-                            <div class="company-logo tc-logo">TC</div>
-                            <div>
-                                <h3>Consulting &amp; Software Intern</h3>
-                                <p class="company-name">TATA Computer Management Corp</p>
-                                <div class="job-tags"><span class="job-tag">Python</span><span class="job-tag">Flask</span><span class="job-tag">MongoDB</span><span class="job-tag">ETL</span></div>
-                                <p class="job-summary">Built a full-stack web app with Flask and MongoDB — drove 45% sales increase and 30% faster query performance via ETL optimization.</p>
-                            </div>
-                        </div>
-                        <div class="job-header-right">
-                            <span class="job-date">May 2016 – Aug 2016</span>
-                            <span class="job-location">Delhi, India</span>
-                        </div>
-                    </div>
-                    <div class="job-details">
-                        <div class="job-section">
-                            <div class="exp-item"><strong>Full stack API-driven web application</strong> — Increased sales by 45% and reduced data storage inventory by 38%.<ul><li>Implemented Agile process across teams, improved customer interaction and sprint feedback.</li><li>Developed RESTful APIs using Python with Flask, JWT Session Management for security.</li><li>Performed ETL on legacy database, improved query performance by 30%.</li><li>Interacted with the DB using MongoDB Alchemy (NoSQL), improving flexibility and providing Object-Oriented structure.</li></ul></div>
-                        </div>
-                    </div>
+                <div class="job-section">
+                  <h4>
+                    <span class="h4-icon">&#9670;</span> Development &amp;
+                    Operations
+                  </h4>
+                  <div class="exp-item">
+                    <strong
+                      >Improved platform stability and scalability across
+                      identity and document platform services</strong
+                    >
+                    <ul>
+                      <li>
+                        Resolved key integration bugs and profiled the
+                        high-traffic token exchange endpoint.
+                      </li>
+                      <li>
+                        Refactored core components for maintainability and
+                        increased test coverage.
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="exp-item">
+                    <strong>Drove cross-service integration resilience</strong>
+                    <ul>
+                      <li>
+                        Built robust SSO token validation using internal CA
+                        certificate discovery.
+                      </li>
+                      <li>
+                        Enabled auth gateway observability via
+                        <code>/ping</code> and <code>/health</code> endpoints.
+                      </li>
+                      <li>
+                        Standardized metadata propagation across platform
+                        services and UI.
+                      </li>
+                      <li>
+                        Refactored auth library naming conventions across Python
+                        and TypeScript codebases.
+                      </li>
+                    </ul>
+                  </div>
                 </div>
+              </div>
             </div>
+          </div>
 
-            <!-- Bharati Vidyapeeth Trainee -->
-            <div class="timeline-item reveal">
-                <div class="timeline-dot"></div>
-                <div class="timeline-card glass-card tilt-card">
-                    <div class="tilt-glow"></div>
-                    <div class="job-header" role="button" tabindex="0">
-                        <div class="job-header-left">
-                            <div class="company-logo bv-logo">BV</div>
-                            <div>
-                                <h3>Android App Development Trainee</h3>
-                                <p class="company-name">Bharati Vidyapeeth's College of Engineering</p>
-                                <div class="job-tags"><span class="job-tag">Android</span><span class="job-tag">Java</span></div>
-                                <p class="job-summary">Developed an Android video player with gesture controls, custom UI, and third-party SDK integrations.</p>
-                            </div>
-                        </div>
-                        <div class="job-header-right">
-                            <span class="job-date">May 2015 – Jul 2015</span>
-                            <span class="job-location">Delhi, India</span>
-                        </div>
+          <!-- LivePerson -->
+          <div class="timeline-item reveal">
+            <div class="timeline-dot"></div>
+            <div class="timeline-card glass-card tilt-card">
+              <div class="tilt-glow"></div>
+              <div class="job-header" role="button" tabindex="0">
+                <div class="job-header-left">
+                  <div class="company-logo lp-logo">LP</div>
+                  <div>
+                    <h3>Software Engineer</h3>
+                    <p class="company-name">LivePerson Inc</p>
+                    <div class="job-tags">
+                      <span class="job-tag">Voice AI</span
+                      ><span class="job-tag">Kafka</span
+                      ><span class="job-tag">Microservices</span
+                      ><span class="job-tag">GCP</span>
                     </div>
-                    <div class="job-details">
-                        <div class="job-section">
-                            <div class="exp-item"><strong>Developed a video player application</strong> using Android Studio.<ul><li>Built list/grid view and gesture controls.</li><li>Worked on app UI, deep functionality, and third-party SDKs.</li></ul></div>
-                        </div>
-                    </div>
+                    <p class="job-summary">
+                      Built Voice AI platform end-to-end — media microservices,
+                      SIP APIs, and Kafka schema service. Cut latency 35% and
+                      scaled concurrent calls to 700.
+                    </p>
+                  </div>
                 </div>
+                <div class="job-header-right">
+                  <span class="job-date">Jan 2022 – May 2024</span>
+                  <span class="job-location">NYC &rarr; Toronto</span>
+                </div>
+              </div>
+              <div class="job-details">
+                <div class="job-section">
+                  <h4>
+                    <span class="h4-icon">&#9670;</span> Architecture &amp;
+                    System Design
+                  </h4>
+                  <div class="exp-item">
+                    <strong>Rebuilt Connector Service</strong> — Reduced data
+                    event size by 40% and latency by 35%.
+                    <ul>
+                      <li>
+                        Identified bottlenecks in inter-service communication.
+                      </li>
+                      <li>
+                        Designed an optimized event pipeline with Redis-backed
+                        brand configuration lookups.
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="exp-item">
+                    <strong>Redesigned Media Service into microservices</strong>
+                    — Increased concurrent calls by 50% (450 to 700).
+                    <ul>
+                      <li>
+                        Decomposed monolithic service into TTS, STT, and media
+                        microservices.
+                      </li>
+                      <li>
+                        Defined and implemented the observability strategy
+                        (metrics, monitoring, alerting).
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="exp-item">
+                    <strong
+                      >Owned Audio File Management Service end-to-end</strong
+                    >
+                    — Drove 25% increase in user engagement.
+                    <ul>
+                      <li>
+                        Architected storage and retrieval layer for audio blobs
+                        and Azure client keys using GCS and Redis.
+                      </li>
+                      <li>
+                        Integrated Azure Text-to-Speech for multi-language
+                        support via SSML.
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="exp-item">
+                    <strong
+                      >Proposed and drove adoption of Centralized Schema
+                      Service</strong
+                    >
+                    — Reduced integration overhead by 40% and debugging time by
+                    25%.
+                    <ul>
+                      <li>
+                        Identified fragmented Kafka schema management as a
+                        cross-team pain point.
+                      </li>
+                      <li>
+                        Designed the service to enforce schema evolution and
+                        consistency.
+                      </li>
+                      <li>
+                        Authored internal documentation and onboarding guides
+                        adopted across teams.
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="exp-item">
+                    <strong>Designed and delivered SIP Connection APIs</strong>
+                    — Increased customer retention by 20%.
+                    <ul>
+                      <li>
+                        Built SIP connection support (IP, FQDN, Credentials)
+                        using Telnyx SDKs, Java, and Micronaut with Kafka.
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="job-section">
+                  <h4>
+                    <span class="h4-icon">&#9670;</span> Development &amp;
+                    Operations
+                  </h4>
+                  <div class="exp-item">
+                    <strong>Optimized shared utility libraries</strong> —
+                    Improved code efficiency by 22% across internal services.
+                    <ul>
+                      <li>Tools: Redis, Log4j, GCS, Firestore.</li>
+                    </ul>
+                  </div>
+                  <div class="exp-item">
+                    <strong>Built automated OOM diagnostics</strong> — Reduced
+                    debugging time by 25%.
+                    <ul>
+                      <li>
+                        Automated thread and heap dump backups to GCP buckets
+                        during Out-of-Memory incidents.
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="exp-item">
+                    <strong
+                      >Secured transaction logs and reduced on-call
+                      burden</strong
+                    >
+                    — Cut on-call debugging time by 4 hours weekly.
+                    <ul>
+                      <li>
+                        Built bash tooling for log retrieval from Kubernetes
+                        pods and GCP Logs Explorer.
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="exp-item">
+                    <strong>Drove data security improvements</strong>
+                    <ul>
+                      <li>
+                        Implemented data redaction for NPIs, auth tokens, and
+                        credentials across GCP logs and Kubernetes pods.
+                      </li>
+                      <li>
+                        Eliminated sensitive data exposure in production logs,
+                        enabling compliance with enterprise data handling
+                        requirements.
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="exp-item">
+                    <strong>Raised test coverage from 36% to 87%</strong> — Cut
+                    testing costs by 20%.
+                    <ul>
+                      <li>
+                        Used JUnit and JMeter; established testing standards for
+                        the team.
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="exp-item">
+                    <strong>Led Inbound Call Automation Bots initiative</strong>
+                    <ul>
+                      <li>
+                        Established a fully operational system for weekly
+                        performance runs.
+                      </li>
+                      <li>
+                        Built the initial proof of concept and coordinated
+                        cross-team end-to-end testing.
+                      </li>
+                      <li>
+                        Delivered knowledge transfer to ensure long-term
+                        ownership.
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div class="job-detail-panel" id="jobDetailPanel" role="region" aria-label="Job details">
-                <button class="detail-panel-close" id="detailPanelClose" aria-label="Back to job list">&larr; Back</button>
-                <div class="detail-panel-header" id="detailPanelHeader"></div>
-                <div class="detail-panel-body" id="detailPanelBody"></div>
-                <button class="detail-panel-close detail-panel-close-bottom" aria-label="Back to job list">&larr; Back</button>
+          </div>
+
+          <!-- Black Knight -->
+          <div class="timeline-item reveal">
+            <div class="timeline-dot"></div>
+            <div class="timeline-card glass-card tilt-card">
+              <div class="tilt-glow"></div>
+              <div class="job-header" role="button" tabindex="0">
+                <div class="job-header-left">
+                  <div class="company-logo bk-logo">BK</div>
+                  <div>
+                    <h3>Software Engineer</h3>
+                    <p class="company-name">Black Knight Inc</p>
+                    <div class="job-tags">
+                      <span class="job-tag">AWS</span
+                      ><span class="job-tag">OCR</span
+                      ><span class="job-tag">Python</span
+                      ><span class="job-tag">Serverless</span>
+                    </div>
+                    <p class="job-summary">
+                      Architected serverless APIs on AWS — improved OCR accuracy
+                      to 89%, cut production costs 20%, and automated 80% of
+                      manual transaction retries.
+                    </p>
+                  </div>
+                </div>
+                <div class="job-header-right">
+                  <span class="job-date">Jun 2020 – Jan 2022</span>
+                  <span class="job-location">Philadelphia, PA</span>
+                </div>
+              </div>
+              <div class="job-details">
+                <div class="job-section">
+                  <p class="job-intro">
+                    Architected and developed APIs for Input &amp; Output
+                    Handler Services on the <strong>AIVA</strong> (Artificial
+                    Intelligence Virtual Assistant) team.
+                  </p>
+                  <div class="exp-item">
+                    <strong>Built customer environment management APIs</strong>
+                    — Reduced production costs by 20%.
+                    <ul>
+                      <li>
+                        Utilized AWS services (API Gateway, Lambda, S3,
+                        DynamoDB, SSM).
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="exp-item">
+                    <strong>Designed OCR data extraction microservices</strong>
+                    <ul>
+                      <li>
+                        Increased data accuracy from 80% to 89% and improved
+                        performance by 25%.
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="exp-item">
+                    <strong>Led greenfield service development</strong>
+                    <ul>
+                      <li>
+                        Built resilient services and orchestrated infrastructure
+                        stacks using Python, CloudFormation, and S3.
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="exp-item">
+                    <strong
+                      >Resolved provisioning and build pipeline failures</strong
+                    >
+                    <ul>
+                      <li>
+                        Reduced testing load times and lowered AWS costs across
+                        environments.
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="exp-item">
+                    <strong>Automated transaction anomaly recovery</strong>
+                    using Python and Boto3.
+                    <ul>
+                      <li>
+                        Eliminated 80% of manual retry attempts caused by code
+                        defects or AWS outages.
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
             </div>
+          </div>
+
+          <!-- Earlier Experience divider -->
+          <div class="timeline-divider reveal">
+            <span>Earlier Experience</span>
+          </div>
+
+          <!-- Research Scholar -->
+          <div class="timeline-item reveal">
+            <div class="timeline-dot"></div>
+            <div class="timeline-card glass-card tilt-card">
+              <div class="tilt-glow"></div>
+              <div class="job-header" role="button" tabindex="0">
+                <div class="job-header-left">
+                  <div class="company-logo rs-logo">RS</div>
+                  <div>
+                    <h3>Research Scholar</h3>
+                    <p class="company-name">
+                      Bharati Vidyapeeth's College of Engineering
+                    </p>
+                    <div class="job-tags">
+                      <span class="job-tag">Steganography</span
+                      ><span class="job-tag">NLP</span
+                      ><span class="job-tag">Cloud Security</span>
+                    </div>
+                    <p class="job-summary">
+                      Published two research papers on cloud security
+                      steganography and NLP-based clinical decision support
+                      systems.
+                    </p>
+                  </div>
+                </div>
+                <div class="job-header-right">
+                  <span class="job-date">Jan 2017 – Sep 2017</span>
+                  <span class="job-location">Delhi, India</span>
+                </div>
+              </div>
+              <div class="job-details">
+                <div class="job-section">
+                  <p class="job-intro">
+                    CSE Department under Dr. Rachna Jain — Published two
+                    research papers.
+                  </p>
+                  <div class="exp-item">
+                    <strong
+                      ><a
+                        href="http://www.recentscientific.com/enhance-data-security-cloud-using-steganography"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        >Enhance Data Security in Cloud Using Steganography</a
+                      ></strong
+                    >
+                    <ul>
+                      <li>
+                        Studied Cloud Service Providers vs Internet Service
+                        Providers based on cost, speed, scalability, and
+                        performance.
+                      </li>
+                      <li>
+                        Reviewed techniques of steganography (LSB) and digital
+                        watermarking (DFT) in spatial and frequency domain.
+                      </li>
+                      <li>
+                        In-depth study on Symmetric Key Encryption (DES, AES)
+                        and Asymmetric Key Encryption (RSA).
+                      </li>
+                      <li>
+                        Proposed a model for Image Steganography using LSB,
+                        mapping every bit of data and encryption key in RGB
+                        pixels.
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="exp-item">
+                    <strong
+                      ><a
+                        href="http://www.recentscientific.com/medical-application-using-nlp-over-cloud"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        >Medical Application Using NLP Over Cloud</a
+                      ></strong
+                    >
+                    <ul>
+                      <li>
+                        Knowledge acquisition on NLP systems and open source
+                        libraries (NLTK, Polyglot, Pattern).
+                      </li>
+                      <li>
+                        Studied Morphological Processing, Syntax, Semantic and
+                        Pragmatic Analysis.
+                      </li>
+                      <li>
+                        Comparative study on public, private, and hybrid clouds
+                        based on reliability, cost, and scalability.
+                      </li>
+                      <li>
+                        Proposed a computerized Clinical Decision Support (CDS)
+                        System using cloud services.
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- TATA Internship -->
+          <div class="timeline-item reveal">
+            <div class="timeline-dot"></div>
+            <div class="timeline-card glass-card tilt-card">
+              <div class="tilt-glow"></div>
+              <div class="job-header" role="button" tabindex="0">
+                <div class="job-header-left">
+                  <div class="company-logo tc-logo">TC</div>
+                  <div>
+                    <h3>Consulting &amp; Software Intern</h3>
+                    <p class="company-name">TATA Computer Management Corp</p>
+                    <div class="job-tags">
+                      <span class="job-tag">Python</span
+                      ><span class="job-tag">Flask</span
+                      ><span class="job-tag">MongoDB</span
+                      ><span class="job-tag">ETL</span>
+                    </div>
+                    <p class="job-summary">
+                      Built a full-stack web app with Flask and MongoDB — drove
+                      45% sales increase and 30% faster query performance via
+                      ETL optimization.
+                    </p>
+                  </div>
+                </div>
+                <div class="job-header-right">
+                  <span class="job-date">May 2016 – Aug 2016</span>
+                  <span class="job-location">Delhi, India</span>
+                </div>
+              </div>
+              <div class="job-details">
+                <div class="job-section">
+                  <div class="exp-item">
+                    <strong>Full stack API-driven web application</strong> —
+                    Increased sales by 45% and reduced data storage inventory by
+                    38%.
+                    <ul>
+                      <li>
+                        Implemented Agile process across teams, improved
+                        customer interaction and sprint feedback.
+                      </li>
+                      <li>
+                        Developed RESTful APIs using Python with Flask, JWT
+                        Session Management for security.
+                      </li>
+                      <li>
+                        Performed ETL on legacy database, improved query
+                        performance by 30%.
+                      </li>
+                      <li>
+                        Interacted with the DB using MongoDB Alchemy (NoSQL),
+                        improving flexibility and providing Object-Oriented
+                        structure.
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bharati Vidyapeeth Trainee -->
+          <div class="timeline-item reveal">
+            <div class="timeline-dot"></div>
+            <div class="timeline-card glass-card tilt-card">
+              <div class="tilt-glow"></div>
+              <div class="job-header" role="button" tabindex="0">
+                <div class="job-header-left">
+                  <div class="company-logo bv-logo">BV</div>
+                  <div>
+                    <h3>Android App Development Trainee</h3>
+                    <p class="company-name">
+                      Bharati Vidyapeeth's College of Engineering
+                    </p>
+                    <div class="job-tags">
+                      <span class="job-tag">Android</span
+                      ><span class="job-tag">Java</span>
+                    </div>
+                    <p class="job-summary">
+                      Developed an Android video player with gesture controls,
+                      custom UI, and third-party SDK integrations.
+                    </p>
+                  </div>
+                </div>
+                <div class="job-header-right">
+                  <span class="job-date">May 2015 – Jul 2015</span>
+                  <span class="job-location">Delhi, India</span>
+                </div>
+              </div>
+              <div class="job-details">
+                <div class="job-section">
+                  <div class="exp-item">
+                    <strong>Developed a video player application</strong> using
+                    Android Studio.
+                    <ul>
+                      <li>Built list/grid view and gesture controls.</li>
+                      <li>
+                        Worked on app UI, deep functionality, and third-party
+                        SDKs.
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="job-detail-panel"
+            id="jobDetailPanel"
+            role="region"
+            aria-label="Job details"
+          >
+            <button
+              class="detail-panel-close"
+              id="detailPanelClose"
+              aria-label="Back to job list"
+            >
+              &larr; Back
+            </button>
+            <div class="detail-panel-header" id="detailPanelHeader"></div>
+            <div class="detail-panel-body" id="detailPanelBody"></div>
+            <button
+              class="detail-panel-close detail-panel-close-bottom"
+              aria-label="Back to job list"
+            >
+              &larr; Back
+            </button>
+          </div>
         </div>
+      </div>
+    </section>
+
+    <div class="section-divider diag-1">
+      <svg viewBox="0 0 1440 80" preserveAspectRatio="none">
+        <polygon points="0,80 1440,0 1440,80" />
+      </svg>
     </div>
-</section>
 
-<div class="section-divider diag-1"><svg viewBox="0 0 1440 80" preserveAspectRatio="none"><polygon points="0,80 1440,0 1440,80"/></svg></div>
-
-<!-- ═══════════════ SKILLS (ORBIT) ═══════════════ -->
-<section id="skills">
-    <div class="container">
+    <!-- ═══════════════ SKILLS (ORBIT) ═══════════════ -->
+    <section id="skills">
+      <div class="container">
         <div class="section-header reveal">
-            <span class="section-number">02</span>
-            <h2 class="section-title">Technical Arsenal</h2>
-            <p class="section-subtitle">Technologies I work with daily and at depth.</p>
+          <span class="section-number">02</span>
+          <h2 class="section-title">Technical Arsenal</h2>
+          <p class="section-subtitle">
+            Technologies I work with daily and at depth.
+          </p>
         </div>
         <div class="orbit-container reveal">
-            <div class="orbit-core">CORE</div>
-            <!-- Ring 1: Languages -->
-            <div class="orbit-ring ring-1">
-                <div class="orbit-node" data-cat="Languages" style="--i:0;--total:6">Python</div>
-                <div class="orbit-node" data-cat="Languages" style="--i:1;--total:6">Java</div>
-                <div class="orbit-node" data-cat="Languages" style="--i:2;--total:6">TypeScript</div>
-                <div class="orbit-node" data-cat="Languages" style="--i:3;--total:6">Bash</div>
-                <div class="orbit-node" data-cat="Languages" style="--i:4;--total:6">C/C++</div>
-                <div class="orbit-node" data-cat="Languages" style="--i:5;--total:6">SSML</div>
+          <div class="orbit-core">CORE</div>
+          <!-- Ring 1: Languages -->
+          <div class="orbit-ring ring-1">
+            <div
+              class="orbit-node"
+              data-cat="Languages"
+              style="--i: 0; --total: 6"
+            >
+              Python
             </div>
-            <!-- Ring 2: Backend & Protocols -->
-            <div class="orbit-ring ring-2">
-                <div class="orbit-node" data-cat="Backend" style="--i:0;--total:11">FastAPI</div>
-                <div class="orbit-node" data-cat="Backend" style="--i:1;--total:11">Micronaut</div>
-                <div class="orbit-node" data-cat="Backend" style="--i:2;--total:11">NestJS</div>
-                <div class="orbit-node" data-cat="Backend" style="--i:3;--total:11">Flask</div>
-                <div class="orbit-node" data-cat="Backend" style="--i:4;--total:11">Django</div>
-                <div class="orbit-node" data-cat="Backend" style="--i:5;--total:11">Kafka</div>
-                <div class="orbit-node" data-cat="Backend" style="--i:6;--total:11">RabbitMQ</div>
-                <div class="orbit-node" data-cat="Backend" style="--i:7;--total:11">OIDC</div>
-                <div class="orbit-node" data-cat="Backend" style="--i:8;--total:11">SCIM</div>
-                <div class="orbit-node" data-cat="Backend" style="--i:9;--total:11">JWT</div>
-                <div class="orbit-node" data-cat="Backend" style="--i:10;--total:11">Docker</div>
+            <div
+              class="orbit-node"
+              data-cat="Languages"
+              style="--i: 1; --total: 6"
+            >
+              Java
             </div>
-            <!-- Ring 3: Data & Cloud -->
-            <div class="orbit-ring ring-3">
-                <div class="orbit-node" data-cat="Data &amp; Cloud" style="--i:0;--total:12">PostgreSQL</div>
-                <div class="orbit-node" data-cat="Data &amp; Cloud" style="--i:1;--total:12">Redis</div>
-                <div class="orbit-node" data-cat="Data &amp; Cloud" style="--i:2;--total:12">MySQL</div>
-                <div class="orbit-node" data-cat="Data &amp; Cloud" style="--i:3;--total:12">MongoDB</div>
-                <div class="orbit-node" data-cat="Data &amp; Cloud" style="--i:4;--total:12">Firestore</div>
-                <div class="orbit-node" data-cat="Data &amp; Cloud" style="--i:5;--total:12">DynamoDB</div>
-                <div class="orbit-node" data-cat="Data &amp; Cloud" style="--i:6;--total:12">S3</div>
-                <div class="orbit-node" data-cat="Data &amp; Cloud" style="--i:7;--total:12">GKE</div>
-                <div class="orbit-node" data-cat="Data &amp; Cloud" style="--i:8;--total:12">Kubernetes</div>
-                <div class="orbit-node" data-cat="Data &amp; Cloud" style="--i:9;--total:12">CloudFormation</div>
-                <div class="orbit-node" data-cat="Data &amp; Cloud" style="--i:10;--total:12">API Gateway</div>
-                <div class="orbit-node" data-cat="Data &amp; Cloud" style="--i:11;--total:12">Compute Engine</div>
+            <div
+              class="orbit-node"
+              data-cat="Languages"
+              style="--i: 2; --total: 6"
+            >
+              TypeScript
             </div>
-            <!-- Ring 4: Tools & Big Data -->
-            <div class="orbit-ring ring-4">
-                <div class="orbit-node" data-cat="Tools &amp; Big Data" style="--i:0;--total:11">Prometheus</div>
-                <div class="orbit-node" data-cat="Tools &amp; Big Data" style="--i:1;--total:11">Grafana</div>
-                <div class="orbit-node" data-cat="Tools &amp; Big Data" style="--i:2;--total:11">Sentry</div>
-                <div class="orbit-node" data-cat="Tools &amp; Big Data" style="--i:3;--total:11">GitLab CI/CD</div>
-                <div class="orbit-node" data-cat="Tools &amp; Big Data" style="--i:4;--total:11">JMeter</div>
-                <div class="orbit-node" data-cat="Tools &amp; Big Data" style="--i:5;--total:11">Swagger</div>
-                <div class="orbit-node" data-cat="Tools &amp; Big Data" style="--i:6;--total:11">Gradle</div>
-                <div class="orbit-node" data-cat="Tools &amp; Big Data" style="--i:7;--total:11">Spark</div>
-                <div class="orbit-node" data-cat="Tools &amp; Big Data" style="--i:8;--total:11">Hadoop</div>
-                <div class="orbit-node" data-cat="Tools &amp; Big Data" style="--i:9;--total:11">Sqoop</div>
-                <div class="orbit-node" data-cat="Tools &amp; Big Data" style="--i:10;--total:11">Jira</div>
+            <div
+              class="orbit-node"
+              data-cat="Languages"
+              style="--i: 3; --total: 6"
+            >
+              Bash
             </div>
+            <div
+              class="orbit-node"
+              data-cat="Languages"
+              style="--i: 4; --total: 6"
+            >
+              C/C++
+            </div>
+            <div
+              class="orbit-node"
+              data-cat="Languages"
+              style="--i: 5; --total: 6"
+            >
+              SSML
+            </div>
+          </div>
+          <!-- Ring 2: Backend & Protocols -->
+          <div class="orbit-ring ring-2">
+            <div
+              class="orbit-node"
+              data-cat="Backend"
+              style="--i: 0; --total: 11"
+            >
+              FastAPI
+            </div>
+            <div
+              class="orbit-node"
+              data-cat="Backend"
+              style="--i: 1; --total: 11"
+            >
+              Micronaut
+            </div>
+            <div
+              class="orbit-node"
+              data-cat="Backend"
+              style="--i: 2; --total: 11"
+            >
+              NestJS
+            </div>
+            <div
+              class="orbit-node"
+              data-cat="Backend"
+              style="--i: 3; --total: 11"
+            >
+              Flask
+            </div>
+            <div
+              class="orbit-node"
+              data-cat="Backend"
+              style="--i: 4; --total: 11"
+            >
+              Django
+            </div>
+            <div
+              class="orbit-node"
+              data-cat="Backend"
+              style="--i: 5; --total: 11"
+            >
+              Kafka
+            </div>
+            <div
+              class="orbit-node"
+              data-cat="Backend"
+              style="--i: 6; --total: 11"
+            >
+              RabbitMQ
+            </div>
+            <div
+              class="orbit-node"
+              data-cat="Backend"
+              style="--i: 7; --total: 11"
+            >
+              OIDC
+            </div>
+            <div
+              class="orbit-node"
+              data-cat="Backend"
+              style="--i: 8; --total: 11"
+            >
+              SCIM
+            </div>
+            <div
+              class="orbit-node"
+              data-cat="Backend"
+              style="--i: 9; --total: 11"
+            >
+              JWT
+            </div>
+            <div
+              class="orbit-node"
+              data-cat="Backend"
+              style="--i: 10; --total: 11"
+            >
+              Docker
+            </div>
+          </div>
+          <!-- Ring 3: Data & Cloud -->
+          <div class="orbit-ring ring-3">
+            <div
+              class="orbit-node"
+              data-cat="Data &amp; Cloud"
+              style="--i: 0; --total: 12"
+            >
+              PostgreSQL
+            </div>
+            <div
+              class="orbit-node"
+              data-cat="Data &amp; Cloud"
+              style="--i: 1; --total: 12"
+            >
+              Redis
+            </div>
+            <div
+              class="orbit-node"
+              data-cat="Data &amp; Cloud"
+              style="--i: 2; --total: 12"
+            >
+              MySQL
+            </div>
+            <div
+              class="orbit-node"
+              data-cat="Data &amp; Cloud"
+              style="--i: 3; --total: 12"
+            >
+              MongoDB
+            </div>
+            <div
+              class="orbit-node"
+              data-cat="Data &amp; Cloud"
+              style="--i: 4; --total: 12"
+            >
+              Firestore
+            </div>
+            <div
+              class="orbit-node"
+              data-cat="Data &amp; Cloud"
+              style="--i: 5; --total: 12"
+            >
+              DynamoDB
+            </div>
+            <div
+              class="orbit-node"
+              data-cat="Data &amp; Cloud"
+              style="--i: 6; --total: 12"
+            >
+              S3
+            </div>
+            <div
+              class="orbit-node"
+              data-cat="Data &amp; Cloud"
+              style="--i: 7; --total: 12"
+            >
+              GKE
+            </div>
+            <div
+              class="orbit-node"
+              data-cat="Data &amp; Cloud"
+              style="--i: 8; --total: 12"
+            >
+              Kubernetes
+            </div>
+            <div
+              class="orbit-node"
+              data-cat="Data &amp; Cloud"
+              style="--i: 9; --total: 12"
+            >
+              CloudFormation
+            </div>
+            <div
+              class="orbit-node"
+              data-cat="Data &amp; Cloud"
+              style="--i: 10; --total: 12"
+            >
+              API Gateway
+            </div>
+            <div
+              class="orbit-node"
+              data-cat="Data &amp; Cloud"
+              style="--i: 11; --total: 12"
+            >
+              Compute Engine
+            </div>
+          </div>
+          <!-- Ring 4: Tools & Big Data -->
+          <div class="orbit-ring ring-4">
+            <div
+              class="orbit-node"
+              data-cat="Tools &amp; Big Data"
+              style="--i: 0; --total: 11"
+            >
+              Prometheus
+            </div>
+            <div
+              class="orbit-node"
+              data-cat="Tools &amp; Big Data"
+              style="--i: 1; --total: 11"
+            >
+              Grafana
+            </div>
+            <div
+              class="orbit-node"
+              data-cat="Tools &amp; Big Data"
+              style="--i: 2; --total: 11"
+            >
+              Sentry
+            </div>
+            <div
+              class="orbit-node"
+              data-cat="Tools &amp; Big Data"
+              style="--i: 3; --total: 11"
+            >
+              GitLab CI/CD
+            </div>
+            <div
+              class="orbit-node"
+              data-cat="Tools &amp; Big Data"
+              style="--i: 4; --total: 11"
+            >
+              JMeter
+            </div>
+            <div
+              class="orbit-node"
+              data-cat="Tools &amp; Big Data"
+              style="--i: 5; --total: 11"
+            >
+              Swagger
+            </div>
+            <div
+              class="orbit-node"
+              data-cat="Tools &amp; Big Data"
+              style="--i: 6; --total: 11"
+            >
+              Gradle
+            </div>
+            <div
+              class="orbit-node"
+              data-cat="Tools &amp; Big Data"
+              style="--i: 7; --total: 11"
+            >
+              Spark
+            </div>
+            <div
+              class="orbit-node"
+              data-cat="Tools &amp; Big Data"
+              style="--i: 8; --total: 11"
+            >
+              Hadoop
+            </div>
+            <div
+              class="orbit-node"
+              data-cat="Tools &amp; Big Data"
+              style="--i: 9; --total: 11"
+            >
+              Sqoop
+            </div>
+            <div
+              class="orbit-node"
+              data-cat="Tools &amp; Big Data"
+              style="--i: 10; --total: 11"
+            >
+              Jira
+            </div>
+          </div>
         </div>
         <div class="orbit-tooltip" id="orbitTooltip"></div>
         <!-- Fallback grid for mobile -->
         <div class="skills-grid-fallback">
-            <div class="skill-category glass-card tilt-card reveal"><div class="tilt-glow"></div><h4>Languages</h4><div class="tags"><span class="tag" data-level="expert">Python</span><span class="tag" data-level="expert">Java</span><span class="tag" data-level="advanced">TypeScript</span><span class="tag" data-level="advanced">Bash</span><span class="tag" data-level="intermediate">C/C++</span><span class="tag" data-level="intermediate">SSML</span></div></div>
-            <div class="skill-category glass-card tilt-card reveal"><div class="tilt-glow"></div><h4>Database &amp; Storage</h4><div class="tags"><span class="tag" data-level="expert">PostgreSQL</span><span class="tag" data-level="expert">Redis</span><span class="tag" data-level="advanced">MySQL</span><span class="tag" data-level="advanced">MongoDB</span><span class="tag" data-level="advanced">Firestore</span><span class="tag" data-level="advanced">DynamoDB</span><span class="tag" data-level="intermediate">Cloud Storage</span><span class="tag" data-level="intermediate">S3</span></div></div>
-            <div class="skill-category glass-card tilt-card reveal"><div class="tilt-glow"></div><h4>Back-end</h4><div class="tags"><span class="tag" data-level="expert">FastAPI</span><span class="tag" data-level="expert">Micronaut</span><span class="tag" data-level="expert">NestJS</span><span class="tag" data-level="advanced">Flask</span><span class="tag" data-level="advanced">Django</span><span class="tag" data-level="expert">Kafka</span><span class="tag" data-level="advanced">RabbitMQ</span><span class="tag" data-level="expert">OIDC</span><span class="tag" data-level="expert">SCIM</span><span class="tag" data-level="expert">JWT</span><span class="tag" data-level="advanced">Docker</span></div></div>
-            <div class="skill-category glass-card tilt-card reveal"><div class="tilt-glow"></div><h4>Cloud (GCP &amp; AWS)</h4><div class="tags"><span class="tag" data-level="expert">GKE</span><span class="tag" data-level="expert">Kubernetes</span><span class="tag" data-level="advanced">Compute Engine</span><span class="tag" data-level="advanced">Load Balancing</span><span class="tag" data-level="advanced">Cloud Build</span><span class="tag" data-level="advanced">CloudFormation</span><span class="tag" data-level="advanced">API Gateway</span></div></div>
-            <div class="skill-category glass-card tilt-card reveal"><div class="tilt-glow"></div><h4>Big Data</h4><div class="tags"><span class="tag" data-level="advanced">Spark Streaming</span><span class="tag" data-level="advanced">Hadoop HDFS</span><span class="tag" data-level="advanced">Spark RDD</span><span class="tag" data-level="advanced">DataFrames</span><span class="tag" data-level="intermediate">Sqoop</span><span class="tag" data-level="intermediate">Apache Flume</span></div></div>
-            <div class="skill-category glass-card tilt-card reveal"><div class="tilt-glow"></div><h4>Tools &amp; Observability</h4><div class="tags"><span class="tag" data-level="expert">GitLab CI/CD</span><span class="tag" data-level="expert">Prometheus</span><span class="tag" data-level="expert">Grafana</span><span class="tag" data-level="advanced">Sentry</span><span class="tag" data-level="advanced">JMeter</span><span class="tag" data-level="advanced">Swagger</span><span class="tag" data-level="advanced">Gradle</span><span class="tag" data-level="intermediate">Jira</span></div></div>
+          <div class="skill-category glass-card tilt-card reveal">
+            <div class="tilt-glow"></div>
+            <h4>Languages</h4>
+            <div class="tags">
+              <span class="tag" data-level="expert">Python</span
+              ><span class="tag" data-level="expert">Java</span
+              ><span class="tag" data-level="advanced">TypeScript</span
+              ><span class="tag" data-level="advanced">Bash</span
+              ><span class="tag" data-level="intermediate">C/C++</span
+              ><span class="tag" data-level="intermediate">SSML</span>
+            </div>
+          </div>
+          <div class="skill-category glass-card tilt-card reveal">
+            <div class="tilt-glow"></div>
+            <h4>Database &amp; Storage</h4>
+            <div class="tags">
+              <span class="tag" data-level="expert">PostgreSQL</span
+              ><span class="tag" data-level="expert">Redis</span
+              ><span class="tag" data-level="advanced">MySQL</span
+              ><span class="tag" data-level="advanced">MongoDB</span
+              ><span class="tag" data-level="advanced">Firestore</span
+              ><span class="tag" data-level="advanced">DynamoDB</span
+              ><span class="tag" data-level="intermediate">Cloud Storage</span
+              ><span class="tag" data-level="intermediate">S3</span>
+            </div>
+          </div>
+          <div class="skill-category glass-card tilt-card reveal">
+            <div class="tilt-glow"></div>
+            <h4>Back-end</h4>
+            <div class="tags">
+              <span class="tag" data-level="expert">FastAPI</span
+              ><span class="tag" data-level="expert">Micronaut</span
+              ><span class="tag" data-level="expert">NestJS</span
+              ><span class="tag" data-level="advanced">Flask</span
+              ><span class="tag" data-level="advanced">Django</span
+              ><span class="tag" data-level="expert">Kafka</span
+              ><span class="tag" data-level="advanced">RabbitMQ</span
+              ><span class="tag" data-level="expert">OIDC</span
+              ><span class="tag" data-level="expert">SCIM</span
+              ><span class="tag" data-level="expert">JWT</span
+              ><span class="tag" data-level="advanced">Docker</span>
+            </div>
+          </div>
+          <div class="skill-category glass-card tilt-card reveal">
+            <div class="tilt-glow"></div>
+            <h4>Cloud (GCP &amp; AWS)</h4>
+            <div class="tags">
+              <span class="tag" data-level="expert">GKE</span
+              ><span class="tag" data-level="expert">Kubernetes</span
+              ><span class="tag" data-level="advanced">Compute Engine</span
+              ><span class="tag" data-level="advanced">Load Balancing</span
+              ><span class="tag" data-level="advanced">Cloud Build</span
+              ><span class="tag" data-level="advanced">CloudFormation</span
+              ><span class="tag" data-level="advanced">API Gateway</span>
+            </div>
+          </div>
+          <div class="skill-category glass-card tilt-card reveal">
+            <div class="tilt-glow"></div>
+            <h4>Big Data</h4>
+            <div class="tags">
+              <span class="tag" data-level="advanced">Spark Streaming</span
+              ><span class="tag" data-level="advanced">Hadoop HDFS</span
+              ><span class="tag" data-level="advanced">Spark RDD</span
+              ><span class="tag" data-level="advanced">DataFrames</span
+              ><span class="tag" data-level="intermediate">Sqoop</span
+              ><span class="tag" data-level="intermediate">Apache Flume</span>
+            </div>
+          </div>
+          <div class="skill-category glass-card tilt-card reveal">
+            <div class="tilt-glow"></div>
+            <h4>Tools &amp; Observability</h4>
+            <div class="tags">
+              <span class="tag" data-level="expert">GitLab CI/CD</span
+              ><span class="tag" data-level="expert">Prometheus</span
+              ><span class="tag" data-level="expert">Grafana</span
+              ><span class="tag" data-level="advanced">Sentry</span
+              ><span class="tag" data-level="advanced">JMeter</span
+              ><span class="tag" data-level="advanced">Swagger</span
+              ><span class="tag" data-level="advanced">Gradle</span
+              ><span class="tag" data-level="intermediate">Jira</span>
+            </div>
+          </div>
         </div>
+      </div>
+    </section>
+
+    <div class="section-divider curve-1">
+      <svg viewBox="0 0 1440 80" preserveAspectRatio="none">
+        <path d="M0,0 C480,80 960,80 1440,0 L1440,80 L0,80 Z" />
+      </svg>
     </div>
-</section>
 
-<div class="section-divider curve-1"><svg viewBox="0 0 1440 80" preserveAspectRatio="none"><path d="M0,0 C480,80 960,80 1440,0 L1440,80 L0,80 Z"/></svg></div>
-
-<!-- ═══════════════ EDUCATION ═══════════════ -->
-<section id="education">
-    <div class="container">
-        <div class="section-header reveal"><span class="section-number">03</span><h2 class="section-title">Education</h2></div>
+    <!-- ═══════════════ EDUCATION ═══════════════ -->
+    <section id="education">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-number">03</span>
+          <h2 class="section-title">Education</h2>
+        </div>
         <div class="edu-grid">
-            <div class="edu-card glass-card tilt-card reveal"><div class="tilt-glow"></div><div class="edu-year">2018 – 2020</div><h4>Arizona State University</h4><p class="edu-location">Tempe, Arizona, USA</p><p class="edu-degree">M.S. Software Engineering</p></div>
-            <div class="edu-card glass-card tilt-card reveal"><div class="tilt-glow"></div><div class="edu-year">2014 – 2017</div><h4>Guru Gobind Singh Indraprastha University</h4><p class="edu-location">Delhi, India</p><p class="edu-degree">B.Tech Computer Science</p></div>
-            <div class="edu-card glass-card tilt-card reveal"><div class="tilt-glow"></div><div class="edu-year">2011 – 2014</div><h4>Guru Nanak Dev Institute of Technology</h4><p class="edu-location">Delhi, India</p><p class="edu-degree">Associate — Electronics &amp; Communications</p></div>
+          <div class="edu-card glass-card tilt-card reveal">
+            <div class="tilt-glow"></div>
+            <div class="edu-year">2018 – 2020</div>
+            <h4>Arizona State University</h4>
+            <p class="edu-location">Tempe, Arizona, USA</p>
+            <p class="edu-degree">M.S. Software Engineering</p>
+          </div>
+          <div class="edu-card glass-card tilt-card reveal">
+            <div class="tilt-glow"></div>
+            <div class="edu-year">2014 – 2017</div>
+            <h4>Guru Gobind Singh Indraprastha University</h4>
+            <p class="edu-location">Delhi, India</p>
+            <p class="edu-degree">B.Tech Computer Science</p>
+          </div>
+          <div class="edu-card glass-card tilt-card reveal">
+            <div class="tilt-glow"></div>
+            <div class="edu-year">2011 – 2014</div>
+            <h4>Guru Nanak Dev Institute of Technology</h4>
+            <p class="edu-location">Delhi, India</p>
+            <p class="edu-degree">
+              Associate — Electronics &amp; Communications
+            </p>
+          </div>
         </div>
+      </div>
+    </section>
+
+    <div class="section-divider wave-2">
+      <svg viewBox="0 0 1440 100" preserveAspectRatio="none">
+        <path
+          d="M0,40 C240,100 480,0 720,50 C960,100 1200,20 1440,60 L1440,100 L0,100 Z"
+        />
+      </svg>
     </div>
-</section>
 
-<div class="section-divider wave-2"><svg viewBox="0 0 1440 100" preserveAspectRatio="none"><path d="M0,40 C240,100 480,0 720,50 C960,100 1200,20 1440,60 L1440,100 L0,100 Z"/></svg></div>
-
-<!-- Certifications -->
-<section id="certifications">
-    <div class="container">
-        <div class="section-header reveal"><span class="section-number">04</span><h2 class="section-title">Certifications</h2></div>
+    <!-- Certifications -->
+    <section id="certifications">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-number">04</span>
+          <h2 class="section-title">Certifications</h2>
+        </div>
         <div class="cert-grid">
-            <div class="cert-card glass-card tilt-card reveal"><div class="tilt-glow"></div><div class="cert-badge">CCA-175</div><h4>Cloudera Certified Associate</h4><p>Spark and Hadoop Developer</p></div>
-            <div class="cert-card glass-card tilt-card reveal"><div class="tilt-glow"></div><div class="cert-badge">PCAP</div><h4>PythonInstitute Certified Associate</h4><p>Python Programming (PCAP-31-02)</p></div>
-            <div class="cert-card glass-card tilt-card reveal"><div class="tilt-glow"></div><div class="cert-badge">OCA</div><h4>Oracle Certified Associate</h4><p>Database SQL (1Z0-071)</p></div>
-            <div class="cert-card glass-card tilt-card reveal"><div class="tilt-glow"></div><div class="cert-badge">GCP</div><h4>Google Associate Cloud Engineer</h4><p>Google Cloud Platform</p></div>
+          <div class="cert-card glass-card tilt-card reveal">
+            <div class="tilt-glow"></div>
+            <div class="cert-badge">CCA-175</div>
+            <h4>Cloudera Certified Associate</h4>
+            <p>Spark and Hadoop Developer</p>
+          </div>
+          <div class="cert-card glass-card tilt-card reveal">
+            <div class="tilt-glow"></div>
+            <div class="cert-badge">PCAP</div>
+            <h4>PythonInstitute Certified Associate</h4>
+            <p>Python Programming (PCAP-31-02)</p>
+          </div>
+          <div class="cert-card glass-card tilt-card reveal">
+            <div class="tilt-glow"></div>
+            <div class="cert-badge">OCA</div>
+            <h4>Oracle Certified Associate</h4>
+            <p>Database SQL (1Z0-071)</p>
+          </div>
+          <div class="cert-card glass-card tilt-card reveal">
+            <div class="tilt-glow"></div>
+            <div class="cert-badge">GCP</div>
+            <h4>Google Associate Cloud Engineer</h4>
+            <p>Google Cloud Platform</p>
+          </div>
         </div>
         <div class="collapsible-section reveal">
-            <button class="collapsible-toggle glass-card" id="udemyToggle"><span>Udemy Certificates</span><span class="toggle-arrow open"></span></button>
-            <div class="collapsible-content open">
-                <div class="udemy-grid">
-                    <span class="udemy-item">Data Warehouse — The Ultimate Guide</span><span class="udemy-item">Software Architecture &amp; Design of Modern Large Scale Systems</span><span class="udemy-item">Micronaut — Cloud Native Microservices with Java</span><span class="udemy-item">GCP Associate Cloud Engineer — Google Cloud Certification</span><span class="udemy-item">Spark and Hadoop Developer — Python (PySpark)</span><span class="udemy-item">Spark and Python for Big Data with PySpark</span><span class="udemy-item">REST APIs with Flask and Python</span><span class="udemy-item">Advanced REST APIs with Flask and Python</span><span class="udemy-item">GCP: Complete Google Data Engineer &amp; Cloud Architect Guide</span><span class="udemy-item">Oracle SQL Developer From Scratch</span>
-                </div>
+          <button class="collapsible-toggle glass-card" id="udemyToggle">
+            <span>Udemy Certificates</span
+            ><span class="toggle-arrow open"></span>
+          </button>
+          <div class="collapsible-content open">
+            <div class="udemy-grid">
+              <span class="udemy-item">Data Warehouse — The Ultimate Guide</span
+              ><span class="udemy-item"
+                >Software Architecture &amp; Design of Modern Large Scale
+                Systems</span
+              ><span class="udemy-item"
+                >Micronaut — Cloud Native Microservices with Java</span
+              ><span class="udemy-item"
+                >GCP Associate Cloud Engineer — Google Cloud Certification</span
+              ><span class="udemy-item"
+                >Spark and Hadoop Developer — Python (PySpark)</span
+              ><span class="udemy-item"
+                >Spark and Python for Big Data with PySpark</span
+              ><span class="udemy-item">REST APIs with Flask and Python</span
+              ><span class="udemy-item"
+                >Advanced REST APIs with Flask and Python</span
+              ><span class="udemy-item"
+                >GCP: Complete Google Data Engineer &amp; Cloud Architect
+                Guide</span
+              ><span class="udemy-item">Oracle SQL Developer From Scratch</span>
             </div>
+          </div>
         </div>
-    </div>
-</section>
+      </div>
+    </section>
 
-<!-- ═══════════════ PROJECTS (FLIP CARDS) ═══════════════ -->
-<section id="projects">
-    <div class="container">
-        <div class="section-header reveal"><span class="section-number">05</span><h2 class="section-title">Projects</h2><p class="section-subtitle flip-hint">Hover to flip and see details.</p></div>
+    <!-- ═══════════════ PROJECTS (FLIP CARDS) ═══════════════ -->
+    <section id="projects">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-number">05</span>
+          <h2 class="section-title">Projects</h2>
+          <p class="section-subtitle flip-hint">
+            Hover to flip and see details.
+          </p>
+        </div>
         <div class="project-grid">
-            <div class="flip-card reveal">
-                <div class="flip-inner">
-                    <div class="flip-front"><img src="img/ice-hockey.jpg" alt="Ice Hockey" loading="lazy"><div class="flip-front-overlay"><h4>RosterData — Ice Hockey v2</h4><div class="project-tags"><span>Python</span><span>Scrapy</span><span>PostgreSQL</span><span>AWS</span></div></div></div>
-                    <div class="flip-back glass-card"><h4>RosterData — Ice Hockey Statistics v2</h4><p class="project-date">Jan 2020 – Apr 2020</p><p>Expanded RosterData from NHL-only to 4-league coverage (NHL, SHL, Liiga, KHL) with cross-league player comparison.</p><ul><li>Built league-specific Scrapy pipelines for SHL, Liiga, and KHL — each with unique HTML structures and pagination patterns.</li><li>Designed a normalized JSON data model for cross-league consistency (player identity, season stats, team associations).</li><li>Stored normalized data in PostgreSQL on AWS RDS with query-optimized indexing for player lookup and league standings.</li><li>Built REST APIs for player search, team rosters, and cross-league career timelines.</li></ul></div>
+          <div class="flip-card reveal">
+            <div class="flip-inner">
+              <div class="flip-front">
+                <picture><source srcset="img/ice-hockey.webp" type="image/webp" /><img src="img/ice-hockey.jpg" alt="Ice Hockey" loading="lazy" width="600" height="380" /></picture>
+                <div class="flip-front-overlay">
+                  <h4>RosterData — Ice Hockey v2</h4>
+                  <div class="project-tags">
+                    <span>Python</span><span>Scrapy</span><span>PostgreSQL</span
+                    ><span>AWS</span>
+                  </div>
                 </div>
+              </div>
+              <div class="flip-back glass-card">
+                <h4>RosterData — Ice Hockey Statistics v2</h4>
+                <p class="project-date">Jan 2020 – Apr 2020</p>
+                <p>
+                  Expanded RosterData from NHL-only to 4-league coverage (NHL,
+                  SHL, Liiga, KHL) with cross-league player comparison.
+                </p>
+                <ul>
+                  <li>
+                    Built league-specific Scrapy pipelines for SHL, Liiga, and
+                    KHL — each with unique HTML structures and pagination
+                    patterns.
+                  </li>
+                  <li>
+                    Designed a normalized JSON data model for cross-league
+                    consistency (player identity, season stats, team
+                    associations).
+                  </li>
+                  <li>
+                    Stored normalized data in PostgreSQL on AWS RDS with
+                    query-optimized indexing for player lookup and league
+                    standings.
+                  </li>
+                  <li>
+                    Built REST APIs for player search, team rosters, and
+                    cross-league career timelines.
+                  </li>
+                </ul>
+              </div>
             </div>
-            <div class="flip-card reveal">
-                <div class="flip-inner">
-                    <div class="flip-front"><img src="img/tfidf.png" alt="TF-IDF" loading="lazy"><div class="flip-front-overlay"><h4>LSA Classification &amp; Prediction</h4><div class="project-tags"><span>Python</span><span>scikit-learn</span><span>Flask</span><span>GCP</span></div></div></div>
-                    <div class="flip-back glass-card"><h4>Latent Semantic Analysis — Classification &amp; Prediction</h4><p class="project-date">Mar 2020 – Apr 2020</p><p>End-to-end ML pipeline for financial document classification &mdash; 98% accuracy, deployed as a REST API on GCP.</p><ul><li>Preprocessed financial documents: tokenization, stop-word removal, TF-IDF vectorization into numerical feature vectors.</li><li>Applied LSA (SVD on TF-IDF matrix) for dimensionality reduction while preserving discriminative dimensions.</li><li>Evaluated Naive Bayes, SVM, Random Forest, and Logistic Regression with grid search and cross-validation.</li><li>Built Flask REST APIs for real-time inference and deployed containerized on GCP Compute Engine.</li></ul></div>
+          </div>
+          <div class="flip-card reveal">
+            <div class="flip-inner">
+              <div class="flip-front">
+                <picture><source srcset="img/tfidf.webp" type="image/webp" /><img src="img/tfidf.png" alt="TF-IDF" loading="lazy" width="600" height="380" /></picture>
+                <div class="flip-front-overlay">
+                  <h4>LSA Classification &amp; Prediction</h4>
+                  <div class="project-tags">
+                    <span>Python</span><span>scikit-learn</span
+                    ><span>Flask</span><span>GCP</span>
+                  </div>
                 </div>
+              </div>
+              <div class="flip-back glass-card">
+                <h4>
+                  Latent Semantic Analysis — Classification &amp; Prediction
+                </h4>
+                <p class="project-date">Mar 2020 – Apr 2020</p>
+                <p>
+                  End-to-end ML pipeline for financial document classification
+                  &mdash; 98% accuracy, deployed as a REST API on GCP.
+                </p>
+                <ul>
+                  <li>
+                    Preprocessed financial documents: tokenization, stop-word
+                    removal, TF-IDF vectorization into numerical feature
+                    vectors.
+                  </li>
+                  <li>
+                    Applied LSA (SVD on TF-IDF matrix) for dimensionality
+                    reduction while preserving discriminative dimensions.
+                  </li>
+                  <li>
+                    Evaluated Naive Bayes, SVM, Random Forest, and Logistic
+                    Regression with grid search and cross-validation.
+                  </li>
+                  <li>
+                    Built Flask REST APIs for real-time inference and deployed
+                    containerized on GCP Compute Engine.
+                  </li>
+                </ul>
+              </div>
             </div>
-            <div class="flip-card reveal">
-                <div class="flip-inner">
-                    <div class="flip-front"><img src="img/sklearn.png" alt="Scikit-Learn" loading="lazy"><div class="flip-front-overlay"><h4>Diabetes Classifier &amp; Clustering</h4><div class="project-tags"><span>Python</span><span>Pandas</span><span>NumPy</span><span>scikit-learn</span></div></div></div>
-                    <div class="flip-back glass-card"><h4>Diabetes Patient Classifier &amp; Meal Clustering</h4><p class="project-date">Aug 2019 – Nov 2019</p><p>Rigorous ML classification on clinical data with K-fold validation &mdash; 85% accuracy, plus unsupervised meal clustering.</p><ul><li>Preprocessed Pima Indians Diabetes Dataset: median imputation for missing values, feature normalization, class imbalance analysis.</li><li>Evaluated Decision Tree, SVM, and KNN classifiers using K-fold cross-validation for generalizability.</li><li>Applied K-Means and DBSCAN clustering on meal/glucose data to identify dietary patterns correlated with glucose response.</li><li>Achieved 85% accuracy / 83% confidence validated across folds &mdash; not an artifact of a favorable split.</li></ul></div>
+          </div>
+          <div class="flip-card reveal">
+            <div class="flip-inner">
+              <div class="flip-front">
+                <picture><source srcset="img/sklearn.webp" type="image/webp" /><img src="img/sklearn.png" alt="Scikit-Learn" loading="lazy" width="600" height="380" /></picture>
+                <div class="flip-front-overlay">
+                  <h4>Diabetes Classifier &amp; Clustering</h4>
+                  <div class="project-tags">
+                    <span>Python</span><span>Pandas</span><span>NumPy</span
+                    ><span>scikit-learn</span>
+                  </div>
                 </div>
+              </div>
+              <div class="flip-back glass-card">
+                <h4>Diabetes Patient Classifier &amp; Meal Clustering</h4>
+                <p class="project-date">Aug 2019 – Nov 2019</p>
+                <p>
+                  Rigorous ML classification on clinical data with K-fold
+                  validation &mdash; 85% accuracy, plus unsupervised meal
+                  clustering.
+                </p>
+                <ul>
+                  <li>
+                    Preprocessed Pima Indians Diabetes Dataset: median
+                    imputation for missing values, feature normalization, class
+                    imbalance analysis.
+                  </li>
+                  <li>
+                    Evaluated Decision Tree, SVM, and KNN classifiers using
+                    K-fold cross-validation for generalizability.
+                  </li>
+                  <li>
+                    Applied K-Means and DBSCAN clustering on meal/glucose data
+                    to identify dietary patterns correlated with glucose
+                    response.
+                  </li>
+                  <li>
+                    Achieved 85% accuracy / 83% confidence validated across
+                    folds &mdash; not an artifact of a favorable split.
+                  </li>
+                </ul>
+              </div>
             </div>
-            <div class="flip-card reveal">
-                <div class="flip-inner">
-                    <div class="flip-front"><img src="img/math.jpg" alt="Math Portal" loading="lazy"><div class="flip-front-overlay"><h4>Visual Learning Portal</h4><div class="project-tags"><span>Python</span><span>Flask</span><span>SQL-Alchemy</span><span>Agile</span></div></div></div>
-                    <div class="flip-back glass-card"><h4>Online Visual Learning Portal</h4><p class="project-date">Aug 2019 – Nov 2019</p><p>Interactive math portal with drag-and-drop, built by a team of 5 using Agile/Scrum and formal design patterns.</p><ul><li>Applied Facade (simplified complex subsystems), Factory (dynamic content creation), and Iterator (collection traversal) patterns.</li><li>Built Flask REST APIs with SQLAlchemy ORM; drag-and-drop frontend for interactive math exploration.</li><li>Ran 2-week sprints with backlog grooming, standups, and retrospectives across a 5-person team.</li></ul></div>
+          </div>
+          <div class="flip-card reveal">
+            <div class="flip-inner">
+              <div class="flip-front">
+                <picture><source srcset="img/math.webp" type="image/webp" /><img src="img/math.jpg" alt="Math Portal" loading="lazy" width="600" height="380" /></picture>
+                <div class="flip-front-overlay">
+                  <h4>Visual Learning Portal</h4>
+                  <div class="project-tags">
+                    <span>Python</span><span>Flask</span><span>SQL-Alchemy</span
+                    ><span>Agile</span>
+                  </div>
                 </div>
+              </div>
+              <div class="flip-back glass-card">
+                <h4>Online Visual Learning Portal</h4>
+                <p class="project-date">Aug 2019 – Nov 2019</p>
+                <p>
+                  Interactive math portal with drag-and-drop, built by a team of
+                  5 using Agile/Scrum and formal design patterns.
+                </p>
+                <ul>
+                  <li>
+                    Applied Facade (simplified complex subsystems), Factory
+                    (dynamic content creation), and Iterator (collection
+                    traversal) patterns.
+                  </li>
+                  <li>
+                    Built Flask REST APIs with SQLAlchemy ORM; drag-and-drop
+                    frontend for interactive math exploration.
+                  </li>
+                  <li>
+                    Ran 2-week sprints with backlog grooming, standups, and
+                    retrospectives across a 5-person team.
+                  </li>
+                </ul>
+              </div>
             </div>
-            <div class="flip-card reveal">
-                <div class="flip-inner">
-                    <div class="flip-front"><img src="img/lang.jpg" alt="Programming Language" loading="lazy"><div class="flip-front-overlay"><h4>!Xobile Programming Language</h4><div class="project-tags"><span>Python</span><span>Prolog</span><span>Compiler Design</span></div></div></div>
-                    <div class="flip-back glass-card"><h4>!Xobile Programming Language</h4><p class="project-date">Jan 2019 – May 2019</p><p>Custom OOP language with full compilation pipeline &mdash; grammar spec, tokenizer, parser, and semantic analyzer.</p><ul><li>Designed formal grammar: class declarations, inheritance, control flow, expressions, and OOP constructs (<code>this</code>, constructors, method dispatch).</li><li>Built regex-based tokenizer in Python (keywords, identifiers, operators, string literals with escape chars).</li><li>Implemented parser and semantic analyzer in Prolog: type checking, variable scoping, inheritance cycle detection, and method resolution.</li><li>End-to-end pipeline: valid programs produce semantically validated parse trees; invalid programs yield meaningful error messages.</li></ul></div>
+          </div>
+          <div class="flip-card reveal">
+            <div class="flip-inner">
+              <div class="flip-front">
+                <picture><source srcset="img/lang.webp" type="image/webp" /><img src="img/lang.jpg" alt="Programming Language" loading="lazy" width="600" height="380" /></picture>
+                <div class="flip-front-overlay">
+                  <h4>!Xobile Programming Language</h4>
+                  <div class="project-tags">
+                    <span>Python</span><span>Prolog</span
+                    ><span>Compiler Design</span>
+                  </div>
                 </div>
+              </div>
+              <div class="flip-back glass-card">
+                <h4>!Xobile Programming Language</h4>
+                <p class="project-date">Jan 2019 – May 2019</p>
+                <p>
+                  Custom OOP language with full compilation pipeline &mdash;
+                  grammar spec, tokenizer, parser, and semantic analyzer.
+                </p>
+                <ul>
+                  <li>
+                    Designed formal grammar: class declarations, inheritance,
+                    control flow, expressions, and OOP constructs
+                    (<code>this</code>, constructors, method dispatch).
+                  </li>
+                  <li>
+                    Built regex-based tokenizer in Python (keywords,
+                    identifiers, operators, string literals with escape chars).
+                  </li>
+                  <li>
+                    Implemented parser and semantic analyzer in Prolog: type
+                    checking, variable scoping, inheritance cycle detection, and
+                    method resolution.
+                  </li>
+                  <li>
+                    End-to-end pipeline: valid programs produce semantically
+                    validated parse trees; invalid programs yield meaningful
+                    error messages.
+                  </li>
+                </ul>
+              </div>
             </div>
-            <div class="flip-card reveal">
-                <div class="flip-inner">
-                    <div class="flip-front"><img src="img/hadoop.png" alt="Hadoop" loading="lazy"><div class="flip-front-overlay"><h4>Hadoop Cluster &amp; MapReduce</h4><div class="project-tags"><span>Hadoop</span><span>MapReduce</span><span>Python</span><span>HDFS</span></div></div></div>
-                    <div class="flip-back glass-card"><h4>Hadoop Cluster &amp; MapReduce API</h4><p class="project-date">Mar 2017 – Jun 2017</p><p>8-node Hadoop cluster processing 300M+ YouTube video logs with MapReduce and cross-version benchmarking.</p><ul><li>Configured 1 NameNode + 7 DataNodes with HDFS replication and YARN resource management.</li><li>Designed MapReduce jobs (Hadoop Streaming, Python): most-viewed by category, upload trends, viral video detection.</li><li>Benchmarked identical jobs across Hadoop versions &mdash; measured job time, CPU/memory, shuffle overhead, and speculative execution.</li><li>Documented quantitative speedups in scheduling and data shuffle across framework versions.</li></ul></div>
+          </div>
+          <div class="flip-card reveal">
+            <div class="flip-inner">
+              <div class="flip-front">
+                <picture><source srcset="img/hadoop.webp" type="image/webp" /><img src="img/hadoop.png" alt="Hadoop" loading="lazy" width="600" height="380" /></picture>
+                <div class="flip-front-overlay">
+                  <h4>Hadoop Cluster &amp; MapReduce</h4>
+                  <div class="project-tags">
+                    <span>Hadoop</span><span>MapReduce</span><span>Python</span
+                    ><span>HDFS</span>
+                  </div>
                 </div>
+              </div>
+              <div class="flip-back glass-card">
+                <h4>Hadoop Cluster &amp; MapReduce API</h4>
+                <p class="project-date">Mar 2017 – Jun 2017</p>
+                <p>
+                  8-node Hadoop cluster processing 300M+ YouTube video logs with
+                  MapReduce and cross-version benchmarking.
+                </p>
+                <ul>
+                  <li>
+                    Configured 1 NameNode + 7 DataNodes with HDFS replication
+                    and YARN resource management.
+                  </li>
+                  <li>
+                    Designed MapReduce jobs (Hadoop Streaming, Python):
+                    most-viewed by category, upload trends, viral video
+                    detection.
+                  </li>
+                  <li>
+                    Benchmarked identical jobs across Hadoop versions &mdash;
+                    measured job time, CPU/memory, shuffle overhead, and
+                    speculative execution.
+                  </li>
+                  <li>
+                    Documented quantitative speedups in scheduling and data
+                    shuffle across framework versions.
+                  </li>
+                </ul>
+              </div>
             </div>
+          </div>
         </div>
+      </div>
+    </section>
+
+    <div class="section-divider wave-3">
+      <svg viewBox="0 0 1440 100" preserveAspectRatio="none">
+        <path
+          d="M0,80 C360,20 720,100 1080,40 C1260,10 1380,60 1440,40 L1440,100 L0,100 Z"
+        />
+      </svg>
     </div>
-</section>
 
-<div class="section-divider wave-3"><svg viewBox="0 0 1440 100" preserveAspectRatio="none"><path d="M0,80 C360,20 720,100 1080,40 C1260,10 1380,60 1440,40 L1440,100 L0,100 Z"/></svg></div>
-
-<!-- ═══════════════ CONTACT ═══════════════ -->
-<section id="contact">
-    <div class="container">
-        <div class="section-header reveal"><span class="section-number">06</span><h2 class="section-title">Let's Connect</h2><p class="section-subtitle">Open to conversations about distributed systems, identity platforms, and interesting engineering challenges.</p></div>
+    <!-- ═══════════════ CONTACT ═══════════════ -->
+    <section id="contact">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-number">06</span>
+          <h2 class="section-title">Let's Connect</h2>
+          <p class="section-subtitle">
+            Open to conversations about distributed systems, identity platforms,
+            and interesting engineering challenges.
+          </p>
+        </div>
         <div class="contact-grid reveal">
-            <a href="https://www.linkedin.com/in/-singhal-vaibhav-/" target="_blank" rel="noopener noreferrer" class="contact-card glass-card tilt-card magnetic"><div class="tilt-glow"></div><img src="img/linkedin.png" alt="LinkedIn"><span>LinkedIn</span></a>
-            <a href="https://github.com/vsinghal3737" target="_blank" rel="noopener noreferrer" class="contact-card glass-card tilt-card magnetic"><div class="tilt-glow"></div><img src="img/github.ico" alt="GitHub"><span>GitHub</span></a>
-            <a href="mailto:vsvsinghal3737@gmail.com" class="contact-card glass-card tilt-card magnetic"><div class="tilt-glow"></div><img src="img/gmail.png" alt="Email"><span>Email</span></a>
-            <a href="tel:+14374195770" class="contact-card glass-card tilt-card magnetic"><div class="tilt-glow"></div><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--accent-bright)" stroke-width="1.5" style="padding:10px;border:1px solid var(--glass-border);border-radius:12px"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg><span>Contact</span></a>
-            <a href="https://drive.google.com/drive/folders/14P5q0XW5jiU3eIH2igkKzJ6LDOcdwyKn?usp=sharing" target="_blank" rel="noopener noreferrer" class="contact-card glass-card tilt-card magnetic resume-card"><div class="tilt-glow"></div><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="url(#resumeGrad)" stroke-width="1.5" style="padding:10px;border:1px solid rgba(108,99,255,0.35);border-radius:12px;background:rgba(108,99,255,0.08);filter:drop-shadow(0 0 8px rgba(108,99,255,0.4))"><defs><linearGradient id="resumeGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#6c63ff"/><stop offset="100%" stop-color="#00d4aa"/></linearGradient></defs><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg><span>Resume</span></a>
+          <a
+            href="https://www.linkedin.com/in/-singhal-vaibhav-/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="contact-card glass-card tilt-card magnetic"
+            ><div class="tilt-glow"></div>
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="padding:10px;border:1px solid var(--glass-border);border-radius:12px" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg><span>LinkedIn</span></
+          >
+          <a
+            href="https://github.com/vsinghal3737"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="contact-card glass-card tilt-card magnetic"
+            ><div class="tilt-glow"></div>
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="padding:10px;border:1px solid var(--glass-border);border-radius:12px" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg><span>GitHub</span></
+          >
+          <a
+            href="mailto:vsvsinghal3737@gmail.com"
+            class="contact-card glass-card tilt-card magnetic"
+            ><div class="tilt-glow"></div>
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="padding:10px;border:1px solid var(--glass-border);border-radius:12px" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg><span>Email</span></
+          >
+          <a
+            href="https://drive.google.com/drive/folders/14P5q0XW5jiU3eIH2igkKzJ6LDOcdwyKn?usp=sharing"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="contact-card glass-card tilt-card magnetic resume-card"
+            ><div class="tilt-glow"></div>
+            <svg
+              width="48"
+              height="48"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="url(#resumeGrad)"
+              stroke-width="1.5"
+              style="
+                padding: 10px;
+                border: 1px solid rgba(108, 99, 255, 0.35);
+                border-radius: 12px;
+                background: rgba(108, 99, 255, 0.08);
+                filter: drop-shadow(0 0 8px rgba(108, 99, 255, 0.4));
+              "
+            >
+              <defs>
+                <linearGradient id="resumeGrad" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stop-color="#6c63ff" />
+                  <stop offset="100%" stop-color="#00d4aa" />
+                </linearGradient>
+              </defs>
+              <path
+                d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
+              />
+              <polyline points="14 2 14 8 20 8" />
+              <line x1="16" y1="13" x2="8" y2="13" />
+              <line x1="16" y1="17" x2="8" y2="17" />
+              <polyline points="10 9 9 9 8 9" /></svg
+            ><span>Resume</span></a
+          >
         </div>
-    </div>
-</section>
+      </div>
+    </section>
 
-<footer>
-    <div class="footer-inner">
+    <footer>
+      <div class="footer-inner">
         <p>Designed &amp; built by <strong>Vaibhav Singhal</strong></p>
         <p class="footer-year">&copy; 2026</p>
-    </div>
-</footer>
+      </div>
+    </footer>
 
-<script src="script.js"></script>
-</body>
+    <script src="script.js"></script>
+  </body>
 </html>
