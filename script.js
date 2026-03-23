@@ -5,9 +5,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // ═══════════════ LOADING SCREEN ═══════════════
     const loader = document.getElementById('loader');
     window.addEventListener('load', () => {
-        setTimeout(() => loader.classList.add('hidden'), 2000);
+        setTimeout(() => loader.classList.add('hidden'), 500);
     });
-    setTimeout(() => loader.classList.add('hidden'), 3500);
+    setTimeout(() => loader.classList.add('hidden'), 2000);
 
     // ═══════════════ CURSOR GLOW ═══════════════
     const cursorGlow = document.getElementById('cursorGlow');

@@ -5,13 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Vaibhav Singhal — Senior Software Engineer specializing in distributed systems, identity platforms (OIDC, SCIM), and cloud-native microservices at Workday.">
     <meta name="theme-color" content="#030308">
-    <title>Vaibhav Singhal — Senior Software Engineer</title>
+    <title>Vaibhav Singhal — Senior Software Engineer | Toronto</title>
+    <link rel="canonical" href="https://vaibhavsinghal.dev/">
     <link rel="apple-touch-icon" href="img/140-512.png">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0%25' stop-color='%236c63ff'/><stop offset='100%25' stop-color='%2300d4aa'/></linearGradient></defs><rect width='32' height='32' rx='6' fill='%230a0a1a'/><text x='16' y='22' text-anchor='middle' font-family='sans-serif' font-weight='700' font-size='16' fill='url(%23g)'>VS</text></svg>">
+    <!-- Open Graph -->
+    <meta property="og:title" content="Vaibhav Singhal — Senior Software Engineer">
+    <meta property="og:description" content="Senior SWE specializing in distributed systems, identity platforms (OIDC, SCIM), and cloud-native microservices at Workday.">
+    <meta property="og:image" content="https://vaibhavsinghal.dev/img/og-card.png">
+    <meta property="og:url" content="https://vaibhavsinghal.dev">
+    <meta property="og:type" content="website">
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Vaibhav Singhal — Senior Software Engineer">
+    <meta name="twitter:description" content="Senior SWE specializing in distributed systems, identity platforms, and cloud-native microservices.">
+    <meta name="twitter:image" content="https://vaibhavsinghal.dev/img/og-card.png">
+    <!-- Preload LCP image -->
+    <link rel="preload" as="image" href="img/Vaibhav_Singhal.webp" type="image/webp">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <script type="application/ld+json">
+    {"@context":"https://schema.org","@type":"Person","name":"Vaibhav Singhal","jobTitle":"Senior Software Engineer","worksFor":{"@type":"Organization","name":"Workday"},"url":"https://vaibhavsinghal.dev","email":"vsvsinghal3737@gmail.com","address":{"@type":"PostalAddress","addressLocality":"Toronto","addressCountry":"CA"},"sameAs":["https://www.linkedin.com/in/-singhal-vaibhav-/","https://github.com/vsinghal3737"]}
+    </script>
 </head>
 <body>
 
@@ -66,7 +83,7 @@
 <section id="hero">
     <div class="hero-content">
         <div class="hero-photo-wrap reveal" style="--delay:0s">
-            <img src="img/Vaibhav_Singhal.jpg" alt="Vaibhav Singhal" class="hero-photo">
+            <picture><source srcset="img/Vaibhav_Singhal.webp" type="image/webp"><img src="img/Vaibhav_Singhal.jpg" alt="Vaibhav Singhal" class="hero-photo"></picture>
             <div class="hero-photo-ring"></div>
             <div class="hero-photo-ring ring-2"></div>
         </div>
@@ -502,37 +519,37 @@
         <div class="project-grid">
             <div class="flip-card reveal">
                 <div class="flip-inner">
-                    <div class="flip-front"><img src="img/ice-hockey.jpg" alt="Ice Hockey" loading="lazy"><div class="flip-front-overlay"><h4>RosterData — Ice Hockey v2</h4><div class="project-tags"><span>Python</span><span>Scrapy</span><span>PostgreSQL</span><span>AWS</span></div></div></div>
+                    <div class="flip-front"><picture><source srcset="img/ice-hockey.webp" type="image/webp"><img src="img/ice-hockey.jpg" alt="Ice Hockey" loading="lazy" width="600" height="380"></picture><div class="flip-front-overlay"><h4>RosterData — Ice Hockey v2</h4><div class="project-tags"><span>Python</span><span>Scrapy</span><span>PostgreSQL</span><span>AWS</span></div></div></div>
                     <div class="flip-back glass-card"><h4>RosterData — Ice Hockey Statistics v2</h4><p class="project-date">Jan 2020 – Apr 2020</p><p>Expanded RosterData from NHL-only to 4-league coverage (NHL, SHL, Liiga, KHL) with cross-league player comparison.</p><ul><li>Built league-specific Scrapy pipelines for SHL, Liiga, and KHL — each with unique HTML structures and pagination patterns.</li><li>Designed a normalized JSON data model for cross-league consistency (player identity, season stats, team associations).</li><li>Stored normalized data in PostgreSQL on AWS RDS with query-optimized indexing for player lookup and league standings.</li><li>Built REST APIs for player search, team rosters, and cross-league career timelines.</li></ul></div>
                 </div>
             </div>
             <div class="flip-card reveal">
                 <div class="flip-inner">
-                    <div class="flip-front"><img src="img/tfidf.png" alt="TF-IDF" loading="lazy"><div class="flip-front-overlay"><h4>LSA Classification &amp; Prediction</h4><div class="project-tags"><span>Python</span><span>scikit-learn</span><span>Flask</span><span>GCP</span></div></div></div>
+                    <div class="flip-front"><picture><source srcset="img/tfidf.webp" type="image/webp"><img src="img/tfidf.png" alt="TF-IDF" loading="lazy" width="600" height="380"></picture><div class="flip-front-overlay"><h4>LSA Classification &amp; Prediction</h4><div class="project-tags"><span>Python</span><span>scikit-learn</span><span>Flask</span><span>GCP</span></div></div></div>
                     <div class="flip-back glass-card"><h4>Latent Semantic Analysis — Classification &amp; Prediction</h4><p class="project-date">Mar 2020 – Apr 2020</p><p>End-to-end ML pipeline for financial document classification &mdash; 98% accuracy, deployed as a REST API on GCP.</p><ul><li>Preprocessed financial documents: tokenization, stop-word removal, TF-IDF vectorization into numerical feature vectors.</li><li>Applied LSA (SVD on TF-IDF matrix) for dimensionality reduction while preserving discriminative dimensions.</li><li>Evaluated Naive Bayes, SVM, Random Forest, and Logistic Regression with grid search and cross-validation.</li><li>Built Flask REST APIs for real-time inference and deployed containerized on GCP Compute Engine.</li></ul></div>
                 </div>
             </div>
             <div class="flip-card reveal">
                 <div class="flip-inner">
-                    <div class="flip-front"><img src="img/sklearn.png" alt="Scikit-Learn" loading="lazy"><div class="flip-front-overlay"><h4>Diabetes Classifier &amp; Clustering</h4><div class="project-tags"><span>Python</span><span>Pandas</span><span>NumPy</span><span>scikit-learn</span></div></div></div>
+                    <div class="flip-front"><picture><source srcset="img/sklearn.webp" type="image/webp"><img src="img/sklearn.png" alt="Scikit-Learn" loading="lazy" width="600" height="380"></picture><div class="flip-front-overlay"><h4>Diabetes Classifier &amp; Clustering</h4><div class="project-tags"><span>Python</span><span>Pandas</span><span>NumPy</span><span>scikit-learn</span></div></div></div>
                     <div class="flip-back glass-card"><h4>Diabetes Patient Classifier &amp; Meal Clustering</h4><p class="project-date">Aug 2019 – Nov 2019</p><p>Rigorous ML classification on clinical data with K-fold validation &mdash; 85% accuracy, plus unsupervised meal clustering.</p><ul><li>Preprocessed Pima Indians Diabetes Dataset: median imputation for missing values, feature normalization, class imbalance analysis.</li><li>Evaluated Decision Tree, SVM, and KNN classifiers using K-fold cross-validation for generalizability.</li><li>Applied K-Means and DBSCAN clustering on meal/glucose data to identify dietary patterns correlated with glucose response.</li><li>Achieved 85% accuracy / 83% confidence validated across folds &mdash; not an artifact of a favorable split.</li></ul></div>
                 </div>
             </div>
             <div class="flip-card reveal">
                 <div class="flip-inner">
-                    <div class="flip-front"><img src="img/math.jpg" alt="Math Portal" loading="lazy"><div class="flip-front-overlay"><h4>Visual Learning Portal</h4><div class="project-tags"><span>Python</span><span>Flask</span><span>SQL-Alchemy</span><span>Agile</span></div></div></div>
+                    <div class="flip-front"><picture><source srcset="img/math.webp" type="image/webp"><img src="img/math.jpg" alt="Math Portal" loading="lazy" width="600" height="380"></picture><div class="flip-front-overlay"><h4>Visual Learning Portal</h4><div class="project-tags"><span>Python</span><span>Flask</span><span>SQL-Alchemy</span><span>Agile</span></div></div></div>
                     <div class="flip-back glass-card"><h4>Online Visual Learning Portal</h4><p class="project-date">Aug 2019 – Nov 2019</p><p>Interactive math portal with drag-and-drop, built by a team of 5 using Agile/Scrum and formal design patterns.</p><ul><li>Applied Facade (simplified complex subsystems), Factory (dynamic content creation), and Iterator (collection traversal) patterns.</li><li>Built Flask REST APIs with SQLAlchemy ORM; drag-and-drop frontend for interactive math exploration.</li><li>Ran 2-week sprints with backlog grooming, standups, and retrospectives across a 5-person team.</li></ul></div>
                 </div>
             </div>
             <div class="flip-card reveal">
                 <div class="flip-inner">
-                    <div class="flip-front"><img src="img/lang.jpg" alt="Programming Language" loading="lazy"><div class="flip-front-overlay"><h4>!Xobile Programming Language</h4><div class="project-tags"><span>Python</span><span>Prolog</span><span>Compiler Design</span></div></div></div>
+                    <div class="flip-front"><picture><source srcset="img/lang.webp" type="image/webp"><img src="img/lang.jpg" alt="Programming Language" loading="lazy" width="600" height="380"></picture><div class="flip-front-overlay"><h4>!Xobile Programming Language</h4><div class="project-tags"><span>Python</span><span>Prolog</span><span>Compiler Design</span></div></div></div>
                     <div class="flip-back glass-card"><h4>!Xobile Programming Language</h4><p class="project-date">Jan 2019 – May 2019</p><p>Custom OOP language with full compilation pipeline &mdash; grammar spec, tokenizer, parser, and semantic analyzer.</p><ul><li>Designed formal grammar: class declarations, inheritance, control flow, expressions, and OOP constructs (<code>this</code>, constructors, method dispatch).</li><li>Built regex-based tokenizer in Python (keywords, identifiers, operators, string literals with escape chars).</li><li>Implemented parser and semantic analyzer in Prolog: type checking, variable scoping, inheritance cycle detection, and method resolution.</li><li>End-to-end pipeline: valid programs produce semantically validated parse trees; invalid programs yield meaningful error messages.</li></ul></div>
                 </div>
             </div>
             <div class="flip-card reveal">
                 <div class="flip-inner">
-                    <div class="flip-front"><img src="img/hadoop.png" alt="Hadoop" loading="lazy"><div class="flip-front-overlay"><h4>Hadoop Cluster &amp; MapReduce</h4><div class="project-tags"><span>Hadoop</span><span>MapReduce</span><span>Python</span><span>HDFS</span></div></div></div>
+                    <div class="flip-front"><picture><source srcset="img/hadoop.webp" type="image/webp"><img src="img/hadoop.png" alt="Hadoop" loading="lazy" width="600" height="380"></picture><div class="flip-front-overlay"><h4>Hadoop Cluster &amp; MapReduce</h4><div class="project-tags"><span>Hadoop</span><span>MapReduce</span><span>Python</span><span>HDFS</span></div></div></div>
                     <div class="flip-back glass-card"><h4>Hadoop Cluster &amp; MapReduce API</h4><p class="project-date">Mar 2017 – Jun 2017</p><p>8-node Hadoop cluster processing 300M+ YouTube video logs with MapReduce and cross-version benchmarking.</p><ul><li>Configured 1 NameNode + 7 DataNodes with HDFS replication and YARN resource management.</li><li>Designed MapReduce jobs (Hadoop Streaming, Python): most-viewed by category, upload trends, viral video detection.</li><li>Benchmarked identical jobs across Hadoop versions &mdash; measured job time, CPU/memory, shuffle overhead, and speculative execution.</li><li>Documented quantitative speedups in scheduling and data shuffle across framework versions.</li></ul></div>
                 </div>
             </div>
