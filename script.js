@@ -131,6 +131,12 @@ document.addEventListener('DOMContentLoaded', () => {
     document.addEventListener('click', (e) => { if (navLinks.classList.contains('open') && !e.target.closest('#navbar')) closeNav(); });
     window.addEventListener('scroll', () => { if (navLinks.classList.contains('open')) closeNav(); }, { passive: true });
 
+    // ═══════════════ BACK TO TOP ═══════════════
+    const backToTop = document.getElementById('backToTop');
+    backToTop.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
     // ═══════════════ CONSOLIDATED RAF LOOP ═══════════════
     (function mainLoop() {
         // Cursor glow (desktop only)
@@ -144,6 +150,9 @@ document.addEventListener('DOMContentLoaded', () => {
         // Scroll progress bar
         const h = document.documentElement.scrollHeight - window.innerHeight;
         scrollBar.style.width = (h > 0 ? (window.scrollY / h) * 100 : 0) + '%';
+
+        // Back to top visibility
+        backToTop.classList.toggle('visible', window.scrollY > 400);
 
         // Navbar scroll state + active section
         navbar.classList.toggle('scrolled', window.scrollY > 50);
