@@ -96,6 +96,7 @@ code {
   border-radius: 50%;
   filter: blur(80px);
   opacity: 0.4;
+  animation: blobDrift 20s ease-in-out infinite alternate;
   will-change: transform;
 }
 .blob-1 {
