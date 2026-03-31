@@ -137,33 +137,41 @@ document.addEventListener('DOMContentLoaded', () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
-    // ═══════════════ CONSOLIDATED RAF LOOP ═══════════════
-    (function mainLoop() {
-        // Cursor glow (desktop only)
-        if (!isTouch) {
+    // ═══════════════ CACHED NAV LINKS ═══════════════
+    const sectionLinks = Array.from(sections).map(s => ({
+        section: s,
+        link: document.querySelector(`.nav-links a[href="#${s.id}"]`)
+    })).filter(item => item.link);
+
+    // ═══════════════ SCROLL HANDLER (throttled via RAF) ═══════════════
+    let scrollTicking = false;
+    window.addEventListener('scroll', () => {
+        if (!scrollTicking) {
+            scrollTicking = true;
+            requestAnimationFrame(() => {
+                const h = document.documentElement.scrollHeight - window.innerHeight;
+                scrollBar.style.width = (h > 0 ? (window.scrollY / h) * 100 : 0) + '%';
+                backToTop.classList.toggle('visible', window.scrollY > 400);
+                navbar.classList.toggle('scrolled', window.scrollY > 50);
+                const sy = window.scrollY + 120;
+                sectionLinks.forEach(({ section, link }) => {
+                    link.classList.toggle('active', sy >= section.offsetTop && sy < section.offsetTop + section.offsetHeight);
+                });
+                scrollTicking = false;
+            });
+        }
+    }, { passive: true });
+
+    // ═══════════════ CURSOR GLOW RAF (desktop only) ═══════════════
+    if (!isTouch) {
+        (function glowLoop() {
             curX += (glowX - curX) * 0.12;
             curY += (glowY - curY) * 0.12;
             cursorGlow.style.left = curX + 'px';
             cursorGlow.style.top = curY + 'px';
-        }
-
-        // Scroll progress bar
-        const h = document.documentElement.scrollHeight - window.innerHeight;
-        scrollBar.style.width = (h > 0 ? (window.scrollY / h) * 100 : 0) + '%';
-
-        // Back to top visibility
-        backToTop.classList.toggle('visible', window.scrollY > 400);
-
-        // Navbar scroll state + active section
-        navbar.classList.toggle('scrolled', window.scrollY > 50);
-        const sy = window.scrollY + 120;
-        sections.forEach(s => {
-            const link = document.querySelector(`.nav-links a[href="#${s.id}"]`);
-            if (link) link.classList.toggle('active', sy >= s.offsetTop && sy < s.offsetTop + s.offsetHeight);
-        });
-
-        requestAnimationFrame(mainLoop);
-    })();
+            requestAnimationFrame(glowLoop);
+        })();
+    }
 
     // ═══════════════ 3D TILT CARDS (desktop only) ═══════════════
     if (!isTouch) {
