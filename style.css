@@ -1472,57 +1472,56 @@ section {
   word-break: break-word;
 }
 
-/* ═══ PROJECT CARDS (expandable) ═══ */
+/* ═══ FLIP CARDS ═══ */
 .project-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 20px;
+  gap: 24px;
 }
-.project-card {
+.flip-card {
+  perspective: 1200px;
+  height: 380px;
   cursor: pointer;
-  overflow: hidden;
-  transition: all var(--transition);
 }
-.project-card:hover {
-  border-color: rgba(108, 99, 255, 0.25);
-}
-.project-card-preview {
-  display: flex;
-  align-items: stretch;
+.flip-inner {
   position: relative;
-  z-index: 2;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-style: preserve-3d;
 }
-.project-card-preview picture {
-  width: 220px;
-  flex-shrink: 0;
-  overflow: hidden;
+.flip-card:hover .flip-inner {
+  transform: rotateY(180deg);
 }
-.project-card-preview img {
+.flip-front,
+.flip-back {
+  position: absolute;
+  inset: 0;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  border-radius: var(--radius);
+  overflow: clip;
+}
+.flip-front {
+  transform: rotateY(0deg);
+}
+.flip-front img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  display: block;
-  transition: transform 0.5s ease;
 }
-.project-card:hover .project-card-preview img {
-  transform: scale(1.05);
-}
-.project-card-info {
-  flex: 1;
+.flip-front-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
   padding: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
+  background: linear-gradient(transparent, rgba(3, 3, 8, 0.9));
 }
-.project-card-info h4 {
+.flip-front-overlay h4 {
   font-size: 1.05rem;
   font-weight: 600;
-}
-.project-summary {
-  font-size: 0.88rem;
-  color: var(--text-muted);
-  line-height: 1.55;
-  margin-top: 4px;
+  margin-bottom: 8px;
 }
 .project-tags {
   display: flex;
@@ -1538,57 +1537,41 @@ section {
   border: 1px solid rgba(108, 99, 255, 0.25);
   font-weight: 500;
 }
-.project-expand-btn {
-  position: absolute;
-  top: 16px;
-  right: 16px;
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  border: 1px solid var(--glass-border);
-  background: var(--glass);
-  color: var(--text-muted);
-  font-size: 1.2rem;
-  line-height: 1;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all var(--transition);
-  z-index: 3;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+.flip-back {
+  transform: rotateY(180deg);
+  padding: 24px;
+  overflow: clip;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  background: rgba(10, 10, 26, 0.97);
 }
-.project-expand-btn:hover {
-  border-color: var(--accent);
-  color: var(--accent-bright);
+.flip-back h4 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 4px;
 }
-.project-card-details {
-  max-height: 0;
-  overflow: hidden;
-  transition:
-    max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1),
-    padding 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-  padding: 0 24px;
-}
-.project-card-details.expanded {
-  max-height: 2000px;
-  padding: 0 24px 24px;
-}
-.project-card-details .project-date {
+.flip-back .project-date {
   font-family: var(--font-mono);
   color: var(--accent2);
   font-size: 0.78rem;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
+  display: block;
 }
-.project-card-details ul {
+.flip-back p {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  margin-bottom: 10px;
+}
+.flip-back ul {
   padding-left: 18px;
 }
-.project-card-details li {
+.flip-back li {
   color: var(--text-muted);
-  font-size: 0.88rem;
-  margin-bottom: 5px;
-  line-height: 1.55;
+  font-size: 0.84rem;
+  margin-bottom: 4px;
+  line-height: 1.5;
 }
 
 /* ═══ CONTACT ═══ */
@@ -2054,6 +2037,9 @@ footer {
     opacity: 1;
     transform: none;
   }
+  .flip-card:hover .flip-inner {
+    transform: none;
+  }
   .mesh-blob {
     animation: none;
   }
@@ -2069,6 +2055,7 @@ footer {
 a,
 button,
 .hero-btn,
+.flip-card,
 .cover,
 .job-header {
   touch-action: manipulation;
@@ -2093,10 +2080,10 @@ html {
 /* ═══ WIDE DESKTOP ═══ */
 @media (min-width: 1025px) {
   .container {
-    max-width: min(90vw, 1600px);
+    max-width: min(80vw, 1200px);
   }
   .nav-inner {
-    max-width: min(90vw, 1600px);
+    max-width: min(80vw, 1200px);
   }
   .hero-stats {
     gap: clamp(24px, 3vw, 56px);
@@ -2202,6 +2189,9 @@ html {
   .orbit-node {
     font-size: 0.65rem;
     padding: 3px 9px;
+  }
+  .flip-card {
+    height: 340px;
   }
 }
 
@@ -2368,6 +2358,9 @@ html {
   .cert-grid {
     grid-template-columns: 1fr;
   }
+  .project-grid {
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+  }
   .timeline-item {
     padding-left: 36px;
   }
@@ -2379,6 +2372,9 @@ html {
   }
   section {
     padding: 60px 0;
+  }
+  .flip-card {
+    height: 320px;
   }
   .hero-stats {
     gap: 20px;
@@ -2393,15 +2389,11 @@ html {
     width: 100px;
     height: 100px;
   }
-  .project-card-preview {
-    flex-direction: column;
+  .flip-card:hover .flip-inner {
+    transform: none;
   }
-  .project-card-preview picture {
-    width: 100%;
-    height: 200px;
-  }
-  .project-grid {
-    grid-template-columns: 1fr;
+  .flip-card.flipped .flip-inner {
+    transform: rotateY(180deg);
   }
 }
 
@@ -2430,6 +2422,21 @@ html {
   .contact-card {
     width: 100%;
     max-width: 280px;
+  }
+  .flip-card {
+    height: 280px;
+  }
+  .flip-back {
+    padding: 16px;
+  }
+  .flip-back::after {
+    content: "";
+    position: sticky;
+    bottom: 0;
+    display: block;
+    height: 24px;
+    background: linear-gradient(transparent, var(--bg-deep));
+    pointer-events: none;
   }
   .detail-panel-header {
     padding: 16px 12px 10px;
@@ -2468,6 +2475,9 @@ html {
   .hero-btn {
     padding: 8px 14px;
     font-size: 0.82rem;
+  }
+  .flip-card {
+    height: 260px;
   }
   .job-tags {
     gap: 4px;

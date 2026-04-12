@@ -287,25 +287,21 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // ═══════════════ EXPANDABLE PROJECT CARDS ═══════════════
-    let currentExpandedProject = null;
-    document.querySelectorAll('.project-card').forEach(card => {
-        card.addEventListener('click', (e) => {
-            if (e.target.closest('a')) return;
-            const details = card.querySelector('.project-card-details');
-            const btn = card.querySelector('.project-expand-btn');
-            if (currentExpandedProject && currentExpandedProject !== card) {
-                currentExpandedProject.querySelector('.project-card-details').classList.remove('expanded');
-                const prevBtn = currentExpandedProject.querySelector('.project-expand-btn');
-                prevBtn.textContent = '+';
-                prevBtn.setAttribute('aria-expanded', 'false');
-            }
-            const isOpen = details.classList.toggle('expanded');
-            btn.textContent = isOpen ? '\u00d7' : '+';
-            btn.setAttribute('aria-expanded', String(isOpen));
-            currentExpandedProject = isOpen ? card : null;
+    // ═══════════════ FLIP CARDS: TAP-TO-TOGGLE (mobile/touch only) ═══════════════
+    if (isTouch || window.innerWidth <= 768) {
+        const flipHint = document.querySelector('.flip-hint');
+        if (flipHint) flipHint.textContent = 'Tap to flip and see details.';
+        let currentFlipped = null;
+        document.querySelectorAll('.flip-card').forEach(card => {
+            card.addEventListener('click', () => {
+                if (currentFlipped && currentFlipped !== card) {
+                    currentFlipped.classList.remove('flipped');
+                }
+                card.classList.toggle('flipped');
+                currentFlipped = card.classList.contains('flipped') ? card : null;
+            });
         });
-    });
+    }
 
     // ═══════════════ TIMELINE DOT LIGHTING ═══════════════
     const dots = document.querySelectorAll('.timeline-dot');
@@ -438,6 +434,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const cmdInput = document.getElementById('cmdInput');
     const cmdResults = document.getElementById('cmdResults');
     let cmdActiveIdx = -1;
+    let cmdFiltered = [];
 
     // Build search index
     const cmdItems = [
@@ -497,18 +494,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function renderCmdResults(query) {
         const q = query.toLowerCase().trim();
-        const filtered = q
+        cmdFiltered = q
             ? cmdItems.filter(item =>
                 item.title.toLowerCase().includes(q) ||
                 item.hint.toLowerCase().includes(q))
             : cmdItems.slice(0, 8);
 
-        if (filtered.length === 0) {
+        if (cmdFiltered.length === 0) {
             cmdResults.innerHTML = '<div class="cmd-result-empty">No results found</div>';
             return;
         }
 
-        cmdResults.innerHTML = filtered.map((item, i) =>
+        cmdResults.innerHTML = cmdFiltered.map((item, i) =>
             `<div class="cmd-result-item${i === cmdActiveIdx ? ' active' : ''}" data-idx="${i}">
                 <span class="cmd-result-icon">${item.icon}</span>
                 <div class="cmd-result-text">
@@ -520,7 +517,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         cmdResults.querySelectorAll('.cmd-result-item').forEach(el => {
             el.addEventListener('click', () => {
-                executeCmdItem(filtered[+el.dataset.idx]);
+                executeCmdItem(cmdFiltered[+el.dataset.idx]);
             });
         });
     }
@@ -556,13 +553,7 @@ document.addEventListener('DOMContentLoaded', () => {
             items[cmdActiveIdx]?.scrollIntoView({ block: 'nearest' });
         } else if (e.key === 'Enter' && cmdActiveIdx >= 0) {
             e.preventDefault();
-            const q = cmdInput.value.toLowerCase().trim();
-            const filtered = q
-                ? cmdItems.filter(item =>
-                    item.title.toLowerCase().includes(q) ||
-                    item.hint.toLowerCase().includes(q))
-                : cmdItems.slice(0, 8);
-            if (filtered[cmdActiveIdx]) executeCmdItem(filtered[cmdActiveIdx]);
+            if (cmdFiltered[cmdActiveIdx]) executeCmdItem(cmdFiltered[cmdActiveIdx]);
         }
     });
 
