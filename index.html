@@ -132,6 +132,22 @@
     <!-- CONFETTI CANVAS (easter egg) -->
     <canvas id="confettiCanvas"></canvas>
 
+    <!-- COMMAND PALETTE -->
+    <div class="cmd-palette-overlay" id="cmdOverlay"></div>
+    <div class="cmd-palette" id="cmdPalette" role="dialog" aria-label="Command palette" aria-modal="true">
+      <div class="cmd-palette-header">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input type="text" class="cmd-input" id="cmdInput" placeholder="Type to search..." autocomplete="off" />
+        <kbd class="cmd-kbd">ESC</kbd>
+      </div>
+      <div class="cmd-results" id="cmdResults"></div>
+      <div class="cmd-footer">
+        <span><kbd>↑↓</kbd> navigate</span>
+        <span><kbd>↵</kbd> open</span>
+        <span><kbd>esc</kbd> close</span>
+      </div>
+    </div>
+
     <nav id="navbar">
       <div class="nav-inner">
         <a href="#hero" class="nav-brand">
@@ -150,6 +166,10 @@
           <li><a href="#projects">Projects</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+          <svg class="theme-icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+          <svg class="theme-icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
       </div>
     </nav>
 
@@ -189,6 +209,8 @@
             <div class="terminal-cursor" id="terminalCursor">_</div>
           </div>
         </div>
+
+        <p class="hero-greeting reveal" style="--delay: 0.22s" id="heroGreeting"></p>
 
         <p class="hero-blurb reveal" style="--delay: 0.25s">
           I build backend systems that serve millions &mdash; identity platforms
@@ -1672,279 +1694,257 @@
       </div>
     </section>
 
-    <!-- ═══════════════ PROJECTS (FLIP CARDS) ═══════════════ -->
+    <!-- ═══════════════ PROJECTS (EXPANDABLE) ═══════════════ -->
     <section id="projects">
       <div class="container">
         <div class="section-header reveal">
           <span class="section-number">05</span>
           <h2 class="section-title">Projects</h2>
           <p class="section-subtitle flip-hint">
-            Hover to flip and see details.
+            Click to expand and see details.
           </p>
         </div>
         <div class="project-grid">
-          <div class="flip-card reveal">
-            <div class="flip-inner">
-              <div class="flip-front">
-                <picture><source srcset="img/ice-hockey.webp" type="image/webp" /><img src="img/ice-hockey.jpg" alt="Ice Hockey" loading="lazy" width="600" height="380" /></picture>
-                <div class="flip-front-overlay">
-                  <h4>RosterData — Ice Hockey v2</h4>
-                  <div class="project-tags">
-                    <span>Python</span><span>Scrapy</span><span>PostgreSQL</span
-                    ><span>AWS</span>
-                  </div>
+          <div class="project-card glass-card reveal" data-project="1">
+            <div class="project-card-preview">
+              <picture><source srcset="img/ice-hockey.webp" type="image/webp" /><img src="img/ice-hockey.jpg" alt="Ice Hockey" loading="lazy" width="600" height="380" /></picture>
+              <div class="project-card-info">
+                <h4>RosterData — Ice Hockey v2</h4>
+                <div class="project-tags">
+                  <span>Python</span><span>Scrapy</span><span>PostgreSQL</span
+                  ><span>AWS</span>
                 </div>
-              </div>
-              <div class="flip-back glass-card">
-                <h4>RosterData — Ice Hockey Statistics v2</h4>
-                <p class="project-date">Jan 2020 – Apr 2020</p>
-                <p>
+                <p class="project-summary">
                   Expanded RosterData from NHL-only to 4-league coverage (NHL,
                   SHL, Liiga, KHL) with cross-league player comparison.
                 </p>
-                <ul>
-                  <li>
-                    Built league-specific Scrapy pipelines for SHL, Liiga, and
-                    KHL — each with unique HTML structures and pagination
-                    patterns.
-                  </li>
-                  <li>
-                    Designed a normalized JSON data model for cross-league
-                    consistency (player identity, season stats, team
-                    associations).
-                  </li>
-                  <li>
-                    Stored normalized data in PostgreSQL on AWS RDS with
-                    query-optimized indexing for player lookup and league
-                    standings.
-                  </li>
-                  <li>
-                    Built REST APIs for player search, team rosters, and
-                    cross-league career timelines.
-                  </li>
-                </ul>
               </div>
+              <button class="project-expand-btn" aria-label="Expand project" aria-expanded="false">+</button>
+            </div>
+            <div class="project-card-details">
+              <p class="project-date">Jan 2020 – Apr 2020</p>
+              <ul>
+                <li>
+                  Built league-specific Scrapy pipelines for SHL, Liiga, and
+                  KHL — each with unique HTML structures and pagination
+                  patterns.
+                </li>
+                <li>
+                  Designed a normalized JSON data model for cross-league
+                  consistency (player identity, season stats, team
+                  associations).
+                </li>
+                <li>
+                  Stored normalized data in PostgreSQL on AWS RDS with
+                  query-optimized indexing for player lookup and league
+                  standings.
+                </li>
+                <li>
+                  Built REST APIs for player search, team rosters, and
+                  cross-league career timelines.
+                </li>
+              </ul>
             </div>
           </div>
-          <div class="flip-card reveal">
-            <div class="flip-inner">
-              <div class="flip-front">
-                <picture><source srcset="img/tfidf.webp" type="image/webp" /><img src="img/tfidf.png" alt="TF-IDF" loading="lazy" width="600" height="380" /></picture>
-                <div class="flip-front-overlay">
-                  <h4>LSA Classification &amp; Prediction</h4>
-                  <div class="project-tags">
-                    <span>Python</span><span>scikit-learn</span
-                    ><span>Flask</span><span>GCP</span>
-                  </div>
+          <div class="project-card glass-card reveal" data-project="2">
+            <div class="project-card-preview">
+              <picture><source srcset="img/tfidf.webp" type="image/webp" /><img src="img/tfidf.png" alt="TF-IDF" loading="lazy" width="600" height="380" /></picture>
+              <div class="project-card-info">
+                <h4>LSA Classification &amp; Prediction</h4>
+                <div class="project-tags">
+                  <span>Python</span><span>scikit-learn</span
+                  ><span>Flask</span><span>GCP</span>
                 </div>
-              </div>
-              <div class="flip-back glass-card">
-                <h4>
-                  Latent Semantic Analysis — Classification &amp; Prediction
-                </h4>
-                <p class="project-date">Mar 2020 – Apr 2020</p>
-                <p>
+                <p class="project-summary">
                   End-to-end ML pipeline for financial document classification
                   &mdash; 98% accuracy, deployed as a REST API on GCP.
                 </p>
-                <ul>
-                  <li>
-                    Preprocessed financial documents: tokenization, stop-word
-                    removal, TF-IDF vectorization into numerical feature
-                    vectors.
-                  </li>
-                  <li>
-                    Applied LSA (SVD on TF-IDF matrix) for dimensionality
-                    reduction while preserving discriminative dimensions.
-                  </li>
-                  <li>
-                    Evaluated Naive Bayes, SVM, Random Forest, and Logistic
-                    Regression with grid search and cross-validation.
-                  </li>
-                  <li>
-                    Built Flask REST APIs for real-time inference and deployed
-                    containerized on GCP Compute Engine.
-                  </li>
-                </ul>
               </div>
+              <button class="project-expand-btn" aria-label="Expand project" aria-expanded="false">+</button>
+            </div>
+            <div class="project-card-details">
+              <p class="project-date">Mar 2020 – Apr 2020</p>
+              <ul>
+                <li>
+                  Preprocessed financial documents: tokenization, stop-word
+                  removal, TF-IDF vectorization into numerical feature
+                  vectors.
+                </li>
+                <li>
+                  Applied LSA (SVD on TF-IDF matrix) for dimensionality
+                  reduction while preserving discriminative dimensions.
+                </li>
+                <li>
+                  Evaluated Naive Bayes, SVM, Random Forest, and Logistic
+                  Regression with grid search and cross-validation.
+                </li>
+                <li>
+                  Built Flask REST APIs for real-time inference and deployed
+                  containerized on GCP Compute Engine.
+                </li>
+              </ul>
             </div>
           </div>
-          <div class="flip-card reveal">
-            <div class="flip-inner">
-              <div class="flip-front">
-                <picture><source srcset="img/sklearn.webp" type="image/webp" /><img src="img/sklearn.png" alt="Scikit-Learn" loading="lazy" width="600" height="380" /></picture>
-                <div class="flip-front-overlay">
-                  <h4>Diabetes Classifier &amp; Clustering</h4>
-                  <div class="project-tags">
-                    <span>Python</span><span>Pandas</span><span>NumPy</span
-                    ><span>scikit-learn</span>
-                  </div>
+          <div class="project-card glass-card reveal" data-project="3">
+            <div class="project-card-preview">
+              <picture><source srcset="img/sklearn.webp" type="image/webp" /><img src="img/sklearn.png" alt="Scikit-Learn" loading="lazy" width="600" height="380" /></picture>
+              <div class="project-card-info">
+                <h4>Diabetes Classifier &amp; Clustering</h4>
+                <div class="project-tags">
+                  <span>Python</span><span>Pandas</span><span>NumPy</span
+                  ><span>scikit-learn</span>
                 </div>
-              </div>
-              <div class="flip-back glass-card">
-                <h4>Diabetes Patient Classifier &amp; Meal Clustering</h4>
-                <p class="project-date">Aug 2019 – Nov 2019</p>
-                <p>
+                <p class="project-summary">
                   Rigorous ML classification on clinical data with K-fold
                   validation &mdash; 85% accuracy, plus unsupervised meal
                   clustering.
                 </p>
-                <ul>
-                  <li>
-                    Preprocessed Pima Indians Diabetes Dataset: median
-                    imputation for missing values, feature normalization, class
-                    imbalance analysis.
-                  </li>
-                  <li>
-                    Evaluated Decision Tree, SVM, and KNN classifiers using
-                    K-fold cross-validation for generalizability.
-                  </li>
-                  <li>
-                    Applied K-Means and DBSCAN clustering on meal/glucose data
-                    to identify dietary patterns correlated with glucose
-                    response.
-                  </li>
-                  <li>
-                    Achieved 85% accuracy / 83% confidence validated across
-                    folds &mdash; not an artifact of a favorable split.
-                  </li>
-                </ul>
               </div>
+              <button class="project-expand-btn" aria-label="Expand project" aria-expanded="false">+</button>
+            </div>
+            <div class="project-card-details">
+              <p class="project-date">Aug 2019 – Nov 2019</p>
+              <ul>
+                <li>
+                  Preprocessed Pima Indians Diabetes Dataset: median
+                  imputation for missing values, feature normalization, class
+                  imbalance analysis.
+                </li>
+                <li>
+                  Evaluated Decision Tree, SVM, and KNN classifiers using
+                  K-fold cross-validation for generalizability.
+                </li>
+                <li>
+                  Applied K-Means and DBSCAN clustering on meal/glucose data
+                  to identify dietary patterns correlated with glucose
+                  response.
+                </li>
+                <li>
+                  Achieved 85% accuracy / 83% confidence validated across
+                  folds &mdash; not an artifact of a favorable split.
+                </li>
+              </ul>
             </div>
           </div>
-          <div class="flip-card reveal">
-            <div class="flip-inner">
-              <div class="flip-front">
-                <picture><source srcset="img/math.webp" type="image/webp" /><img src="img/math.jpg" alt="Math Portal" loading="lazy" width="600" height="380" /></picture>
-                <div class="flip-front-overlay">
-                  <h4>Visual Learning Portal</h4>
-                  <div class="project-tags">
-                    <span>Python</span><span>Flask</span><span>SQL-Alchemy</span
-                    ><span>Agile</span>
-                  </div>
+          <div class="project-card glass-card reveal" data-project="4">
+            <div class="project-card-preview">
+              <picture><source srcset="img/math.webp" type="image/webp" /><img src="img/math.jpg" alt="Math Portal" loading="lazy" width="600" height="380" /></picture>
+              <div class="project-card-info">
+                <h4>Visual Learning Portal</h4>
+                <div class="project-tags">
+                  <span>Python</span><span>Flask</span><span>SQL-Alchemy</span
+                  ><span>Agile</span>
                 </div>
-              </div>
-              <div class="flip-back glass-card">
-                <h4>Online Visual Learning Portal</h4>
-                <p class="project-date">Aug 2019 – Nov 2019</p>
-                <p>
+                <p class="project-summary">
                   Interactive math portal with drag-and-drop, built by a team of
                   5 using Agile/Scrum and formal design patterns.
                 </p>
-                <ul>
-                  <li>
-                    Applied Facade (simplified complex subsystems), Factory
-                    (dynamic content creation), and Iterator (collection
-                    traversal) patterns.
-                  </li>
-                  <li>
-                    Built Flask REST APIs with SQLAlchemy ORM; drag-and-drop
-                    frontend for interactive math exploration.
-                  </li>
-                  <li>
-                    Ran 2-week sprints with backlog grooming, standups, and
-                    retrospectives across a 5-person team.
-                  </li>
-                </ul>
               </div>
+              <button class="project-expand-btn" aria-label="Expand project" aria-expanded="false">+</button>
+            </div>
+            <div class="project-card-details">
+              <p class="project-date">Aug 2019 – Nov 2019</p>
+              <ul>
+                <li>
+                  Applied Facade (simplified complex subsystems), Factory
+                  (dynamic content creation), and Iterator (collection
+                  traversal) patterns.
+                </li>
+                <li>
+                  Built Flask REST APIs with SQLAlchemy ORM; drag-and-drop
+                  frontend for interactive math exploration.
+                </li>
+                <li>
+                  Ran 2-week sprints with backlog grooming, standups, and
+                  retrospectives across a 5-person team.
+                </li>
+              </ul>
             </div>
           </div>
-          <div class="flip-card reveal">
-            <div class="flip-inner">
-              <div class="flip-front">
-                <picture><source srcset="img/lang.webp" type="image/webp" /><img src="img/lang.jpg" alt="Programming Language" loading="lazy" width="600" height="380" /></picture>
-                <div class="flip-front-overlay">
-                  <h4>!Xobile Programming Language</h4>
-                  <div class="project-tags">
-                    <span>Python</span><span>Prolog</span
-                    ><span>Compiler Design</span>
-                  </div>
-                </div>
-              </div>
-              <div class="flip-back glass-card">
+          <div class="project-card glass-card reveal" data-project="5">
+            <div class="project-card-preview">
+              <picture><source srcset="img/lang.webp" type="image/webp" /><img src="img/lang.jpg" alt="Programming Language" loading="lazy" width="600" height="380" /></picture>
+              <div class="project-card-info">
                 <h4>!Xobile Programming Language</h4>
-                <p class="project-date">Jan 2019 – May 2019</p>
-                <p>
+                <div class="project-tags">
+                  <span>Python</span><span>Prolog</span
+                  ><span>Compiler Design</span>
+                </div>
+                <p class="project-summary">
                   Custom OOP language with full compilation pipeline &mdash;
                   grammar spec, tokenizer, parser, and semantic analyzer.
                 </p>
-                <ul>
-                  <li>
-                    Designed formal grammar: class declarations, inheritance,
-                    control flow, expressions, and OOP constructs
-                    (<code>this</code>, constructors, method dispatch).
-                  </li>
-                  <li>
-                    Built regex-based tokenizer in Python (keywords,
-                    identifiers, operators, string literals with escape chars).
-                  </li>
-                  <li>
-                    Implemented parser and semantic analyzer in Prolog: type
-                    checking, variable scoping, inheritance cycle detection, and
-                    method resolution.
-                  </li>
-                  <li>
-                    End-to-end pipeline: valid programs produce semantically
-                    validated parse trees; invalid programs yield meaningful
-                    error messages.
-                  </li>
-                </ul>
               </div>
+              <button class="project-expand-btn" aria-label="Expand project" aria-expanded="false">+</button>
+            </div>
+            <div class="project-card-details">
+              <p class="project-date">Jan 2019 – May 2019</p>
+              <ul>
+                <li>
+                  Designed formal grammar: class declarations, inheritance,
+                  control flow, expressions, and OOP constructs
+                  (<code>this</code>, constructors, method dispatch).
+                </li>
+                <li>
+                  Built regex-based tokenizer in Python (keywords,
+                  identifiers, operators, string literals with escape chars).
+                </li>
+                <li>
+                  Implemented parser and semantic analyzer in Prolog: type
+                  checking, variable scoping, inheritance cycle detection, and
+                  method resolution.
+                </li>
+                <li>
+                  End-to-end pipeline: valid programs produce semantically
+                  validated parse trees; invalid programs yield meaningful
+                  error messages.
+                </li>
+              </ul>
             </div>
           </div>
-          <div class="flip-card reveal">
-            <div class="flip-inner">
-              <div class="flip-front">
-                <picture><source srcset="img/hadoop.webp" type="image/webp" /><img src="img/hadoop.png" alt="Hadoop" loading="lazy" width="600" height="380" /></picture>
-                <div class="flip-front-overlay">
-                  <h4>Hadoop Cluster &amp; MapReduce</h4>
-                  <div class="project-tags">
-                    <span>Hadoop</span><span>MapReduce</span><span>Python</span
-                    ><span>HDFS</span>
-                  </div>
+          <div class="project-card glass-card reveal" data-project="6">
+            <div class="project-card-preview">
+              <picture><source srcset="img/hadoop.webp" type="image/webp" /><img src="img/hadoop.png" alt="Hadoop" loading="lazy" width="600" height="380" /></picture>
+              <div class="project-card-info">
+                <h4>Hadoop Cluster &amp; MapReduce</h4>
+                <div class="project-tags">
+                  <span>Hadoop</span><span>MapReduce</span><span>Python</span
+                  ><span>HDFS</span>
                 </div>
-              </div>
-              <div class="flip-back glass-card">
-                <h4>Hadoop Cluster &amp; MapReduce API</h4>
-                <p class="project-date">Mar 2017 – Jun 2017</p>
-                <p>
+                <p class="project-summary">
                   8-node Hadoop cluster processing 300M+ YouTube video logs with
                   MapReduce and cross-version benchmarking.
                 </p>
-                <ul>
-                  <li>
-                    Configured 1 NameNode + 7 DataNodes with HDFS replication
-                    and YARN resource management.
-                  </li>
-                  <li>
-                    Designed MapReduce jobs (Hadoop Streaming, Python):
-                    most-viewed by category, upload trends, viral video
-                    detection.
-                  </li>
-                  <li>
-                    Benchmarked identical jobs across Hadoop versions &mdash;
-                    measured job time, CPU/memory, shuffle overhead, and
-                    speculative execution.
-                  </li>
-                  <li>
-                    Documented quantitative speedups in scheduling and data
-                    shuffle across framework versions.
-                  </li>
-                </ul>
               </div>
+              <button class="project-expand-btn" aria-label="Expand project" aria-expanded="false">+</button>
+            </div>
+            <div class="project-card-details">
+              <p class="project-date">Mar 2017 – Jun 2017</p>
+              <ul>
+                <li>
+                  Configured 1 NameNode + 7 DataNodes with HDFS replication
+                  and YARN resource management.
+                </li>
+                <li>
+                  Designed MapReduce jobs (Hadoop Streaming, Python):
+                  most-viewed by category, upload trends, viral video
+                  detection.
+                </li>
+                <li>
+                  Benchmarked identical jobs across Hadoop versions &mdash;
+                  measured job time, CPU/memory, shuffle overhead, and
+                  speculative execution.
+                </li>
+                <li>
+                  Documented quantitative speedups in scheduling and data
+                  shuffle across framework versions.
+                </li>
+              </ul>
             </div>
           </div>
         </div>
       </div>
     </section>
-
-    <div class="section-divider wave-3">
-      <svg viewBox="0 0 1440 100" preserveAspectRatio="none">
-        <path
-          d="M0,80 C360,20 720,100 1080,40 C1260,10 1380,60 1440,40 L1440,100 L0,100 Z"
-        />
-      </svg>
-    </div>
 
     <!-- ═══════════════ CONTACT ═══════════════ -->
     <section id="contact">

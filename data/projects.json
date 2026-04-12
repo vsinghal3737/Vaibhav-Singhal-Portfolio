@@ -1,0 +1,103 @@
+[
+  {
+    "title": "RosterData — Ice Hockey v2",
+    "date": "Jan 2020 – Apr 2020",
+    "summary": "Expanded RosterData from NHL-only to 4-league coverage (NHL, SHL, Liiga, KHL) with cross-league player comparison.",
+    "bullets": [
+      "Built league-specific Scrapy pipelines for SHL, Liiga, and KHL — each with unique HTML structures and pagination patterns.",
+      "Designed a normalized JSON data model for cross-league consistency (player identity, season stats, team associations).",
+      "Stored normalized data in PostgreSQL on AWS RDS with query-optimized indexing for player lookup and league standings.",
+      "Built REST APIs for player search, team rosters, and cross-league career timelines."
+    ],
+    "tags": ["Python", "Scrapy", "PostgreSQL", "AWS"],
+    "images": {
+      "webp": "img/ice-hockey.webp",
+      "fallback": "img/ice-hockey.jpg",
+      "alt": "Ice Hockey"
+    }
+  },
+  {
+    "title": "LSA Classification & Prediction",
+    "date": "Mar 2020 – Apr 2020",
+    "summary": "End-to-end ML pipeline for financial document classification — 98% accuracy, deployed as a REST API on GCP.",
+    "bullets": [
+      "Preprocessed financial documents: tokenization, stop-word removal, TF-IDF vectorization into numerical feature vectors.",
+      "Applied LSA (SVD on TF-IDF matrix) for dimensionality reduction while preserving discriminative dimensions.",
+      "Evaluated Naive Bayes, SVM, Random Forest, and Logistic Regression with grid search and cross-validation.",
+      "Built Flask REST APIs for real-time inference and deployed containerized on GCP Compute Engine."
+    ],
+    "tags": ["Python", "scikit-learn", "Flask", "GCP"],
+    "images": {
+      "webp": "img/tfidf.webp",
+      "fallback": "img/tfidf.png",
+      "alt": "TF-IDF"
+    }
+  },
+  {
+    "title": "Diabetes Classifier & Clustering",
+    "date": "Aug 2019 – Nov 2019",
+    "summary": "Rigorous ML classification on clinical data with K-fold validation — 85% accuracy, plus unsupervised meal clustering.",
+    "bullets": [
+      "Preprocessed Pima Indians Diabetes Dataset: median imputation for missing values, feature normalization, class imbalance analysis.",
+      "Evaluated Decision Tree, SVM, and KNN classifiers using K-fold cross-validation for generalizability.",
+      "Applied K-Means and DBSCAN clustering on meal/glucose data to identify dietary patterns correlated with glucose response.",
+      "Achieved 85% accuracy / 83% confidence validated across folds — not an artifact of a favorable split."
+    ],
+    "tags": ["Python", "Pandas", "NumPy", "scikit-learn"],
+    "images": {
+      "webp": "img/sklearn.webp",
+      "fallback": "img/sklearn.png",
+      "alt": "Scikit-Learn"
+    }
+  },
+  {
+    "title": "Visual Learning Portal",
+    "date": "Aug 2019 – Nov 2019",
+    "summary": "Interactive math portal with drag-and-drop, built by a team of 5 using Agile/Scrum and formal design patterns.",
+    "bullets": [
+      "Applied Facade (simplified complex subsystems), Factory (dynamic content creation), and Iterator (collection traversal) patterns.",
+      "Built Flask REST APIs with SQLAlchemy ORM; drag-and-drop frontend for interactive math exploration.",
+      "Ran 2-week sprints with backlog grooming, standups, and retrospectives across a 5-person team."
+    ],
+    "tags": ["Python", "Flask", "SQL-Alchemy", "Agile"],
+    "images": {
+      "webp": "img/math.webp",
+      "fallback": "img/math.jpg",
+      "alt": "Math Portal"
+    }
+  },
+  {
+    "title": "!Xobile Programming Language",
+    "date": "Jan 2019 – May 2019",
+    "summary": "Custom OOP language with full compilation pipeline — grammar spec, tokenizer, parser, and semantic analyzer.",
+    "bullets": [
+      "Designed formal grammar: class declarations, inheritance, control flow, expressions, and OOP constructs (this, constructors, method dispatch).",
+      "Built regex-based tokenizer in Python (keywords, identifiers, operators, string literals with escape chars).",
+      "Implemented parser and semantic analyzer in Prolog: type checking, variable scoping, inheritance cycle detection, and method resolution.",
+      "End-to-end pipeline: valid programs produce semantically validated parse trees; invalid programs yield meaningful error messages."
+    ],
+    "tags": ["Python", "Prolog", "Compiler Design"],
+    "images": {
+      "webp": "img/lang.webp",
+      "fallback": "img/lang.jpg",
+      "alt": "Programming Language"
+    }
+  },
+  {
+    "title": "Hadoop Cluster & MapReduce",
+    "date": "Mar 2017 – Jun 2017",
+    "summary": "8-node Hadoop cluster processing 300M+ YouTube video logs with MapReduce and cross-version benchmarking.",
+    "bullets": [
+      "Configured 1 NameNode + 7 DataNodes with HDFS replication and YARN resource management.",
+      "Designed MapReduce jobs (Hadoop Streaming, Python): most-viewed by category, upload trends, viral video detection.",
+      "Benchmarked identical jobs across Hadoop versions — measured job time, CPU/memory, shuffle overhead, and speculative execution.",
+      "Documented quantitative speedups in scheduling and data shuffle across framework versions."
+    ],
+    "tags": ["Hadoop", "MapReduce", "Python", "HDFS"],
+    "images": {
+      "webp": "img/hadoop.webp",
+      "fallback": "img/hadoop.png",
+      "alt": "Hadoop"
+    }
+  }
+]

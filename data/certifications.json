@@ -1,0 +1,36 @@
+{
+  "formal": [
+    {
+      "badge": "CCA-175",
+      "title": "Cloudera Certified Associate",
+      "description": "Spark and Hadoop Developer"
+    },
+    {
+      "badge": "PCAP",
+      "title": "PythonInstitute Certified Associate",
+      "description": "Python Programming (PCAP-31-02)"
+    },
+    {
+      "badge": "OCA",
+      "title": "Oracle Certified Associate",
+      "description": "Database SQL (1Z0-071)"
+    },
+    {
+      "badge": "GCP",
+      "title": "Google Associate Cloud Engineer",
+      "description": "Google Cloud Platform"
+    }
+  ],
+  "udemy": [
+    "Data Warehouse — The Ultimate Guide",
+    "Software Architecture & Design of Modern Large Scale Systems",
+    "Micronaut — Cloud Native Microservices with Java",
+    "GCP Associate Cloud Engineer — Google Cloud Certification",
+    "Spark and Hadoop Developer — Python (PySpark)",
+    "Spark and Python for Big Data with PySpark",
+    "REST APIs with Flask and Python",
+    "Advanced REST APIs with Flask and Python",
+    "GCP: Complete Google Data Engineer & Cloud Architect Guide",
+    "Oracle SQL Developer From Scratch"
+  ]
+}
