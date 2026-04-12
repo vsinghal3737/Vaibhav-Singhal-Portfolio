@@ -1,0 +1,38 @@
+{
+  "name": {
+    "first": "Vaibhav",
+    "last": "Singhal"
+  },
+  "title": "Senior Software Engineer",
+  "location": "Toronto, ON",
+  "email": "vsvsinghal3737@gmail.com",
+  "blurb": "I build backend systems that serve millions — identity platforms at Workday, voice AI at LivePerson, serverless pipelines at Black Knight. I care about resilient architecture, clean APIs, and making other engineers faster.",
+  "stats": [
+    { "value": 7, "suffix": "+", "label": "Years Experience" },
+    { "value": 30, "suffix": "+", "label": "Systems Built" },
+    { "value": 4, "suffix": "", "label": "Certifications" },
+    { "value": 10, "suffix": "+", "label": "Certificates" }
+  ],
+  "links": {
+    "linkedin": "https://linkedin.com/in/-singhal-vaibhav-/",
+    "github": "https://github.com/vsinghal3737",
+    "resume": "https://drive.google.com/drive/folders/14P5q0XW5jiU3eIH2igkKzJ6LDOcdwyKn?usp=sharing"
+  },
+  "terminalCommands": [
+    {
+      "cmd": "whoami",
+      "output": "Vaibhav Singhal -- Software Engineer",
+      "isJson": false
+    },
+    {
+      "cmd": "cat skills.txt",
+      "output": "Python, Java, TypeScript, OIDC, SCIM, Kafka, Kubernetes, PostgreSQL...",
+      "isJson": false
+    },
+    {
+      "cmd": "curl -s api.career/current",
+      "output": "{ \"company\": \"Workday\", \"role\": \"SWE\", \"focus\": \"Identity Platform\" }",
+      "isJson": true
+    }
+  ]
+}

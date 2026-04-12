@@ -1,0 +1,135 @@
+{
+  "orbit": {
+    "ring-1": {
+      "category": "Languages",
+      "skills": ["Python", "Java", "TypeScript", "Bash", "C/C++", "SSML"]
+    },
+    "ring-2": {
+      "category": "Backend",
+      "skills": [
+        "FastAPI",
+        "Micronaut",
+        "NestJS",
+        "Flask",
+        "Django",
+        "Kafka",
+        "RabbitMQ",
+        "OIDC",
+        "SCIM",
+        "JWT",
+        "Docker"
+      ]
+    },
+    "ring-3": {
+      "category": "Data & Cloud",
+      "skills": [
+        "PostgreSQL",
+        "Redis",
+        "MySQL",
+        "MongoDB",
+        "Firestore",
+        "DynamoDB",
+        "S3",
+        "GKE",
+        "Kubernetes",
+        "CloudFormation",
+        "API Gateway",
+        "Compute Engine"
+      ]
+    },
+    "ring-4": {
+      "category": "Tools & Big Data",
+      "skills": [
+        "Prometheus",
+        "Grafana",
+        "Sentry",
+        "GitLab CI/CD",
+        "JMeter",
+        "Swagger",
+        "Gradle",
+        "Spark",
+        "Hadoop",
+        "Sqoop",
+        "Jira"
+      ]
+    }
+  },
+  "grid": [
+    {
+      "name": "Languages",
+      "skills": [
+        { "name": "Python", "level": "expert" },
+        { "name": "Java", "level": "expert" },
+        { "name": "TypeScript", "level": "advanced" },
+        { "name": "Bash", "level": "advanced" },
+        { "name": "C/C++", "level": "intermediate" },
+        { "name": "SSML", "level": "intermediate" }
+      ]
+    },
+    {
+      "name": "Database & Storage",
+      "skills": [
+        { "name": "PostgreSQL", "level": "expert" },
+        { "name": "Redis", "level": "expert" },
+        { "name": "MySQL", "level": "advanced" },
+        { "name": "MongoDB", "level": "advanced" },
+        { "name": "Firestore", "level": "advanced" },
+        { "name": "DynamoDB", "level": "advanced" },
+        { "name": "Cloud Storage", "level": "intermediate" },
+        { "name": "S3", "level": "intermediate" }
+      ]
+    },
+    {
+      "name": "Back-end",
+      "skills": [
+        { "name": "FastAPI", "level": "expert" },
+        { "name": "Micronaut", "level": "expert" },
+        { "name": "NestJS", "level": "expert" },
+        { "name": "Flask", "level": "advanced" },
+        { "name": "Django", "level": "advanced" },
+        { "name": "Kafka", "level": "expert" },
+        { "name": "RabbitMQ", "level": "advanced" },
+        { "name": "OIDC", "level": "expert" },
+        { "name": "SCIM", "level": "expert" },
+        { "name": "JWT", "level": "expert" },
+        { "name": "Docker", "level": "advanced" }
+      ]
+    },
+    {
+      "name": "Cloud (GCP & AWS)",
+      "skills": [
+        { "name": "GKE", "level": "expert" },
+        { "name": "Kubernetes", "level": "expert" },
+        { "name": "Compute Engine", "level": "advanced" },
+        { "name": "Load Balancing", "level": "advanced" },
+        { "name": "Cloud Build", "level": "advanced" },
+        { "name": "CloudFormation", "level": "advanced" },
+        { "name": "API Gateway", "level": "advanced" }
+      ]
+    },
+    {
+      "name": "Big Data",
+      "skills": [
+        { "name": "Spark Streaming", "level": "advanced" },
+        { "name": "Hadoop HDFS", "level": "advanced" },
+        { "name": "Spark RDD", "level": "advanced" },
+        { "name": "DataFrames", "level": "advanced" },
+        { "name": "Sqoop", "level": "intermediate" },
+        { "name": "Apache Flume", "level": "intermediate" }
+      ]
+    },
+    {
+      "name": "Tools & Observability",
+      "skills": [
+        { "name": "GitLab CI/CD", "level": "expert" },
+        { "name": "Prometheus", "level": "expert" },
+        { "name": "Grafana", "level": "expert" },
+        { "name": "Sentry", "level": "advanced" },
+        { "name": "JMeter", "level": "advanced" },
+        { "name": "Swagger", "level": "advanced" },
+        { "name": "Gradle", "level": "advanced" },
+        { "name": "Jira", "level": "intermediate" }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,360 @@
+[
+  {
+    "company": "Workday (Evisort)",
+    "logoLetter": "W",
+    "logoCssClass": "",
+    "title": "Senior Software Engineer",
+    "date": "Oct 2024 – Present",
+    "location": "Toronto, ON",
+    "tags": ["Identity", "SCIM", "OIDC", "Multi-tenant", "CPS"],
+    "summary": "Owning the identity platform post-acquisition — SCIM provisioning, unified OIDC auth, single logout, per-tenant schema isolation, and a resilient CPS publish queue with exponential backoff retries. Serving thousands of auth requests/min across Workday and Evisort.",
+    "sections": [
+      {
+        "heading": "Architecture & System Design",
+        "items": [
+          {
+            "title": "Built SCIM API endpoints for Workday-Evisort user provisioning",
+            "bullets": [
+              "Delivered the first Workday-Evisort integration post-acquisition (CRUD + Restore) in the identity service.",
+              "Implemented dynamic model creation for provisioning flexibility across Workday and the legacy identity provider.",
+              "Led GA hardening: deterministic role mapping (\"highest role wins\"), SCIM import failure fixes, and Workday identifier handling for migration stability."
+            ]
+          },
+          {
+            "title": "Improved identity and document platform services for Workday user provisioning",
+            "bullets": [
+              "Established a dedicated internal service-to-service channel (HTTP Signature Auth, dedicated port) for secure provisioning.",
+              "Fixed 2 critical IDOR vulnerabilities in document version endpoints — changed cross-tenant access from 403 to 404.",
+              "Built an async user creation task for post-SCIM user provisioning with retry logic and outbox events."
+            ]
+          },
+          {
+            "title": "Implemented unified authentication via OIDC",
+            "bullets": [
+              "Built a high-throughput token exchange endpoint handling tens of thousands of requests per minute.",
+              "Designed OIDC callback handling across identity and auth services (JWT generation, token verification, identifier resolution).",
+              "Integrated cookie-based session management and state-based redirection for deep linking."
+            ]
+          },
+          {
+            "title": "Designed end-to-end unified logout between Evisort and Workday",
+            "bullets": [
+              "Implemented frontchannel (Evisort-initiated) and backchannel (Workday-initiated) Single Logout flows.",
+              "Built dynamic JWT logout token validation using internal certificate authority discovery.",
+              "Demoed the complete logout flow to the engineering team and company-wide."
+            ]
+          },
+          {
+            "title": "Owned the Super Admin Toggles EPIC for migration-safe identity architecture",
+            "bullets": [
+              "Drove full technical design, ticket decomposition, and implementation across 4 services and the UI.",
+              "Introduced per-client toggles (user_management, authentication_provider) to decouple tenant mapping from login enforcement.",
+              "Designed backward-compatible data migration with feature flag controls for safe rollout."
+            ]
+          },
+          {
+            "title": "Architecting per-client PostgreSQL schema isolation for the auth gateway",
+            "bullets": [
+              "Replacing shared public schema with per-tenant isolation to reduce cross-tenant blast radius.",
+              "Implementing dual-write architecture with feature-flagged reads for zero-downtime migration."
+            ]
+          },
+          {
+            "title": "Built CPS Publish Queue with retries and exponential backoff",
+            "bullets": [
+              "Designed a DB-backed task queue so all CPS publish operations (REGISTER, DEREGISTER, UPDATE, RECREATE) are enqueued asynchronously and processed by a dedicated worker.",
+              "Implemented exponential backoff retries (base 30s, max 600s, 6 retries) — CPS publishes survive 12+ hours of downtime during quarterly hybrid patching.",
+              "Built atomic RECREATE (deregister old → register new) with partial-failure recovery and snapshot-based DEREGISTER resilience.",
+              "Reduced Sentry alerts from ~50 per task to max 6; created a datapatch to re-enqueue previously failed tasks."
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "Technical Leadership",
+        "items": [
+          {
+            "title": "Conducted live engineering demos and led design reviews",
+            "bullets": [
+              "Presented SCIM, UPW, and unified authentication at Evisort Tech Demo and Eng Syncs.",
+              "Documented workflows and recorded sessions to support team onboarding."
+            ]
+          },
+          {
+            "title": "Owned on-call rotations and incident response",
+            "bullets": [
+              "Reviewed and documented 5+ past incidents (SCIM sync failures, token verification issues).",
+              "Built a Confluence debugging playbook and mapped service ownership across 4+ platform services."
+            ]
+          },
+          {
+            "title": "Buddied 2 new hires; participated in 14 interview loops (3 successful hires)",
+            "bullets": [
+              "Created a repeatable onboarding reference guide.",
+              "Provided feedback to improve onboarding documentation and materials."
+            ]
+          },
+          {
+            "title": "Led Operational Readiness Reviews (ORR) for the auth gateway",
+            "bullets": [
+              "Authored ORR documentation aligned with Workday reliability standards.",
+              "Enabled Prometheus-based observability and alerting; extended instrumentation to the NestJS gateway.",
+              "Raised authentication test coverage to 80%+."
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "Development & Operations",
+        "items": [
+          {
+            "title": "Improved platform stability and scalability across identity and document platform services",
+            "bullets": [
+              "Resolved key integration bugs and profiled the high-traffic token exchange endpoint.",
+              "Refactored core components for maintainability and increased test coverage."
+            ]
+          },
+          {
+            "title": "Drove cross-service integration resilience",
+            "bullets": [
+              "Built robust SSO token validation using internal CA certificate discovery.",
+              "Enabled auth gateway observability via /ping and /health endpoints.",
+              "Standardized metadata propagation across platform services and UI.",
+              "Refactored auth library naming conventions across Python and TypeScript codebases."
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "company": "LivePerson Inc",
+    "logoLetter": "LP",
+    "logoCssClass": "lp-logo",
+    "title": "Software Engineer",
+    "date": "Jan 2022 – May 2024",
+    "location": "NYC → Toronto",
+    "tags": ["Voice AI", "Kafka", "Microservices", "GCP"],
+    "summary": "Built Voice AI platform end-to-end — media microservices, SIP APIs, and Kafka schema service. Cut latency 35% and scaled concurrent calls to 700.",
+    "sections": [
+      {
+        "heading": "Architecture & System Design",
+        "items": [
+          {
+            "title": "Rebuilt Connector Service — Reduced data event size by 40% and latency by 35%.",
+            "bullets": [
+              "Identified bottlenecks in inter-service communication.",
+              "Designed an optimized event pipeline with Redis-backed brand configuration lookups."
+            ]
+          },
+          {
+            "title": "Redesigned Media Service into microservices — Increased concurrent calls by 50% (450 to 700).",
+            "bullets": [
+              "Decomposed monolithic service into TTS, STT, and media microservices.",
+              "Defined and implemented the observability strategy (metrics, monitoring, alerting)."
+            ]
+          },
+          {
+            "title": "Owned Audio File Management Service end-to-end — Drove 25% increase in user engagement.",
+            "bullets": [
+              "Architected storage and retrieval layer for audio blobs and Azure client keys using GCS and Redis.",
+              "Integrated Azure Text-to-Speech for multi-language support via SSML."
+            ]
+          },
+          {
+            "title": "Proposed and drove adoption of Centralized Schema Service — Reduced integration overhead by 40% and debugging time by 25%.",
+            "bullets": [
+              "Identified fragmented Kafka schema management as a cross-team pain point.",
+              "Designed the service to enforce schema evolution and consistency.",
+              "Authored internal documentation and onboarding guides adopted across teams."
+            ]
+          },
+          {
+            "title": "Designed and delivered SIP Connection APIs — Increased customer retention by 20%.",
+            "bullets": [
+              "Built SIP connection support (IP, FQDN, Credentials) using Telnyx SDKs, Java, and Micronaut with Kafka."
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "Development & Operations",
+        "items": [
+          {
+            "title": "Optimized shared utility libraries — Improved code efficiency by 22% across internal services.",
+            "bullets": ["Tools: Redis, Log4j, GCS, Firestore."]
+          },
+          {
+            "title": "Built automated OOM diagnostics — Reduced debugging time by 25%.",
+            "bullets": [
+              "Automated thread and heap dump backups to GCP buckets during Out-of-Memory incidents."
+            ]
+          },
+          {
+            "title": "Secured transaction logs and reduced on-call burden — Cut on-call debugging time by 4 hours weekly.",
+            "bullets": [
+              "Built bash tooling for log retrieval from Kubernetes pods and GCP Logs Explorer."
+            ]
+          },
+          {
+            "title": "Drove data security improvements",
+            "bullets": [
+              "Implemented data redaction for NPIs, auth tokens, and credentials across GCP logs and Kubernetes pods.",
+              "Eliminated sensitive data exposure in production logs, enabling compliance with enterprise data handling requirements."
+            ]
+          },
+          {
+            "title": "Raised test coverage from 36% to 87% — Cut testing costs by 20%.",
+            "bullets": [
+              "Used JUnit and JMeter; established testing standards for the team."
+            ]
+          },
+          {
+            "title": "Led Inbound Call Automation Bots initiative",
+            "bullets": [
+              "Established a fully operational system for weekly performance runs.",
+              "Built the initial proof of concept and coordinated cross-team end-to-end testing.",
+              "Delivered knowledge transfer to ensure long-term ownership."
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "company": "Black Knight Inc",
+    "logoLetter": "BK",
+    "logoCssClass": "bk-logo",
+    "title": "Software Engineer",
+    "date": "Jun 2020 – Jan 2022",
+    "location": "Philadelphia, PA",
+    "tags": ["AWS", "OCR", "Python", "Serverless"],
+    "summary": "Architected serverless APIs on AWS — improved OCR accuracy to 89%, cut production costs 20%, and automated 80% of manual transaction retries.",
+    "sections": [
+      {
+        "heading": "",
+        "intro": "Architected and developed APIs for Input & Output Handler Services on the AIVA (Artificial Intelligence Virtual Assistant) team.",
+        "items": [
+          {
+            "title": "Built customer environment management APIs — Reduced production costs by 20%.",
+            "bullets": [
+              "Utilized AWS services (API Gateway, Lambda, S3, DynamoDB, SSM)."
+            ]
+          },
+          {
+            "title": "Designed OCR data extraction microservices",
+            "bullets": [
+              "Increased data accuracy from 80% to 89% and improved performance by 25%."
+            ]
+          },
+          {
+            "title": "Led greenfield service development",
+            "bullets": [
+              "Built resilient services and orchestrated infrastructure stacks using Python, CloudFormation, and S3."
+            ]
+          },
+          {
+            "title": "Resolved provisioning and build pipeline failures",
+            "bullets": [
+              "Reduced testing load times and lowered AWS costs across environments."
+            ]
+          },
+          {
+            "title": "Automated transaction anomaly recovery using Python and Boto3.",
+            "bullets": [
+              "Eliminated 80% of manual retry attempts caused by code defects or AWS outages."
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "company": "Bharati Vidyapeeth's College of Engineering",
+    "logoLetter": "RS",
+    "logoCssClass": "rs-logo",
+    "title": "Research Scholar",
+    "date": "Jan 2017 – Sep 2017",
+    "location": "Delhi, India",
+    "tags": ["Steganography", "NLP", "Cloud Security"],
+    "summary": "Published two research papers on cloud security steganography and NLP-based clinical decision support systems.",
+    "sections": [
+      {
+        "heading": "",
+        "intro": "CSE Department under Dr. Rachna Jain — Published two research papers.",
+        "items": [
+          {
+            "title": "Enhance Data Security in Cloud Using Steganography",
+            "titleLink": "http://www.recentscientific.com/enhance-data-security-cloud-using-steganography",
+            "bullets": [
+              "Studied Cloud Service Providers vs Internet Service Providers based on cost, speed, scalability, and performance.",
+              "Reviewed techniques of steganography (LSB) and digital watermarking (DFT) in spatial and frequency domain.",
+              "In-depth study on Symmetric Key Encryption (DES, AES) and Asymmetric Key Encryption (RSA).",
+              "Proposed a model for Image Steganography using LSB, mapping every bit of data and encryption key in RGB pixels."
+            ]
+          },
+          {
+            "title": "Medical Application Using NLP Over Cloud",
+            "titleLink": "http://www.recentscientific.com/medical-application-using-nlp-over-cloud",
+            "bullets": [
+              "Knowledge acquisition on NLP systems and open source libraries (NLTK, Polyglot, Pattern).",
+              "Studied Morphological Processing, Syntax, Semantic and Pragmatic Analysis.",
+              "Comparative study on public, private, and hybrid clouds based on reliability, cost, and scalability.",
+              "Proposed a computerized Clinical Decision Support (CDS) System using cloud services."
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "company": "TATA Computer Management Corp",
+    "logoLetter": "TC",
+    "logoCssClass": "tc-logo",
+    "title": "Consulting & Software Intern",
+    "date": "May 2016 – Aug 2016",
+    "location": "Delhi, India",
+    "tags": ["Python", "Flask", "MongoDB", "ETL"],
+    "summary": "Built a full-stack web app with Flask and MongoDB — drove 45% sales increase and 30% faster query performance via ETL optimization.",
+    "sections": [
+      {
+        "heading": "",
+        "items": [
+          {
+            "title": "Full stack API-driven web application — Increased sales by 45% and reduced data storage inventory by 38%.",
+            "bullets": [
+              "Implemented Agile process across teams, improved customer interaction and sprint feedback.",
+              "Developed RESTful APIs using Python with Flask, JWT Session Management for security.",
+              "Performed ETL on legacy database, improved query performance by 30%.",
+              "Interacted with the DB using MongoDB Alchemy (NoSQL), improving flexibility and providing Object-Oriented structure."
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "company": "Bharati Vidyapeeth's College of Engineering",
+    "logoLetter": "BV",
+    "logoCssClass": "bv-logo",
+    "title": "Android App Development Trainee",
+    "date": "May 2015 – Jul 2015",
+    "location": "Delhi, India",
+    "tags": ["Android", "Java"],
+    "summary": "Developed an Android video player with gesture controls, custom UI, and third-party SDK integrations.",
+    "sections": [
+      {
+        "heading": "",
+        "items": [
+          {
+            "title": "Developed a video player application using Android Studio.",
+            "bullets": [
+              "Built list/grid view and gesture controls.",
+              "Worked on app UI, deep functionality, and third-party SDKs."
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]

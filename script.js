@@ -403,6 +403,176 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         draw();
     }
+
+    // ═══════════════ DARK/LIGHT THEME TOGGLE ═══════════════
+    const themeToggle = document.getElementById('themeToggle');
+    const savedTheme = localStorage.getItem('theme') ||
+        (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+    document.documentElement.dataset.theme = savedTheme;
+
+    themeToggle.addEventListener('click', () => {
+        const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+        document.documentElement.dataset.theme = next;
+        localStorage.setItem('theme', next);
+    });
+
+    // ═══════════════ VISITOR-AWARE GREETING ═══════════════
+    const greetingEl = document.getElementById('heroGreeting');
+    if (greetingEl) {
+        const hour = new Date().getHours();
+        let greeting;
+        if (hour >= 5 && hour < 12) greeting = 'Good morning \u2014 welcome to my corner of the internet.';
+        else if (hour >= 12 && hour < 17) greeting = 'Good afternoon \u2014 glad you stopped by.';
+        else if (hour >= 17 && hour < 21) greeting = 'Good evening \u2014 hope your day went well.';
+        else greeting = 'Late night coding? You\u2019re in good company.';
+        greetingEl.textContent = greeting;
+    }
+
+    // ═══════════════ COMMAND PALETTE (Ctrl+K / Cmd+K) ═══════════════
+    const cmdOverlay = document.getElementById('cmdOverlay');
+    const cmdPalette = document.getElementById('cmdPalette');
+    const cmdInput = document.getElementById('cmdInput');
+    const cmdResults = document.getElementById('cmdResults');
+    let cmdActiveIdx = -1;
+    let cmdFiltered = [];
+
+    // Build search index
+    const cmdItems = [
+        // Sections
+        { title: 'Work Experience', hint: 'Workday, LivePerson, Black Knight', icon: '💼', action: '#experience' },
+        { title: 'Technical Skills', hint: 'Python, Java, Kafka, Kubernetes...', icon: '⚡', action: '#skills' },
+        { title: 'Education', hint: 'ASU, GGSIPU, GNDIT', icon: '🎓', action: '#education' },
+        { title: 'Certifications', hint: 'CCA-175, PCAP, OCA, GCP', icon: '📜', action: '#certifications' },
+        { title: 'Projects', hint: 'RosterData, LSA, Hadoop...', icon: '🚀', action: '#projects' },
+        { title: 'Contact', hint: 'LinkedIn, GitHub, Email', icon: '📬', action: '#contact' },
+        // Jobs
+        { title: 'Workday (Evisort)', hint: 'Senior Software Engineer — Identity Platform', icon: '🏢', action: '#experience', sub: 0 },
+        { title: 'LivePerson', hint: 'Software Engineer — Voice AI', icon: '🏢', action: '#experience', sub: 1 },
+        { title: 'Black Knight', hint: 'Software Engineer — AWS Serverless', icon: '🏢', action: '#experience', sub: 2 },
+        // Skills
+        { title: 'Python', hint: 'Languages — Expert', icon: '🔧', action: '#skills' },
+        { title: 'Java', hint: 'Languages — Expert', icon: '🔧', action: '#skills' },
+        { title: 'TypeScript', hint: 'Languages — Advanced', icon: '🔧', action: '#skills' },
+        { title: 'FastAPI', hint: 'Backend — Expert', icon: '🔧', action: '#skills' },
+        { title: 'Kafka', hint: 'Backend — Expert', icon: '🔧', action: '#skills' },
+        { title: 'OIDC', hint: 'Backend — Expert', icon: '🔧', action: '#skills' },
+        { title: 'SCIM', hint: 'Backend — Expert', icon: '🔧', action: '#skills' },
+        { title: 'PostgreSQL', hint: 'Data & Cloud — Expert', icon: '🔧', action: '#skills' },
+        { title: 'Kubernetes', hint: 'Data & Cloud — Expert', icon: '🔧', action: '#skills' },
+        { title: 'Docker', hint: 'Backend — Advanced', icon: '🔧', action: '#skills' },
+        { title: 'Redis', hint: 'Data & Cloud — Expert', icon: '🔧', action: '#skills' },
+        // Projects
+        { title: 'RosterData — Ice Hockey', hint: 'Python, Scrapy, PostgreSQL, AWS', icon: '📂', action: '#projects' },
+        { title: 'LSA Classification', hint: 'Python, scikit-learn, Flask, GCP', icon: '📂', action: '#projects' },
+        { title: 'Diabetes Classifier', hint: 'Python, Pandas, scikit-learn', icon: '📂', action: '#projects' },
+        { title: '!Xobile Programming Language', hint: 'Python, Prolog, Compiler Design', icon: '📂', action: '#projects' },
+        { title: 'Hadoop Cluster', hint: 'Hadoop, MapReduce, Python, HDFS', icon: '📂', action: '#projects' },
+        // Links
+        { title: 'Email', hint: 'vsvsinghal3737@gmail.com', icon: '✉️', action: 'mailto:vsvsinghal3737@gmail.com' },
+        { title: 'LinkedIn', hint: 'linkedin.com/in/-singhal-vaibhav-/', icon: '🔗', action: 'https://linkedin.com/in/-singhal-vaibhav-/' },
+        { title: 'GitHub', hint: 'github.com/vsinghal3737', icon: '🔗', action: 'https://github.com/vsinghal3737' },
+        { title: 'Resume', hint: 'Google Drive', icon: '📄', action: 'https://drive.google.com/drive/folders/14P5q0XW5jiU3eIH2igkKzJ6LDOcdwyKn?usp=sharing' },
+        // Theme
+        { title: 'Toggle Theme', hint: 'Switch between dark and light mode', icon: '🎨', action: 'theme' },
+        { title: 'Back to Top', hint: 'Scroll to the top of the page', icon: '⬆️', action: '#hero' },
+    ];
+
+    function openCmdPalette() {
+        cmdOverlay.classList.add('active');
+        cmdPalette.classList.add('active');
+        cmdInput.value = '';
+        cmdActiveIdx = -1;
+        renderCmdResults('');
+        setTimeout(() => cmdInput.focus(), 50);
+    }
+
+    function closeCmdPalette() {
+        cmdOverlay.classList.remove('active');
+        cmdPalette.classList.remove('active');
+        cmdInput.blur();
+    }
+
+    function renderCmdResults(query) {
+        const q = query.toLowerCase().trim();
+        cmdFiltered = q
+            ? cmdItems.filter(item =>
+                item.title.toLowerCase().includes(q) ||
+                item.hint.toLowerCase().includes(q))
+            : cmdItems.slice(0, 8);
+
+        if (cmdFiltered.length === 0) {
+            cmdResults.innerHTML = '<div class="cmd-result-empty">No results found</div>';
+            return;
+        }
+
+        cmdResults.innerHTML = cmdFiltered.map((item, i) =>
+            `<div class="cmd-result-item${i === cmdActiveIdx ? ' active' : ''}" data-idx="${i}">
+                <span class="cmd-result-icon">${item.icon}</span>
+                <div class="cmd-result-text">
+                    <div class="cmd-result-title">${item.title}</div>
+                    <div class="cmd-result-hint">${item.hint}</div>
+                </div>
+            </div>`
+        ).join('');
+
+        cmdResults.querySelectorAll('.cmd-result-item').forEach(el => {
+            el.addEventListener('click', () => {
+                executeCmdItem(cmdFiltered[+el.dataset.idx]);
+            });
+        });
+    }
+
+    function executeCmdItem(item) {
+        closeCmdPalette();
+        if (item.action === 'theme') {
+            themeToggle.click();
+        } else if (item.action.startsWith('#')) {
+            const target = document.querySelector(item.action);
+            if (target) target.scrollIntoView({ behavior: 'smooth' });
+        } else if (item.action.startsWith('http') || item.action.startsWith('mailto:')) {
+            window.open(item.action, '_blank');
+        }
+    }
+
+    cmdInput.addEventListener('input', () => {
+        cmdActiveIdx = -1;
+        renderCmdResults(cmdInput.value);
+    });
+
+    cmdInput.addEventListener('keydown', (e) => {
+        const items = cmdResults.querySelectorAll('.cmd-result-item');
+        if (e.key === 'ArrowDown') {
+            e.preventDefault();
+            cmdActiveIdx = Math.min(cmdActiveIdx + 1, items.length - 1);
+            items.forEach((el, i) => el.classList.toggle('active', i === cmdActiveIdx));
+            items[cmdActiveIdx]?.scrollIntoView({ block: 'nearest' });
+        } else if (e.key === 'ArrowUp') {
+            e.preventDefault();
+            cmdActiveIdx = Math.max(cmdActiveIdx - 1, 0);
+            items.forEach((el, i) => el.classList.toggle('active', i === cmdActiveIdx));
+            items[cmdActiveIdx]?.scrollIntoView({ block: 'nearest' });
+        } else if (e.key === 'Enter' && cmdActiveIdx >= 0) {
+            e.preventDefault();
+            if (cmdFiltered[cmdActiveIdx]) executeCmdItem(cmdFiltered[cmdActiveIdx]);
+        }
+    });
+
+    document.addEventListener('keydown', (e) => {
+        if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+            e.preventDefault();
+            if (cmdPalette.classList.contains('active')) {
+                closeCmdPalette();
+            } else {
+                openCmdPalette();
+            }
+        }
+        if (e.key === 'Escape' && cmdPalette.classList.contains('active')) {
+            closeCmdPalette();
+        }
+    });
+
+    cmdOverlay.addEventListener('click', closeCmdPalette);
+
 });
 
 // ═══════════════ TOGGLE COLLAPSIBLE ═══════════════
