@@ -462,8 +462,10 @@ body:hover .cursor-glow {
   position: relative;
   display: inline-block;
   margin-bottom: 20px;
+  line-height: 0; /* eliminate inline gaps from picture/img baseline */
 }
 .hero-photo {
+  display: block;
   width: 130px;
   height: 130px;
   border-radius: 50%;
@@ -484,7 +486,7 @@ body:hover .cursor-glow {
   border-right-color: var(--accent2);
   animation: ringRotate 4s linear infinite;
 }
-.ring-2 {
+.hero-photo-ring.ring-2 {
   top: -12px;
   left: -12px;
   right: -12px;
@@ -1289,62 +1291,136 @@ section {
   position: relative;
   width: 100%;
   max-width: 800px;
-  height: 800px;
+  height: 480px;
   margin: 0 auto;
+  cursor: default;
 }
 .orbit-core {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 70px;
-  height: 70px;
+  width: 80px;
+  height: 80px;
   border-radius: 50%;
-  background: var(--gradient-1);
+  background: linear-gradient(135deg, rgba(40, 36, 70, 1), rgba(20, 18, 40, 1));
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
-  font-weight: 700;
-  color: #fff;
   z-index: 5;
-  box-shadow: 0 0 40px var(--accent-glow);
 }
+.orbit-core::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: var(--accent-glow);
+  opacity: 0.3;
+  filter: blur(20px);
+  animation: orbitPulse 4s ease-in-out infinite;
+}
+.orbit-core::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: rgba(147, 51, 234, 0.2);
+  filter: blur(30px);
+  animation: orbitPulse 4s ease-in-out infinite 1s;
+}
+.orbit-core svg {
+  position: relative;
+  z-index: 1;
+  width: 36px;
+  height: 36px;
+}
+@keyframes orbitPulse {
+  0%,
+  100% {
+    opacity: 0.25;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(1.2);
+  }
+}
+/* Orbit ring paths — glow effect */
 .orbit-ring {
   position: absolute;
   top: 50%;
   left: 50%;
   border-radius: 50%;
-  border: 1px dashed rgba(108, 99, 255, 0.15);
+  pointer-events: none;
 }
-.orbit-ring:hover .orbit-node {
-  opacity: 0.4;
+.orbit-ring::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 1px solid rgba(108, 99, 255, 0.12);
+  box-shadow: inset 0 0 20px rgba(108, 99, 255, 0.05);
 }
-.orbit-ring:hover .orbit-node:hover {
-  opacity: 1;
+.orbit-ring::after {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    transparent 40%,
+    var(--ring-glow, rgba(108, 99, 255, 0.06)) 80%,
+    var(--ring-glow-strong, rgba(108, 99, 255, 0.12)) 100%
+  );
+  animation: orbitPulse 5s ease-in-out infinite var(--ring-delay, 0s);
+  pointer-events: none;
 }
-.ring-1 {
+/* Elliptical rings — height ≈ 55% of width for 3D perspective */
+.orbit-ring.ring-1 {
   width: 240px;
-  height: 240px;
-  margin: -120px 0 0 -120px;
+  height: 132px;
+  margin: -66px 0 0 -120px;
+  --ring-glow: rgba(108, 99, 255, 0.06);
+  --ring-glow-strong: rgba(108, 99, 255, 0.15);
+  --ring-delay: 0s;
 }
-.ring-2 {
+.orbit-ring.ring-2 {
   width: 400px;
-  height: 400px;
-  margin: -200px 0 0 -200px;
+  height: 220px;
+  margin: -110px 0 0 -200px;
+  --ring-glow: rgba(0, 212, 170, 0.05);
+  --ring-glow-strong: rgba(0, 212, 170, 0.12);
+  --ring-delay: 1s;
 }
-.ring-3 {
+.orbit-ring.ring-2::before {
+  border-color: rgba(0, 212, 170, 0.1);
+  box-shadow: inset 0 0 20px rgba(0, 212, 170, 0.04);
+}
+.orbit-ring.ring-3 {
   width: 580px;
-  height: 580px;
-  margin: -290px 0 0 -290px;
+  height: 320px;
+  margin: -160px 0 0 -290px;
+  --ring-glow: rgba(255, 107, 157, 0.04);
+  --ring-glow-strong: rgba(255, 107, 157, 0.1);
+  --ring-delay: 2s;
 }
-.ring-4 {
+.orbit-ring.ring-3::before {
+  border-color: rgba(255, 107, 157, 0.08);
+  box-shadow: inset 0 0 20px rgba(255, 107, 157, 0.03);
+}
+.orbit-ring.ring-4 {
   width: 740px;
-  height: 740px;
-  margin: -370px 0 0 -370px;
-  border-color: rgba(255, 107, 157, 0.1);
+  height: 407px;
+  margin: -203px 0 0 -370px;
+  --ring-glow: rgba(254, 188, 46, 0.03);
+  --ring-glow-strong: rgba(254, 188, 46, 0.08);
+  --ring-delay: 3s;
 }
+.orbit-ring.ring-4::before {
+  border-color: rgba(254, 188, 46, 0.08);
+  box-shadow: inset 0 0 20px rgba(254, 188, 46, 0.03);
+}
+/* Skill nodes — positioned by JS */
 .orbit-node {
   position: absolute;
   padding: 5px 14px;
@@ -1353,56 +1429,46 @@ section {
   font-weight: 600;
   white-space: nowrap;
   cursor: default;
-  transition: all 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    opacity 0.3s ease;
   z-index: 3;
   opacity: 1;
+  pointer-events: auto;
+  will-change: left, top;
 }
-.ring-1 .orbit-node {
+.orbit-ring.ring-1 .orbit-node {
   background: rgba(108, 99, 255, 0.15);
   color: var(--accent-bright);
   border: 1px solid rgba(108, 99, 255, 0.3);
-  top: 50%;
-  left: 50%;
-  transform: rotate(calc(360deg / var(--total) * var(--i))) translateX(120px)
-    rotate(calc(-360deg / var(--total) * var(--i)));
-  margin: -13px 0 0 -13px;
 }
-.ring-2 .orbit-node {
+.orbit-ring.ring-2 .orbit-node {
   background: rgba(0, 212, 170, 0.12);
   color: var(--accent2);
   border: 1px solid rgba(0, 212, 170, 0.25);
-  top: 50%;
-  left: 50%;
-  transform: rotate(calc(360deg / var(--total) * var(--i))) translateX(200px)
-    rotate(calc(-360deg / var(--total) * var(--i)));
-  margin: -13px 0 0 -13px;
 }
-.ring-3 .orbit-node {
+.orbit-ring.ring-3 .orbit-node {
   background: rgba(255, 107, 157, 0.1);
   color: var(--accent3);
   border: 1px solid rgba(255, 107, 157, 0.2);
-  top: 50%;
-  left: 50%;
-  transform: rotate(calc(360deg / var(--total) * var(--i))) translateX(290px)
-    rotate(calc(-360deg / var(--total) * var(--i)));
-  margin: -13px 0 0 -13px;
 }
-.ring-4 .orbit-node {
+.orbit-ring.ring-4 .orbit-node {
   background: rgba(254, 188, 46, 0.1);
   color: var(--yellow, #febc2e);
   border: 1px solid rgba(254, 188, 46, 0.25);
-  top: 50%;
-  left: 50%;
-  transform: rotate(calc(360deg / var(--total) * var(--i))) translateX(370px)
-    rotate(calc(-360deg / var(--total) * var(--i)));
-  margin: -13px 0 0 -13px;
 }
 .orbit-node:hover {
-  transform: rotate(calc(360deg / var(--total) * var(--i)))
-    translateX(var(--tx, 120px)) rotate(calc(-360deg / var(--total) * var(--i)))
-    scale(1.3);
+  transform: scale(1.3) !important;
   z-index: 10;
-  box-shadow: 0 0 20px var(--accent-glow);
+  box-shadow: 0 0 25px var(--accent-glow);
+}
+.orbit-container.paused .orbit-node {
+  transition:
+    left 0.6s ease-out,
+    top 0.6s ease-out,
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
 }
 .orbit-tooltip {
   position: fixed;
@@ -2507,9 +2573,6 @@ footer {
   .mesh-blob {
     animation: none;
   }
-  .orbit-ring:hover .orbit-node {
-    opacity: 1;
-  }
 }
 
 /* ═══ CROSS-PLATFORM ═══ */
@@ -2557,7 +2620,7 @@ html {
   }
   .orbit-container {
     max-width: clamp(500px, 55vw, 900px);
-    height: clamp(500px, 55vw, 900px);
+    height: clamp(300px, 33vw, 540px);
   }
   .timeline.detail-open {
     grid-template-columns: clamp(260px, 22vw, 380px) 1fr;
@@ -2568,25 +2631,17 @@ html {
 @media (max-width: 1200px) {
   .orbit-container {
     max-width: 650px;
-    height: 650px;
+    height: 400px;
   }
-  .ring-3 {
+  .orbit-ring.ring-3 {
     width: 480px;
-    height: 480px;
-    margin: -240px 0 0 -240px;
+    height: 264px;
+    margin: -132px 0 0 -240px;
   }
-  .ring-3 .orbit-node {
-    transform: rotate(calc(360deg / var(--total) * var(--i))) translateX(240px)
-      rotate(calc(-360deg / var(--total) * var(--i)));
-  }
-  .ring-4 {
+  .orbit-ring.ring-4 {
     width: 600px;
-    height: 600px;
-    margin: -300px 0 0 -300px;
-  }
-  .ring-4 .orbit-node {
-    transform: rotate(calc(360deg / var(--total) * var(--i))) translateX(300px)
-      rotate(calc(-360deg / var(--total) * var(--i)));
+    height: 330px;
+    margin: -165px 0 0 -300px;
   }
 }
 
@@ -2606,43 +2661,27 @@ html {
   }
   .orbit-container {
     max-width: 520px;
-    height: 520px;
+    height: 330px;
   }
-  .ring-1 {
+  .orbit-ring.ring-1 {
     width: 180px;
-    height: 180px;
-    margin: -90px 0 0 -90px;
+    height: 99px;
+    margin: -49px 0 0 -90px;
   }
-  .ring-1 .orbit-node {
-    transform: rotate(calc(360deg / var(--total) * var(--i))) translateX(90px)
-      rotate(calc(-360deg / var(--total) * var(--i)));
-  }
-  .ring-2 {
+  .orbit-ring.ring-2 {
     width: 300px;
-    height: 300px;
-    margin: -150px 0 0 -150px;
+    height: 165px;
+    margin: -82px 0 0 -150px;
   }
-  .ring-2 .orbit-node {
-    transform: rotate(calc(360deg / var(--total) * var(--i))) translateX(150px)
-      rotate(calc(-360deg / var(--total) * var(--i)));
-  }
-  .ring-3 {
+  .orbit-ring.ring-3 {
     width: 400px;
-    height: 400px;
-    margin: -200px 0 0 -200px;
+    height: 220px;
+    margin: -110px 0 0 -200px;
   }
-  .ring-3 .orbit-node {
-    transform: rotate(calc(360deg / var(--total) * var(--i))) translateX(200px)
-      rotate(calc(-360deg / var(--total) * var(--i)));
-  }
-  .ring-4 {
+  .orbit-ring.ring-4 {
     width: 490px;
-    height: 490px;
-    margin: -245px 0 0 -245px;
-  }
-  .ring-4 .orbit-node {
-    transform: rotate(calc(360deg / var(--total) * var(--i))) translateX(245px)
-      rotate(calc(-360deg / var(--total) * var(--i)));
+    height: 270px;
+    margin: -135px 0 0 -245px;
   }
   .orbit-node {
     font-size: 0.65rem;
@@ -2653,42 +2692,33 @@ html {
 @media (max-width: 900px) {
   .orbit-container {
     max-width: 420px;
-    height: 420px;
+    height: 280px;
   }
-  .ring-1 {
+  .orbit-ring.ring-1 {
     width: 160px;
-    height: 160px;
-    margin: -80px 0 0 -80px;
+    height: 88px;
+    margin: -44px 0 0 -80px;
   }
-  .ring-1 .orbit-node {
-    transform: rotate(calc(360deg / var(--total) * var(--i))) translateX(80px)
-      rotate(calc(-360deg / var(--total) * var(--i)));
-  }
-  .ring-2 {
+  .orbit-ring.ring-2 {
     width: 260px;
-    height: 260px;
-    margin: -130px 0 0 -130px;
+    height: 143px;
+    margin: -71px 0 0 -130px;
   }
-  .ring-2 .orbit-node {
-    transform: rotate(calc(360deg / var(--total) * var(--i))) translateX(130px)
-      rotate(calc(-360deg / var(--total) * var(--i)));
-  }
-  .ring-3 {
+  .orbit-ring.ring-3 {
     width: 350px;
-    height: 350px;
-    margin: -175px 0 0 -175px;
+    height: 192px;
+    margin: -96px 0 0 -175px;
   }
-  .ring-3 .orbit-node {
-    transform: rotate(calc(360deg / var(--total) * var(--i))) translateX(175px)
-      rotate(calc(-360deg / var(--total) * var(--i)));
-  }
-  .ring-4 {
+  .orbit-ring.ring-4 {
     display: none;
   }
   .orbit-core {
     width: 55px;
     height: 55px;
-    font-size: 0.6rem;
+  }
+  .orbit-core svg {
+    width: 28px;
+    height: 28px;
   }
   .orbit-node {
     font-size: 0.6rem;

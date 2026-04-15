@@ -1209,7 +1209,13 @@
           </p>
         </div>
         <div class="orbit-container reveal">
-          <div class="orbit-core">CORE</div>
+          <div class="orbit-core">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="url(#orbitGrad)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <defs><linearGradient id="orbitGrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#6c63ff"/><stop offset="100%" stop-color="#00d4aa"/></linearGradient></defs>
+              <polyline points="16 18 22 12 16 6"></polyline>
+              <polyline points="8 6 2 12 8 18"></polyline>
+            </svg>
+          </div>
           <!-- Ring 1: Languages -->
           <div class="orbit-ring ring-1">
             <div
@@ -1843,7 +1849,7 @@
 
     <!-- Spline 3D Robot -->
     <script type="module">
-      import { Application } from 'https://unpkg.com/@splinetool/runtime@latest/build/runtime.js';
+      import { Application } from 'https://unpkg.com/@splinetool/runtime@0.9.490/build/runtime.js';
 
       const canvas  = document.getElementById('robotCanvas');
       const loader  = document.getElementById('robotLoader');
@@ -1854,6 +1860,7 @@
         .then(() => {
           loader.classList.add('loaded');
           scene.classList.add('ready');
+          // Pinned to v0.9.490 — no watermark in this version
         })
         .catch((err) => {
           console.warn('Spline scene failed to load:', err);

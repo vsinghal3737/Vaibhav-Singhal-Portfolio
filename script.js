@@ -511,29 +511,103 @@ document.addEventListener('DOMContentLoaded', () => {
     }, { threshold: 0.5 });
     dots.forEach(d => dotObs.observe(d));
 
-    // ═══════════════ ORBIT: set --tx per ring for hover scale ═══════════════
-    const ringRadii = { 'ring-1': 120, 'ring-2': 200, 'ring-3': 290, 'ring-4': 370 };
-    document.querySelectorAll('.orbit-node').forEach(node => {
-        const ring = node.parentElement;
-        for (const [cls, r] of Object.entries(ringRadii)) {
-            if (ring.classList.contains(cls)) { node.style.setProperty('--tx', r + 'px'); break; }
-        }
-    });
+    // ═══════════════ ORBITING SKILLS ANIMATION ═══════════════
+    const orbitContainer = document.querySelector('.orbit-container');
+    if (orbitContainer) {
+        const ringSpeeds = [0.4, -0.25, 0.15, -0.1]; // CW, CCW, CW, CCW
 
-    // ═══════════════ ORBIT TOOLTIP (desktop only) ═══════════════
-    if (!isTouch) {
-        const tooltip = document.getElementById('orbitTooltip');
-        document.querySelectorAll('.orbit-node').forEach(node => {
-            node.addEventListener('mouseenter', () => {
-                tooltip.textContent = node.dataset.cat + ': ' + node.textContent;
-                tooltip.classList.add('visible');
-            });
-            node.addEventListener('mousemove', (e) => {
-                tooltip.style.left = e.clientX + 14 + 'px';
-                tooltip.style.top = e.clientY - 10 + 'px';
-            });
-            node.addEventListener('mouseleave', () => tooltip.classList.remove('visible'));
+        // Collect nodes per ring with their base angle; radius from CSS
+        function buildRings() {
+            return ['ring-1', 'ring-2', 'ring-3', 'ring-4'].map((cls, idx) => {
+                const ringEl = orbitContainer.querySelector(`.${cls}`);
+                if (!ringEl || ringEl.offsetParent === null) return null; // hidden (e.g. ring-4 at 900px)
+                const nodes = Array.from(ringEl.querySelectorAll('.orbit-node'));
+                const radiusX = ringEl.offsetWidth / 2;
+                const radiusY = ringEl.offsetHeight / 2; // elliptical
+                return {
+                    cls, radiusX, radiusY, speed: ringSpeeds[idx], el: ringEl,
+                    nodes: nodes.map((node, i) => ({
+                        el: node,
+                        baseAngle: (2 * Math.PI / nodes.length) * i
+                    }))
+                };
+            }).filter(Boolean);
+        }
+        let rings = buildRings();
+
+        // Rebuild on resize so radii stay in sync with CSS breakpoints
+        let resizeTimer;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(() => { rings = buildRings(); }, 150);
         });
+
+        let orbitTime = 0;
+        let orbitPaused = false;
+        let orbitRAF = null;
+        let lastOrbitTime = performance.now();
+
+        function updateOrbit(now) {
+            if (!orbitPaused) {
+                const dt = (now - lastOrbitTime) / 1000;
+                orbitTime += dt;
+            }
+            lastOrbitTime = now;
+
+            rings.forEach(ring => {
+                const angleOffset = orbitTime * ring.speed;
+                ring.nodes.forEach(({ el, baseAngle }) => {
+                    const angle = baseAngle + angleOffset;
+                    const x = Math.cos(angle) * ring.radiusX;
+                    const y = Math.sin(angle) * ring.radiusY;
+                    el.style.left = (ring.radiusX + x) + 'px';
+                    el.style.top = (ring.radiusY + y) + 'px';
+                    el.style.transform = 'translate(-50%, -50%)';
+                });
+            });
+
+            orbitRAF = requestAnimationFrame(updateOrbit);
+        }
+
+        // Start animation
+        orbitRAF = requestAnimationFrame(updateOrbit);
+
+        // Pause on hover
+        orbitContainer.addEventListener('mouseenter', () => {
+            orbitPaused = true;
+            orbitContainer.classList.add('paused');
+        });
+        orbitContainer.addEventListener('mouseleave', () => {
+            orbitPaused = false;
+            orbitContainer.classList.remove('paused');
+            lastOrbitTime = performance.now(); // avoid dt spike
+        });
+
+        // Tooltip (desktop only)
+        if (!isTouch) {
+            const tooltip = document.getElementById('orbitTooltip');
+            document.querySelectorAll('.orbit-node').forEach(node => {
+                node.addEventListener('mouseenter', () => {
+                    tooltip.textContent = node.dataset.cat + ': ' + node.textContent.trim();
+                    tooltip.classList.add('visible');
+                });
+                node.addEventListener('mousemove', (e) => {
+                    tooltip.style.left = e.clientX + 14 + 'px';
+                    tooltip.style.top = e.clientY - 10 + 'px';
+                });
+                node.addEventListener('mouseleave', () => tooltip.classList.remove('visible'));
+            });
+        }
+
+        // Pause when out of viewport (save CPU)
+        const orbitVisObs = new IntersectionObserver(([entry]) => {
+            if (entry.isIntersecting) {
+                if (!orbitRAF) orbitRAF = requestAnimationFrame(updateOrbit);
+            } else {
+                if (orbitRAF) { cancelAnimationFrame(orbitRAF); orbitRAF = null; }
+            }
+        }, { threshold: 0.1 });
+        orbitVisObs.observe(orbitContainer);
     }
 
     // ═══════════════ KONAMI CODE EASTER EGG ═══════════════
