@@ -387,6 +387,67 @@ body:hover .cursor-glow {
   position: relative;
   z-index: 2;
 }
+
+/* ═══ 3D ROBOT SCENE ═══ */
+.robot-scene {
+  position: fixed;
+  inset: 0;
+  z-index: 1; /* between mesh-bg (0) and all sections (2) */
+  opacity: 0;
+  transition: opacity 1.2s ease;
+  pointer-events: none; /* let clicks pass through to page content */
+}
+.robot-scene.ready {
+  opacity: 1;
+}
+.robot-scene canvas {
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+  pointer-events: none;
+}
+.robot-loader {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  background: transparent;
+  z-index: 1;
+  pointer-events: none;
+  transition: opacity 0.6s ease;
+}
+.robot-loader.loaded {
+  opacity: 0;
+}
+.robot-spinner {
+  width: 32px;
+  height: 32px;
+  animation: spinnerRotate 1s linear infinite;
+}
+.spinner-track {
+  stroke: rgba(108, 99, 255, 0.15);
+}
+.spinner-fill {
+  stroke: var(--accent);
+  stroke-dasharray: 50 13;
+  stroke-linecap: round;
+}
+.robot-loader-text {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-dim);
+  letter-spacing: 0.05em;
+}
+@keyframes spinnerRotate {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Hero content sits above the 3D scene */
 .hero-content {
   position: relative;
   z-index: 2;
