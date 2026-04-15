@@ -319,6 +319,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const folderData = [
         {
             title: 'Axiom',
+            subtitle: '7 microservices',
             projects: [
                 {
                     title: 'Axiom — AI Note Intelligence',
@@ -393,7 +394,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <div class="folder-front"></div>
                 </div>
                 <h3 class="folder-title">${folder.title}</h3>
-                <p class="folder-count">${count} ${count === 1 ? 'project' : 'projects'}</p>
+                <p class="folder-count">${folder.subtitle || (count + ' ' + (count === 1 ? 'project' : 'projects'))}</p>
                 <span class="folder-hint">Hover to explore</span>
             `;
             folderGrid.appendChild(el);
