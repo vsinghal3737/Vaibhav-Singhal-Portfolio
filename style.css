@@ -165,6 +165,7 @@ code {
   transition:
     opacity 0.6s ease,
     visibility 0.6s ease;
+  will-change: opacity;
 }
 #loader.hidden {
   opacity: 0;
@@ -179,6 +180,7 @@ code {
   stroke-dasharray: 300;
   stroke-dashoffset: 300;
   animation: drawLogo 1.5s ease forwards;
+  will-change: stroke-dashoffset;
 }
 @keyframes drawLogo {
   to {
@@ -195,14 +197,17 @@ code {
 }
 .loader-bar-fill {
   height: 100%;
-  width: 0;
+  width: 100%;
   background: var(--gradient-1);
   border-radius: 2px;
-  animation: loaderFill 1.8s ease forwards;
+  transform: scaleX(0);
+  transform-origin: left;
+  animation: loaderFill 1.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  will-change: transform;
 }
 @keyframes loaderFill {
   to {
-    width: 100%;
+    transform: scaleX(1);
   }
 }
 

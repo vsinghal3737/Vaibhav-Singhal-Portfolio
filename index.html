@@ -1852,26 +1852,32 @@
 
     <script src="script.js"></script>
 
-    <!-- Spline 3D Robot -->
+    <!-- Spline 3D Robot — skip on narrow screens & reduced-motion -->
     <script type="module">
-      import { Application } from 'https://unpkg.com/@splinetool/runtime@0.9.490/build/runtime.js';
+      const canvas = document.getElementById('robotCanvas');
+      const loader = document.getElementById('robotLoader');
+      const scene  = document.getElementById('robotScene');
 
-      const canvas  = document.getElementById('robotCanvas');
-      const loader  = document.getElementById('robotLoader');
-      const scene   = document.getElementById('robotScene');
+      const tooNarrow = window.innerWidth < 600;
+      const prefersStill = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-      const app = new Application(canvas);
-      app.load('https://prod.spline.design/PyzDhpQ9E5f1E3MT/scene.splinecode')
-        .then(() => {
+      if (tooNarrow || prefersStill) {
+        loader.classList.add('loaded');
+        scene.style.display = 'none';
+      } else {
+        import('https://unpkg.com/@splinetool/runtime@0.9.490/build/runtime.js').then(({ Application }) => {
+          const app = new Application(canvas);
+          return app.load('https://prod.spline.design/PyzDhpQ9E5f1E3MT/scene.splinecode');
+        }).then(() => {
           loader.classList.add('loaded');
           scene.classList.add('ready');
           // Pinned to v0.9.490 — no watermark in this version
-        })
-        .catch((err) => {
+        }).catch((err) => {
           console.warn('Spline scene failed to load:', err);
           loader.classList.add('loaded');
           scene.style.display = 'none';
         });
+      }
     </script>
   </body>
 </html>

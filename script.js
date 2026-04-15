@@ -4,10 +4,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // ═══════════════ LOADING SCREEN ═══════════════
     const loader = document.getElementById('loader');
-    window.addEventListener('load', () => {
-        setTimeout(() => loader.classList.add('hidden'), 500);
-    });
-    setTimeout(() => loader.classList.add('hidden'), 2000);
+    const deferredInits = [];  // functions to run AFTER loader hides
+    function hideLoader() {
+        if (loader.classList.contains('hidden')) return;
+        loader.classList.add('hidden');
+        // Run deferred inits after the fade-out completes (600ms transition)
+        setTimeout(() => deferredInits.forEach(fn => fn()), 650);
+    }
+    window.addEventListener('load', () => setTimeout(hideLoader, 500));
+    setTimeout(hideLoader, 2000);
 
     // ═══════════════ CURSOR GLOW ═══════════════
     const cursorGlow = document.getElementById('cursorGlow');
@@ -162,15 +167,17 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }, { passive: true });
 
-    // ═══════════════ CURSOR GLOW RAF (desktop only) ═══════════════
+    // ═══════════════ CURSOR GLOW RAF (desktop only, deferred) ═══════════════
     if (!isTouch) {
-        (function glowLoop() {
-            curX += (glowX - curX) * 0.12;
-            curY += (glowY - curY) * 0.12;
-            cursorGlow.style.left = curX + 'px';
-            cursorGlow.style.top = curY + 'px';
-            requestAnimationFrame(glowLoop);
-        })();
+        deferredInits.push(() => {
+            (function glowLoop() {
+                curX += (glowX - curX) * 0.12;
+                curY += (glowY - curY) * 0.12;
+                cursorGlow.style.left = curX + 'px';
+                cursorGlow.style.top = curY + 'px';
+                requestAnimationFrame(glowLoop);
+            })();
+        });
     }
 
     // (3D tilt cards removed — caused lag and visual glitches)
@@ -590,8 +597,12 @@ document.addEventListener('DOMContentLoaded', () => {
             orbitRAF = requestAnimationFrame(updateOrbit);
         }
 
-        // Start animation
-        orbitRAF = requestAnimationFrame(updateOrbit);
+        // Start animation after loader finishes (avoid competing for frames)
+        // Skip on reduced-motion or if orbit container is hidden (mobile)
+        const prefersStill = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (!prefersStill && orbitContainer.offsetParent !== null) {
+            deferredInits.push(() => { orbitRAF = requestAnimationFrame(updateOrbit); });
+        }
 
         // Pause on hover
         orbitContainer.addEventListener('mouseenter', () => {
