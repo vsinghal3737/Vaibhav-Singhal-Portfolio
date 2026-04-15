@@ -287,19 +287,164 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // ═══════════════ FLIP CARDS: TAP-TO-TOGGLE (mobile/touch only) ═══════════════
-    if (isTouch || window.innerWidth <= 768) {
-        const flipHint = document.querySelector('.flip-hint');
-        if (flipHint) flipHint.textContent = 'Tap to flip and see details.';
-        let currentFlipped = null;
-        document.querySelectorAll('.flip-card').forEach(card => {
-            card.addEventListener('click', () => {
-                if (currentFlipped && currentFlipped !== card) {
-                    currentFlipped.classList.remove('flipped');
-                }
-                card.classList.toggle('flipped');
-                currentFlipped = card.classList.contains('flipped') ? card : null;
+    // ═══════════════ ANIMATED FOLDERS + LIGHTBOX ═══════════════
+    const folderData = [
+        {
+            title: 'Data Engineering',
+            projects: [
+                { title: 'RosterData — Ice Hockey v2', date: 'Jan 2020 – Apr 2020', summary: 'Expanded RosterData from NHL-only to 4-league coverage (NHL, SHL, Liiga, KHL) with cross-league player comparison.', bullets: ['Built league-specific Scrapy pipelines for SHL, Liiga, and KHL — each with unique HTML structures and pagination patterns.','Designed a normalized JSON data model for cross-league consistency (player identity, season stats, team associations).','Stored normalized data in PostgreSQL on AWS RDS with query-optimized indexing for player lookup and league standings.','Built REST APIs for player search, team rosters, and cross-league career timelines.'], tags: ['Python','Scrapy','PostgreSQL','AWS'], image: 'img/ice-hockey.webp', fallback: 'img/ice-hockey.jpg' },
+                { title: 'Hadoop Cluster & MapReduce', date: 'Mar 2017 – Jun 2017', summary: '8-node Hadoop cluster processing 300M+ YouTube video logs with MapReduce and cross-version benchmarking.', bullets: ['Configured 1 NameNode + 7 DataNodes with HDFS replication and YARN resource management.','Designed MapReduce jobs (Hadoop Streaming, Python): most-viewed by category, upload trends, viral video detection.','Benchmarked identical jobs across Hadoop versions — measured job time, CPU/memory, shuffle overhead, and speculative execution.','Documented quantitative speedups in scheduling and data shuffle across framework versions.'], tags: ['Hadoop','MapReduce','Python','HDFS'], image: 'img/hadoop.webp', fallback: 'img/hadoop.png' },
+            ]
+        },
+        {
+            title: 'Machine Learning',
+            projects: [
+                { title: 'LSA Classification & Prediction', date: 'Mar 2020 – Apr 2020', summary: 'End-to-end ML pipeline for financial document classification — 98% accuracy, deployed as a REST API on GCP.', bullets: ['Preprocessed financial documents: tokenization, stop-word removal, TF-IDF vectorization into numerical feature vectors.','Applied LSA (SVD on TF-IDF matrix) for dimensionality reduction while preserving discriminative dimensions.','Evaluated Naive Bayes, SVM, Random Forest, and Logistic Regression with grid search and cross-validation.','Built Flask REST APIs for real-time inference and deployed containerized on GCP Compute Engine.'], tags: ['Python','scikit-learn','Flask','GCP'], image: 'img/tfidf.webp', fallback: 'img/tfidf.png' },
+                { title: 'Diabetes Classifier & Clustering', date: 'Aug 2019 – Nov 2019', summary: 'Rigorous ML classification on clinical data with K-fold validation — 85% accuracy, plus unsupervised meal clustering.', bullets: ['Preprocessed Pima Indians Diabetes Dataset: median imputation for missing values, feature normalization, class imbalance analysis.','Evaluated Decision Tree, SVM, and KNN classifiers using K-fold cross-validation for generalizability.','Applied K-Means and DBSCAN clustering on meal/glucose data to identify dietary patterns correlated with glucose response.','Achieved 85% accuracy / 83% confidence validated across folds — not an artifact of a favorable split.'], tags: ['Python','Pandas','NumPy','scikit-learn'], image: 'img/sklearn.webp', fallback: 'img/sklearn.png' },
+            ]
+        },
+        {
+            title: 'Software Engineering',
+            projects: [
+                { title: 'Visual Learning Portal', date: 'Aug 2019 – Nov 2019', summary: 'Interactive math portal with drag-and-drop, built by a team of 5 using Agile/Scrum and formal design patterns.', bullets: ['Applied Facade (simplified complex subsystems), Factory (dynamic content creation), and Iterator (collection traversal) patterns.','Built Flask REST APIs with SQLAlchemy ORM; drag-and-drop frontend for interactive math exploration.','Ran 2-week sprints with backlog grooming, standups, and retrospectives across a 5-person team.'], tags: ['Python','Flask','SQLAlchemy','Agile'], image: 'img/math.webp', fallback: 'img/math.jpg' },
+                { title: '!Xobile Programming Language', date: 'Jan 2019 – May 2019', summary: 'Custom OOP language with full compilation pipeline — grammar spec, tokenizer, parser, and semantic analyzer.', bullets: ['Designed formal grammar: class declarations, inheritance, control flow, expressions, and OOP constructs (this, constructors, method dispatch).','Built regex-based tokenizer in Python (keywords, identifiers, operators, string literals with escape chars).','Implemented parser and semantic analyzer in Prolog: type checking, variable scoping, inheritance cycle detection, and method resolution.','End-to-end pipeline: valid programs produce semantically validated parse trees; invalid programs yield meaningful error messages.'], tags: ['Python','Prolog','Compiler Design'], image: 'img/lang.webp', fallback: 'img/lang.jpg' },
+            ]
+        }
+    ];
+
+    // Render folders
+    const folderGrid = document.getElementById('folderGrid');
+    if (folderGrid) {
+        folderData.forEach((folder, fi) => {
+            const count = folder.projects.length;
+            const el = document.createElement('div');
+            el.className = 'folder reveal';
+            el.style.setProperty('--delay', `${fi * 0.1}s`);
+            el.innerHTML = `
+                <div class="folder-visual">
+                    <div class="folder-back"></div>
+                    <div class="folder-tab"></div>
+                    <div class="folder-cards">
+                        ${folder.projects.map((p, pi) => `
+                            <div class="folder-card" data-fan="${count}-${pi}" data-fi="${fi}" data-pi="${pi}">
+                                <picture><source srcset="${p.image}" type="image/webp"/><img src="${p.fallback}" alt="${p.title}" loading="lazy"/></picture>
+                                <div class="folder-card-overlay"></div>
+                                <span class="folder-card-label">${p.title}</span>
+                            </div>
+                        `).join('')}
+                    </div>
+                    <div class="folder-front"></div>
+                </div>
+                <h3 class="folder-title">${folder.title}</h3>
+                <p class="folder-count">${count} projects</p>
+                <span class="folder-hint">Hover to explore</span>
+            `;
+            folderGrid.appendChild(el);
+            revealObs.observe(el);
+        });
+
+        // On touch devices: tap folder to toggle hover state
+        if (isTouch) {
+            let openFolder = null;
+            document.querySelectorAll('.folder').forEach(f => {
+                f.addEventListener('click', (e) => {
+                    if (e.target.closest('.folder-card')) return; // let card clicks through
+                    if (openFolder && openFolder !== f) openFolder.classList.remove('folder-open');
+                    f.classList.toggle('folder-open');
+                    openFolder = f.classList.contains('folder-open') ? f : null;
+                });
             });
+            // CSS: .folder-open triggers same visual as :hover
+            const touchStyle = document.createElement('style');
+            touchStyle.textContent = `
+                .folder-open .folder-back { transform: translate(-50%,-50%) rotateX(-15deg) !important; }
+                .folder-open .folder-tab { transform: rotateX(-25deg) translateY(-2px) !important; }
+                .folder-open .folder-front { transform: translateX(-50%) rotateX(25deg) translateY(8px) !important; }
+                .folder-open .folder-card[data-fan="2-0"] { transform: translateY(-80px) translateX(-32px) rotate(-8deg) scale(1) !important; opacity:1 !important; }
+                .folder-open .folder-card[data-fan="2-1"] { transform: translateY(-80px) translateX(32px) rotate(8deg) scale(1) !important; opacity:1 !important; transition-delay:80ms !important; }
+                .folder-open .folder-title { transform: translateY(4px) !important; }
+                .folder-open .folder-hint { opacity:0 !important; transform: translateY(10px) !important; }
+            `;
+            document.head.appendChild(touchStyle);
+        }
+    }
+
+    // Lightbox
+    const lb = document.getElementById('projectLightbox');
+    const lbImage = document.getElementById('lbImage');
+    const lbTitle = document.getElementById('lbTitle');
+    const lbDate = document.getElementById('lbDate');
+    const lbSummary = document.getElementById('lbSummary');
+    const lbTags = document.getElementById('lbTags');
+    const lbDots = document.getElementById('lbDots');
+    const lbPrev = lb ? lb.querySelector('.lb-prev') : null;
+    const lbNext = lb ? lb.querySelector('.lb-next') : null;
+    const lbClose = lb ? lb.querySelector('.lb-close') : null;
+
+    let lbFolderIdx = 0;
+    let lbProjectIdx = 0;
+
+    function openLightbox(fi, pi) {
+        lbFolderIdx = fi;
+        lbProjectIdx = pi;
+        updateLightbox();
+        lb.classList.add('open');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+        lb.classList.remove('open');
+        document.body.style.overflow = '';
+    }
+
+    function updateLightbox() {
+        const folder = folderData[lbFolderIdx];
+        if (!folder) return;
+        const p = folder.projects[lbProjectIdx];
+        if (!p) return;
+        lbImage.src = p.fallback;
+        lbImage.alt = p.title;
+        lbTitle.textContent = p.title;
+        lbDate.textContent = p.date;
+        lbSummary.textContent = p.summary;
+        const lbBullets = document.getElementById('lbBullets');
+        if (lbBullets) {
+            lbBullets.innerHTML = p.bullets && p.bullets.length
+                ? '<ul>' + p.bullets.map(b => `<li>${b}</li>`).join('') + '</ul>'
+                : '';
+        }
+        lbTags.innerHTML = p.tags.map(t => `<span>${t}</span>`).join('');
+        lbDots.innerHTML = folder.projects.map((_, i) =>
+            `<button class="lb-dot${i === lbProjectIdx ? ' active' : ''}" data-i="${i}"></button>`
+        ).join('');
+        lbPrev.disabled = lbProjectIdx <= 0;
+        lbNext.disabled = lbProjectIdx >= folder.projects.length - 1;
+    }
+
+    if (lb) {
+        // Card click → open lightbox
+        document.addEventListener('click', (e) => {
+            const card = e.target.closest('.folder-card');
+            if (!card) return;
+            e.stopPropagation();
+            openLightbox(+card.dataset.fi, +card.dataset.pi);
+        });
+
+        lbClose.addEventListener('click', closeLightbox);
+        lb.querySelector('.lb-backdrop').addEventListener('click', closeLightbox);
+        lbPrev.addEventListener('click', (e) => { e.stopPropagation(); if (lbProjectIdx > 0) { lbProjectIdx--; updateLightbox(); } });
+        lbNext.addEventListener('click', (e) => { e.stopPropagation(); if (lbProjectIdx < folderData[lbFolderIdx].projects.length - 1) { lbProjectIdx++; updateLightbox(); } });
+        lbDots.addEventListener('click', (e) => {
+            const dot = e.target.closest('.lb-dot');
+            if (dot) { lbProjectIdx = +dot.dataset.i; updateLightbox(); }
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (!lb.classList.contains('open')) return;
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowRight' && lbProjectIdx < folderData[lbFolderIdx].projects.length - 1) { lbProjectIdx++; updateLightbox(); }
+            if (e.key === 'ArrowLeft' && lbProjectIdx > 0) { lbProjectIdx--; updateLightbox(); }
         });
     }
 
