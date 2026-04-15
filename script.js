@@ -266,6 +266,49 @@ document.addEventListener('DOMContentLoaded', () => {
         if (dx > 100 && dy < 80) closeDetail();
     }, { passive: true });
 
+    // ═══════════════ EARLIER EXPERIENCE LIGHTBOX ═══════════════
+    const earlierLightbox = document.getElementById('earlierLightbox');
+    if (earlierLightbox) {
+        const earlierLbHeader = document.getElementById('earlierLbHeader');
+        const earlierLbBody = document.getElementById('earlierLbBody');
+
+        function openEarlierLb(card) {
+            const identity = card.querySelector('.earlier-card-identity');
+            const meta = card.querySelector('.earlier-card-meta');
+            const details = card.querySelector('.earlier-card-details');
+            if (!details) return;
+
+            earlierLbHeader.innerHTML = (identity ? identity.outerHTML : '') +
+                (meta ? '<div class="earlier-card-meta">' + meta.innerHTML + '</div>' : '');
+            earlierLbBody.innerHTML = details.innerHTML;
+
+            earlierLightbox.classList.add('open');
+            document.body.style.overflow = 'hidden';
+            earlierLightbox.querySelector('.earlier-lb-content').scrollTop = 0;
+        }
+
+        function closeEarlierLb() {
+            earlierLightbox.classList.remove('open');
+            document.body.style.overflow = '';
+        }
+
+        document.querySelectorAll('.earlier-card').forEach(card => {
+            card.addEventListener('click', () => openEarlierLb(card));
+            card.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    openEarlierLb(card);
+                }
+            });
+        });
+
+        earlierLightbox.querySelector('.earlier-lb-close').addEventListener('click', closeEarlierLb);
+        earlierLightbox.querySelector('.earlier-lb-backdrop').addEventListener('click', closeEarlierLb);
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && earlierLightbox.classList.contains('open')) closeEarlierLb();
+        });
+    }
+
     // ═══════════════ UDEMY COLLAPSIBLE TOGGLE ═══════════════
     const udemyBtn = document.getElementById('udemyToggle');
     if (udemyBtn) udemyBtn.addEventListener('click', () => toggleCollapsible(udemyBtn));
