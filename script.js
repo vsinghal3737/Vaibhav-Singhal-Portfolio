@@ -4,10 +4,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // ═══════════════ LOADING SCREEN ═══════════════
     const loader = document.getElementById('loader');
-    window.addEventListener('load', () => {
-        setTimeout(() => loader.classList.add('hidden'), 500);
-    });
-    setTimeout(() => loader.classList.add('hidden'), 2000);
+    const deferredInits = [];  // functions to run AFTER loader hides
+    function hideLoader() {
+        if (loader.classList.contains('hidden')) return;
+        loader.classList.add('hidden');
+        // Run deferred inits after the fade-out completes (600ms transition)
+        setTimeout(() => deferredInits.forEach(fn => fn()), 650);
+    }
+    window.addEventListener('load', () => setTimeout(hideLoader, 500));
+    setTimeout(hideLoader, 2000);
 
     // ═══════════════ CURSOR GLOW ═══════════════
     const cursorGlow = document.getElementById('cursorGlow');
@@ -162,40 +167,20 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }, { passive: true });
 
-    // ═══════════════ CURSOR GLOW RAF (desktop only) ═══════════════
+    // ═══════════════ CURSOR GLOW RAF (desktop only, deferred) ═══════════════
     if (!isTouch) {
-        (function glowLoop() {
-            curX += (glowX - curX) * 0.12;
-            curY += (glowY - curY) * 0.12;
-            cursorGlow.style.left = curX + 'px';
-            cursorGlow.style.top = curY + 'px';
-            requestAnimationFrame(glowLoop);
-        })();
-    }
-
-    // ═══════════════ 3D TILT CARDS (desktop only) ═══════════════
-    if (!isTouch) {
-        document.querySelectorAll('.tilt-card').forEach(card => {
-            const glow = card.querySelector('.tilt-glow');
-            if (glow) glow.style.pointerEvents = 'none';
-            card.addEventListener('mousemove', (e) => {
-                const r = card.getBoundingClientRect();
-                const x = e.clientX - r.left;
-                const y = e.clientY - r.top;
-                const cx = r.width / 2;
-                const cy = r.height / 2;
-                const rotY = ((x - cx) / cx) * 8;
-                const rotX = ((cy - y) / cy) * 8;
-                card.style.transform = `perspective(1000px) rotateX(${rotX}deg) rotateY(${rotY}deg)`;
-                if (glow) { glow.style.left = x + 'px'; glow.style.top = y + 'px'; }
-            });
-            card.addEventListener('mouseleave', () => {
-                card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)';
-                card.style.transition = 'transform 0.5s ease';
-                setTimeout(() => card.style.transition = '', 500);
-            });
+        deferredInits.push(() => {
+            (function glowLoop() {
+                curX += (glowX - curX) * 0.12;
+                curY += (glowY - curY) * 0.12;
+                cursorGlow.style.left = curX + 'px';
+                cursorGlow.style.top = curY + 'px';
+                requestAnimationFrame(glowLoop);
+            })();
         });
     }
+
+    // (3D tilt cards removed — caused lag and visual glitches)
 
     // ═══════════════ JOB DETAIL SPLIT PANEL ═══════════════
     const timeline = document.getElementById('timeline');
@@ -266,6 +251,49 @@ document.addEventListener('DOMContentLoaded', () => {
         if (dx > 100 && dy < 80) closeDetail();
     }, { passive: true });
 
+    // ═══════════════ EARLIER EXPERIENCE LIGHTBOX ═══════════════
+    const earlierLightbox = document.getElementById('earlierLightbox');
+    if (earlierLightbox) {
+        const earlierLbHeader = document.getElementById('earlierLbHeader');
+        const earlierLbBody = document.getElementById('earlierLbBody');
+
+        function openEarlierLb(card) {
+            const identity = card.querySelector('.earlier-card-identity');
+            const meta = card.querySelector('.earlier-card-meta');
+            const details = card.querySelector('.earlier-card-details');
+            if (!details) return;
+
+            earlierLbHeader.innerHTML = (identity ? identity.outerHTML : '') +
+                (meta ? '<div class="earlier-card-meta">' + meta.innerHTML + '</div>' : '');
+            earlierLbBody.innerHTML = details.innerHTML;
+
+            earlierLightbox.classList.add('open');
+            document.body.style.overflow = 'hidden';
+            earlierLightbox.querySelector('.earlier-lb-content').scrollTop = 0;
+        }
+
+        function closeEarlierLb() {
+            earlierLightbox.classList.remove('open');
+            document.body.style.overflow = '';
+        }
+
+        document.querySelectorAll('.earlier-card').forEach(card => {
+            card.addEventListener('click', () => openEarlierLb(card));
+            card.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    openEarlierLb(card);
+                }
+            });
+        });
+
+        earlierLightbox.querySelector('.earlier-lb-close').addEventListener('click', closeEarlierLb);
+        earlierLightbox.querySelector('.earlier-lb-backdrop').addEventListener('click', closeEarlierLb);
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && earlierLightbox.classList.contains('open')) closeEarlierLb();
+        });
+    }
+
     // ═══════════════ UDEMY COLLAPSIBLE TOGGLE ═══════════════
     const udemyBtn = document.getElementById('udemyToggle');
     if (udemyBtn) udemyBtn.addEventListener('click', () => toggleCollapsible(udemyBtn));
@@ -287,19 +315,216 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // ═══════════════ FLIP CARDS: TAP-TO-TOGGLE (mobile/touch only) ═══════════════
-    if (isTouch || window.innerWidth <= 768) {
-        const flipHint = document.querySelector('.flip-hint');
-        if (flipHint) flipHint.textContent = 'Tap to flip and see details.';
-        let currentFlipped = null;
-        document.querySelectorAll('.flip-card').forEach(card => {
-            card.addEventListener('click', () => {
-                if (currentFlipped && currentFlipped !== card) {
-                    currentFlipped.classList.remove('flipped');
-                }
-                card.classList.toggle('flipped');
-                currentFlipped = card.classList.contains('flipped') ? card : null;
+    // ═══════════════ ANIMATED FOLDERS + LIGHTBOX ═══════════════
+    const folderData = [
+        {
+            title: 'Axiom',
+            subtitle: '7 microservices',
+            projects: [
+                {
+                    title: 'Axiom — AI Note Intelligence',
+                    date: '2025 – Present',
+                    summary: 'Started as a monolith (my-notes), then decomposed into 7 independent microservices — 3 are reusable AI platform services not tied to any specific project.',
+                    bullets: [
+                        'Architected 7-service platform: API, React UI, LLM gateway (Nexus), input normalizer (Pulse), LLM executor (Cortex), output renderer (Synth), and Docker orchestration.',
+                        'Pulse, Cortex, and Synth are standalone AI platform services — stateless, bearer-token auth, reusable across any project.',
+                        'Built async FastAPI backends with SQLModel ORM, Alembic migrations, PostgreSQL, and Supabase JWT auth.',
+                        'Designed AI pipeline: Pulse normalizes input → Cortex executes LLM calls (OpenAI, Anthropic, Gemini) with circuit breakers → Synth renders output via SSE/TTS.',
+                        'Frontend in React/Next.js 14 with TypeScript, TanStack Query, Zustand, and Tailwind CSS.'
+                    ],
+                    tags: ['Python','FastAPI','React','TypeScript','PostgreSQL','Docker','LLM'],
+                    image: 'img/axiom.svg', fallback: 'img/axiom.svg',
+                    links: [
+                        { label: 'my-notes (v1)', url: 'https://github.com/vsinghal3737/my-notes' },
+                        { label: 'Axiom-api', url: 'https://github.com/vsinghal3737/Axiom-api' },
+                        { label: 'Axiom-ui', url: 'https://github.com/vsinghal3737/Axiom-ui' },
+                        { label: 'Axiom-nexus', url: 'https://github.com/vsinghal3737/Axiom-nexus' },
+                        { label: 'Pulse', url: 'https://github.com/vsinghal3737/pulse', platform: true },
+                        { label: 'Cortex', url: 'https://github.com/vsinghal3737/cortex', platform: true },
+                        { label: 'Synth', url: 'https://github.com/vsinghal3737/synth', platform: true },
+                        { label: 'Orchestration', url: 'https://github.com/vsinghal3737/Axiom-orchestration' }
+                    ]
+                },
+            ]
+        },
+        {
+            title: 'Data Engineering',
+            projects: [
+                { title: 'RosterData — Ice Hockey v2', date: 'Jan 2020 – Apr 2020', summary: 'Expanded RosterData from NHL-only to 4-league coverage (NHL, SHL, Liiga, KHL) with cross-league player comparison.', bullets: ['Built league-specific Scrapy pipelines for SHL, Liiga, and KHL — each with unique HTML structures and pagination patterns.','Designed a normalized JSON data model for cross-league consistency (player identity, season stats, team associations).','Stored normalized data in PostgreSQL on AWS RDS with query-optimized indexing for player lookup and league standings.','Built REST APIs for player search, team rosters, and cross-league career timelines.'], tags: ['Python','Scrapy','PostgreSQL','AWS'], image: 'img/ice-hockey.webp', fallback: 'img/ice-hockey.jpg' },
+                { title: 'Hadoop Cluster & MapReduce', date: 'Mar 2017 – Jun 2017', summary: '8-node Hadoop cluster processing 300M+ YouTube video logs with MapReduce and cross-version benchmarking.', bullets: ['Configured 1 NameNode + 7 DataNodes with HDFS replication and YARN resource management.','Designed MapReduce jobs (Hadoop Streaming, Python): most-viewed by category, upload trends, viral video detection.','Benchmarked identical jobs across Hadoop versions — measured job time, CPU/memory, shuffle overhead, and speculative execution.','Documented quantitative speedups in scheduling and data shuffle across framework versions.'], tags: ['Hadoop','MapReduce','Python','HDFS'], image: 'img/hadoop.webp', fallback: 'img/hadoop.png' },
+            ]
+        },
+        {
+            title: 'Machine Learning',
+            projects: [
+                { title: 'LSA Classification & Prediction', date: 'Mar 2020 – Apr 2020', summary: 'End-to-end ML pipeline for financial document classification — 98% accuracy, deployed as a REST API on GCP.', bullets: ['Preprocessed financial documents: tokenization, stop-word removal, TF-IDF vectorization into numerical feature vectors.','Applied LSA (SVD on TF-IDF matrix) for dimensionality reduction while preserving discriminative dimensions.','Evaluated Naive Bayes, SVM, Random Forest, and Logistic Regression with grid search and cross-validation.','Built Flask REST APIs for real-time inference and deployed containerized on GCP Compute Engine.'], tags: ['Python','scikit-learn','Flask','GCP'], image: 'img/tfidf.webp', fallback: 'img/tfidf.png' },
+                { title: 'Diabetes Classifier & Clustering', date: 'Aug 2019 – Nov 2019', summary: 'Rigorous ML classification on clinical data with K-fold validation — 85% accuracy, plus unsupervised meal clustering.', bullets: ['Preprocessed Pima Indians Diabetes Dataset: median imputation for missing values, feature normalization, class imbalance analysis.','Evaluated Decision Tree, SVM, and KNN classifiers using K-fold cross-validation for generalizability.','Applied K-Means and DBSCAN clustering on meal/glucose data to identify dietary patterns correlated with glucose response.','Achieved 85% accuracy / 83% confidence validated across folds — not an artifact of a favorable split.'], tags: ['Python','Pandas','NumPy','scikit-learn'], image: 'img/sklearn.webp', fallback: 'img/sklearn.png' },
+            ]
+        },
+        {
+            title: 'Software Engineering',
+            projects: [
+                { title: 'Visual Learning Portal', date: 'Aug 2019 – Nov 2019', summary: 'Interactive math portal with drag-and-drop, built by a team of 5 using Agile/Scrum and formal design patterns.', bullets: ['Applied Facade (simplified complex subsystems), Factory (dynamic content creation), and Iterator (collection traversal) patterns.','Built Flask REST APIs with SQLAlchemy ORM; drag-and-drop frontend for interactive math exploration.','Ran 2-week sprints with backlog grooming, standups, and retrospectives across a 5-person team.'], tags: ['Python','Flask','SQLAlchemy','Agile'], image: 'img/math.webp', fallback: 'img/math.jpg' },
+                { title: '!Xobile Programming Language', date: 'Jan 2019 – May 2019', summary: 'Custom OOP language with full compilation pipeline — grammar spec, tokenizer, parser, and semantic analyzer.', bullets: ['Designed formal grammar: class declarations, inheritance, control flow, expressions, and OOP constructs (this, constructors, method dispatch).','Built regex-based tokenizer in Python (keywords, identifiers, operators, string literals with escape chars).','Implemented parser and semantic analyzer in Prolog: type checking, variable scoping, inheritance cycle detection, and method resolution.','End-to-end pipeline: valid programs produce semantically validated parse trees; invalid programs yield meaningful error messages.'], tags: ['Python','Prolog','Compiler Design'], image: 'img/lang.webp', fallback: 'img/lang.jpg' },
+            ]
+        }
+    ];
+
+    // Render folders
+    const folderGrid = document.getElementById('folderGrid');
+    if (folderGrid) {
+        folderData.forEach((folder, fi) => {
+            const count = folder.projects.length;
+            const el = document.createElement('div');
+            el.className = 'folder reveal';
+            el.style.setProperty('--delay', `${fi * 0.1}s`);
+            el.innerHTML = `
+                <div class="folder-visual">
+                    <div class="folder-back"></div>
+                    <div class="folder-tab"></div>
+                    <div class="folder-cards">
+                        ${folder.projects.map((p, pi) => `
+                            <div class="folder-card" data-fan="${count}-${pi}" data-fi="${fi}" data-pi="${pi}">
+                                <img src="${p.fallback}" alt="${p.title}" loading="lazy"/>
+                                <div class="folder-card-overlay"></div>
+                                <span class="folder-card-label">${p.title}</span>
+                            </div>
+                        `).join('')}
+                    </div>
+                    <div class="folder-front"></div>
+                </div>
+                <h3 class="folder-title">${folder.title}</h3>
+                <p class="folder-count">${folder.subtitle || (count + ' ' + (count === 1 ? 'project' : 'projects'))}</p>
+                <span class="folder-hint">Hover to explore</span>
+            `;
+            folderGrid.appendChild(el);
+            revealObs.observe(el);
+        });
+
+        // On touch devices: tap folder to toggle hover state
+        if (isTouch) {
+            let openFolder = null;
+            document.querySelectorAll('.folder').forEach(f => {
+                f.addEventListener('click', (e) => {
+                    if (e.target.closest('.folder-card')) return; // let card clicks through
+                    if (openFolder && openFolder !== f) openFolder.classList.remove('folder-open');
+                    f.classList.toggle('folder-open');
+                    openFolder = f.classList.contains('folder-open') ? f : null;
+                });
             });
+            // CSS: .folder-open triggers same visual as :hover
+            const touchStyle = document.createElement('style');
+            touchStyle.textContent = `
+                .folder-open .folder-back { transform: translate(-50%,-50%) rotateX(-15deg) !important; }
+                .folder-open .folder-tab { transform: rotateX(-25deg) translateY(-2px) !important; }
+                .folder-open .folder-front { transform: translateX(-50%) rotateX(25deg) translateY(8px) !important; }
+                .folder-open .folder-card[data-fan="1-0"] { transform: translateY(-85px) translateX(0) rotate(0deg) scale(1.05) !important; opacity:1 !important; }
+                .folder-open .folder-card[data-fan="2-0"] { transform: translateY(-80px) translateX(-32px) rotate(-8deg) scale(1) !important; opacity:1 !important; }
+                .folder-open .folder-card[data-fan="2-1"] { transform: translateY(-80px) translateX(32px) rotate(8deg) scale(1) !important; opacity:1 !important; transition-delay:80ms !important; }
+                .folder-open .folder-card[data-fan="3-0"] { transform: translateY(-80px) translateX(-50px) rotate(-12deg) scale(1) !important; opacity:1 !important; }
+                .folder-open .folder-card[data-fan="3-1"] { transform: translateY(-90px) translateX(0) rotate(0deg) scale(1) !important; opacity:1 !important; transition-delay:80ms !important; }
+                .folder-open .folder-card[data-fan="3-2"] { transform: translateY(-80px) translateX(50px) rotate(12deg) scale(1) !important; opacity:1 !important; transition-delay:160ms !important; }
+                .folder-open .folder-title { transform: translateY(4px) !important; }
+                .folder-open .folder-hint { opacity:0 !important; transform: translateY(10px) !important; }
+            `;
+            document.head.appendChild(touchStyle);
+        }
+    }
+
+    // Lightbox
+    const lb = document.getElementById('projectLightbox');
+    const lbImage = document.getElementById('lbImage');
+    const lbTitle = document.getElementById('lbTitle');
+    const lbDate = document.getElementById('lbDate');
+    const lbSummary = document.getElementById('lbSummary');
+    const lbTags = document.getElementById('lbTags');
+    const lbDots = document.getElementById('lbDots');
+    const lbPrev = lb ? lb.querySelector('.lb-prev') : null;
+    const lbNext = lb ? lb.querySelector('.lb-next') : null;
+    const lbClose = lb ? lb.querySelector('.lb-close') : null;
+
+    let lbFolderIdx = 0;
+    let lbProjectIdx = 0;
+
+    function openLightbox(fi, pi) {
+        lbFolderIdx = fi;
+        lbProjectIdx = pi;
+        updateLightbox();
+        lb.classList.add('open');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+        lb.classList.remove('open');
+        document.body.style.overflow = '';
+    }
+
+    function updateLightbox() {
+        const folder = folderData[lbFolderIdx];
+        if (!folder) return;
+        const p = folder.projects[lbProjectIdx];
+        if (!p) return;
+        lbImage.src = p.fallback;
+        lbImage.style.display = '';
+        lbImage.alt = p.title;
+        lbTitle.textContent = p.title;
+        lbDate.textContent = p.date;
+        lbSummary.textContent = p.summary;
+        const lbBullets = document.getElementById('lbBullets');
+        if (lbBullets) {
+            lbBullets.innerHTML = p.bullets && p.bullets.length
+                ? '<ul>' + p.bullets.map(b => `<li>${b}</li>`).join('') + '</ul>'
+                : '';
+        }
+        lbTags.innerHTML = p.tags.map(t => `<span>${t}</span>`).join('');
+        // Render GitHub links if present
+        let lbLinks = lb.querySelector('.lb-links');
+        if (!lbLinks) {
+            lbLinks = document.createElement('div');
+            lbLinks.className = 'lb-links';
+            lbTags.parentElement.insertBefore(lbLinks, lbTags.nextSibling);
+        }
+        if (p.links && p.links.length) {
+            lbLinks.style.display = '';
+            lbLinks.innerHTML = p.links.map(l =>
+                `<a href="${l.url}" target="_blank" rel="noopener" class="lb-link${l.platform ? ' lb-link-platform' : ''}">`
+                + `<svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>`
+                + `<span>${l.label}</span></a>`
+            ).join('');
+        } else {
+            lbLinks.style.display = 'none';
+        }
+        lbDots.innerHTML = folder.projects.map((_, i) =>
+            `<button class="lb-dot${i === lbProjectIdx ? ' active' : ''}" data-i="${i}"></button>`
+        ).join('');
+        lbPrev.disabled = lbProjectIdx <= 0;
+        lbNext.disabled = lbProjectIdx >= folder.projects.length - 1;
+    }
+
+    if (lb) {
+        // Card click → open lightbox
+        document.addEventListener('click', (e) => {
+            const card = e.target.closest('.folder-card');
+            if (!card) return;
+            e.stopPropagation();
+            openLightbox(+card.dataset.fi, +card.dataset.pi);
+        });
+
+        lbClose.addEventListener('click', closeLightbox);
+        lb.querySelector('.lb-backdrop').addEventListener('click', closeLightbox);
+        lbPrev.addEventListener('click', (e) => { e.stopPropagation(); if (lbProjectIdx > 0) { lbProjectIdx--; updateLightbox(); } });
+        lbNext.addEventListener('click', (e) => { e.stopPropagation(); if (lbProjectIdx < folderData[lbFolderIdx].projects.length - 1) { lbProjectIdx++; updateLightbox(); } });
+        lbDots.addEventListener('click', (e) => {
+            const dot = e.target.closest('.lb-dot');
+            if (dot) { lbProjectIdx = +dot.dataset.i; updateLightbox(); }
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (!lb.classList.contains('open')) return;
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowRight' && lbProjectIdx < folderData[lbFolderIdx].projects.length - 1) { lbProjectIdx++; updateLightbox(); }
+            if (e.key === 'ArrowLeft' && lbProjectIdx > 0) { lbProjectIdx--; updateLightbox(); }
         });
     }
 
@@ -315,29 +540,107 @@ document.addEventListener('DOMContentLoaded', () => {
     }, { threshold: 0.5 });
     dots.forEach(d => dotObs.observe(d));
 
-    // ═══════════════ ORBIT: set --tx per ring for hover scale ═══════════════
-    const ringRadii = { 'ring-1': 120, 'ring-2': 200, 'ring-3': 290, 'ring-4': 370 };
-    document.querySelectorAll('.orbit-node').forEach(node => {
-        const ring = node.parentElement;
-        for (const [cls, r] of Object.entries(ringRadii)) {
-            if (ring.classList.contains(cls)) { node.style.setProperty('--tx', r + 'px'); break; }
-        }
-    });
+    // ═══════════════ ORBITING SKILLS ANIMATION ═══════════════
+    const orbitContainer = document.querySelector('.orbit-container');
+    if (orbitContainer) {
+        const ringSpeeds = [0.4, -0.25, 0.15, -0.1]; // CW, CCW, CW, CCW
 
-    // ═══════════════ ORBIT TOOLTIP (desktop only) ═══════════════
-    if (!isTouch) {
-        const tooltip = document.getElementById('orbitTooltip');
-        document.querySelectorAll('.orbit-node').forEach(node => {
-            node.addEventListener('mouseenter', () => {
-                tooltip.textContent = node.dataset.cat + ': ' + node.textContent;
-                tooltip.classList.add('visible');
-            });
-            node.addEventListener('mousemove', (e) => {
-                tooltip.style.left = e.clientX + 14 + 'px';
-                tooltip.style.top = e.clientY - 10 + 'px';
-            });
-            node.addEventListener('mouseleave', () => tooltip.classList.remove('visible'));
+        // Collect nodes per ring with their base angle; radius from CSS
+        function buildRings() {
+            return ['ring-1', 'ring-2', 'ring-3', 'ring-4'].map((cls, idx) => {
+                const ringEl = orbitContainer.querySelector(`.${cls}`);
+                if (!ringEl || ringEl.offsetParent === null) return null; // hidden (e.g. ring-4 at 900px)
+                const nodes = Array.from(ringEl.querySelectorAll('.orbit-node'));
+                const radiusX = ringEl.offsetWidth / 2;
+                const radiusY = ringEl.offsetHeight / 2; // elliptical
+                return {
+                    cls, radiusX, radiusY, speed: ringSpeeds[idx], el: ringEl,
+                    nodes: nodes.map((node, i) => ({
+                        el: node,
+                        baseAngle: (2 * Math.PI / nodes.length) * i
+                    }))
+                };
+            }).filter(Boolean);
+        }
+        let rings = buildRings();
+
+        // Rebuild on resize so radii stay in sync with CSS breakpoints
+        let resizeTimer;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(() => { rings = buildRings(); }, 150);
         });
+
+        let orbitTime = 0;
+        let orbitPaused = false;
+        let orbitRAF = null;
+        let lastOrbitTime = performance.now();
+
+        function updateOrbit(now) {
+            if (!orbitPaused) {
+                const dt = (now - lastOrbitTime) / 1000;
+                orbitTime += dt;
+            }
+            lastOrbitTime = now;
+
+            rings.forEach(ring => {
+                const angleOffset = orbitTime * ring.speed;
+                ring.nodes.forEach(({ el, baseAngle }) => {
+                    const angle = baseAngle + angleOffset;
+                    const x = Math.cos(angle) * ring.radiusX;
+                    const y = Math.sin(angle) * ring.radiusY;
+                    el.style.left = (ring.radiusX + x) + 'px';
+                    el.style.top = (ring.radiusY + y) + 'px';
+                    el.style.transform = 'translate(-50%, -50%)';
+                });
+            });
+
+            orbitRAF = requestAnimationFrame(updateOrbit);
+        }
+
+        // Start animation after loader finishes (avoid competing for frames)
+        // Skip on reduced-motion or if orbit container is hidden (mobile)
+        const prefersStill = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (!prefersStill && orbitContainer.offsetParent !== null) {
+            deferredInits.push(() => { orbitRAF = requestAnimationFrame(updateOrbit); });
+        }
+
+        // Pause on hover
+        orbitContainer.addEventListener('mouseenter', () => {
+            orbitPaused = true;
+            orbitContainer.classList.add('paused');
+        });
+        orbitContainer.addEventListener('mouseleave', () => {
+            orbitPaused = false;
+            orbitContainer.classList.remove('paused');
+            lastOrbitTime = performance.now(); // avoid dt spike
+        });
+
+        // Tooltip (desktop only)
+        if (!isTouch) {
+            const tooltip = document.getElementById('orbitTooltip');
+            document.querySelectorAll('.orbit-node').forEach(node => {
+                node.addEventListener('mouseenter', () => {
+                    tooltip.textContent = node.dataset.cat + ': ' + node.textContent.trim();
+                    tooltip.classList.add('visible');
+                });
+                node.addEventListener('mousemove', (e) => {
+                    tooltip.style.left = e.clientX + 14 + 'px';
+                    tooltip.style.top = e.clientY - 10 + 'px';
+                });
+                node.addEventListener('mouseleave', () => tooltip.classList.remove('visible'));
+            });
+        }
+
+        // Pause when out of viewport (save CPU)
+        const orbitVisObs = new IntersectionObserver(([entry]) => {
+            if (entry.isIntersecting) {
+                if (!orbitRAF) orbitRAF = requestAnimationFrame(updateOrbit);
+            } else {
+                if (orbitRAF) { cancelAnimationFrame(orbitRAF); orbitRAF = null; }
+            }
+        }, { threshold: 0.1 });
+        orbitVisObs.observe(orbitContainer);
     }
 
     // ═══════════════ KONAMI CODE EASTER EGG ═══════════════

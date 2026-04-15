@@ -98,6 +98,18 @@
       <div class="mesh-blob blob-4"></div>
     </div>
 
+    <!-- 3D ROBOT — persistent fixed background -->
+    <div class="robot-scene" id="robotScene">
+      <canvas id="robotCanvas"></canvas>
+      <div class="robot-loader" id="robotLoader">
+        <svg class="robot-spinner" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <circle class="spinner-track" cx="12" cy="12" r="10" fill="none" stroke-width="3"/>
+          <circle class="spinner-fill" cx="12" cy="12" r="10" fill="none" stroke-width="3"/>
+        </svg>
+        <span class="robot-loader-text">Loading 3D scene…</span>
+      </div>
+    </div>
+
     <!-- LOADING SCREEN -->
     <div id="loader">
       <svg
@@ -365,7 +377,7 @@
               <div class="timeline-dot-pulse"></div>
             </div>
             <div class="timeline-card glass-card tilt-card">
-              <div class="tilt-glow"></div>
+  
               <div class="job-header" role="button" tabindex="0">
                 <div class="job-header-left">
                   <div class="company-logo">W</div>
@@ -386,6 +398,20 @@
                       exponential backoff retries. Serving thousands of auth
                       requests/min across Workday and Evisort.
                     </p>
+                    <div class="job-highlights">
+                      <div class="job-highlight">
+                        <span class="highlight-num">7</span>
+                        <span class="highlight-label">identity systems delivered</span>
+                      </div>
+                      <div class="job-highlight">
+                        <span class="highlight-num">10K+</span>
+                        <span class="highlight-label">auth requests/min</span>
+                      </div>
+                      <div class="job-highlight">
+                        <span class="highlight-num">4</span>
+                        <span class="highlight-label">services owned</span>
+                      </div>
+                    </div>
                   </div>
                 </div>
                 <div class="job-header-right">
@@ -667,7 +693,7 @@
           <div class="timeline-item reveal">
             <div class="timeline-dot"></div>
             <div class="timeline-card glass-card tilt-card">
-              <div class="tilt-glow"></div>
+  
               <div class="job-header" role="button" tabindex="0">
                 <div class="job-header-left">
                   <div class="company-logo lp-logo">LP</div>
@@ -685,6 +711,20 @@
                       SIP APIs, and Kafka schema service. Cut latency 35% and
                       scaled concurrent calls to 700.
                     </p>
+                    <div class="job-highlights">
+                      <div class="job-highlight">
+                        <span class="highlight-num">700</span>
+                        <span class="highlight-label">concurrent calls</span>
+                      </div>
+                      <div class="job-highlight">
+                        <span class="highlight-num">35%</span>
+                        <span class="highlight-label">latency reduction</span>
+                      </div>
+                      <div class="job-highlight">
+                        <span class="highlight-num">87%</span>
+                        <span class="highlight-label">test coverage</span>
+                      </div>
+                    </div>
                   </div>
                 </div>
                 <div class="job-header-right">
@@ -859,7 +899,7 @@
           <div class="timeline-item reveal">
             <div class="timeline-dot"></div>
             <div class="timeline-card glass-card tilt-card">
-              <div class="tilt-glow"></div>
+  
               <div class="job-header" role="button" tabindex="0">
                 <div class="job-header-left">
                   <div class="company-logo bk-logo">BK</div>
@@ -877,6 +917,20 @@
                       to 89%, cut production costs 20%, and automated 80% of
                       manual transaction retries.
                     </p>
+                    <div class="job-highlights">
+                      <div class="job-highlight">
+                        <span class="highlight-num">89%</span>
+                        <span class="highlight-label">OCR accuracy</span>
+                      </div>
+                      <div class="job-highlight">
+                        <span class="highlight-num">20%</span>
+                        <span class="highlight-label">cost reduction</span>
+                      </div>
+                      <div class="job-highlight">
+                        <span class="highlight-num">80%</span>
+                        <span class="highlight-label">retries automated</span>
+                      </div>
+                    </div>
                   </div>
                 </div>
                 <div class="job-header-right">
@@ -945,215 +999,6 @@
             </div>
           </div>
 
-          <!-- Earlier Experience divider -->
-          <div class="timeline-divider reveal">
-            <span>Earlier Experience</span>
-          </div>
-
-          <!-- Research Scholar -->
-          <div class="timeline-item reveal">
-            <div class="timeline-dot"></div>
-            <div class="timeline-card glass-card tilt-card">
-              <div class="tilt-glow"></div>
-              <div class="job-header" role="button" tabindex="0">
-                <div class="job-header-left">
-                  <div class="company-logo rs-logo">RS</div>
-                  <div>
-                    <h3>Research Scholar</h3>
-                    <p class="company-name">
-                      Bharati Vidyapeeth's College of Engineering
-                    </p>
-                    <div class="job-tags">
-                      <span class="job-tag">Steganography</span
-                      ><span class="job-tag">NLP</span
-                      ><span class="job-tag">Cloud Security</span>
-                    </div>
-                    <p class="job-summary">
-                      Published two research papers on cloud security
-                      steganography and NLP-based clinical decision support
-                      systems.
-                    </p>
-                  </div>
-                </div>
-                <div class="job-header-right">
-                  <span class="job-date">Jan 2017 – Sep 2017</span>
-                  <span class="job-location">Delhi, India</span>
-                </div>
-              </div>
-              <div class="job-details">
-                <div class="job-section">
-                  <p class="job-intro">
-                    CSE Department under Dr. Rachna Jain — Published two
-                    research papers.
-                  </p>
-                  <div class="exp-item">
-                    <strong
-                      ><a
-                        href="http://www.recentscientific.com/enhance-data-security-cloud-using-steganography"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        >Enhance Data Security in Cloud Using Steganography</a
-                      ></strong
-                    >
-                    <ul>
-                      <li>
-                        Studied Cloud Service Providers vs Internet Service
-                        Providers based on cost, speed, scalability, and
-                        performance.
-                      </li>
-                      <li>
-                        Reviewed techniques of steganography (LSB) and digital
-                        watermarking (DFT) in spatial and frequency domain.
-                      </li>
-                      <li>
-                        In-depth study on Symmetric Key Encryption (DES, AES)
-                        and Asymmetric Key Encryption (RSA).
-                      </li>
-                      <li>
-                        Proposed a model for Image Steganography using LSB,
-                        mapping every bit of data and encryption key in RGB
-                        pixels.
-                      </li>
-                    </ul>
-                  </div>
-                  <div class="exp-item">
-                    <strong
-                      ><a
-                        href="http://www.recentscientific.com/medical-application-using-nlp-over-cloud"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        >Medical Application Using NLP Over Cloud</a
-                      ></strong
-                    >
-                    <ul>
-                      <li>
-                        Knowledge acquisition on NLP systems and open source
-                        libraries (NLTK, Polyglot, Pattern).
-                      </li>
-                      <li>
-                        Studied Morphological Processing, Syntax, Semantic and
-                        Pragmatic Analysis.
-                      </li>
-                      <li>
-                        Comparative study on public, private, and hybrid clouds
-                        based on reliability, cost, and scalability.
-                      </li>
-                      <li>
-                        Proposed a computerized Clinical Decision Support (CDS)
-                        System using cloud services.
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- TATA Internship -->
-          <div class="timeline-item reveal">
-            <div class="timeline-dot"></div>
-            <div class="timeline-card glass-card tilt-card">
-              <div class="tilt-glow"></div>
-              <div class="job-header" role="button" tabindex="0">
-                <div class="job-header-left">
-                  <div class="company-logo tc-logo">TC</div>
-                  <div>
-                    <h3>Consulting &amp; Software Intern</h3>
-                    <p class="company-name">TATA Computer Management Corp</p>
-                    <div class="job-tags">
-                      <span class="job-tag">Python</span
-                      ><span class="job-tag">Flask</span
-                      ><span class="job-tag">MongoDB</span
-                      ><span class="job-tag">ETL</span>
-                    </div>
-                    <p class="job-summary">
-                      Built a full-stack web app with Flask and MongoDB — drove
-                      45% sales increase and 30% faster query performance via
-                      ETL optimization.
-                    </p>
-                  </div>
-                </div>
-                <div class="job-header-right">
-                  <span class="job-date">May 2016 – Aug 2016</span>
-                  <span class="job-location">Delhi, India</span>
-                </div>
-              </div>
-              <div class="job-details">
-                <div class="job-section">
-                  <div class="exp-item">
-                    <strong>Full stack API-driven web application</strong> —
-                    Increased sales by 45% and reduced data storage inventory by
-                    38%.
-                    <ul>
-                      <li>
-                        Implemented Agile process across teams, improved
-                        customer interaction and sprint feedback.
-                      </li>
-                      <li>
-                        Developed RESTful APIs using Python with Flask, JWT
-                        Session Management for security.
-                      </li>
-                      <li>
-                        Performed ETL on legacy database, improved query
-                        performance by 30%.
-                      </li>
-                      <li>
-                        Interacted with the DB using MongoDB Alchemy (NoSQL),
-                        improving flexibility and providing Object-Oriented
-                        structure.
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Bharati Vidyapeeth Trainee -->
-          <div class="timeline-item reveal">
-            <div class="timeline-dot"></div>
-            <div class="timeline-card glass-card tilt-card">
-              <div class="tilt-glow"></div>
-              <div class="job-header" role="button" tabindex="0">
-                <div class="job-header-left">
-                  <div class="company-logo bv-logo">BV</div>
-                  <div>
-                    <h3>Android App Development Trainee</h3>
-                    <p class="company-name">
-                      Bharati Vidyapeeth's College of Engineering
-                    </p>
-                    <div class="job-tags">
-                      <span class="job-tag">Android</span
-                      ><span class="job-tag">Java</span>
-                    </div>
-                    <p class="job-summary">
-                      Developed an Android video player with gesture controls,
-                      custom UI, and third-party SDK integrations.
-                    </p>
-                  </div>
-                </div>
-                <div class="job-header-right">
-                  <span class="job-date">May 2015 – Jul 2015</span>
-                  <span class="job-location">Delhi, India</span>
-                </div>
-              </div>
-              <div class="job-details">
-                <div class="job-section">
-                  <div class="exp-item">
-                    <strong>Developed a video player application</strong> using
-                    Android Studio.
-                    <ul>
-                      <li>Built list/grid view and gesture controls.</li>
-                      <li>
-                        Worked on app UI, deep functionality, and third-party
-                        SDKs.
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
           <div
             class="job-detail-panel"
             id="jobDetailPanel"
@@ -1177,6 +1022,162 @@
             </button>
           </div>
         </div>
+
+        <!-- ── Earlier Experience ── -->
+        <div class="earlier-divider reveal">
+          <span>Earlier Experience</span>
+        </div>
+
+        <div class="earlier-grid">
+
+          <!-- Research Scholar -->
+          <div class="earlier-card glass-card tilt-card reveal" tabindex="0" role="button" aria-label="View Research details">
+
+            <div class="earlier-card-accent rs"></div>
+            <div class="earlier-card-inner">
+              <div class="earlier-card-identity">
+                <div class="company-logo rs-logo">RS</div>
+                <div>
+                  <h3>Research Scholar</h3>
+                  <p class="company-name">Bharati Vidyapeeth's College of Engineering</p>
+                </div>
+              </div>
+              <div class="earlier-card-meta">
+                <span class="earlier-date">Jan 2017 &ndash; Sep 2017</span>
+                <span class="earlier-loc">Delhi, India</span>
+              </div>
+              <p class="earlier-card-summary">
+                Published two research papers on cloud security steganography
+                and NLP-based clinical decision support systems.
+              </p>
+              <div class="earlier-card-highlight">
+                <span class="highlight-num">2</span>
+                <span class="highlight-label">published papers</span>
+              </div>
+              <div class="earlier-card-tags">
+                <span class="job-tag">Steganography</span><span class="job-tag">NLP</span><span class="job-tag">Cloud Security</span>
+              </div>
+              <span class="earlier-card-cta">View details &rarr;</span>
+            </div>
+            <div class="earlier-card-details" hidden>
+              <div class="job-section">
+                <p class="job-intro">CSE Department under Dr. Rachna Jain — Published two research papers.</p>
+                <div class="exp-item">
+                  <strong><a href="http://www.recentscientific.com/enhance-data-security-cloud-using-steganography" target="_blank" rel="noopener noreferrer">Enhance Data Security in Cloud Using Steganography</a></strong>
+                  <ul>
+                    <li>Studied Cloud Service Providers vs Internet Service Providers based on cost, speed, scalability, and performance.</li>
+                    <li>Reviewed techniques of steganography (LSB) and digital watermarking (DFT) in spatial and frequency domain.</li>
+                    <li>In-depth study on Symmetric Key Encryption (DES, AES) and Asymmetric Key Encryption (RSA).</li>
+                    <li>Proposed a model for Image Steganography using LSB, mapping every bit of data and encryption key in RGB pixels.</li>
+                  </ul>
+                </div>
+                <div class="exp-item">
+                  <strong><a href="http://www.recentscientific.com/medical-application-using-nlp-over-cloud" target="_blank" rel="noopener noreferrer">Medical Application Using NLP Over Cloud</a></strong>
+                  <ul>
+                    <li>Knowledge acquisition on NLP systems and open source libraries (NLTK, Polyglot, Pattern).</li>
+                    <li>Studied Morphological Processing, Syntax, Semantic and Pragmatic Analysis.</li>
+                    <li>Comparative study on public, private, and hybrid clouds based on reliability, cost, and scalability.</li>
+                    <li>Proposed a computerized Clinical Decision Support (CDS) System using cloud services.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- TATA Internship -->
+          <div class="earlier-card glass-card tilt-card reveal" tabindex="0" role="button" aria-label="View TATA details">
+
+            <div class="earlier-card-accent tc"></div>
+            <div class="earlier-card-inner">
+              <div class="earlier-card-identity">
+                <div class="company-logo tc-logo">TC</div>
+                <div>
+                  <h3>Consulting &amp; Software Intern</h3>
+                  <p class="company-name">TATA Computer Management Corp</p>
+                </div>
+              </div>
+              <div class="earlier-card-meta">
+                <span class="earlier-date">May 2016 &ndash; Aug 2016</span>
+                <span class="earlier-loc">Delhi, India</span>
+              </div>
+              <p class="earlier-card-summary">
+                Built a full-stack web app with Flask and MongoDB &mdash; drove
+                45% sales increase and 30% faster query performance via ETL optimization.
+              </p>
+              <div class="earlier-card-highlight">
+                <span class="highlight-num">45%</span>
+                <span class="highlight-label">sales increase</span>
+              </div>
+              <div class="earlier-card-tags">
+                <span class="job-tag">Python</span><span class="job-tag">Flask</span><span class="job-tag">MongoDB</span><span class="job-tag">ETL</span>
+              </div>
+              <span class="earlier-card-cta">View details &rarr;</span>
+            </div>
+            <div class="earlier-card-details" hidden>
+              <div class="job-section">
+                <div class="exp-item">
+                  <strong>Full stack API-driven web application</strong> — Increased sales by 45% and reduced data storage inventory by 38%.
+                  <ul>
+                    <li>Implemented Agile process across teams, improved customer interaction and sprint feedback.</li>
+                    <li>Developed RESTful APIs using Python with Flask, JWT Session Management for security.</li>
+                    <li>Performed ETL on legacy database, improved query performance by 30%.</li>
+                    <li>Interacted with the DB using MongoDB Alchemy (NoSQL), improving flexibility and providing Object-Oriented structure.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bharati Vidyapeeth Trainee -->
+          <div class="earlier-card glass-card tilt-card reveal" tabindex="0" role="button" aria-label="View BV Training details">
+
+            <div class="earlier-card-accent bv"></div>
+            <div class="earlier-card-inner">
+              <div class="earlier-card-identity">
+                <div class="company-logo bv-logo">BV</div>
+                <div>
+                  <h3>Android App Dev Trainee</h3>
+                  <p class="company-name">Bharati Vidyapeeth's College of Engineering</p>
+                </div>
+              </div>
+              <div class="earlier-card-meta">
+                <span class="earlier-date">May 2015 &ndash; Jul 2015</span>
+                <span class="earlier-loc">Delhi, India</span>
+              </div>
+              <p class="earlier-card-summary">
+                Developed an Android video player with gesture controls,
+                custom UI, and third-party SDK integrations.
+              </p>
+              <div class="earlier-card-tags">
+                <span class="job-tag">Android</span><span class="job-tag">Java</span>
+              </div>
+              <span class="earlier-card-cta">View details &rarr;</span>
+            </div>
+            <div class="earlier-card-details" hidden>
+              <div class="job-section">
+                <div class="exp-item">
+                  <strong>Developed a video player application</strong> using Android Studio.
+                  <ul>
+                    <li>Built list/grid view and gesture controls.</li>
+                    <li>Worked on app UI, deep functionality, and third-party SDKs.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- Earlier Experience Lightbox -->
+      <div class="earlier-lightbox" id="earlierLightbox">
+        <div class="earlier-lb-backdrop"></div>
+        <div class="earlier-lb-content">
+          <button class="earlier-lb-close" aria-label="Close">&times;</button>
+          <div class="earlier-lb-header" id="earlierLbHeader"></div>
+          <div class="earlier-lb-body" id="earlierLbBody"></div>
+        </div>
       </div>
     </section>
 
@@ -1197,7 +1198,13 @@
           </p>
         </div>
         <div class="orbit-container reveal">
-          <div class="orbit-core">CORE</div>
+          <div class="orbit-core">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="url(#orbitGrad)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <defs><linearGradient id="orbitGrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#6c63ff"/><stop offset="100%" stop-color="#00d4aa"/></linearGradient></defs>
+              <polyline points="16 18 22 12 16 6"></polyline>
+              <polyline points="8 6 2 12 8 18"></polyline>
+            </svg>
+          </div>
           <!-- Ring 1: Languages -->
           <div class="orbit-ring ring-1">
             <div
@@ -1495,7 +1502,7 @@
         <!-- Fallback grid for mobile -->
         <div class="skills-grid-fallback">
           <div class="skill-category glass-card tilt-card reveal">
-            <div class="tilt-glow"></div>
+
             <h4>Languages</h4>
             <div class="tags">
               <span class="tag" data-level="expert">Python</span
@@ -1507,7 +1514,7 @@
             </div>
           </div>
           <div class="skill-category glass-card tilt-card reveal">
-            <div class="tilt-glow"></div>
+
             <h4>Database &amp; Storage</h4>
             <div class="tags">
               <span class="tag" data-level="expert">PostgreSQL</span
@@ -1521,7 +1528,7 @@
             </div>
           </div>
           <div class="skill-category glass-card tilt-card reveal">
-            <div class="tilt-glow"></div>
+
             <h4>Back-end</h4>
             <div class="tags">
               <span class="tag" data-level="expert">FastAPI</span
@@ -1538,7 +1545,7 @@
             </div>
           </div>
           <div class="skill-category glass-card tilt-card reveal">
-            <div class="tilt-glow"></div>
+
             <h4>Cloud (GCP &amp; AWS)</h4>
             <div class="tags">
               <span class="tag" data-level="expert">GKE</span
@@ -1551,7 +1558,7 @@
             </div>
           </div>
           <div class="skill-category glass-card tilt-card reveal">
-            <div class="tilt-glow"></div>
+
             <h4>Big Data</h4>
             <div class="tags">
               <span class="tag" data-level="advanced">Spark Streaming</span
@@ -1563,7 +1570,7 @@
             </div>
           </div>
           <div class="skill-category glass-card tilt-card reveal">
-            <div class="tilt-glow"></div>
+
             <h4>Tools &amp; Observability</h4>
             <div class="tags">
               <span class="tag" data-level="expert">GitLab CI/CD</span
@@ -1595,27 +1602,43 @@
         </div>
         <div class="edu-grid">
           <div class="edu-card glass-card tilt-card reveal">
-            <div class="tilt-glow"></div>
-            <div class="edu-year">2018 – 2020</div>
-            <h4>Arizona State University</h4>
-            <p class="edu-location">Tempe, Arizona, USA</p>
-            <p class="edu-degree">M.S. Software Engineering</p>
+
+            <div class="edu-accent asu"></div>
+            <div class="edu-card-inner">
+              <div class="edu-year">2018 &ndash; 2020</div>
+              <h4>Arizona State University</h4>
+              <p class="edu-location">Tempe, Arizona, USA</p>
+              <div class="edu-degree-badge">
+                <span class="edu-degree-icon">MS</span>
+                <span class="edu-degree-text">M.S. Software Engineering</span>
+              </div>
+            </div>
           </div>
           <div class="edu-card glass-card tilt-card reveal">
-            <div class="tilt-glow"></div>
-            <div class="edu-year">2014 – 2017</div>
-            <h4>Guru Gobind Singh Indraprastha University</h4>
-            <p class="edu-location">Delhi, India</p>
-            <p class="edu-degree">B.Tech Computer Science</p>
+
+            <div class="edu-accent ggsipu"></div>
+            <div class="edu-card-inner">
+              <div class="edu-year">2014 &ndash; 2017</div>
+              <h4>Guru Gobind Singh Indraprastha University</h4>
+              <p class="edu-location">Delhi, India</p>
+              <div class="edu-degree-badge">
+                <span class="edu-degree-icon">BT</span>
+                <span class="edu-degree-text">B.Tech Computer Science</span>
+              </div>
+            </div>
           </div>
           <div class="edu-card glass-card tilt-card reveal">
-            <div class="tilt-glow"></div>
-            <div class="edu-year">2011 – 2014</div>
-            <h4>Guru Nanak Dev Institute of Technology</h4>
-            <p class="edu-location">Delhi, India</p>
-            <p class="edu-degree">
-              Associate — Electronics &amp; Communications
-            </p>
+
+            <div class="edu-accent gndec"></div>
+            <div class="edu-card-inner">
+              <div class="edu-year">2011 &ndash; 2014</div>
+              <h4>Guru Nanak Dev Institute of Technology</h4>
+              <p class="edu-location">Delhi, India</p>
+              <div class="edu-degree-badge">
+                <span class="edu-degree-icon">AS</span>
+                <span class="edu-degree-text">Associate &mdash; Electronics &amp; Communications</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -1638,25 +1661,25 @@
         </div>
         <div class="cert-grid">
           <div class="cert-card glass-card tilt-card reveal">
-            <div class="tilt-glow"></div>
+
             <div class="cert-badge">CCA-175</div>
             <h4>Cloudera Certified Associate</h4>
             <p>Spark and Hadoop Developer</p>
           </div>
           <div class="cert-card glass-card tilt-card reveal">
-            <div class="tilt-glow"></div>
+
             <div class="cert-badge">PCAP</div>
             <h4>PythonInstitute Certified Associate</h4>
             <p>Python Programming (PCAP-31-02)</p>
           </div>
           <div class="cert-card glass-card tilt-card reveal">
-            <div class="tilt-glow"></div>
+
             <div class="cert-badge">OCA</div>
             <h4>Oracle Certified Associate</h4>
             <p>Database SQL (1Z0-071)</p>
           </div>
           <div class="cert-card glass-card tilt-card reveal">
-            <div class="tilt-glow"></div>
+
             <div class="cert-badge">GCP</div>
             <h4>Google Associate Cloud Engineer</h4>
             <p>Google Cloud Platform</p>
@@ -1694,271 +1717,50 @@
       </div>
     </section>
 
-    <!-- ═══════════════ PROJECTS (FLIP CARDS) ═══════════════ -->
+    <!-- ═══════════════ PROJECTS (ANIMATED FOLDERS) ═══════════════ -->
     <section id="projects">
       <div class="container">
         <div class="section-header reveal">
           <span class="section-number">05</span>
           <h2 class="section-title">Projects</h2>
-          <p class="section-subtitle flip-hint">
-            Hover to flip and see details.
+          <p class="section-subtitle">
+            Hover a folder to peek inside. Click a card to expand.
           </p>
         </div>
-        <div class="project-grid">
-          <div class="flip-card reveal">
-            <div class="flip-inner">
-              <div class="flip-front">
-                <picture><source srcset="img/ice-hockey.webp" type="image/webp" /><img src="img/ice-hockey.jpg" alt="Ice Hockey" loading="lazy" width="600" height="380" /></picture>
-                <div class="flip-front-overlay">
-                  <h4>RosterData — Ice Hockey v2</h4>
-                  <div class="project-tags">
-                    <span>Python</span><span>Scrapy</span><span>PostgreSQL</span
-                    ><span>AWS</span>
-                  </div>
-                </div>
-              </div>
-              <div class="flip-back glass-card">
-                <h4>RosterData — Ice Hockey Statistics v2</h4>
-                <p class="project-date">Jan 2020 – Apr 2020</p>
-                <p>
-                  Expanded RosterData from NHL-only to 4-league coverage (NHL,
-                  SHL, Liiga, KHL) with cross-league player comparison.
-                </p>
-                <ul>
-                  <li>
-                    Built league-specific Scrapy pipelines for SHL, Liiga, and
-                    KHL — each with unique HTML structures and pagination
-                    patterns.
-                  </li>
-                  <li>
-                    Designed a normalized JSON data model for cross-league
-                    consistency (player identity, season stats, team
-                    associations).
-                  </li>
-                  <li>
-                    Stored normalized data in PostgreSQL on AWS RDS with
-                    query-optimized indexing for player lookup and league
-                    standings.
-                  </li>
-                  <li>
-                    Built REST APIs for player search, team rosters, and
-                    cross-league career timelines.
-                  </li>
-                </ul>
-              </div>
-            </div>
+        <div class="folder-grid" id="folderGrid"></div>
+      </div>
+    </section>
+
+    <!-- PROJECT LIGHTBOX -->
+    <div class="lb-overlay" id="projectLightbox">
+      <div class="lb-backdrop"></div>
+      <button class="lb-close" aria-label="Close">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+      <button class="lb-prev" aria-label="Previous">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
+      <button class="lb-next" aria-label="Next">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 6 15 12 9 18"/></svg>
+      </button>
+      <div class="lb-container">
+        <div class="lb-card">
+          <div class="lb-image-wrap">
+            <img class="lb-image" id="lbImage" src="" alt="" />
           </div>
-          <div class="flip-card reveal">
-            <div class="flip-inner">
-              <div class="flip-front">
-                <picture><source srcset="img/tfidf.webp" type="image/webp" /><img src="img/tfidf.png" alt="TF-IDF" loading="lazy" width="600" height="380" /></picture>
-                <div class="flip-front-overlay">
-                  <h4>LSA Classification &amp; Prediction</h4>
-                  <div class="project-tags">
-                    <span>Python</span><span>scikit-learn</span
-                    ><span>Flask</span><span>GCP</span>
-                  </div>
-                </div>
-              </div>
-              <div class="flip-back glass-card">
-                <h4>
-                  Latent Semantic Analysis — Classification &amp; Prediction
-                </h4>
-                <p class="project-date">Mar 2020 – Apr 2020</p>
-                <p>
-                  End-to-end ML pipeline for financial document classification
-                  &mdash; 98% accuracy, deployed as a REST API on GCP.
-                </p>
-                <ul>
-                  <li>
-                    Preprocessed financial documents: tokenization, stop-word
-                    removal, TF-IDF vectorization into numerical feature
-                    vectors.
-                  </li>
-                  <li>
-                    Applied LSA (SVD on TF-IDF matrix) for dimensionality
-                    reduction while preserving discriminative dimensions.
-                  </li>
-                  <li>
-                    Evaluated Naive Bayes, SVM, Random Forest, and Logistic
-                    Regression with grid search and cross-validation.
-                  </li>
-                  <li>
-                    Built Flask REST APIs for real-time inference and deployed
-                    containerized on GCP Compute Engine.
-                  </li>
-                </ul>
-              </div>
+          <div class="lb-info">
+            <div class="lb-info-top">
+              <h3 class="lb-title" id="lbTitle"></h3>
+              <span class="lb-date" id="lbDate"></span>
             </div>
-          </div>
-          <div class="flip-card reveal">
-            <div class="flip-inner">
-              <div class="flip-front">
-                <picture><source srcset="img/sklearn.webp" type="image/webp" /><img src="img/sklearn.png" alt="Scikit-Learn" loading="lazy" width="600" height="380" /></picture>
-                <div class="flip-front-overlay">
-                  <h4>Diabetes Classifier &amp; Clustering</h4>
-                  <div class="project-tags">
-                    <span>Python</span><span>Pandas</span><span>NumPy</span
-                    ><span>scikit-learn</span>
-                  </div>
-                </div>
-              </div>
-              <div class="flip-back glass-card">
-                <h4>Diabetes Patient Classifier &amp; Meal Clustering</h4>
-                <p class="project-date">Aug 2019 – Nov 2019</p>
-                <p>
-                  Rigorous ML classification on clinical data with K-fold
-                  validation &mdash; 85% accuracy, plus unsupervised meal
-                  clustering.
-                </p>
-                <ul>
-                  <li>
-                    Preprocessed Pima Indians Diabetes Dataset: median
-                    imputation for missing values, feature normalization, class
-                    imbalance analysis.
-                  </li>
-                  <li>
-                    Evaluated Decision Tree, SVM, and KNN classifiers using
-                    K-fold cross-validation for generalizability.
-                  </li>
-                  <li>
-                    Applied K-Means and DBSCAN clustering on meal/glucose data
-                    to identify dietary patterns correlated with glucose
-                    response.
-                  </li>
-                  <li>
-                    Achieved 85% accuracy / 83% confidence validated across
-                    folds &mdash; not an artifact of a favorable split.
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div class="flip-card reveal">
-            <div class="flip-inner">
-              <div class="flip-front">
-                <picture><source srcset="img/math.webp" type="image/webp" /><img src="img/math.jpg" alt="Math Portal" loading="lazy" width="600" height="380" /></picture>
-                <div class="flip-front-overlay">
-                  <h4>Visual Learning Portal</h4>
-                  <div class="project-tags">
-                    <span>Python</span><span>Flask</span><span>SQL-Alchemy</span
-                    ><span>Agile</span>
-                  </div>
-                </div>
-              </div>
-              <div class="flip-back glass-card">
-                <h4>Online Visual Learning Portal</h4>
-                <p class="project-date">Aug 2019 – Nov 2019</p>
-                <p>
-                  Interactive math portal with drag-and-drop, built by a team of
-                  5 using Agile/Scrum and formal design patterns.
-                </p>
-                <ul>
-                  <li>
-                    Applied Facade (simplified complex subsystems), Factory
-                    (dynamic content creation), and Iterator (collection
-                    traversal) patterns.
-                  </li>
-                  <li>
-                    Built Flask REST APIs with SQLAlchemy ORM; drag-and-drop
-                    frontend for interactive math exploration.
-                  </li>
-                  <li>
-                    Ran 2-week sprints with backlog grooming, standups, and
-                    retrospectives across a 5-person team.
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div class="flip-card reveal">
-            <div class="flip-inner">
-              <div class="flip-front">
-                <picture><source srcset="img/lang.webp" type="image/webp" /><img src="img/lang.jpg" alt="Programming Language" loading="lazy" width="600" height="380" /></picture>
-                <div class="flip-front-overlay">
-                  <h4>!Xobile Programming Language</h4>
-                  <div class="project-tags">
-                    <span>Python</span><span>Prolog</span
-                    ><span>Compiler Design</span>
-                  </div>
-                </div>
-              </div>
-              <div class="flip-back glass-card">
-                <h4>!Xobile Programming Language</h4>
-                <p class="project-date">Jan 2019 – May 2019</p>
-                <p>
-                  Custom OOP language with full compilation pipeline &mdash;
-                  grammar spec, tokenizer, parser, and semantic analyzer.
-                </p>
-                <ul>
-                  <li>
-                    Designed formal grammar: class declarations, inheritance,
-                    control flow, expressions, and OOP constructs
-                    (<code>this</code>, constructors, method dispatch).
-                  </li>
-                  <li>
-                    Built regex-based tokenizer in Python (keywords,
-                    identifiers, operators, string literals with escape chars).
-                  </li>
-                  <li>
-                    Implemented parser and semantic analyzer in Prolog: type
-                    checking, variable scoping, inheritance cycle detection, and
-                    method resolution.
-                  </li>
-                  <li>
-                    End-to-end pipeline: valid programs produce semantically
-                    validated parse trees; invalid programs yield meaningful
-                    error messages.
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div class="flip-card reveal">
-            <div class="flip-inner">
-              <div class="flip-front">
-                <picture><source srcset="img/hadoop.webp" type="image/webp" /><img src="img/hadoop.png" alt="Hadoop" loading="lazy" width="600" height="380" /></picture>
-                <div class="flip-front-overlay">
-                  <h4>Hadoop Cluster &amp; MapReduce</h4>
-                  <div class="project-tags">
-                    <span>Hadoop</span><span>MapReduce</span><span>Python</span
-                    ><span>HDFS</span>
-                  </div>
-                </div>
-              </div>
-              <div class="flip-back glass-card">
-                <h4>Hadoop Cluster &amp; MapReduce API</h4>
-                <p class="project-date">Mar 2017 – Jun 2017</p>
-                <p>
-                  8-node Hadoop cluster processing 300M+ YouTube video logs with
-                  MapReduce and cross-version benchmarking.
-                </p>
-                <ul>
-                  <li>
-                    Configured 1 NameNode + 7 DataNodes with HDFS replication
-                    and YARN resource management.
-                  </li>
-                  <li>
-                    Designed MapReduce jobs (Hadoop Streaming, Python):
-                    most-viewed by category, upload trends, viral video
-                    detection.
-                  </li>
-                  <li>
-                    Benchmarked identical jobs across Hadoop versions &mdash;
-                    measured job time, CPU/memory, shuffle overhead, and
-                    speculative execution.
-                  </li>
-                  <li>
-                    Documented quantitative speedups in scheduling and data
-                    shuffle across framework versions.
-                  </li>
-                </ul>
-              </div>
-            </div>
+            <p class="lb-summary" id="lbSummary"></p>
+            <div class="lb-bullets" id="lbBullets"></div>
+            <div class="lb-tags" id="lbTags"></div>
+            <div class="lb-dots" id="lbDots"></div>
           </div>
         </div>
       </div>
-    </section>
+    </div>
 
     <!-- ═══════════════ CONTACT ═══════════════ -->
     <section id="contact">
@@ -1977,7 +1779,7 @@
             target="_blank"
             rel="noopener noreferrer"
             class="contact-card glass-card tilt-card magnetic"
-            ><div class="tilt-glow"></div>
+            >
             <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="padding:10px;border:1px solid var(--glass-border);border-radius:12px" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg><span>LinkedIn</span></
           >
           <a
@@ -1985,13 +1787,13 @@
             target="_blank"
             rel="noopener noreferrer"
             class="contact-card glass-card tilt-card magnetic"
-            ><div class="tilt-glow"></div>
+            >
             <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="padding:10px;border:1px solid var(--glass-border);border-radius:12px" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg><span>GitHub</span></
           >
           <a
             href="mailto:vsvsinghal3737@gmail.com"
             class="contact-card glass-card tilt-card magnetic"
-            ><div class="tilt-glow"></div>
+            >
             <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="padding:10px;border:1px solid var(--glass-border);border-radius:12px" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg><span>Email</span></
           >
           <a
@@ -1999,7 +1801,7 @@
             target="_blank"
             rel="noopener noreferrer"
             class="contact-card glass-card tilt-card magnetic resume-card"
-            ><div class="tilt-glow"></div>
+            >
             <svg
               width="48"
               height="48"
@@ -2049,5 +1851,33 @@
     </button>
 
     <script src="script.js"></script>
+
+    <!-- Spline 3D Robot — skip on narrow screens & reduced-motion -->
+    <script type="module">
+      const canvas = document.getElementById('robotCanvas');
+      const loader = document.getElementById('robotLoader');
+      const scene  = document.getElementById('robotScene');
+
+      const tooNarrow = window.innerWidth < 600;
+      const prefersStill = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      if (tooNarrow || prefersStill) {
+        loader.classList.add('loaded');
+        scene.style.display = 'none';
+      } else {
+        import('https://unpkg.com/@splinetool/runtime@0.9.490/build/runtime.js').then(({ Application }) => {
+          const app = new Application(canvas);
+          return app.load('https://prod.spline.design/PyzDhpQ9E5f1E3MT/scene.splinecode');
+        }).then(() => {
+          loader.classList.add('loaded');
+          scene.classList.add('ready');
+          // Pinned to v0.9.490 — no watermark in this version
+        }).catch((err) => {
+          console.warn('Spline scene failed to load:', err);
+          loader.classList.add('loaded');
+          scene.style.display = 'none';
+        });
+      }
+    </script>
   </body>
 </html>
