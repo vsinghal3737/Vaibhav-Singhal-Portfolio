@@ -173,29 +173,7 @@ document.addEventListener('DOMContentLoaded', () => {
         })();
     }
 
-    // ═══════════════ 3D TILT CARDS (desktop only) ═══════════════
-    if (!isTouch) {
-        document.querySelectorAll('.tilt-card').forEach(card => {
-            const glow = card.querySelector('.tilt-glow');
-            if (glow) glow.style.pointerEvents = 'none';
-            card.addEventListener('mousemove', (e) => {
-                const r = card.getBoundingClientRect();
-                const x = e.clientX - r.left;
-                const y = e.clientY - r.top;
-                const cx = r.width / 2;
-                const cy = r.height / 2;
-                const rotY = ((x - cx) / cx) * 8;
-                const rotX = ((cy - y) / cy) * 8;
-                card.style.transform = `perspective(1000px) rotateX(${rotX}deg) rotateY(${rotY}deg)`;
-                if (glow) { glow.style.left = x + 'px'; glow.style.top = y + 'px'; }
-            });
-            card.addEventListener('mouseleave', () => {
-                card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)';
-                card.style.transition = 'transform 0.5s ease';
-                setTimeout(() => card.style.transition = '', 500);
-            });
-        });
-    }
+    // (3D tilt cards removed — caused lag and visual glitches)
 
     // ═══════════════ JOB DETAIL SPLIT PANEL ═══════════════
     const timeline = document.getElementById('timeline');
