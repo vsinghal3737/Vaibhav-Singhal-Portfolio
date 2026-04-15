@@ -1542,7 +1542,7 @@ section {
 /* ═══ ANIMATED FOLDERS ═══ */
 .folder-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 28px;
   justify-items: center;
 }
@@ -1665,6 +1665,7 @@ section {
   height: 100%;
   object-fit: cover;
 }
+/* Axiom SVG thumbnail in folder card */
 .folder-card-overlay {
   position: absolute;
   inset: 0;
@@ -1683,6 +1684,15 @@ section {
   text-overflow: ellipsis;
 }
 
+/* Fan-out positions — 1 card (peek by default, full fan on hover) */
+.folder-card[data-fan="1-0"] {
+  transform: translateY(-40px) translateX(0) rotate(0deg) scale(0.85);
+  opacity: 1;
+}
+.folder:hover .folder-card[data-fan="1-0"] {
+  transform: translateY(-85px) translateX(0) rotate(0deg) scale(1.05);
+  opacity: 1;
+}
 /* Fan-out positions — 2 cards */
 .folder:hover .folder-card[data-fan="2-0"] {
   transform: translateY(-80px) translateX(-32px) rotate(-8deg) scale(1);
@@ -1692,6 +1702,21 @@ section {
   transform: translateY(-80px) translateX(32px) rotate(8deg) scale(1);
   opacity: 1;
   transition-delay: 80ms;
+}
+/* Fan-out positions — 3 cards */
+.folder:hover .folder-card[data-fan="3-0"] {
+  transform: translateY(-80px) translateX(-50px) rotate(-12deg) scale(1);
+  opacity: 1;
+}
+.folder:hover .folder-card[data-fan="3-1"] {
+  transform: translateY(-90px) translateX(0) rotate(0deg) scale(1);
+  opacity: 1;
+  transition-delay: 80ms;
+}
+.folder:hover .folder-card[data-fan="3-2"] {
+  transform: translateY(-80px) translateX(50px) rotate(12deg) scale(1);
+  opacity: 1;
+  transition-delay: 160ms;
 }
 
 /* Front panel */
@@ -1949,6 +1974,44 @@ section {
   color: var(--accent-bright);
   border: 1px solid rgba(108, 99, 255, 0.25);
   font-weight: 500;
+}
+/* GitHub links in lightbox */
+.lb-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 14px;
+}
+.lb-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.72rem;
+  padding: 4px 10px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text-dim);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+.lb-link:hover {
+  background: rgba(108, 99, 255, 0.15);
+  color: var(--accent-bright);
+  border-color: rgba(108, 99, 255, 0.3);
+}
+.lb-link svg {
+  flex-shrink: 0;
+}
+.lb-link-platform {
+  border-color: rgba(0, 212, 170, 0.25);
+  color: var(--accent-bright);
+}
+.lb-link-platform:hover {
+  background: rgba(0, 212, 170, 0.15);
+  color: #00d4aa;
+  border-color: rgba(0, 212, 170, 0.4);
 }
 .lb-dots {
   display: flex;
@@ -2498,9 +2561,6 @@ html {
   }
   .timeline.detail-open {
     grid-template-columns: clamp(260px, 22vw, 380px) 1fr;
-  }
-  .folder-grid {
-    grid-template-columns: repeat(3, 1fr);
   }
 }
 

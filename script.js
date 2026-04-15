@@ -290,6 +290,35 @@ document.addEventListener('DOMContentLoaded', () => {
     // ═══════════════ ANIMATED FOLDERS + LIGHTBOX ═══════════════
     const folderData = [
         {
+            title: 'Axiom',
+            projects: [
+                {
+                    title: 'Axiom — AI Note Intelligence',
+                    date: '2025 – Present',
+                    summary: 'Started as a monolith (my-notes), then decomposed into 7 independent microservices — 3 are reusable AI platform services not tied to any specific project.',
+                    bullets: [
+                        'Architected 7-service platform: API, React UI, LLM gateway (Nexus), input normalizer (Pulse), LLM executor (Cortex), output renderer (Synth), and Docker orchestration.',
+                        'Pulse, Cortex, and Synth are standalone AI platform services — stateless, bearer-token auth, reusable across any project.',
+                        'Built async FastAPI backends with SQLModel ORM, Alembic migrations, PostgreSQL, and Supabase JWT auth.',
+                        'Designed AI pipeline: Pulse normalizes input → Cortex executes LLM calls (OpenAI, Anthropic, Gemini) with circuit breakers → Synth renders output via SSE/TTS.',
+                        'Frontend in React/Next.js 14 with TypeScript, TanStack Query, Zustand, and Tailwind CSS.'
+                    ],
+                    tags: ['Python','FastAPI','React','TypeScript','PostgreSQL','Docker','LLM'],
+                    image: 'img/axiom.svg', fallback: 'img/axiom.svg',
+                    links: [
+                        { label: 'my-notes (v1)', url: 'https://github.com/vsinghal3737/my-notes' },
+                        { label: 'Axiom-api', url: 'https://github.com/vsinghal3737/Axiom-api' },
+                        { label: 'Axiom-ui', url: 'https://github.com/vsinghal3737/Axiom-ui' },
+                        { label: 'Axiom-nexus', url: 'https://github.com/vsinghal3737/Axiom-nexus' },
+                        { label: 'Pulse', url: 'https://github.com/vsinghal3737/pulse', platform: true },
+                        { label: 'Cortex', url: 'https://github.com/vsinghal3737/cortex', platform: true },
+                        { label: 'Synth', url: 'https://github.com/vsinghal3737/synth', platform: true },
+                        { label: 'Orchestration', url: 'https://github.com/vsinghal3737/Axiom-orchestration' }
+                    ]
+                },
+            ]
+        },
+        {
             title: 'Data Engineering',
             projects: [
                 { title: 'RosterData — Ice Hockey v2', date: 'Jan 2020 – Apr 2020', summary: 'Expanded RosterData from NHL-only to 4-league coverage (NHL, SHL, Liiga, KHL) with cross-league player comparison.', bullets: ['Built league-specific Scrapy pipelines for SHL, Liiga, and KHL — each with unique HTML structures and pagination patterns.','Designed a normalized JSON data model for cross-league consistency (player identity, season stats, team associations).','Stored normalized data in PostgreSQL on AWS RDS with query-optimized indexing for player lookup and league standings.','Built REST APIs for player search, team rosters, and cross-league career timelines.'], tags: ['Python','Scrapy','PostgreSQL','AWS'], image: 'img/ice-hockey.webp', fallback: 'img/ice-hockey.jpg' },
@@ -327,7 +356,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <div class="folder-cards">
                         ${folder.projects.map((p, pi) => `
                             <div class="folder-card" data-fan="${count}-${pi}" data-fi="${fi}" data-pi="${pi}">
-                                <picture><source srcset="${p.image}" type="image/webp"/><img src="${p.fallback}" alt="${p.title}" loading="lazy"/></picture>
+                                <img src="${p.fallback}" alt="${p.title}" loading="lazy"/>
                                 <div class="folder-card-overlay"></div>
                                 <span class="folder-card-label">${p.title}</span>
                             </div>
@@ -336,7 +365,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <div class="folder-front"></div>
                 </div>
                 <h3 class="folder-title">${folder.title}</h3>
-                <p class="folder-count">${count} projects</p>
+                <p class="folder-count">${count} ${count === 1 ? 'project' : 'projects'}</p>
                 <span class="folder-hint">Hover to explore</span>
             `;
             folderGrid.appendChild(el);
@@ -360,8 +389,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 .folder-open .folder-back { transform: translate(-50%,-50%) rotateX(-15deg) !important; }
                 .folder-open .folder-tab { transform: rotateX(-25deg) translateY(-2px) !important; }
                 .folder-open .folder-front { transform: translateX(-50%) rotateX(25deg) translateY(8px) !important; }
+                .folder-open .folder-card[data-fan="1-0"] { transform: translateY(-85px) translateX(0) rotate(0deg) scale(1.05) !important; opacity:1 !important; }
                 .folder-open .folder-card[data-fan="2-0"] { transform: translateY(-80px) translateX(-32px) rotate(-8deg) scale(1) !important; opacity:1 !important; }
                 .folder-open .folder-card[data-fan="2-1"] { transform: translateY(-80px) translateX(32px) rotate(8deg) scale(1) !important; opacity:1 !important; transition-delay:80ms !important; }
+                .folder-open .folder-card[data-fan="3-0"] { transform: translateY(-80px) translateX(-50px) rotate(-12deg) scale(1) !important; opacity:1 !important; }
+                .folder-open .folder-card[data-fan="3-1"] { transform: translateY(-90px) translateX(0) rotate(0deg) scale(1) !important; opacity:1 !important; transition-delay:80ms !important; }
+                .folder-open .folder-card[data-fan="3-2"] { transform: translateY(-80px) translateX(50px) rotate(12deg) scale(1) !important; opacity:1 !important; transition-delay:160ms !important; }
                 .folder-open .folder-title { transform: translateY(4px) !important; }
                 .folder-open .folder-hint { opacity:0 !important; transform: translateY(10px) !important; }
             `;
@@ -403,6 +436,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const p = folder.projects[lbProjectIdx];
         if (!p) return;
         lbImage.src = p.fallback;
+        lbImage.style.display = '';
         lbImage.alt = p.title;
         lbTitle.textContent = p.title;
         lbDate.textContent = p.date;
@@ -414,6 +448,23 @@ document.addEventListener('DOMContentLoaded', () => {
                 : '';
         }
         lbTags.innerHTML = p.tags.map(t => `<span>${t}</span>`).join('');
+        // Render GitHub links if present
+        let lbLinks = lb.querySelector('.lb-links');
+        if (!lbLinks) {
+            lbLinks = document.createElement('div');
+            lbLinks.className = 'lb-links';
+            lbTags.parentElement.insertBefore(lbLinks, lbTags.nextSibling);
+        }
+        if (p.links && p.links.length) {
+            lbLinks.style.display = '';
+            lbLinks.innerHTML = p.links.map(l =>
+                `<a href="${l.url}" target="_blank" rel="noopener" class="lb-link${l.platform ? ' lb-link-platform' : ''}">`
+                + `<svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>`
+                + `<span>${l.label}</span></a>`
+            ).join('');
+        } else {
+            lbLinks.style.display = 'none';
+        }
         lbDots.innerHTML = folder.projects.map((_, i) =>
             `<button class="lb-dot${i === lbProjectIdx ? ' active' : ''}" data-i="${i}"></button>`
         ).join('');
