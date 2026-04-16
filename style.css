@@ -99,8 +99,6 @@ code {
   border-radius: 50%;
   filter: blur(80px);
   opacity: 0.4;
-  animation: blobDrift 20s ease-in-out infinite alternate;
-  will-change: transform;
 }
 .blob-1 {
   width: 600px;
@@ -108,7 +106,6 @@ code {
   background: rgba(108, 99, 255, 0.2);
   top: -10%;
   left: -5%;
-  animation-delay: 0s;
 }
 .blob-2 {
   width: 500px;
@@ -116,8 +113,6 @@ code {
   background: rgba(0, 212, 170, 0.15);
   top: 30%;
   right: -10%;
-  animation-delay: -5s;
-  animation-duration: 25s;
 }
 .blob-3 {
   width: 450px;
@@ -125,8 +120,6 @@ code {
   background: rgba(255, 107, 157, 0.12);
   bottom: 10%;
   left: 20%;
-  animation-delay: -10s;
-  animation-duration: 22s;
 }
 .blob-4 {
   width: 350px;
@@ -134,24 +127,7 @@ code {
   background: rgba(108, 99, 255, 0.15);
   bottom: -5%;
   right: 25%;
-  animation-delay: -15s;
-  animation-duration: 28s;
 }
-@keyframes blobDrift {
-  0% {
-    transform: translate(0, 0) scale(1);
-  }
-  33% {
-    transform: translate(60px, -40px) scale(1.1);
-  }
-  66% {
-    transform: translate(-30px, 50px) scale(0.95);
-  }
-  100% {
-    transform: translate(20px, -20px) scale(1.05);
-  }
-}
-
 /* ═══ LOADER ═══ */
 #loader {
   position: fixed;
@@ -165,7 +141,6 @@ code {
   transition:
     opacity 0.6s ease,
     visibility 0.6s ease;
-  will-change: opacity;
 }
 #loader.hidden {
   opacity: 0;
@@ -180,7 +155,6 @@ code {
   stroke-dasharray: 300;
   stroke-dashoffset: 300;
   animation: drawLogo 1.5s ease forwards;
-  will-change: stroke-dashoffset;
 }
 @keyframes drawLogo {
   to {
@@ -197,17 +171,14 @@ code {
 }
 .loader-bar-fill {
   height: 100%;
-  width: 100%;
+  width: 0;
   background: var(--gradient-1);
   border-radius: 2px;
-  transform: scaleX(0);
-  transform-origin: left;
-  animation: loaderFill 1.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-  will-change: transform;
+  animation: loaderFill 1.8s ease forwards;
 }
 @keyframes loaderFill {
   to {
-    transform: scaleX(1);
+    width: 100%;
   }
 }
 
@@ -742,6 +713,9 @@ body:hover .cursor-glow {
 }
 .diag-1 svg polygon {
   fill: rgba(0, 212, 170, 0.03);
+}
+.diag-2 svg polygon {
+  fill: rgba(108, 99, 255, 0.03);
 }
 .curve-1 svg path {
   fill: rgba(255, 107, 157, 0.03);
@@ -1606,7 +1580,6 @@ section {
   background: var(--accent-glow);
   opacity: 0.3;
   filter: blur(20px);
-  animation: orbitPulse 4s ease-in-out infinite;
 }
 .orbit-core::after {
   content: "";
@@ -1615,24 +1588,12 @@ section {
   border-radius: 50%;
   background: rgba(147, 51, 234, 0.2);
   filter: blur(30px);
-  animation: orbitPulse 4s ease-in-out infinite 1s;
 }
 .orbit-core svg {
   position: relative;
   z-index: 1;
   width: 36px;
   height: 36px;
-}
-@keyframes orbitPulse {
-  0%,
-  100% {
-    opacity: 0.25;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 0.5;
-    transform: scale(1.2);
-  }
 }
 /* Orbit ring paths — glow effect */
 .orbit-ring {
@@ -1661,7 +1622,6 @@ section {
     var(--ring-glow, rgba(108, 99, 255, 0.06)) 80%,
     var(--ring-glow-strong, rgba(108, 99, 255, 0.12)) 100%
   );
-  animation: orbitPulse 5s ease-in-out infinite var(--ring-delay, 0s);
   pointer-events: none;
 }
 /* Elliptical rings — height ≈ 55% of width for 3D perspective */
@@ -2907,9 +2867,6 @@ footer {
   .reveal {
     opacity: 1;
     transform: none;
-  }
-  .mesh-blob {
-    animation: none;
   }
 }
 
