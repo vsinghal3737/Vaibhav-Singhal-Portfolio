@@ -8,11 +8,18 @@ document.addEventListener('DOMContentLoaded', () => {
     function hideLoader() {
         if (loader.classList.contains('hidden')) return;
         loader.classList.add('hidden');
+        // initPage during fade-out (opacity fade is GPU-composited, won't stutter)
+        requestAnimationFrame(initPage);
         // Run deferred inits after the fade-out completes (600ms transition)
         setTimeout(() => deferredInits.forEach(fn => fn()), 650);
     }
-    window.addEventListener('load', () => setTimeout(hideLoader, 500));
-    setTimeout(hideLoader, 2000);
+    // Don't hide until bar animation finishes (1.8s)
+    window.addEventListener('load', () => setTimeout(hideLoader, 1900));
+    setTimeout(hideLoader, 2500);
+
+    // ALL page init deferred until loader starts fading.
+    // Loader covers everything — nothing is visible, so no work needed until then.
+    function initPage() {
 
     // ═══════════════ CURSOR GLOW ═══════════════
     const cursorGlow = document.getElementById('cursorGlow');
@@ -744,9 +751,9 @@ document.addEventListener('DOMContentLoaded', () => {
         // Sections
         { title: 'Work Experience', hint: 'Workday, LivePerson, Black Knight', icon: '💼', action: '#experience' },
         { title: 'Technical Skills', hint: 'Python, Java, Kafka, Kubernetes...', icon: '⚡', action: '#skills' },
+        { title: 'Projects', hint: 'Axiom, RosterData, LSA, Hadoop...', icon: '🚀', action: '#projects' },
         { title: 'Education', hint: 'ASU, GGSIPU, GNDIT', icon: '🎓', action: '#education' },
         { title: 'Certifications', hint: 'CCA-175, PCAP, OCA, GCP', icon: '📜', action: '#certifications' },
-        { title: 'Projects', hint: 'RosterData, LSA, Hadoop...', icon: '🚀', action: '#projects' },
         { title: 'Contact', hint: 'LinkedIn, GitHub, Email', icon: '📬', action: '#contact' },
         // Jobs
         { title: 'Workday (Evisort)', hint: 'Senior Software Engineer — Identity Platform', icon: '🏢', action: '#experience', sub: 0 },
@@ -876,6 +883,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     cmdOverlay.addEventListener('click', closeCmdPalette);
 
+    } // end initPage
 });
 
 // ═══════════════ TOGGLE COLLAPSIBLE ═══════════════

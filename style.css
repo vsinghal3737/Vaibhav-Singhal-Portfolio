@@ -165,12 +165,20 @@ code {
   transition:
     opacity 0.6s ease,
     visibility 0.6s ease;
-  will-change: opacity;
 }
 #loader.hidden {
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
+}
+/* Freeze all page animations while loader is visible — free the main thread */
+#loader:not(.hidden) ~ * {
+  animation-play-state: paused !important;
+}
+#loader:not(.hidden) ~ * *,
+#loader:not(.hidden) ~ * *::before,
+#loader:not(.hidden) ~ * *::after {
+  animation-play-state: paused !important;
 }
 .loader-logo {
   width: 140px;
@@ -180,7 +188,6 @@ code {
   stroke-dasharray: 300;
   stroke-dashoffset: 300;
   animation: drawLogo 1.5s ease forwards;
-  will-change: stroke-dashoffset;
 }
 @keyframes drawLogo {
   to {
@@ -197,17 +204,14 @@ code {
 }
 .loader-bar-fill {
   height: 100%;
-  width: 100%;
+  width: 0;
   background: var(--gradient-1);
   border-radius: 2px;
-  transform: scaleX(0);
-  transform-origin: left;
-  animation: loaderFill 1.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-  will-change: transform;
+  animation: loaderFill 1.8s ease forwards;
 }
 @keyframes loaderFill {
   to {
-    transform: scaleX(1);
+    width: 100%;
   }
 }
 
@@ -742,6 +746,9 @@ body:hover .cursor-glow {
 }
 .diag-1 svg polygon {
   fill: rgba(0, 212, 170, 0.03);
+}
+.diag-2 svg polygon {
+  fill: rgba(108, 99, 255, 0.03);
 }
 .curve-1 svg path {
   fill: rgba(255, 107, 157, 0.03);

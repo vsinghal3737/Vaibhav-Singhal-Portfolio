@@ -173,9 +173,9 @@
         <ul class="nav-links">
           <li><a href="#experience">Experience</a></li>
           <li><a href="#skills">Skills</a></li>
+          <li><a href="#projects">Projects</a></li>
           <li><a href="#education">Education</a></li>
           <li><a href="#certifications">Certs</a></li>
-          <li><a href="#projects">Projects</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
         <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
@@ -1593,11 +1593,62 @@
       </svg>
     </div>
 
+    <!-- ═══════════════ PROJECTS (ANIMATED FOLDERS) ═══════════════ -->
+    <section id="projects">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-number">03</span>
+          <h2 class="section-title">Projects</h2>
+          <p class="section-subtitle">
+            Hover a folder to peek inside. Click a card to expand.
+          </p>
+        </div>
+        <div class="folder-grid" id="folderGrid"></div>
+      </div>
+    </section>
+
+    <!-- PROJECT LIGHTBOX -->
+    <div class="lb-overlay" id="projectLightbox">
+      <div class="lb-backdrop"></div>
+      <button class="lb-close" aria-label="Close">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+      <button class="lb-prev" aria-label="Previous">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
+      <button class="lb-next" aria-label="Next">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 6 15 12 9 18"/></svg>
+      </button>
+      <div class="lb-container">
+        <div class="lb-card">
+          <div class="lb-image-wrap">
+            <img class="lb-image" id="lbImage" src="" alt="" />
+          </div>
+          <div class="lb-info">
+            <div class="lb-info-top">
+              <h3 class="lb-title" id="lbTitle"></h3>
+              <span class="lb-date" id="lbDate"></span>
+            </div>
+            <p class="lb-summary" id="lbSummary"></p>
+            <div class="lb-bullets" id="lbBullets"></div>
+            <div class="lb-tags" id="lbTags"></div>
+            <div class="lb-dots" id="lbDots"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-divider diag-2">
+      <svg viewBox="0 0 1440 80" preserveAspectRatio="none">
+        <polygon points="0,0 1440,80 0,80" />
+      </svg>
+    </div>
+
     <!-- ═══════════════ EDUCATION ═══════════════ -->
     <section id="education">
       <div class="container">
         <div class="section-header reveal">
-          <span class="section-number">03</span>
+          <span class="section-number">04</span>
           <h2 class="section-title">Education</h2>
         </div>
         <div class="edu-grid">
@@ -1656,7 +1707,7 @@
     <section id="certifications">
       <div class="container">
         <div class="section-header reveal">
-          <span class="section-number">04</span>
+          <span class="section-number">05</span>
           <h2 class="section-title">Certifications</h2>
         </div>
         <div class="cert-grid">
@@ -1716,51 +1767,6 @@
         </div>
       </div>
     </section>
-
-    <!-- ═══════════════ PROJECTS (ANIMATED FOLDERS) ═══════════════ -->
-    <section id="projects">
-      <div class="container">
-        <div class="section-header reveal">
-          <span class="section-number">05</span>
-          <h2 class="section-title">Projects</h2>
-          <p class="section-subtitle">
-            Hover a folder to peek inside. Click a card to expand.
-          </p>
-        </div>
-        <div class="folder-grid" id="folderGrid"></div>
-      </div>
-    </section>
-
-    <!-- PROJECT LIGHTBOX -->
-    <div class="lb-overlay" id="projectLightbox">
-      <div class="lb-backdrop"></div>
-      <button class="lb-close" aria-label="Close">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-      </button>
-      <button class="lb-prev" aria-label="Previous">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
-      </button>
-      <button class="lb-next" aria-label="Next">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 6 15 12 9 18"/></svg>
-      </button>
-      <div class="lb-container">
-        <div class="lb-card">
-          <div class="lb-image-wrap">
-            <img class="lb-image" id="lbImage" src="" alt="" />
-          </div>
-          <div class="lb-info">
-            <div class="lb-info-top">
-              <h3 class="lb-title" id="lbTitle"></h3>
-              <span class="lb-date" id="lbDate"></span>
-            </div>
-            <p class="lb-summary" id="lbSummary"></p>
-            <div class="lb-bullets" id="lbBullets"></div>
-            <div class="lb-tags" id="lbTags"></div>
-            <div class="lb-dots" id="lbDots"></div>
-          </div>
-        </div>
-      </div>
-    </div>
 
     <!-- ═══════════════ CONTACT ═══════════════ -->
     <section id="contact">
