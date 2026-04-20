@@ -1,31 +1,15 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500">
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="0.8" y2="1">
-      <stop offset="0%" stop-color="#0c0b1e"/>
-      <stop offset="50%" stop-color="#12102a"/>
-      <stop offset="100%" stop-color="#0a0918"/>
-    </linearGradient>
-    <linearGradient id="gPurple" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#6c63ff"/>
-      <stop offset="100%" stop-color="#a78bfa"/>
-    </linearGradient>
-    <linearGradient id="gTeal" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#00d4aa"/>
-      <stop offset="100%" stop-color="#34d399"/>
-    </linearGradient>
-    <linearGradient id="gPink" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#ff6b9d"/>
-      <stop offset="100%" stop-color="#f472b6"/>
+      <stop offset="0%" stop-color="#18120a"/>
+      <stop offset="50%" stop-color="#201810"/>
+      <stop offset="100%" stop-color="#141008"/>
     </linearGradient>
     <linearGradient id="titleGrad" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0%" stop-color="#6c63ff"/>
-      <stop offset="50%" stop-color="#a78bfa"/>
-      <stop offset="100%" stop-color="#00d4aa"/>
+      <stop offset="0%" stop-color="#f59e0b"/>
+      <stop offset="50%" stop-color="#fbbf24"/>
+      <stop offset="100%" stop-color="#fde68a"/>
     </linearGradient>
-    <filter id="glow">
-      <feGaussianBlur stdDeviation="6" result="blur"/>
-      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-    </filter>
     <filter id="glowSoft">
       <feGaussianBlur stdDeviation="12" result="blur"/>
       <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
@@ -33,13 +17,19 @@
     <filter id="nodeShadow">
       <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#000" flood-opacity="0.5"/>
     </filter>
+    <marker id="arrowAmber" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#f59e0b" opacity="0.6"/>
+    </marker>
+    <marker id="arrowTeal" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#00d4aa" opacity="0.6"/>
+    </marker>
   </defs>
 
   <!-- Background -->
   <rect width="800" height="500" fill="url(#bg)"/>
 
   <!-- Subtle grid dots -->
-  <g opacity="0.06">
+  <g opacity="0.07">
     <pattern id="dots" x="0" y="0" width="30" height="30" patternUnits="userSpaceOnUse">
       <circle cx="15" cy="15" r="1" fill="#ffffff"/>
     </pattern>
@@ -47,131 +37,104 @@
   </g>
 
   <!-- Ambient glow blobs -->
-  <circle cx="200" cy="250" r="180" fill="#6c63ff" opacity="0.04" filter="url(#glowSoft)"/>
-  <circle cx="600" cy="300" r="160" fill="#00d4aa" opacity="0.035" filter="url(#glowSoft)"/>
-  <circle cx="400" cy="120" r="120" fill="#a78bfa" opacity="0.03" filter="url(#glowSoft)"/>
+  <circle cx="200" cy="200" r="180" fill="#f59e0b" opacity="0.04" filter="url(#glowSoft)"/>
+  <circle cx="600" cy="250" r="160" fill="#fbbf24" opacity="0.035" filter="url(#glowSoft)"/>
+  <circle cx="400" cy="400" r="140" fill="#00d4aa" opacity="0.03" filter="url(#glowSoft)"/>
 
   <!-- Title -->
-  <text x="400" y="68" text-anchor="middle" font-size="36" font-weight="800" fill="url(#titleGrad)" font-family="'Segoe UI', system-ui, -apple-system, sans-serif" letter-spacing="10">AXIOM</text>
-  <text x="400" y="92" text-anchor="middle" font-size="11" fill="#6b6b8a" font-family="'Segoe UI', system-ui, sans-serif" letter-spacing="4" font-weight="400">AI NOTE INTELLIGENCE PLATFORM</text>
+  <text x="400" y="60" text-anchor="middle" font-size="36" font-weight="800" fill="url(#titleGrad)" font-family="'Segoe UI', system-ui, -apple-system, sans-serif" letter-spacing="10">AXIOM</text>
+  <text x="400" y="84" text-anchor="middle" font-size="11" fill="#a08850" font-family="'Segoe UI', system-ui, sans-serif" letter-spacing="4" font-weight="400">KNOWLEDGE WORKSPACE PLATFORM</text>
 
-  <!-- Connection lines (drawn first, behind nodes) -->
-  <g stroke-width="1.5" fill="none" opacity="0.35">
-    <!-- UI to API -->
-    <line x1="400" y1="180" x2="260" y2="260" stroke="#6c63ff"/>
-    <!-- UI to Nexus -->
-    <line x1="400" y1="180" x2="540" y2="260" stroke="#6c63ff"/>
-    <!-- API to Nexus -->
-    <line x1="310" y1="270" x2="490" y2="270" stroke="#6c63ff" stroke-dasharray="4 4"/>
-    <!-- Nexus to Pulse -->
-    <line x1="540" y1="295" x2="310" y2="370" stroke="#00d4aa"/>
-    <!-- Nexus to Cortex -->
-    <line x1="540" y1="295" x2="490" y2="370" stroke="#00d4aa"/>
-    <!-- Nexus to Synth -->
-    <line x1="540" y1="295" x2="670" y2="370" stroke="#00d4aa"/>
-    <!-- Pulse to Cortex flow arrow -->
-    <line x1="360" y1="385" x2="445" y2="385" stroke="#00d4aa" stroke-dasharray="6 3" marker-end="url(#arrowTeal)"/>
-    <!-- Cortex to Synth flow arrow -->
-    <line x1="540" y1="385" x2="625" y2="385" stroke="#00d4aa" stroke-dasharray="6 3" marker-end="url(#arrowTeal)"/>
-    <!-- API to Orch -->
-    <line x1="220" y1="290" x2="145" y2="370" stroke="#ff6b9d" opacity="0.5"/>
-    <!-- Nexus to Orch -->
-    <line x1="540" y1="295" x2="145" y2="390" stroke="#ff6b9d" opacity="0.3" stroke-dasharray="3 5"/>
+  <!-- Connection lines -->
+  <g stroke-width="1.5" fill="none" opacity="0.45">
+    <line x1="400" y1="175" x2="240" y2="240" stroke="#f59e0b"/>
+    <line x1="400" y1="175" x2="560" y2="240" stroke="#f59e0b"/>
+    <line x1="300" y1="258" x2="500" y2="258" stroke="#f59e0b" stroke-dasharray="4 4"/>
+    <line x1="240" y1="285" x2="240" y2="345" stroke="#f59e0b" stroke-dasharray="3 3" opacity="0.6"/>
+    <line x1="560" y1="285" x2="400" y2="345" stroke="#f59e0b" stroke-dasharray="3 3" opacity="0.6"/>
+    <line x1="560" y1="285" x2="400" y2="410" stroke="#00d4aa" stroke-dasharray="6 3" marker-end="url(#arrowTeal)"/>
+    <line x1="680" y1="258" x2="620" y2="258" stroke="#ff6b9d" opacity="0.4" stroke-dasharray="3 5"/>
   </g>
-
-  <!-- Arrow markers -->
-  <defs>
-    <marker id="arrowTeal" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-      <path d="M 0 0 L 10 5 L 0 10 z" fill="#00d4aa" opacity="0.5"/>
-    </marker>
-  </defs>
 
   <!-- ═══ SERVICE NODES ═══ -->
 
-  <!-- UI Node (top center) -->
+  <!-- UI Node -->
   <g filter="url(#nodeShadow)">
-    <rect x="350" y="140" width="100" height="44" rx="10" fill="#16142e" stroke="#6c63ff" stroke-width="1.5"/>
-    <rect x="350" y="140" width="100" height="44" rx="10" fill="#6c63ff" opacity="0.08"/>
-    <text x="400" y="158" text-anchor="middle" font-size="10" fill="#a78bfa" font-family="'Segoe UI', system-ui, sans-serif" font-weight="600" letter-spacing="1">AXIOM</text>
-    <text x="400" y="174" text-anchor="middle" font-size="13" fill="#e8e8f0" font-family="'Segoe UI', system-ui, sans-serif" font-weight="700">UI</text>
-    <!-- React icon hint -->
-    <circle cx="432" cy="152" r="4" stroke="#61dafb" stroke-width="1" fill="none" opacity="0.6"/>
+    <rect x="345" y="130" width="110" height="50" rx="10" fill="#201810" stroke="#f59e0b" stroke-width="1.5"/>
+    <rect x="345" y="130" width="110" height="50" rx="10" fill="#f59e0b" opacity="0.08"/>
+    <text x="400" y="150" text-anchor="middle" font-size="9" fill="#fbbf24" font-family="'Segoe UI', system-ui, sans-serif" font-weight="600" letter-spacing="1">REACT / NEXT.JS</text>
+    <text x="400" y="169" text-anchor="middle" font-size="15" fill="#f0f0f8" font-family="'Segoe UI', system-ui, sans-serif" font-weight="700">UI</text>
   </g>
 
-  <!-- API Node (middle left) -->
+  <!-- API Node -->
   <g filter="url(#nodeShadow)">
-    <rect x="200" y="245" width="120" height="50" rx="10" fill="#16142e" stroke="#6c63ff" stroke-width="1.5"/>
-    <rect x="200" y="245" width="120" height="50" rx="10" fill="#6c63ff" opacity="0.08"/>
-    <text x="260" y="264" text-anchor="middle" font-size="9" fill="#a78bfa" font-family="'Segoe UI', system-ui, sans-serif" font-weight="600" letter-spacing="1">AXIOM</text>
-    <text x="260" y="282" text-anchor="middle" font-size="14" fill="#e8e8f0" font-family="'Segoe UI', system-ui, sans-serif" font-weight="700">API</text>
-    <!-- Python icon hint -->
-    <circle cx="300" cy="260" r="3.5" fill="#ffd43b" opacity="0.5"/>
-    <circle cx="300" cy="268" r="3.5" fill="#306998" opacity="0.5"/>
+    <rect x="170" y="230" width="140" height="55" rx="10" fill="#201810" stroke="#f59e0b" stroke-width="1.5"/>
+    <rect x="170" y="230" width="140" height="55" rx="10" fill="#f59e0b" opacity="0.08"/>
+    <text x="240" y="250" text-anchor="middle" font-size="9" fill="#fbbf24" font-family="'Segoe UI', system-ui, sans-serif" font-weight="600" letter-spacing="1">FASTAPI / SQLMODEL</text>
+    <text x="240" y="272" text-anchor="middle" font-size="15" fill="#f0f0f8" font-family="'Segoe UI', system-ui, sans-serif" font-weight="700">API</text>
   </g>
 
-  <!-- Nexus Node (middle right) -->
+  <!-- Nexus Node -->
   <g filter="url(#nodeShadow)">
-    <rect x="480" y="245" width="120" height="50" rx="10" fill="#16142e" stroke="#6c63ff" stroke-width="1.5"/>
-    <rect x="480" y="245" width="120" height="50" rx="10" fill="#6c63ff" opacity="0.08"/>
-    <text x="540" y="264" text-anchor="middle" font-size="9" fill="#a78bfa" font-family="'Segoe UI', system-ui, sans-serif" font-weight="600" letter-spacing="1">AXIOM</text>
-    <text x="540" y="282" text-anchor="middle" font-size="14" fill="#e8e8f0" font-family="'Segoe UI', system-ui, sans-serif" font-weight="700">Nexus</text>
-    <!-- LLM icon hint -->
-    <text x="582" y="268" font-size="11" fill="#a78bfa" opacity="0.5">⚡</text>
+    <rect x="490" y="230" width="140" height="55" rx="10" fill="#201810" stroke="#f59e0b" stroke-width="1.5"/>
+    <rect x="490" y="230" width="140" height="55" rx="10" fill="#f59e0b" opacity="0.08"/>
+    <text x="560" y="250" text-anchor="middle" font-size="9" fill="#fbbf24" font-family="'Segoe UI', system-ui, sans-serif" font-weight="600" letter-spacing="1">LLM ORCHESTRATOR</text>
+    <text x="560" y="272" text-anchor="middle" font-size="15" fill="#f0f0f8" font-family="'Segoe UI', system-ui, sans-serif" font-weight="700">Nexus</text>
   </g>
 
-  <!-- ═══ PLATFORM SERVICES (teal border = independent) ═══ -->
-
-  <!-- Platform label -->
-  <text x="490" y="348" text-anchor="middle" font-size="9" fill="#00d4aa" font-family="'Segoe UI', system-ui, sans-serif" font-weight="600" letter-spacing="2" opacity="0.5">AI PLATFORM SERVICES</text>
-
-  <!-- Pulse Node (bottom left) -->
+  <!-- Orchestration Node -->
   <g filter="url(#nodeShadow)">
-    <rect x="260" y="360" width="100" height="44" rx="10" fill="#0e1a1a" stroke="#00d4aa" stroke-width="1.5"/>
-    <rect x="260" y="360" width="100" height="44" rx="10" fill="#00d4aa" opacity="0.06"/>
-    <text x="310" y="378" text-anchor="middle" font-size="9" fill="#00d4aa" font-family="'Segoe UI', system-ui, sans-serif" font-weight="600" letter-spacing="1">INPUT</text>
-    <text x="310" y="394" text-anchor="middle" font-size="13" fill="#e8e8f0" font-family="'Segoe UI', system-ui, sans-serif" font-weight="700">Pulse</text>
+    <rect x="660" y="235" width="110" height="44" rx="10" fill="#201210" stroke="#ff6b9d" stroke-width="1" stroke-dasharray="4 3"/>
+    <rect x="660" y="235" width="110" height="44" rx="10" fill="#ff6b9d" opacity="0.06"/>
+    <text x="715" y="253" text-anchor="middle" font-size="8" fill="#ff8db5" font-family="'Segoe UI', system-ui, sans-serif" font-weight="600" letter-spacing="1">DOCKER</text>
+    <text x="715" y="269" text-anchor="middle" font-size="11" fill="#f0f0f8" font-family="'Segoe UI', system-ui, sans-serif" font-weight="600" opacity="0.9">Orchestration</text>
   </g>
 
-  <!-- Cortex Node (bottom center) -->
+  <!-- PostgreSQL Node -->
   <g filter="url(#nodeShadow)">
-    <rect x="440" y="360" width="100" height="44" rx="10" fill="#0e1a1a" stroke="#00d4aa" stroke-width="1.5"/>
-    <rect x="440" y="360" width="100" height="44" rx="10" fill="#00d4aa" opacity="0.06"/>
-    <text x="490" y="378" text-anchor="middle" font-size="9" fill="#00d4aa" font-family="'Segoe UI', system-ui, sans-serif" font-weight="600" letter-spacing="1">LLM</text>
-    <text x="490" y="394" text-anchor="middle" font-size="13" fill="#e8e8f0" font-family="'Segoe UI', system-ui, sans-serif" font-weight="700">Cortex</text>
+    <rect x="250" y="340" width="180" height="40" rx="8" fill="#201810" stroke="#f59e0b" stroke-width="1" opacity="0.7"/>
+    <text x="340" y="365" text-anchor="middle" font-size="11" fill="#fbbf24" font-family="'Segoe UI', system-ui, sans-serif" font-weight="600" opacity="0.85">PostgreSQL + pgvector</text>
   </g>
 
-  <!-- Synth Node (bottom right) -->
-  <g filter="url(#nodeShadow)">
-    <rect x="620" y="360" width="100" height="44" rx="10" fill="#0e1a1a" stroke="#00d4aa" stroke-width="1.5"/>
-    <rect x="620" y="360" width="100" height="44" rx="10" fill="#00d4aa" opacity="0.06"/>
-    <text x="670" y="378" text-anchor="middle" font-size="9" fill="#00d4aa" font-family="'Segoe UI', system-ui, sans-serif" font-weight="600" letter-spacing="1">OUTPUT</text>
-    <text x="670" y="394" text-anchor="middle" font-size="13" fill="#e8e8f0" font-family="'Segoe UI', system-ui, sans-serif" font-weight="700">Synth</text>
-  </g>
-
-  <!-- Orchestration Node (bottom left corner) -->
-  <g filter="url(#nodeShadow)">
-    <rect x="80" y="365" width="120" height="44" rx="10" fill="#1a1420" stroke="#ff6b9d" stroke-width="1" stroke-dasharray="4 3"/>
-    <rect x="80" y="365" width="120" height="44" rx="10" fill="#ff6b9d" opacity="0.04"/>
-    <text x="140" y="383" text-anchor="middle" font-size="8" fill="#ff6b9d" font-family="'Segoe UI', system-ui, sans-serif" font-weight="600" letter-spacing="1" opacity="0.7">DOCKER</text>
-    <text x="140" y="399" text-anchor="middle" font-size="12" fill="#e8e8f0" font-family="'Segoe UI', system-ui, sans-serif" font-weight="600" opacity="0.8">Orchestration</text>
+  <!-- ═══ PRISM CONNECTION ═══ -->
+  <g transform="translate(300, 400)">
+    <rect x="0" y="0" width="200" height="36" rx="18" fill="#122420" stroke="#00d4aa" stroke-width="1.5"/>
+    <rect x="0" y="0" width="200" height="36" rx="18" fill="#00d4aa" opacity="0.08"/>
+    <text x="24" y="22" font-size="10" fill="#00d4aa" font-family="'Segoe UI', system-ui, sans-serif" font-weight="700" letter-spacing="1">PRISM</text>
+    <text x="78" y="22" font-size="10" fill="#7ab8a0" font-family="'Segoe UI', system-ui, sans-serif" font-weight="400">Pulse → Cortex → Synth</text>
   </g>
 
   <!-- Legend -->
-  <g transform="translate(30, 440)" opacity="0.5">
-    <rect x="0" y="0" width="10" height="10" rx="2" stroke="#6c63ff" stroke-width="1.2" fill="none"/>
-    <text x="16" y="9" font-size="9" fill="#8888aa" font-family="'Segoe UI', system-ui, sans-serif">Axiom Services</text>
+  <g transform="translate(30, 455)" opacity="0.7">
+    <rect x="0" y="0" width="10" height="10" rx="2" stroke="#f59e0b" stroke-width="1.2" fill="none"/>
+    <text x="16" y="9" font-size="9" fill="#b0a070" font-family="'Segoe UI', system-ui, sans-serif">Product Services</text>
     <rect x="120" y="0" width="10" height="10" rx="2" stroke="#00d4aa" stroke-width="1.2" fill="none"/>
-    <text x="136" y="9" font-size="9" fill="#8888aa" font-family="'Segoe UI', system-ui, sans-serif">Platform Services (reusable)</text>
-    <rect x="310" y="0" width="10" height="10" rx="2" stroke="#ff6b9d" stroke-width="1" fill="none" stroke-dasharray="3 2"/>
-    <text x="326" y="9" font-size="9" fill="#8888aa" font-family="'Segoe UI', system-ui, sans-serif">Infrastructure</text>
+    <text x="136" y="9" font-size="9" fill="#b0a070" font-family="'Segoe UI', system-ui, sans-serif">AI Platform (Prism)</text>
+    <rect x="275" y="0" width="10" height="10" rx="2" stroke="#ff6b9d" stroke-width="1" fill="none" stroke-dasharray="3 2"/>
+    <text x="291" y="9" font-size="9" fill="#b0a070" font-family="'Segoe UI', system-ui, sans-serif">Infrastructure</text>
   </g>
 
-  <!-- "7 services" badge -->
-  <g transform="translate(660, 445)">
-    <rect x="0" y="-12" width="110" height="22" rx="11" fill="#6c63ff" opacity="0.12" stroke="#6c63ff" stroke-width="0.5" stroke-opacity="0.3"/>
-    <text x="55" y="2" text-anchor="middle" font-size="10" fill="#a78bfa" font-family="'Segoe UI', system-ui, sans-serif" font-weight="600">7 Microservices</text>
+  <!-- Stats badges -->
+  <g transform="translate(530, 455)">
+    <rect x="0" y="-12" width="100" height="22" rx="11" fill="#f59e0b" opacity="0.15" stroke="#f59e0b" stroke-width="0.5" stroke-opacity="0.4"/>
+    <text x="50" y="2" text-anchor="middle" font-size="10" fill="#fcd34d" font-family="'Segoe UI', system-ui, sans-serif" font-weight="600">134 PRs</text>
+  </g>
+  <g transform="translate(645, 455)">
+    <rect x="0" y="-12" width="100" height="22" rx="11" fill="#f59e0b" opacity="0.15" stroke="#f59e0b" stroke-width="0.5" stroke-opacity="0.4"/>
+    <text x="50" y="2" text-anchor="middle" font-size="10" fill="#fcd34d" font-family="'Segoe UI', system-ui, sans-serif" font-weight="600">961 Tests</text>
   </g>
 
-  <!-- Flow label: Pulse → Cortex → Synth -->
-  <text x="400" y="425" text-anchor="middle" font-size="9" fill="#00d4aa" font-family="'Segoe UI', system-ui, sans-serif" opacity="0.4" letter-spacing="1">NORMALIZE → EXECUTE → RENDER</text>
+  <!-- Feature tags -->
+  <g transform="translate(50, 340)" opacity="0.75">
+    <rect x="0" y="0" width="85" height="20" rx="10" fill="#f59e0b" opacity="0.15"/>
+    <text x="42" y="14" text-anchor="middle" font-size="8" fill="#fcd34d" font-family="'Segoe UI', system-ui, sans-serif" font-weight="500">RAG Search</text>
+  </g>
+  <g transform="translate(50, 365)" opacity="0.75">
+    <rect x="0" y="0" width="95" height="20" rx="10" fill="#f59e0b" opacity="0.15"/>
+    <text x="47" y="14" text-anchor="middle" font-size="8" fill="#fcd34d" font-family="'Segoe UI', system-ui, sans-serif" font-weight="500">SSE Streaming</text>
+  </g>
+  <g transform="translate(50, 390)" opacity="0.75">
+    <rect x="0" y="0" width="105" height="20" rx="10" fill="#f59e0b" opacity="0.15"/>
+    <text x="52" y="14" text-anchor="middle" font-size="8" fill="#fcd34d" font-family="'Segoe UI', system-ui, sans-serif" font-weight="500">Version History</text>
+  </g>
 </svg>
