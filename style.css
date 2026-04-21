@@ -628,6 +628,23 @@ body:hover .cursor-glow {
 .hero-btn:hover svg {
   opacity: 1;
 }
+.hero-btn-github {
+  border-color: rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  font-weight: 600;
+  box-shadow: 0 4px 16px rgba(255, 255, 255, 0.08);
+}
+.hero-btn-github svg {
+  opacity: 1;
+}
+.hero-btn-github:hover {
+  border-color: rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  box-shadow: 0 4px 24px rgba(255, 255, 255, 0.15);
+  transform: translateY(-2px);
+}
 .hero-btn-resume {
   border: none;
   background: var(--gradient-1);
