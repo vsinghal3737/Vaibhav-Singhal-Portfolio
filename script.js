@@ -164,6 +164,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 const h = document.documentElement.scrollHeight - window.innerHeight;
                 scrollBar.style.width = (h > 0 ? (window.scrollY / h) * 100 : 0) + '%';
                 backToTop.classList.toggle('visible', window.scrollY > 400);
+                const scrollInd = document.querySelector('.scroll-indicator');
+                if (scrollInd) scrollInd.classList.toggle('hidden', window.scrollY > 400);
                 navbar.classList.toggle('scrolled', window.scrollY > 50);
                 const sy = window.scrollY + 120;
                 sectionLinks.forEach(({ section, link }) => {

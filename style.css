@@ -662,16 +662,24 @@ body:hover .cursor-glow {
   transform: translateY(-2px);
 }
 .scroll-indicator {
-  margin-top: 50px;
+  position: fixed;
+  right: 28px;
+  bottom: 28px;
+  z-index: 10;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
   color: var(--text-dim);
-  font-size: 0.75rem;
+  font-size: 0.65rem;
   text-transform: uppercase;
   letter-spacing: 1px;
   animation: floatUp 2s ease-in-out infinite;
+  transition: opacity 0.05s ease;
+}
+.scroll-indicator.hidden.visible {
+  opacity: 0;
+  pointer-events: none;
 }
 .scroll-mouse {
   width: 24px;
@@ -3513,6 +3521,9 @@ html {
   .hero-photo {
     width: 100px;
     height: 100px;
+  }
+  .scroll-indicator {
+    display: none;
   }
 }
 
