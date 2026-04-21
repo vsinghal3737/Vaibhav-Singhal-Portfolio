@@ -1923,10 +1923,172 @@ section {
 /* ═══ ANIMATED FOLDERS ═══ */
 .folder-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  grid-template-columns: 1fr;
   gap: 28px;
   justify-items: center;
 }
+/* When folder-grid has NO row wrappers (fallback), restore auto-fit */
+.folder-grid:not(:has(.folder-row)) {
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+/* Row wrappers */
+.folder-row {
+  width: 100%;
+  display: grid;
+  gap: 28px;
+  justify-items: center;
+}
+.folder-row-main {
+  grid-template-columns: repeat(2, 1fr);
+}
+.folder-row-categories {
+  grid-template-columns: repeat(3, 1fr);
+}
+@media (max-width: 768px) {
+  .folder-row-main,
+  .folder-row-categories {
+    grid-template-columns: 1fr;
+  }
+}
+@media (min-width: 769px) and (max-width: 1024px) {
+  .folder-row-categories {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* ═══ PRISM PLATFORM STRIP ═══ */
+.prism-strip {
+  grid-column: 1 / -1;
+  width: 100%;
+}
+.prism-strip-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 20px 32px;
+  border-radius: var(--radius);
+  background: linear-gradient(
+    135deg,
+    rgba(0, 212, 170, 0.04) 0%,
+    rgba(52, 211, 153, 0.02) 100%
+  );
+  border: 1px solid rgba(0, 212, 170, 0.15);
+  cursor: pointer;
+  transition: all 0.4s ease;
+}
+.prism-strip-inner:hover {
+  border-color: rgba(0, 212, 170, 0.35);
+  box-shadow: 0 8px 32px rgba(0, 212, 170, 0.1);
+}
+.prism-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+.prism-icon {
+  font-size: 1.2rem;
+}
+.prism-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #00d4aa;
+  letter-spacing: 3px;
+}
+.prism-subtitle {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  opacity: 0.7;
+}
+.prism-services {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+  justify-content: center;
+}
+.prism-service {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 8px 16px;
+  border-radius: 8px;
+  background: rgba(0, 212, 170, 0.06);
+  border: 1px solid rgba(0, 212, 170, 0.1);
+  min-width: 120px;
+  transition: all 0.3s;
+}
+.prism-strip-inner:hover .prism-service {
+  border-color: rgba(0, 212, 170, 0.2);
+}
+.prism-service-role {
+  font-size: 0.6rem;
+  font-weight: 600;
+  color: #00d4aa;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+.prism-service-name {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text);
+}
+.prism-service-desc {
+  font-size: 0.65rem;
+  color: var(--text-dim);
+  text-align: center;
+  line-height: 1.3;
+  max-width: 160px;
+}
+.prism-arrow {
+  color: #00d4aa;
+  font-size: 1.2rem;
+  opacity: 0.5;
+  flex-shrink: 0;
+}
+.prism-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+  flex-shrink: 0;
+}
+.prism-stats {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #00d4aa;
+  opacity: 0.8;
+}
+.prism-powers {
+  font-size: 0.7rem;
+  color: var(--text-dim);
+}
+.prism-powers strong {
+  color: var(--text-muted);
+}
+@media (max-width: 900px) {
+  .prism-strip-inner {
+    flex-direction: column;
+    text-align: center;
+    gap: 16px;
+    padding: 20px;
+  }
+  .prism-label {
+    justify-content: center;
+  }
+  .prism-services {
+    flex-wrap: wrap;
+  }
+  .prism-meta {
+    align-items: center;
+  }
+  .prism-arrow {
+    display: none;
+  }
+}
+
 .folder {
   position: relative;
   display: flex;
@@ -2417,6 +2579,39 @@ section {
 }
 .lb-dot:hover:not(.active) {
   opacity: 0.6;
+}
+
+/* ═══ WIDE LIGHTBOX (main projects: side-by-side when landscape) ═══ */
+@media (min-aspect-ratio: 1/1) and (min-width: 700px) {
+  .lb-wide .lb-container {
+    max-width: 85vw;
+  }
+  .lb-wide .lb-card {
+    display: flex;
+    flex-direction: row;
+    min-height: 60vh;
+    max-height: 85vh;
+  }
+  .lb-wide .lb-image-wrap {
+    flex: 0 0 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    border-right: 1px solid var(--glass-border);
+  }
+  .lb-wide .lb-image {
+    max-height: 100%;
+    max-width: 100%;
+    object-fit: contain;
+  }
+  .lb-wide .lb-info {
+    flex: 0 0 50%;
+    max-height: none;
+    overflow-y: auto;
+    border-top: none;
+    padding: 28px 28px 20px;
+  }
 }
 
 /* ═══ CONTACT ═══ */
@@ -3189,7 +3384,7 @@ html {
   .cert-grid {
     grid-template-columns: 1fr;
   }
-  .folder-grid {
+  .folder-grid:not(:has(.folder-row)) {
     grid-template-columns: 1fr;
     max-width: 320px;
     margin: 0 auto;

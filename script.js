@@ -326,36 +326,59 @@ document.addEventListener('DOMContentLoaded', () => {
     const folderData = [
         {
             title: 'Axiom',
-            subtitle: '7 microservices',
+            subtitle: '4 services + Prism',
+            row: 'main',
             projects: [
                 {
-                    title: 'Axiom — AI Note Intelligence',
+                    title: 'Axiom — Knowledge Workspace',
                     date: '2025 – Present',
-                    summary: 'Started as a monolith (my-notes), then decomposed into 7 independent microservices — 3 are reusable AI platform services not tied to any specific project.',
+                    summary: 'Cloud-native knowledge workspace with Obsidian-like note management, AI-powered RAG search, and a production-grade processing pipeline. 134 PRs merged, 961 tests.',
                     bullets: [
-                        'Architected 7-service platform: API, React UI, LLM gateway (Nexus), input normalizer (Pulse), LLM executor (Cortex), output renderer (Synth), and Docker orchestration.',
-                        'Pulse, Cortex, and Synth are standalone AI platform services — stateless, bearer-token auth, reusable across any project.',
-                        'Built async FastAPI backends with SQLModel ORM, Alembic migrations, PostgreSQL, and Supabase JWT auth.',
-                        'Designed AI pipeline: Pulse normalizes input → Cortex executes LLM calls (OpenAI, Anthropic, Gemini) with circuit breakers → Synth renders output via SSE/TTS.',
-                        'Frontend in React/Next.js 14 with TypeScript, TanStack Query, Zustand, and Tailwind CSS.'
+                        'Architected 4 product services: REST API (FastAPI/SQLModel), React UI (Next.js 14), LLM orchestrator (Nexus), and Docker orchestration.',
+                        'Built rich editor with BlockNote, version history with snapshot/restore, wiki-style [[links]] with backlinks, soft-delete with cascade recovery.',
+                        'Implemented semantic search via pgvector embeddings + hybrid ranking (full-text + vector similarity), workspace-scoped conversational RAG chat.',
+                        'Designed job queue using PostgreSQL FOR UPDATE SKIP LOCKED — heartbeat reclamation, retry with backoff, dead-letter queue. No external message broker.',
+                        'End-to-end SSE streaming: Worker → Cortex → Synth → Gateway → Client with sequence numbering for reconnect replay.',
+                        'Powered by Prism (shared AI platform) for multi-provider LLM execution, input normalization, and output rendering.'
                     ],
-                    tags: ['Python','FastAPI','React','TypeScript','PostgreSQL','Docker','LLM'],
+                    tags: ['Python','FastAPI','React','Next.js','TypeScript','PostgreSQL','pgvector','Docker'],
                     image: 'img/axiom.svg', fallback: 'img/axiom.svg',
                     links: [
                         { label: 'my-notes (v1)', url: 'https://github.com/vsinghal3737/my-notes' },
                         { label: 'Axiom-api', url: 'https://github.com/vsinghal3737/Axiom-api' },
                         { label: 'Axiom-ui', url: 'https://github.com/vsinghal3737/Axiom-ui' },
                         { label: 'Axiom-nexus', url: 'https://github.com/vsinghal3737/Axiom-nexus' },
-                        { label: 'Pulse', url: 'https://github.com/vsinghal3737/pulse', platform: true },
-                        { label: 'Cortex', url: 'https://github.com/vsinghal3737/cortex', platform: true },
-                        { label: 'Synth', url: 'https://github.com/vsinghal3737/synth', platform: true },
                         { label: 'Orchestration', url: 'https://github.com/vsinghal3737/Axiom-orchestration' }
                     ]
                 },
             ]
         },
         {
+            title: 'ZitherAi',
+            subtitle: '5 services + Prism',
+            row: 'main',
+            projects: [
+                {
+                    title: 'ZitherAi — AI Music Copilot',
+                    date: '2026 – Present',
+                    summary: 'AI-powered music recommendation engine and playlist copilot. Conversational playlist generation across Spotify, YouTube Music, and Apple Music — without hosting a music catalog.',
+                    bullets: [
+                        'Designed 5-service architecture: API (users/taste profiles), Nexus (8-stage recommendation pipeline), Bridge (stateless provider adapters), UI (chat-first React), and Docker orchestration.',
+                        'Built 8-stage recommendation pipeline: Input → Intent Extraction → Candidate Retrieval → Enrichment → Ranking → Sequencing → Metadata → SSE Output.',
+                        'Provider-agnostic Bridge service with circuit breakers per provider (error rate, p95 latency, rate limit headroom, cost) and automatic failover.',
+                        'Fernet encryption (AES-128-CBC + HMAC) for OAuth tokens at rest with MultiFernet key rotation support.',
+                        'Optimistic concurrency with version columns + atomic CAS on all mutable entities. Cursor-based pagination (not offset) for stable reads.',
+                        'Powered by Prism (shared AI platform) for LLM execution, mood/intent inference, and output rendering.'
+                    ],
+                    tags: ['Python','FastAPI','React','Next.js','TypeScript','PostgreSQL','Spotify API','Docker'],
+                    image: 'img/zither.svg', fallback: 'img/zither.svg',
+                    links: []
+                },
+            ]
+        },
+        {
             title: 'Data Engineering',
+            row: 'category',
             projects: [
                 { title: 'RosterData — Ice Hockey v2', date: 'Jan 2020 – Apr 2020', summary: 'Expanded RosterData from NHL-only to 4-league coverage (NHL, SHL, Liiga, KHL) with cross-league player comparison.', bullets: ['Built league-specific Scrapy pipelines for SHL, Liiga, and KHL — each with unique HTML structures and pagination patterns.','Designed a normalized JSON data model for cross-league consistency (player identity, season stats, team associations).','Stored normalized data in PostgreSQL on AWS RDS with query-optimized indexing for player lookup and league standings.','Built REST APIs for player search, team rosters, and cross-league career timelines.'], tags: ['Python','Scrapy','PostgreSQL','AWS'], image: 'img/ice-hockey.webp', fallback: 'img/ice-hockey.jpg' },
                 { title: 'Hadoop Cluster & MapReduce', date: 'Mar 2017 – Jun 2017', summary: '8-node Hadoop cluster processing 300M+ YouTube video logs with MapReduce and cross-version benchmarking.', bullets: ['Configured 1 NameNode + 7 DataNodes with HDFS replication and YARN resource management.','Designed MapReduce jobs (Hadoop Streaming, Python): most-viewed by category, upload trends, viral video detection.','Benchmarked identical jobs across Hadoop versions — measured job time, CPU/memory, shuffle overhead, and speculative execution.','Documented quantitative speedups in scheduling and data shuffle across framework versions.'], tags: ['Hadoop','MapReduce','Python','HDFS'], image: 'img/hadoop.webp', fallback: 'img/hadoop.png' },
@@ -363,6 +386,7 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         {
             title: 'Machine Learning',
+            row: 'category',
             projects: [
                 { title: 'LSA Classification & Prediction', date: 'Mar 2020 – Apr 2020', summary: 'End-to-end ML pipeline for financial document classification — 98% accuracy, deployed as a REST API on GCP.', bullets: ['Preprocessed financial documents: tokenization, stop-word removal, TF-IDF vectorization into numerical feature vectors.','Applied LSA (SVD on TF-IDF matrix) for dimensionality reduction while preserving discriminative dimensions.','Evaluated Naive Bayes, SVM, Random Forest, and Logistic Regression with grid search and cross-validation.','Built Flask REST APIs for real-time inference and deployed containerized on GCP Compute Engine.'], tags: ['Python','scikit-learn','Flask','GCP'], image: 'img/tfidf.webp', fallback: 'img/tfidf.png' },
                 { title: 'Diabetes Classifier & Clustering', date: 'Aug 2019 – Nov 2019', summary: 'Rigorous ML classification on clinical data with K-fold validation — 85% accuracy, plus unsupervised meal clustering.', bullets: ['Preprocessed Pima Indians Diabetes Dataset: median imputation for missing values, feature normalization, class imbalance analysis.','Evaluated Decision Tree, SVM, and KNN classifiers using K-fold cross-validation for generalizability.','Applied K-Means and DBSCAN clustering on meal/glucose data to identify dietary patterns correlated with glucose response.','Achieved 85% accuracy / 83% confidence validated across folds — not an artifact of a favorable split.'], tags: ['Python','Pandas','NumPy','scikit-learn'], image: 'img/sklearn.webp', fallback: 'img/sklearn.png' },
@@ -370,6 +394,7 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         {
             title: 'Software Engineering',
+            row: 'category',
             projects: [
                 { title: 'Visual Learning Portal', date: 'Aug 2019 – Nov 2019', summary: 'Interactive math portal with drag-and-drop, built by a team of 5 using Agile/Scrum and formal design patterns.', bullets: ['Applied Facade (simplified complex subsystems), Factory (dynamic content creation), and Iterator (collection traversal) patterns.','Built Flask REST APIs with SQLAlchemy ORM; drag-and-drop frontend for interactive math exploration.','Ran 2-week sprints with backlog grooming, standups, and retrospectives across a 5-person team.'], tags: ['Python','Flask','SQLAlchemy','Agile'], image: 'img/math.webp', fallback: 'img/math.jpg' },
                 { title: '!Xobile Programming Language', date: 'Jan 2019 – May 2019', summary: 'Custom OOP language with full compilation pipeline — grammar spec, tokenizer, parser, and semantic analyzer.', bullets: ['Designed formal grammar: class declarations, inheritance, control flow, expressions, and OOP constructs (this, constructors, method dispatch).','Built regex-based tokenizer in Python (keywords, identifiers, operators, string literals with escape chars).','Implemented parser and semantic analyzer in Prolog: type checking, variable scoping, inheritance cycle detection, and method resolution.','End-to-end pipeline: valid programs produce semantically validated parse trees; invalid programs yield meaningful error messages.'], tags: ['Python','Prolog','Compiler Design'], image: 'img/lang.webp', fallback: 'img/lang.jpg' },
@@ -377,9 +402,47 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     ];
 
-    // Render folders
+    // Prism platform data (rendered as connecting strip, not a folder)
+    const prismData = {
+        title: 'Prism',
+        subtitle: 'Shared AI Platform',
+        stats: '48 PRs · 366 Tests',
+        services: [
+            { name: 'Pulse', role: 'Input', desc: 'Text, audio, PDF, images → StructuredContext' },
+            { name: 'Cortex', role: 'LLM Gateway', desc: 'OpenAI, Anthropic, Gemini + circuit breakers' },
+            { name: 'Synth', role: 'Output', desc: 'SSE streaming, TTS, PDF/DOCX assembly' }
+        ],
+        project: {
+            title: 'Prism — Shared AI Platform',
+            date: '2025 – Present',
+            summary: 'Reusable, stateless AI infrastructure layer powering multiple projects. Three services handle input normalization, multi-provider LLM execution, and output rendering — any project connects via HTTP + bearer token.',
+            bullets: [
+                'Pulse normalizes any input modality (text, audio via ffmpeg+Whisper, images via vision captioning, PDF/DOCX/XLSX) into deterministic StructuredContext JSON.',
+                'Cortex provides a universal AI gateway: 12 completion models across 3 providers with per-provider circuit breakers, fallback chains, and Decimal cost tracking.',
+                'Synth renders output as SSE-streamed text, sentence-boundary-buffered TTS audio, or assembled files (PDF, DOCX, HTML, CSV) with HTML sanitization.',
+                'All services stateless by design — no database, horizontal scaling trivial. Bearer token + HMAC-SHA256 auth. Centralized cost metadata passthrough.',
+                'Strategy pattern for provider adapters — adding a new LLM provider is one file + one catalog entry, zero core changes.',
+                'Currently powers Axiom (knowledge workspace) and ZitherAi (music recommendation).'
+            ],
+            tags: ['Python','FastAPI','OpenAI','Anthropic','Gemini','Docker','SSE','TTS'],
+            image: 'img/prism.svg', fallback: 'img/prism.svg',
+            links: [
+                { label: 'Pulse', url: 'https://github.com/vsinghal3737/pulse', platform: true },
+                { label: 'Cortex', url: 'https://github.com/vsinghal3737/cortex', platform: true },
+                { label: 'Synth', url: 'https://github.com/vsinghal3737/synth', platform: true }
+            ]
+        }
+    };
+
+    // Render folders in rows: main projects, prism strip, category folders
     const folderGrid = document.getElementById('folderGrid');
     if (folderGrid) {
+        // Create row wrappers (pure layout, no reveal/glass — avoids visual artifacts)
+        const mainRow = document.createElement('div');
+        mainRow.className = 'folder-row folder-row-main';
+        const catRow = document.createElement('div');
+        catRow.className = 'folder-row folder-row-categories';
+
         folderData.forEach((folder, fi) => {
             const count = folder.projects.length;
             const el = document.createElement('div');
@@ -404,9 +467,51 @@ document.addEventListener('DOMContentLoaded', () => {
                 <p class="folder-count">${folder.subtitle || (count + ' ' + (count === 1 ? 'project' : 'projects'))}</p>
                 <span class="folder-hint">Hover to explore</span>
             `;
-            folderGrid.appendChild(el);
+            if (folder.row === 'main') {
+                mainRow.appendChild(el);
+            } else {
+                catRow.appendChild(el);
+            }
             revealObs.observe(el);
         });
+
+        folderGrid.appendChild(mainRow);
+
+        // Render Prism platform strip between rows
+        const prismStrip = document.createElement('div');
+        prismStrip.className = 'prism-strip';
+        const prismFi = folderData.length;
+        prismStrip.innerHTML = `
+            <div class="prism-strip-inner">
+                <div class="prism-label">
+                    <span class="prism-icon">⚡</span>
+                    <span class="prism-title">PRISM</span>
+                    <span class="prism-subtitle">Shared AI Platform</span>
+                </div>
+                <div class="prism-services">
+                    ${prismData.services.map((s, i) => `
+                        <div class="prism-service">
+                            <span class="prism-service-role">${s.role}</span>
+                            <span class="prism-service-name">${s.name}</span>
+                            <span class="prism-service-desc">${s.desc}</span>
+                        </div>
+                        ${i < prismData.services.length - 1 ? '<span class="prism-arrow">→</span>' : ''}
+                    `).join('')}
+                </div>
+                <div class="prism-meta">
+                    <span class="prism-stats">${prismData.stats}</span>
+                    <span class="prism-powers">Powers <strong>Axiom</strong> &amp; <strong>ZitherAi</strong></span>
+                </div>
+            </div>
+        `;
+        folderGrid.appendChild(prismStrip);
+
+        // Prism strip click opens lightbox
+        prismStrip.querySelector('.prism-strip-inner').addEventListener('click', () => {
+            openLightbox(prismFi, 0);
+        });
+
+        folderGrid.appendChild(catRow);
 
         // On touch devices: tap folder to toggle hover state
         if (isTouch) {
@@ -456,6 +561,10 @@ document.addEventListener('DOMContentLoaded', () => {
     function openLightbox(fi, pi) {
         lbFolderIdx = fi;
         lbProjectIdx = pi;
+        // Wide layout for main projects (Axiom, ZitherAi, Prism)
+        const isPrism = fi >= folderData.length;
+        const isMain = isPrism || (folderData[fi] && folderData[fi].row === 'main');
+        lb.classList.toggle('lb-wide', isMain);
         updateLightbox();
         lb.classList.add('open');
         document.body.style.overflow = 'hidden';
@@ -463,11 +572,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function closeLightbox() {
         lb.classList.remove('open');
+        lb.classList.remove('lb-wide');
         document.body.style.overflow = '';
     }
 
     function updateLightbox() {
-        const folder = folderData[lbFolderIdx];
+        // Handle virtual Prism folder (index beyond folderData)
+        const isPrism = lbFolderIdx >= folderData.length;
+        const folder = isPrism
+            ? { title: prismData.title, projects: [prismData.project] }
+            : folderData[lbFolderIdx];
         if (!folder) return;
         const p = folder.projects[lbProjectIdx];
         if (!p) return;
