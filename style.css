@@ -1970,6 +1970,30 @@ section {
 .prism-strip {
   grid-column: 1 / -1;
   width: 100%;
+  position: relative;
+}
+/* Connector lines from Prism up to Axiom/ZitherAi */
+.prism-strip::before,
+.prism-strip::after {
+  content: "";
+  position: absolute;
+  top: -28px;
+  width: 1px;
+  height: 28px;
+  background: linear-gradient(to bottom, transparent, rgba(0, 212, 170, 0.3));
+  pointer-events: none;
+}
+.prism-strip::before {
+  left: 25%;
+}
+.prism-strip::after {
+  right: 25%;
+}
+@media (max-width: 768px) {
+  .prism-strip::before,
+  .prism-strip::after {
+    display: none;
+  }
 }
 .prism-strip-inner {
   display: flex;

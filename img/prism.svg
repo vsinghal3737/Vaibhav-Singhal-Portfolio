@@ -59,7 +59,6 @@
     <rect x="100" y="210" width="155" height="80" rx="12" fill="#00d4aa" opacity="0.08"/>
     <text x="177" y="235" text-anchor="middle" font-size="9" fill="#34d399" font-family="'Segoe UI', system-ui, sans-serif" font-weight="600" letter-spacing="2">INPUT</text>
     <text x="177" y="258" text-anchor="middle" font-size="20" fill="#f0f0f8" font-family="'Segoe UI', system-ui, sans-serif" font-weight="700">Pulse</text>
-    <text x="177" y="278" text-anchor="middle" font-size="9" fill="#78a898" font-family="'Segoe UI', system-ui, sans-serif" font-weight="400">:8300</text>
   </g>
 
   <!-- ═══ CORTEX NODE ═══ -->
@@ -68,7 +67,6 @@
     <rect x="335" y="210" width="135" height="80" rx="12" fill="#00d4aa" opacity="0.08"/>
     <text x="402" y="235" text-anchor="middle" font-size="9" fill="#34d399" font-family="'Segoe UI', system-ui, sans-serif" font-weight="600" letter-spacing="2">LLM GATEWAY</text>
     <text x="402" y="258" text-anchor="middle" font-size="20" fill="#f0f0f8" font-family="'Segoe UI', system-ui, sans-serif" font-weight="700">Cortex</text>
-    <text x="402" y="278" text-anchor="middle" font-size="9" fill="#78a898" font-family="'Segoe UI', system-ui, sans-serif" font-weight="400">:8400</text>
   </g>
 
   <!-- ═══ SYNTH NODE ═══ -->
@@ -77,7 +75,6 @@
     <rect x="550" y="210" width="155" height="80" rx="12" fill="#00d4aa" opacity="0.08"/>
     <text x="627" y="235" text-anchor="middle" font-size="9" fill="#34d399" font-family="'Segoe UI', system-ui, sans-serif" font-weight="600" letter-spacing="2">OUTPUT</text>
     <text x="627" y="258" text-anchor="middle" font-size="20" fill="#f0f0f8" font-family="'Segoe UI', system-ui, sans-serif" font-weight="700">Synth</text>
-    <text x="627" y="278" text-anchor="middle" font-size="9" fill="#78a898" font-family="'Segoe UI', system-ui, sans-serif" font-weight="400">:8500</text>
   </g>
 
   <!-- Capability tags below each service -->
