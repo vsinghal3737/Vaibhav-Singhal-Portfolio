@@ -526,6 +526,10 @@ document.addEventListener('DOMContentLoaded', () => {
             openLightbox(prismFi, 0);
         });
 
+        const projectDivider = document.createElement('div');
+        projectDivider.className = 'project-divider';
+        folderGrid.appendChild(projectDivider);
+
         folderGrid.appendChild(catRow);
 
         // On touch devices: tap folder to toggle hover state

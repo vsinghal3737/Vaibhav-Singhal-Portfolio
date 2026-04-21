@@ -2017,6 +2017,18 @@ section {
     display: none;
   }
 }
+.project-divider {
+  grid-column: 1 / -1;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 5%,
+    rgba(255, 255, 255, 0.15) 30%,
+    rgba(255, 255, 255, 0.15) 70%,
+    transparent 95%
+  );
+}
 .prism-strip-inner {
   display: flex;
   align-items: center;
