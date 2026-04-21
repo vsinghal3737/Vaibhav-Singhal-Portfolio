@@ -408,6 +408,22 @@ body:hover .cursor-glow {
 .hero-content {
   position: relative;
   z-index: 2;
+  width: 100%;
+  max-width: 800px;
+}
+.hero-intro {
+  display: flex;
+  align-items: center;
+  gap: clamp(24px, 3vw, 40px);
+  margin-bottom: 24px;
+}
+.hero-intro-left {
+  flex-shrink: 0;
+}
+.hero-intro-right {
+  text-align: left;
+  flex: 1;
+  min-width: 0;
 }
 .hero-photo-wrap {
   position: relative;
@@ -417,8 +433,8 @@ body:hover .cursor-glow {
 }
 .hero-photo {
   display: block;
-  width: 130px;
-  height: 130px;
+  width: 200px;
+  height: 200px;
   border-radius: 50%;
   object-fit: cover;
   border: 3px solid var(--glass-border);
@@ -453,28 +469,27 @@ body:hover .cursor-glow {
   }
 }
 .hero-name {
-  font-size: 3.5rem;
+  font-size: clamp(1.8rem, 3vw, 2.8rem);
   font-weight: 700;
-  letter-spacing: -2px;
+  letter-spacing: -1px;
   line-height: 1.1;
   margin-bottom: 20px;
+  white-space: nowrap;
 }
 .hero-first {
-  display: block;
   background: var(--gradient-1);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 .hero-last {
-  display: block;
   color: var(--text);
 }
 
 /* ═══ TERMINAL ═══ */
 .terminal {
-  max-width: 600px;
-  margin: 0 auto 32px;
+  width: 100%;
+  margin: 0 0 32px;
   border-radius: 12px;
   overflow: hidden;
   border: 1px solid var(--glass-border);
@@ -749,11 +764,10 @@ body:hover .cursor-glow {
 /* ═══ HERO BLURB ═══ */
 .hero-blurb {
   max-width: 620px;
-  margin: 0 auto 32px;
+  margin: 0;
   color: var(--text-muted);
   font-size: 0.95rem;
   line-height: 1.7;
-  text-align: center;
 }
 .hero-blurb strong {
   color: var(--text);
@@ -3101,7 +3115,6 @@ footer {
   font-family: var(--font-mono);
   font-size: 0.82rem;
   color: var(--text-dim);
-  text-align: center;
   margin-bottom: 8px;
   font-style: italic;
   letter-spacing: 0.3px;
@@ -3151,9 +3164,6 @@ button,
 #hero {
   min-height: 100vh;
   min-height: 100dvh;
-}
-.hero-name {
-  font-size: clamp(2rem, 5vw, 3.5rem);
 }
 .section-title {
   font-size: clamp(1.6rem, 3.5vw, 2.2rem);
@@ -3521,6 +3531,17 @@ html {
   .hero-photo {
     width: 100px;
     height: 100px;
+  }
+  .hero-intro {
+    flex-direction: column;
+    gap: 16px;
+    text-align: center;
+  }
+  .hero-intro-right {
+    text-align: center;
+  }
+  .hero-name {
+    white-space: normal;
   }
   .scroll-indicator {
     display: none;
