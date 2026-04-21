@@ -58,9 +58,9 @@ document.addEventListener('DOMContentLoaded', () => {
         function tick() {
             if (i < cmd.length) {
                 cmdSpan.textContent += cmd[i++];
-                setTimeout(tick, 40 + Math.random() * 30);
+                setTimeout(tick, 18 + Math.random() * 15);
             } else {
-                setTimeout(cb, 300);
+                setTimeout(cb, 150);
             }
         }
         tick();
@@ -79,7 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
             out.style.transition = 'opacity 0.4s';
             out.style.opacity = '1';
         });
-        setTimeout(cb, 800);
+        setTimeout(cb, 400);
     }
 
     function runNextCommand() {

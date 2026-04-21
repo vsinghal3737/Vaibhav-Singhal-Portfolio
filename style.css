@@ -415,7 +415,7 @@ body:hover .cursor-glow {
   display: flex;
   align-items: center;
   gap: clamp(24px, 3vw, 40px);
-  margin-bottom: 24px;
+  margin-bottom: clamp(32px, 5vh, 56px);
 }
 .hero-intro-left {
   flex-shrink: 0;
@@ -469,7 +469,7 @@ body:hover .cursor-glow {
   }
 }
 .hero-name {
-  font-size: clamp(1.8rem, 3vw, 2.8rem);
+  font-size: clamp(2.2rem, 4vw, 3.2rem);
   font-weight: 700;
   letter-spacing: -1px;
   line-height: 1.1;
