@@ -102,9 +102,27 @@
     <div class="robot-scene" id="robotScene">
       <canvas id="robotCanvas"></canvas>
       <div class="robot-loader" id="robotLoader">
-        <svg class="robot-spinner" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <circle class="spinner-track" cx="12" cy="12" r="10" fill="none" stroke-width="3"/>
-          <circle class="spinner-fill" cx="12" cy="12" r="10" fill="none" stroke-width="3"/>
+        <svg
+          class="robot-spinner"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <circle
+            class="spinner-track"
+            cx="12"
+            cy="12"
+            r="10"
+            fill="none"
+            stroke-width="3"
+          />
+          <circle
+            class="spinner-fill"
+            cx="12"
+            cy="12"
+            r="10"
+            fill="none"
+            stroke-width="3"
+          />
         </svg>
         <span class="robot-loader-text">Loading 3D scene…</span>
       </div>
@@ -146,10 +164,32 @@
 
     <!-- COMMAND PALETTE -->
     <div class="cmd-palette-overlay" id="cmdOverlay"></div>
-    <div class="cmd-palette" id="cmdPalette" role="dialog" aria-label="Command palette" aria-modal="true">
+    <div
+      class="cmd-palette"
+      id="cmdPalette"
+      role="dialog"
+      aria-label="Command palette"
+      aria-modal="true"
+    >
       <div class="cmd-palette-header">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-        <input type="text" class="cmd-input" id="cmdInput" placeholder="Type to search..." autocomplete="off" />
+        <svg
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+        >
+          <circle cx="11" cy="11" r="8" />
+          <line x1="21" y1="21" x2="16.65" y2="16.65" />
+        </svg>
+        <input
+          type="text"
+          class="cmd-input"
+          id="cmdInput"
+          placeholder="Type to search..."
+          autocomplete="off"
+        />
         <kbd class="cmd-kbd">ESC</kbd>
       </div>
       <div class="cmd-results" id="cmdResults"></div>
@@ -179,8 +219,36 @@
           <li><a href="#contact">Contact</a></li>
         </ul>
         <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
-          <svg class="theme-icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-          <svg class="theme-icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg
+            class="theme-icon-sun"
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <circle cx="12" cy="12" r="5" />
+            <line x1="12" y1="1" x2="12" y2="3" />
+            <line x1="12" y1="21" x2="12" y2="23" />
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+            <line x1="1" y1="12" x2="3" y2="12" />
+            <line x1="21" y1="12" x2="23" y2="12" />
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+          </svg>
+          <svg
+            class="theme-icon-moon"
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+          </svg>
         </button>
       </div>
     </nav>
@@ -222,7 +290,11 @@
           </div>
         </div>
 
-        <p class="hero-greeting reveal" style="--delay: 0.22s" id="heroGreeting"></p>
+        <p
+          class="hero-greeting reveal"
+          style="--delay: 0.22s"
+          id="heroGreeting"
+        ></p>
 
         <p class="hero-blurb reveal" style="--delay: 0.25s">
           I build backend systems that serve millions &mdash; identity platforms
@@ -257,20 +329,86 @@
         </div>
 
         <div class="hero-links reveal" style="--delay: 0.4s">
-          <a href="https://drive.google.com/drive/folders/14P5q0XW5jiU3eIH2igkKzJ6LDOcdwyKn?usp=sharing" target="_blank" rel="noopener noreferrer" class="hero-btn hero-btn-resume magnetic">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+          <a
+            href="https://drive.google.com/drive/folders/14P5q0XW5jiU3eIH2igkKzJ6LDOcdwyKn?usp=sharing"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="hero-btn hero-btn-resume magnetic"
+          >
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path
+                d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
+              />
+              <polyline points="14 2 14 8 20 8" />
+              <line x1="16" y1="13" x2="8" y2="13" />
+              <line x1="16" y1="17" x2="8" y2="17" />
+              <polyline points="10 9 9 9 8 9" />
+            </svg>
             Resume
           </a>
-          <a href="https://github.com/vsinghal3737" target="_blank" rel="noopener noreferrer" class="hero-btn hero-btn-github magnetic">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+          <a
+            href="https://github.com/vsinghal3737"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="hero-btn hero-btn-github magnetic"
+          >
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path
+                d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"
+              />
+            </svg>
             GitHub
           </a>
-          <a href="https://linkedin.com/in/-singhal-vaibhav-/" target="_blank" rel="noopener noreferrer" class="hero-btn magnetic">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          <a
+            href="https://linkedin.com/in/-singhal-vaibhav-/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="hero-btn magnetic"
+          >
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path
+                d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"
+              />
+              <rect x="2" y="9" width="4" height="12" />
+              <circle cx="4" cy="4" r="2" />
+            </svg>
             LinkedIn
           </a>
           <a href="mailto:vsvsinghal3737@gmail.com" class="hero-btn magnetic">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path
+                d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+              />
+              <polyline points="22,6 12,13 2,6" />
+            </svg>
             Email
           </a>
         </div>
@@ -311,7 +449,6 @@
               <div class="timeline-dot-pulse"></div>
             </div>
             <div class="timeline-card glass-card tilt-card">
-  
               <div class="job-header" role="button" tabindex="0">
                 <div class="job-header-left">
                   <div class="company-logo">W</div>
@@ -335,7 +472,9 @@
                     <div class="job-highlights">
                       <div class="job-highlight">
                         <span class="highlight-num">7</span>
-                        <span class="highlight-label">identity systems delivered</span>
+                        <span class="highlight-label"
+                          >identity systems delivered</span
+                        >
                       </div>
                       <div class="job-highlight">
                         <span class="highlight-num">10K+</span>
@@ -627,7 +766,6 @@
           <div class="timeline-item reveal">
             <div class="timeline-dot"></div>
             <div class="timeline-card glass-card tilt-card">
-  
               <div class="job-header" role="button" tabindex="0">
                 <div class="job-header-left">
                   <div class="company-logo lp-logo">LP</div>
@@ -833,7 +971,6 @@
           <div class="timeline-item reveal">
             <div class="timeline-dot"></div>
             <div class="timeline-card glass-card tilt-card">
-  
               <div class="job-header" role="button" tabindex="0">
                 <div class="job-header-left">
                   <div class="company-logo bk-logo">BK</div>
@@ -963,17 +1100,22 @@
         </div>
 
         <div class="earlier-grid">
-
           <!-- Research Scholar -->
-          <div class="earlier-card glass-card tilt-card reveal" tabindex="0" role="button" aria-label="View Research details">
-
+          <div
+            class="earlier-card glass-card tilt-card reveal"
+            tabindex="0"
+            role="button"
+            aria-label="View Research details"
+          >
             <div class="earlier-card-accent rs"></div>
             <div class="earlier-card-inner">
               <div class="earlier-card-identity">
                 <div class="company-logo rs-logo">RS</div>
                 <div>
                   <h3>Research Scholar</h3>
-                  <p class="company-name">Bharati Vidyapeeth's College of Engineering</p>
+                  <p class="company-name">
+                    Bharati Vidyapeeth's College of Engineering
+                  </p>
                 </div>
               </div>
               <div class="earlier-card-meta">
@@ -989,29 +1131,74 @@
                 <span class="highlight-label">published papers</span>
               </div>
               <div class="earlier-card-tags">
-                <span class="job-tag">Steganography</span><span class="job-tag">NLP</span><span class="job-tag">Cloud Security</span>
+                <span class="job-tag">Steganography</span
+                ><span class="job-tag">NLP</span
+                ><span class="job-tag">Cloud Security</span>
               </div>
               <span class="earlier-card-cta">View details &rarr;</span>
             </div>
             <div class="earlier-card-details" hidden>
               <div class="job-section">
-                <p class="job-intro">CSE Department under Dr. Rachna Jain — Published two research papers.</p>
+                <p class="job-intro">
+                  CSE Department under Dr. Rachna Jain — Published two research
+                  papers.
+                </p>
                 <div class="exp-item">
-                  <strong><a href="http://www.recentscientific.com/enhance-data-security-cloud-using-steganography" target="_blank" rel="noopener noreferrer">Enhance Data Security in Cloud Using Steganography</a></strong>
+                  <strong
+                    ><a
+                      href="http://www.recentscientific.com/enhance-data-security-cloud-using-steganography"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      >Enhance Data Security in Cloud Using Steganography</a
+                    ></strong
+                  >
                   <ul>
-                    <li>Studied Cloud Service Providers vs Internet Service Providers based on cost, speed, scalability, and performance.</li>
-                    <li>Reviewed techniques of steganography (LSB) and digital watermarking (DFT) in spatial and frequency domain.</li>
-                    <li>In-depth study on Symmetric Key Encryption (DES, AES) and Asymmetric Key Encryption (RSA).</li>
-                    <li>Proposed a model for Image Steganography using LSB, mapping every bit of data and encryption key in RGB pixels.</li>
+                    <li>
+                      Studied Cloud Service Providers vs Internet Service
+                      Providers based on cost, speed, scalability, and
+                      performance.
+                    </li>
+                    <li>
+                      Reviewed techniques of steganography (LSB) and digital
+                      watermarking (DFT) in spatial and frequency domain.
+                    </li>
+                    <li>
+                      In-depth study on Symmetric Key Encryption (DES, AES) and
+                      Asymmetric Key Encryption (RSA).
+                    </li>
+                    <li>
+                      Proposed a model for Image Steganography using LSB,
+                      mapping every bit of data and encryption key in RGB
+                      pixels.
+                    </li>
                   </ul>
                 </div>
                 <div class="exp-item">
-                  <strong><a href="http://www.recentscientific.com/medical-application-using-nlp-over-cloud" target="_blank" rel="noopener noreferrer">Medical Application Using NLP Over Cloud</a></strong>
+                  <strong
+                    ><a
+                      href="http://www.recentscientific.com/medical-application-using-nlp-over-cloud"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      >Medical Application Using NLP Over Cloud</a
+                    ></strong
+                  >
                   <ul>
-                    <li>Knowledge acquisition on NLP systems and open source libraries (NLTK, Polyglot, Pattern).</li>
-                    <li>Studied Morphological Processing, Syntax, Semantic and Pragmatic Analysis.</li>
-                    <li>Comparative study on public, private, and hybrid clouds based on reliability, cost, and scalability.</li>
-                    <li>Proposed a computerized Clinical Decision Support (CDS) System using cloud services.</li>
+                    <li>
+                      Knowledge acquisition on NLP systems and open source
+                      libraries (NLTK, Polyglot, Pattern).
+                    </li>
+                    <li>
+                      Studied Morphological Processing, Syntax, Semantic and
+                      Pragmatic Analysis.
+                    </li>
+                    <li>
+                      Comparative study on public, private, and hybrid clouds
+                      based on reliability, cost, and scalability.
+                    </li>
+                    <li>
+                      Proposed a computerized Clinical Decision Support (CDS)
+                      System using cloud services.
+                    </li>
                   </ul>
                 </div>
               </div>
@@ -1019,8 +1206,12 @@
           </div>
 
           <!-- TATA Internship -->
-          <div class="earlier-card glass-card tilt-card reveal" tabindex="0" role="button" aria-label="View TATA details">
-
+          <div
+            class="earlier-card glass-card tilt-card reveal"
+            tabindex="0"
+            role="button"
+            aria-label="View TATA details"
+          >
             <div class="earlier-card-accent tc"></div>
             <div class="earlier-card-inner">
               <div class="earlier-card-identity">
@@ -1036,26 +1227,45 @@
               </div>
               <p class="earlier-card-summary">
                 Built a full-stack web app with Flask and MongoDB &mdash; drove
-                45% sales increase and 30% faster query performance via ETL optimization.
+                45% sales increase and 30% faster query performance via ETL
+                optimization.
               </p>
               <div class="earlier-card-highlight">
                 <span class="highlight-num">45%</span>
                 <span class="highlight-label">sales increase</span>
               </div>
               <div class="earlier-card-tags">
-                <span class="job-tag">Python</span><span class="job-tag">Flask</span><span class="job-tag">MongoDB</span><span class="job-tag">ETL</span>
+                <span class="job-tag">Python</span
+                ><span class="job-tag">Flask</span
+                ><span class="job-tag">MongoDB</span
+                ><span class="job-tag">ETL</span>
               </div>
               <span class="earlier-card-cta">View details &rarr;</span>
             </div>
             <div class="earlier-card-details" hidden>
               <div class="job-section">
                 <div class="exp-item">
-                  <strong>Full stack API-driven web application</strong> — Increased sales by 45% and reduced data storage inventory by 38%.
+                  <strong>Full stack API-driven web application</strong> —
+                  Increased sales by 45% and reduced data storage inventory by
+                  38%.
                   <ul>
-                    <li>Implemented Agile process across teams, improved customer interaction and sprint feedback.</li>
-                    <li>Developed RESTful APIs using Python with Flask, JWT Session Management for security.</li>
-                    <li>Performed ETL on legacy database, improved query performance by 30%.</li>
-                    <li>Interacted with the DB using MongoDB Alchemy (NoSQL), improving flexibility and providing Object-Oriented structure.</li>
+                    <li>
+                      Implemented Agile process across teams, improved customer
+                      interaction and sprint feedback.
+                    </li>
+                    <li>
+                      Developed RESTful APIs using Python with Flask, JWT
+                      Session Management for security.
+                    </li>
+                    <li>
+                      Performed ETL on legacy database, improved query
+                      performance by 30%.
+                    </li>
+                    <li>
+                      Interacted with the DB using MongoDB Alchemy (NoSQL),
+                      improving flexibility and providing Object-Oriented
+                      structure.
+                    </li>
                   </ul>
                 </div>
               </div>
@@ -1063,15 +1273,21 @@
           </div>
 
           <!-- Bharati Vidyapeeth Trainee -->
-          <div class="earlier-card glass-card tilt-card reveal" tabindex="0" role="button" aria-label="View BV Training details">
-
+          <div
+            class="earlier-card glass-card tilt-card reveal"
+            tabindex="0"
+            role="button"
+            aria-label="View BV Training details"
+          >
             <div class="earlier-card-accent bv"></div>
             <div class="earlier-card-inner">
               <div class="earlier-card-identity">
                 <div class="company-logo bv-logo">BV</div>
                 <div>
                   <h3>Android App Dev Trainee</h3>
-                  <p class="company-name">Bharati Vidyapeeth's College of Engineering</p>
+                  <p class="company-name">
+                    Bharati Vidyapeeth's College of Engineering
+                  </p>
                 </div>
               </div>
               <div class="earlier-card-meta">
@@ -1079,29 +1295,32 @@
                 <span class="earlier-loc">Delhi, India</span>
               </div>
               <p class="earlier-card-summary">
-                Developed an Android video player with gesture controls,
-                custom UI, and third-party SDK integrations.
+                Developed an Android video player with gesture controls, custom
+                UI, and third-party SDK integrations.
               </p>
               <div class="earlier-card-tags">
-                <span class="job-tag">Android</span><span class="job-tag">Java</span>
+                <span class="job-tag">Android</span
+                ><span class="job-tag">Java</span>
               </div>
               <span class="earlier-card-cta">View details &rarr;</span>
             </div>
             <div class="earlier-card-details" hidden>
               <div class="job-section">
                 <div class="exp-item">
-                  <strong>Developed a video player application</strong> using Android Studio.
+                  <strong>Developed a video player application</strong> using
+                  Android Studio.
                   <ul>
                     <li>Built list/grid view and gesture controls.</li>
-                    <li>Worked on app UI, deep functionality, and third-party SDKs.</li>
+                    <li>
+                      Worked on app UI, deep functionality, and third-party
+                      SDKs.
+                    </li>
                   </ul>
                 </div>
               </div>
             </div>
           </div>
-
         </div>
-
       </div>
 
       <!-- Earlier Experience Lightbox -->
@@ -1133,8 +1352,27 @@
         </div>
         <div class="orbit-container reveal">
           <div class="orbit-core">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="url(#orbitGrad)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <defs><linearGradient id="orbitGrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#6c63ff"/><stop offset="100%" stop-color="#00d4aa"/></linearGradient></defs>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="url(#orbitGrad)"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <defs>
+                <linearGradient
+                  id="orbitGrad"
+                  x1="0%"
+                  y1="0%"
+                  x2="100%"
+                  y2="100%"
+                >
+                  <stop offset="0%" stop-color="#6c63ff" />
+                  <stop offset="100%" stop-color="#00d4aa" />
+                </linearGradient>
+              </defs>
               <polyline points="16 18 22 12 16 6"></polyline>
               <polyline points="8 6 2 12 8 18"></polyline>
             </svg>
@@ -1436,7 +1674,6 @@
         <!-- Fallback grid for mobile -->
         <div class="skills-grid-fallback">
           <div class="skill-category glass-card tilt-card reveal">
-
             <h4>Languages</h4>
             <div class="tags">
               <span class="tag" data-level="expert">Python</span
@@ -1448,7 +1685,6 @@
             </div>
           </div>
           <div class="skill-category glass-card tilt-card reveal">
-
             <h4>Database &amp; Storage</h4>
             <div class="tags">
               <span class="tag" data-level="expert">PostgreSQL</span
@@ -1462,7 +1698,6 @@
             </div>
           </div>
           <div class="skill-category glass-card tilt-card reveal">
-
             <h4>Back-end</h4>
             <div class="tags">
               <span class="tag" data-level="expert">FastAPI</span
@@ -1479,7 +1714,6 @@
             </div>
           </div>
           <div class="skill-category glass-card tilt-card reveal">
-
             <h4>Cloud (GCP &amp; AWS)</h4>
             <div class="tags">
               <span class="tag" data-level="expert">GKE</span
@@ -1492,7 +1726,6 @@
             </div>
           </div>
           <div class="skill-category glass-card tilt-card reveal">
-
             <h4>Big Data</h4>
             <div class="tags">
               <span class="tag" data-level="advanced">Spark Streaming</span
@@ -1504,7 +1737,6 @@
             </div>
           </div>
           <div class="skill-category glass-card tilt-card reveal">
-
             <h4>Tools &amp; Observability</h4>
             <div class="tags">
               <span class="tag" data-level="expert">GitLab CI/CD</span
@@ -1545,13 +1777,41 @@
     <div class="lb-overlay" id="projectLightbox">
       <div class="lb-backdrop"></div>
       <button class="lb-close" aria-label="Close">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        <svg
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.5"
+        >
+          <line x1="18" y1="6" x2="6" y2="18" />
+          <line x1="6" y1="6" x2="18" y2="18" />
+        </svg>
       </button>
       <button class="lb-prev" aria-label="Previous">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+        <svg
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.5"
+        >
+          <polyline points="15 18 9 12 15 6" />
+        </svg>
       </button>
       <button class="lb-next" aria-label="Next">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 6 15 12 9 18"/></svg>
+        <svg
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.5"
+        >
+          <polyline points="9 6 15 12 9 18" />
+        </svg>
       </button>
       <div class="lb-container">
         <div class="lb-card">
@@ -1587,7 +1847,6 @@
         </div>
         <div class="edu-grid">
           <div class="edu-card glass-card tilt-card reveal">
-
             <div class="edu-accent asu"></div>
             <div class="edu-card-inner">
               <div class="edu-year">2018 &ndash; 2020</div>
@@ -1600,7 +1859,6 @@
             </div>
           </div>
           <div class="edu-card glass-card tilt-card reveal">
-
             <div class="edu-accent ggsipu"></div>
             <div class="edu-card-inner">
               <div class="edu-year">2014 &ndash; 2017</div>
@@ -1613,7 +1871,6 @@
             </div>
           </div>
           <div class="edu-card glass-card tilt-card reveal">
-
             <div class="edu-accent gndec"></div>
             <div class="edu-card-inner">
               <div class="edu-year">2011 &ndash; 2014</div>
@@ -1621,7 +1878,9 @@
               <p class="edu-location">Delhi, India</p>
               <div class="edu-degree-badge">
                 <span class="edu-degree-icon">AS</span>
-                <span class="edu-degree-text">Associate &mdash; Electronics &amp; Communications</span>
+                <span class="edu-degree-text"
+                  >Associate &mdash; Electronics &amp; Communications</span
+                >
               </div>
             </div>
           </div>
@@ -1646,25 +1905,21 @@
         </div>
         <div class="cert-grid">
           <div class="cert-card glass-card tilt-card reveal">
-
             <div class="cert-badge">CCA-175</div>
             <h4>Cloudera Certified Associate</h4>
             <p>Spark and Hadoop Developer</p>
           </div>
           <div class="cert-card glass-card tilt-card reveal">
-
             <div class="cert-badge">PCAP</div>
             <h4>PythonInstitute Certified Associate</h4>
             <p>Python Programming (PCAP-31-02)</p>
           </div>
           <div class="cert-card glass-card tilt-card reveal">
-
             <div class="cert-badge">OCA</div>
             <h4>Oracle Certified Associate</h4>
             <p>Database SQL (1Z0-071)</p>
           </div>
           <div class="cert-card glass-card tilt-card reveal">
-
             <div class="cert-badge">GCP</div>
             <h4>Google Associate Cloud Engineer</h4>
             <p>Google Cloud Platform</p>
@@ -1715,33 +1970,11 @@
         </div>
         <div class="contact-grid reveal">
           <a
-            href="https://www.linkedin.com/in/-singhal-vaibhav-/"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="contact-card glass-card tilt-card magnetic"
-            >
-            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="padding:10px;border:1px solid var(--glass-border);border-radius:12px" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg><span>LinkedIn</span></
-          >
-          <a
-            href="https://github.com/vsinghal3737"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="contact-card glass-card tilt-card magnetic"
-            >
-            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="padding:10px;border:1px solid var(--glass-border);border-radius:12px" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg><span>GitHub</span></
-          >
-          <a
-            href="mailto:vsvsinghal3737@gmail.com"
-            class="contact-card glass-card tilt-card magnetic"
-            >
-            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="padding:10px;border:1px solid var(--glass-border);border-radius:12px" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg><span>Email</span></
-          >
-          <a
             href="https://drive.google.com/drive/folders/14P5q0XW5jiU3eIH2igkKzJ6LDOcdwyKn?usp=sharing"
             target="_blank"
             rel="noopener noreferrer"
             class="contact-card glass-card tilt-card magnetic resume-card"
-            >
+          >
             <svg
               width="48"
               height="48"
@@ -1770,8 +2003,91 @@
               <line x1="16" y1="13" x2="8" y2="13" />
               <line x1="16" y1="17" x2="8" y2="17" />
               <polyline points="10 9 9 9 8 9" /></svg
-            ><span>Resume</span></a
+            ><span>Resume</span>
+          </a>
+          <a
+            href="https://github.com/vsinghal3737"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="contact-card glass-card tilt-card magnetic github-card"
           >
+            <svg
+              width="48"
+              height="48"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="url(#githubGrad)"
+              stroke-width="1.5"
+              style="
+                padding: 10px;
+                border: 1px solid rgba(255, 255, 255, 0.2);
+                border-radius: 12px;
+                background: rgba(255, 255, 255, 0.06);
+                filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.15));
+              "
+            >
+              <defs>
+                <linearGradient id="githubGrad" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stop-color="#e8e8f0" />
+                  <stop offset="100%" stop-color="#a0a0c0" />
+                </linearGradient>
+              </defs>
+              <path
+                d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"
+              /></svg
+            ><span>GitHub</span>
+          </a>
+          <a
+            href="https://www.linkedin.com/in/-singhal-vaibhav-/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="contact-card glass-card tilt-card magnetic"
+          >
+            <svg
+              width="48"
+              height="48"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              style="
+                padding: 10px;
+                border: 1px solid var(--glass-border);
+                border-radius: 12px;
+              "
+              aria-hidden="true"
+            >
+              <path
+                d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"
+              />
+              <rect x="2" y="9" width="4" height="12" />
+              <circle cx="4" cy="4" r="2" /></svg
+            ><span>LinkedIn</span>
+          </a>
+          <a
+            href="mailto:vsvsinghal3737@gmail.com"
+            class="contact-card glass-card tilt-card magnetic"
+          >
+            <svg
+              width="48"
+              height="48"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              style="
+                padding: 10px;
+                border: 1px solid var(--glass-border);
+                border-radius: 12px;
+              "
+              aria-hidden="true"
+            >
+              <path
+                d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+              />
+              <polyline points="22,6 12,13 2,6" /></svg
+            ><span>Email</span>
+          </a>
         </div>
       </div>
     </section>
@@ -1785,7 +2101,14 @@
 
     <!-- BACK TO TOP -->
     <button class="back-to-top" id="backToTop" aria-label="Back to top">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <svg
+        width="20"
+        height="20"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+      >
         <polyline points="18 15 12 9 6 15" />
       </svg>
     </button>
@@ -1794,29 +2117,36 @@
 
     <!-- Spline 3D Robot — skip on narrow screens & reduced-motion -->
     <script type="module">
-      const canvas = document.getElementById('robotCanvas');
-      const loader = document.getElementById('robotLoader');
-      const scene  = document.getElementById('robotScene');
+      const canvas = document.getElementById("robotCanvas");
+      const loader = document.getElementById("robotLoader");
+      const scene = document.getElementById("robotScene");
 
       const tooNarrow = window.innerWidth < 600;
-      const prefersStill = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const prefersStill = window.matchMedia(
+        "(prefers-reduced-motion: reduce)",
+      ).matches;
 
       if (tooNarrow || prefersStill) {
-        loader.classList.add('loaded');
-        scene.style.display = 'none';
+        loader.classList.add("loaded");
+        scene.style.display = "none";
       } else {
-        import('https://unpkg.com/@splinetool/runtime@0.9.490/build/runtime.js').then(({ Application }) => {
-          const app = new Application(canvas);
-          return app.load('https://prod.spline.design/PyzDhpQ9E5f1E3MT/scene.splinecode');
-        }).then(() => {
-          loader.classList.add('loaded');
-          scene.classList.add('ready');
-          // Pinned to v0.9.490 — no watermark in this version
-        }).catch((err) => {
-          console.warn('Spline scene failed to load:', err);
-          loader.classList.add('loaded');
-          scene.style.display = 'none';
-        });
+        import("https://unpkg.com/@splinetool/runtime@0.9.490/build/runtime.js")
+          .then(({ Application }) => {
+            const app = new Application(canvas);
+            return app.load(
+              "https://prod.spline.design/PyzDhpQ9E5f1E3MT/scene.splinecode",
+            );
+          })
+          .then(() => {
+            loader.classList.add("loaded");
+            scene.classList.add("ready");
+            // Pinned to v0.9.490 — no watermark in this version
+          })
+          .catch((err) => {
+            console.warn("Spline scene failed to load:", err);
+            loader.classList.add("loaded");
+            scene.style.display = "none";
+          });
       }
     </script>
   </body>
