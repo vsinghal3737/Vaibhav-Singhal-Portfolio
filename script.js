@@ -58,9 +58,9 @@ document.addEventListener('DOMContentLoaded', () => {
         function tick() {
             if (i < cmd.length) {
                 cmdSpan.textContent += cmd[i++];
-                setTimeout(tick, 40 + Math.random() * 30);
+                setTimeout(tick, 18 + Math.random() * 15);
             } else {
-                setTimeout(cb, 300);
+                setTimeout(cb, 150);
             }
         }
         tick();
@@ -79,7 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
             out.style.transition = 'opacity 0.4s';
             out.style.opacity = '1';
         });
-        setTimeout(cb, 800);
+        setTimeout(cb, 400);
     }
 
     function runNextCommand() {
@@ -164,6 +164,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 const h = document.documentElement.scrollHeight - window.innerHeight;
                 scrollBar.style.width = (h > 0 ? (window.scrollY / h) * 100 : 0) + '%';
                 backToTop.classList.toggle('visible', window.scrollY > 400);
+                const scrollInd = document.querySelector('.scroll-indicator');
+                if (scrollInd) scrollInd.classList.toggle('hidden', window.scrollY > 400);
                 navbar.classList.toggle('scrolled', window.scrollY > 50);
                 const sy = window.scrollY + 120;
                 sectionLinks.forEach(({ section, link }) => {
@@ -523,6 +525,10 @@ document.addEventListener('DOMContentLoaded', () => {
         prismStrip.querySelector('.prism-strip-inner').addEventListener('click', () => {
             openLightbox(prismFi, 0);
         });
+
+        const projectDivider = document.createElement('div');
+        projectDivider.className = 'project-divider';
+        folderGrid.appendChild(projectDivider);
 
         folderGrid.appendChild(catRow);
 

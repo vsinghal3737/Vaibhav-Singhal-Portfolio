@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 520">
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="0.8" y2="1">
       <stop offset="0%" stop-color="#18120a"/>
@@ -26,14 +26,14 @@
   </defs>
 
   <!-- Background -->
-  <rect width="800" height="500" fill="url(#bg)"/>
+  <rect width="800" height="520" fill="url(#bg)"/>
 
   <!-- Subtle grid dots -->
   <g opacity="0.07">
     <pattern id="dots" x="0" y="0" width="30" height="30" patternUnits="userSpaceOnUse">
       <circle cx="15" cy="15" r="1" fill="#ffffff"/>
     </pattern>
-    <rect width="800" height="500" fill="url(#dots)"/>
+    <rect width="800" height="520" fill="url(#dots)"/>
   </g>
 
   <!-- Ambient glow blobs -->
@@ -47,13 +47,19 @@
 
   <!-- Connection lines -->
   <g stroke-width="1.5" fill="none" opacity="0.45">
-    <line x1="400" y1="175" x2="240" y2="240" stroke="#f59e0b"/>
-    <line x1="400" y1="175" x2="560" y2="240" stroke="#f59e0b"/>
-    <line x1="300" y1="258" x2="500" y2="258" stroke="#f59e0b" stroke-dasharray="4 4"/>
-    <line x1="240" y1="285" x2="240" y2="345" stroke="#f59e0b" stroke-dasharray="3 3" opacity="0.6"/>
-    <line x1="560" y1="285" x2="400" y2="345" stroke="#f59e0b" stroke-dasharray="3 3" opacity="0.6"/>
-    <line x1="560" y1="285" x2="400" y2="410" stroke="#00d4aa" stroke-dasharray="6 3" marker-end="url(#arrowTeal)"/>
-    <line x1="680" y1="258" x2="620" y2="258" stroke="#ff6b9d" opacity="0.4" stroke-dasharray="3 5"/>
+    <!-- UI to API / Nexus -->
+    <line x1="400" y1="180" x2="240" y2="230" stroke="#f59e0b"/>
+    <line x1="400" y1="180" x2="560" y2="230" stroke="#f59e0b"/>
+    <!-- API <-> Nexus dashed -->
+    <line x1="310" y1="258" x2="490" y2="258" stroke="#f59e0b" stroke-dasharray="4 4"/>
+    <!-- API to DB (straight down) -->
+    <line x1="240" y1="285" x2="240" y2="340" stroke="#f59e0b" stroke-dasharray="3 3" opacity="0.6"/>
+    <!-- Nexus to DB (diagonal) -->
+    <line x1="560" y1="285" x2="310" y2="340" stroke="#f59e0b" stroke-dasharray="3 3" opacity="0.6"/>
+    <!-- Nexus to PRISM -->
+    <line x1="560" y1="285" x2="560" y2="400" stroke="#00d4aa" stroke-dasharray="6 3" marker-end="url(#arrowTeal)"/>
+    <!-- Nexus to Orchestration -->
+    <line x1="630" y1="258" x2="645" y2="258" stroke="#ff6b9d" opacity="0.4" stroke-dasharray="3 5"/>
   </g>
 
   <!-- ═══ SERVICE NODES ═══ -->
@@ -84,28 +90,57 @@
 
   <!-- Orchestration Node -->
   <g filter="url(#nodeShadow)">
-    <rect x="660" y="235" width="110" height="44" rx="10" fill="#201210" stroke="#ff6b9d" stroke-width="1" stroke-dasharray="4 3"/>
-    <rect x="660" y="235" width="110" height="44" rx="10" fill="#ff6b9d" opacity="0.06"/>
-    <text x="715" y="253" text-anchor="middle" font-size="8" fill="#ff8db5" font-family="'Segoe UI', system-ui, sans-serif" font-weight="600" letter-spacing="1">DOCKER</text>
-    <text x="715" y="269" text-anchor="middle" font-size="11" fill="#f0f0f8" font-family="'Segoe UI', system-ui, sans-serif" font-weight="600" opacity="0.9">Orchestration</text>
+    <rect x="650" y="230" width="120" height="44" rx="10" fill="#201210" stroke="#ff6b9d" stroke-width="1" stroke-dasharray="4 3"/>
+    <rect x="650" y="230" width="120" height="44" rx="10" fill="#ff6b9d" opacity="0.06"/>
+    <text x="710" y="248" text-anchor="middle" font-size="8" fill="#ff8db5" font-family="'Segoe UI', system-ui, sans-serif" font-weight="600" letter-spacing="1">DOCKER</text>
+    <text x="710" y="264" text-anchor="middle" font-size="11" fill="#f0f0f8" font-family="'Segoe UI', system-ui, sans-serif" font-weight="600" opacity="0.9">Orchestration</text>
   </g>
 
   <!-- PostgreSQL Node -->
   <g filter="url(#nodeShadow)">
-    <rect x="250" y="340" width="180" height="40" rx="8" fill="#201810" stroke="#f59e0b" stroke-width="1" opacity="0.7"/>
-    <text x="340" y="365" text-anchor="middle" font-size="11" fill="#fbbf24" font-family="'Segoe UI', system-ui, sans-serif" font-weight="600" opacity="0.85">PostgreSQL + pgvector</text>
+    <rect x="155" y="340" width="170" height="36" rx="8" fill="#201810" stroke="#f59e0b" stroke-width="1" opacity="0.7"/>
+    <text x="240" y="363" text-anchor="middle" font-size="10" fill="#fbbf24" font-family="'Segoe UI', system-ui, sans-serif" font-weight="600" opacity="0.85">PostgreSQL + pgvector</text>
   </g>
 
   <!-- ═══ PRISM CONNECTION ═══ -->
-  <g transform="translate(300, 400)">
+  <g transform="translate(460, 400)">
     <rect x="0" y="0" width="200" height="36" rx="18" fill="#122420" stroke="#00d4aa" stroke-width="1.5"/>
     <rect x="0" y="0" width="200" height="36" rx="18" fill="#00d4aa" opacity="0.08"/>
     <text x="24" y="22" font-size="10" fill="#00d4aa" font-family="'Segoe UI', system-ui, sans-serif" font-weight="700" letter-spacing="1">PRISM</text>
     <text x="78" y="22" font-size="10" fill="#7ab8a0" font-family="'Segoe UI', system-ui, sans-serif" font-weight="400">Pulse → Cortex → Synth</text>
   </g>
 
+  <!-- Knowledge pipeline -->
+  <text x="400" y="455" text-anchor="middle" font-size="9" fill="#fbbf24" font-family="'Segoe UI', system-ui, sans-serif" opacity="0.6" letter-spacing="1">RAG PROCESSING PIPELINE</text>
+
+  <g transform="translate(55, 465)" opacity="0.65">
+    <rect x="0" y="0" width="65" height="16" rx="8" fill="#f59e0b" opacity="0.15"/>
+    <text x="32" y="11" text-anchor="middle" font-size="6.5" fill="#fcd34d" font-family="'Segoe UI', system-ui, sans-serif">Request</text>
+    <text x="72" y="11" fill="#f59e0b" font-size="8">→</text>
+    <rect x="80" y="0" width="55" height="16" rx="8" fill="#f59e0b" opacity="0.15"/>
+    <text x="107" y="11" text-anchor="middle" font-size="6.5" fill="#fcd34d" font-family="'Segoe UI', system-ui, sans-serif">Auth</text>
+    <text x="142" y="11" fill="#f59e0b" font-size="8">→</text>
+    <rect x="150" y="0" width="68" height="16" rx="8" fill="#f59e0b" opacity="0.15"/>
+    <text x="184" y="11" text-anchor="middle" font-size="6.5" fill="#fcd34d" font-family="'Segoe UI', system-ui, sans-serif">Enqueue</text>
+    <text x="225" y="11" fill="#f59e0b" font-size="8">→</text>
+    <rect x="233" y="0" width="65" height="16" rx="8" fill="#f59e0b" opacity="0.15"/>
+    <text x="265" y="11" text-anchor="middle" font-size="6.5" fill="#fcd34d" font-family="'Segoe UI', system-ui, sans-serif">Resolve</text>
+    <text x="305" y="11" fill="#f59e0b" font-size="8">→</text>
+    <rect x="313" y="0" width="60" height="16" rx="8" fill="#f59e0b" opacity="0.15"/>
+    <text x="343" y="11" text-anchor="middle" font-size="6.5" fill="#fcd34d" font-family="'Segoe UI', system-ui, sans-serif">Embed</text>
+    <text x="380" y="11" fill="#f59e0b" font-size="8">→</text>
+    <rect x="388" y="0" width="60" height="16" rx="8" fill="#f59e0b" opacity="0.15"/>
+    <text x="418" y="11" text-anchor="middle" font-size="6.5" fill="#fcd34d" font-family="'Segoe UI', system-ui, sans-serif">Search</text>
+    <text x="455" y="11" fill="#f59e0b" font-size="8">→</text>
+    <rect x="463" y="0" width="75" height="16" rx="8" fill="#f59e0b" opacity="0.15"/>
+    <text x="500" y="11" text-anchor="middle" font-size="6.5" fill="#fcd34d" font-family="'Segoe UI', system-ui, sans-serif">Assemble</text>
+    <text x="545" y="11" fill="#f59e0b" font-size="8">→</text>
+    <rect x="553" y="0" width="65" height="16" rx="8" fill="#f59e0b" opacity="0.15"/>
+    <text x="585" y="11" text-anchor="middle" font-size="6.5" fill="#fcd34d" font-family="'Segoe UI', system-ui, sans-serif">Stream</text>
+  </g>
+
   <!-- Legend -->
-  <g transform="translate(30, 455)" opacity="0.7">
+  <g transform="translate(30, 500)" opacity="0.7">
     <rect x="0" y="0" width="10" height="10" rx="2" stroke="#f59e0b" stroke-width="1.2" fill="none"/>
     <text x="16" y="9" font-size="9" fill="#b0a070" font-family="'Segoe UI', system-ui, sans-serif">Product Services</text>
     <rect x="120" y="0" width="10" height="10" rx="2" stroke="#00d4aa" stroke-width="1.2" fill="none"/>
@@ -114,14 +149,10 @@
     <text x="291" y="9" font-size="9" fill="#b0a070" font-family="'Segoe UI', system-ui, sans-serif">Infrastructure</text>
   </g>
 
-  <!-- Stats badges -->
-  <g transform="translate(530, 455)">
-    <rect x="0" y="-12" width="100" height="22" rx="11" fill="#f59e0b" opacity="0.15" stroke="#f59e0b" stroke-width="0.5" stroke-opacity="0.4"/>
-    <text x="50" y="2" text-anchor="middle" font-size="10" fill="#fcd34d" font-family="'Segoe UI', system-ui, sans-serif" font-weight="600">134 PRs</text>
-  </g>
-  <g transform="translate(645, 455)">
-    <rect x="0" y="-12" width="100" height="22" rx="11" fill="#f59e0b" opacity="0.15" stroke="#f59e0b" stroke-width="0.5" stroke-opacity="0.4"/>
-    <text x="50" y="2" text-anchor="middle" font-size="10" fill="#fcd34d" font-family="'Segoe UI', system-ui, sans-serif" font-weight="600">961 Tests</text>
+  <!-- Microservices badge -->
+  <g transform="translate(600, 500)">
+    <rect x="0" y="-12" width="130" height="22" rx="11" fill="#f59e0b" opacity="0.15" stroke="#f59e0b" stroke-width="0.5" stroke-opacity="0.4"/>
+    <text x="65" y="2" text-anchor="middle" font-size="10" fill="#fcd34d" font-family="'Segoe UI', system-ui, sans-serif" font-weight="600">4 Microservices</text>
   </g>
 
   <!-- Feature tags -->

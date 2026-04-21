@@ -408,6 +408,22 @@ body:hover .cursor-glow {
 .hero-content {
   position: relative;
   z-index: 2;
+  width: 100%;
+  max-width: 800px;
+}
+.hero-intro {
+  display: flex;
+  align-items: center;
+  gap: clamp(24px, 3vw, 40px);
+  margin-bottom: clamp(32px, 5vh, 56px);
+}
+.hero-intro-left {
+  flex-shrink: 0;
+}
+.hero-intro-right {
+  text-align: left;
+  flex: 1;
+  min-width: 0;
 }
 .hero-photo-wrap {
   position: relative;
@@ -417,8 +433,8 @@ body:hover .cursor-glow {
 }
 .hero-photo {
   display: block;
-  width: 130px;
-  height: 130px;
+  width: 200px;
+  height: 200px;
   border-radius: 50%;
   object-fit: cover;
   border: 3px solid var(--glass-border);
@@ -453,28 +469,27 @@ body:hover .cursor-glow {
   }
 }
 .hero-name {
-  font-size: 3.5rem;
+  font-size: clamp(2.2rem, 4vw, 3.2rem);
   font-weight: 700;
-  letter-spacing: -2px;
+  letter-spacing: -1px;
   line-height: 1.1;
   margin-bottom: 20px;
+  white-space: nowrap;
 }
 .hero-first {
-  display: block;
   background: var(--gradient-1);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 .hero-last {
-  display: block;
   color: var(--text);
 }
 
 /* ═══ TERMINAL ═══ */
 .terminal {
-  max-width: 600px;
-  margin: 0 auto 32px;
+  width: 100%;
+  margin: 0 0 32px;
   border-radius: 12px;
   overflow: hidden;
   border: 1px solid var(--glass-border);
@@ -662,16 +677,24 @@ body:hover .cursor-glow {
   transform: translateY(-2px);
 }
 .scroll-indicator {
-  margin-top: 50px;
+  position: fixed;
+  right: 28px;
+  bottom: 28px;
+  z-index: 10;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
   color: var(--text-dim);
-  font-size: 0.75rem;
+  font-size: 0.65rem;
   text-transform: uppercase;
   letter-spacing: 1px;
   animation: floatUp 2s ease-in-out infinite;
+  transition: opacity 0.05s ease;
+}
+.scroll-indicator.hidden.visible {
+  opacity: 0;
+  pointer-events: none;
 }
 .scroll-mouse {
   width: 24px;
@@ -741,11 +764,10 @@ body:hover .cursor-glow {
 /* ═══ HERO BLURB ═══ */
 .hero-blurb {
   max-width: 620px;
-  margin: 0 auto 32px;
+  margin: 0;
   color: var(--text-muted);
   font-size: 0.95rem;
   line-height: 1.7;
-  text-align: center;
 }
 .hero-blurb strong {
   color: var(--text);
@@ -1982,6 +2004,7 @@ section {
   height: 28px;
   background: linear-gradient(to bottom, transparent, rgba(0, 212, 170, 0.3));
   pointer-events: none;
+  transition: height 0.4s ease;
 }
 .prism-strip::before {
   left: 25%;
@@ -1994,6 +2017,18 @@ section {
   .prism-strip::after {
     display: none;
   }
+}
+.project-divider {
+  grid-column: 1 / -1;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 5%,
+    rgba(255, 255, 255, 0.15) 30%,
+    rgba(255, 255, 255, 0.15) 70%,
+    transparent 95%
+  );
 }
 .prism-strip-inner {
   display: flex;
@@ -2012,8 +2047,14 @@ section {
   transition: all 0.4s ease;
 }
 .prism-strip-inner:hover {
-  border-color: rgba(0, 212, 170, 0.35);
-  box-shadow: 0 8px 32px rgba(0, 212, 170, 0.1);
+  border-color: rgba(0, 212, 170, 0.4);
+  box-shadow: 0 8px 32px rgba(0, 212, 170, 0.15);
+  transform: translateY(-3px);
+  background: linear-gradient(
+    135deg,
+    rgba(0, 212, 170, 0.08) 0%,
+    rgba(52, 211, 153, 0.04) 100%
+  );
 }
 .prism-label {
   display: flex;
@@ -2055,7 +2096,48 @@ section {
   transition: all 0.3s;
 }
 .prism-strip-inner:hover .prism-service {
-  border-color: rgba(0, 212, 170, 0.2);
+  border-color: rgba(0, 212, 170, 0.3);
+  box-shadow: 0 0 12px rgba(0, 212, 170, 0.12);
+  animation: prismPulse 1.5s ease-in-out infinite;
+}
+.prism-strip-inner:hover .prism-service:nth-child(1) {
+  animation-delay: 0s;
+}
+.prism-strip-inner:hover .prism-service:nth-child(3) {
+  animation-delay: 0.2s;
+}
+.prism-strip-inner:hover .prism-service:nth-child(5) {
+  animation-delay: 0.4s;
+}
+.prism-strip-inner:hover .prism-arrow {
+  animation: prismArrowFlow 1.5s ease-in-out infinite;
+  opacity: 1;
+}
+.prism-strip-inner:hover .prism-arrow:nth-child(2) {
+  animation-delay: 0.1s;
+}
+.prism-strip-inner:hover .prism-arrow:nth-child(4) {
+  animation-delay: 0.3s;
+}
+@keyframes prismPulse {
+  0%,
+  100% {
+    box-shadow: 0 0 8px rgba(0, 212, 170, 0.08);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(0, 212, 170, 0.25);
+  }
+}
+@keyframes prismArrowFlow {
+  0%,
+  100% {
+    opacity: 0.4;
+    transform: translateX(0);
+  }
+  50% {
+    opacity: 1;
+    transform: translateX(3px);
+  }
 }
 .prism-service-role {
   font-size: 0.6rem;
@@ -3093,7 +3175,6 @@ footer {
   font-family: var(--font-mono);
   font-size: 0.82rem;
   color: var(--text-dim);
-  text-align: center;
   margin-bottom: 8px;
   font-style: italic;
   letter-spacing: 0.3px;
@@ -3143,9 +3224,6 @@ button,
 #hero {
   min-height: 100vh;
   min-height: 100dvh;
-}
-.hero-name {
-  font-size: clamp(2rem, 5vw, 3.5rem);
 }
 .section-title {
   font-size: clamp(1.6rem, 3.5vw, 2.2rem);
@@ -3513,6 +3591,20 @@ html {
   .hero-photo {
     width: 100px;
     height: 100px;
+  }
+  .hero-intro {
+    flex-direction: column;
+    gap: 16px;
+    text-align: center;
+  }
+  .hero-intro-right {
+    text-align: center;
+  }
+  .hero-name {
+    white-space: normal;
+  }
+  .scroll-indicator {
+    display: none;
   }
 }
 
