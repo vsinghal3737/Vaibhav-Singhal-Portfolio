@@ -1315,6 +1315,15 @@ section {
   height: 1px;
   background: linear-gradient(90deg, var(--glass-border), transparent);
 }
+.earlier-toggle-icon {
+  display: none;
+  color: var(--text-dim);
+  transition: transform 0.3s;
+  flex-shrink: 0;
+}
+.earlier-divider.earlier-open .earlier-toggle-icon {
+  transform: rotate(180deg);
+}
 .earlier-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -1492,8 +1501,9 @@ section {
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 5;
+  z-index: 10;
   transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
 }
 .earlier-lb-close:hover {
   background: var(--accent);
@@ -3250,8 +3260,25 @@ html {
     grid-template-columns: 1fr;
   }
   .earlier-lb-content {
-    width: 96%;
-    max-height: 90vh;
+    width: 100%;
+    max-height: calc(100vh - 60px);
+    border-radius: 0;
+    margin-top: 60px;
+  }
+  .earlier-lb-close {
+    position: sticky;
+    top: 0;
+    margin: 0;
+    float: none;
+    width: 100%;
+    height: 44px;
+    border-radius: 0;
+    border: none;
+    border-bottom: 1px solid var(--glass-border);
+    background: var(--bg);
+    font-size: 1rem;
+    justify-content: center;
+    z-index: 10;
   }
   .earlier-lb-header {
     padding: 20px 18px 0;
@@ -3407,13 +3434,45 @@ html {
     gap: 4px;
   }
   .timeline-item {
-    padding-left: 36px;
+    padding-left: 0;
   }
   .timeline-dot {
-    left: 4px;
+    display: none;
   }
   .timeline-track {
-    left: 11px;
+    display: none;
+  }
+  .timeline-divider {
+    padding-left: 0;
+  }
+  .timeline-divider::before {
+    display: none;
+  }
+  /* Earlier experience: collapsible on mobile */
+  .earlier-grid {
+    display: none;
+  }
+  .earlier-grid.earlier-expanded {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+  .earlier-divider {
+    cursor: pointer;
+    padding: 10px 16px;
+    border-radius: var(--radius-sm);
+    background: var(--glass);
+    border: 1px solid var(--glass-border);
+    transition: all 0.3s;
+  }
+  .earlier-divider:hover {
+    background: var(--glass-hover);
+  }
+  .earlier-divider .earlier-toggle-icon {
+    display: inline-block;
+  }
+  /* Prism strip: hide arrows on mobile stack */
+  .prism-arrow {
+    display: none;
   }
   section {
     padding: 60px 0;

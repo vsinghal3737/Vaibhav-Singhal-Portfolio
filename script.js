@@ -258,6 +258,19 @@ document.addEventListener('DOMContentLoaded', () => {
         if (dx > 100 && dy < 80) closeDetail();
     }, { passive: true });
 
+    // ═══════════════ EARLIER EXPERIENCE MOBILE TOGGLE ═══════════════
+    const earlierDivider = document.getElementById('earlierDivider');
+    if (earlierDivider) {
+        const earlierGrid = document.querySelector('.earlier-grid');
+        earlierDivider.addEventListener('click', () => {
+            const icon = earlierDivider.querySelector('.earlier-toggle-icon');
+            if (icon && getComputedStyle(icon).display !== 'none') {
+                earlierDivider.classList.toggle('earlier-open');
+                earlierGrid.classList.toggle('earlier-expanded');
+            }
+        });
+    }
+
     // ═══════════════ EARLIER EXPERIENCE LIGHTBOX ═══════════════
     const earlierLightbox = document.getElementById('earlierLightbox');
     if (earlierLightbox) {
