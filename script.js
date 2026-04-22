@@ -363,7 +363,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         { label: 'Axiom-api', url: 'https://github.com/vsinghal3737/Axiom-api' },
                         { label: 'Axiom-ui', url: 'https://github.com/vsinghal3737/Axiom-ui' },
                         { label: 'Axiom-nexus', url: 'https://github.com/vsinghal3737/Axiom-nexus' },
-                        { label: 'Orchestration', url: 'https://github.com/vsinghal3737/Axiom-orchestration' }
+                        { label: 'Axiom-orchestration', url: 'https://github.com/vsinghal3737/Axiom-orchestration' }
                     ]
                 },
             ]
@@ -387,7 +387,13 @@ document.addEventListener('DOMContentLoaded', () => {
                     ],
                     tags: ['Python','FastAPI','React','Next.js','TypeScript','PostgreSQL','Spotify API','Docker'],
                     image: 'img/zither.svg', fallback: 'img/zither.svg',
-                    links: []
+                    links: [
+                        { label: 'ZitherAi-api', url: 'https://github.com/vsinghal3737/ZitherAi-api' },
+                        { label: 'ZitherAi-ui', url: 'https://github.com/vsinghal3737/ZitherAi-ui' },
+                        { label: 'ZitherAi-nexus', url: 'https://github.com/vsinghal3737/ZitherAi-nexus' },
+                        { label: 'ZitherAi-bridge', url: 'https://github.com/vsinghal3737/ZitherAi-bridge' },
+                        { label: 'ZitherAi-orchestration', url: 'https://github.com/vsinghal3737/ZitherAi-orchestration' }
+                    ]
                 },
             ]
         },
@@ -446,7 +452,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 { label: 'Pulse', url: 'https://github.com/vsinghal3737/pulse', platform: true },
                 { label: 'Cortex', url: 'https://github.com/vsinghal3737/cortex', platform: true },
                 { label: 'Synth', url: 'https://github.com/vsinghal3737/synth', platform: true },
-                { label: 'Orchestration', url: 'https://github.com/vsinghal3737/prism-orchestration', platform: true }
+                { label: 'Prism-orchestration', url: 'https://github.com/vsinghal3737/prism-orchestration', platform: true }
             ]
         }
     };
@@ -636,9 +642,13 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             lbLinks.style.display = 'none';
         }
-        lbDots.innerHTML = folder.projects.map((_, i) =>
-            `<button class="lb-dot${i === lbProjectIdx ? ' active' : ''}" data-i="${i}"></button>`
-        ).join('');
+        const hasMultipleProjects = folder.projects.length > 1;
+        lbDots.style.display = hasMultipleProjects ? '' : 'none';
+        lbDots.innerHTML = hasMultipleProjects
+            ? folder.projects.map((_, i) =>
+                `<button class="lb-dot${i === lbProjectIdx ? ' active' : ''}" data-i="${i}"></button>`
+            ).join('')
+            : '';
         lbPrev.disabled = lbProjectIdx <= 0;
         lbNext.disabled = lbProjectIdx >= folder.projects.length - 1;
     }
