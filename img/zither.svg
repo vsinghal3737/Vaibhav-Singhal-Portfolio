@@ -52,7 +52,6 @@
     <line x1="270" y1="255" x2="345" y2="255" stroke="#f59e0b" stroke-dasharray="4 4"/>
     <line x1="455" y1="255" x2="535" y2="255" stroke="#f59e0b" marker-end="url(#arrowAmber)"/>
     <line x1="400" y1="285" x2="400" y2="368" stroke="#00d4aa" stroke-dasharray="6 3" marker-end="url(#arrowTeal)"/>
-    <line x1="690" y1="230" x2="650" y2="240" stroke="#ff6b9d" opacity="0.4" stroke-dasharray="3 5"/>
     <!-- API to DB -->
     <line x1="210" y1="280" x2="240" y2="330" stroke="#f59e0b" stroke-dasharray="3 3" opacity="0.5"/>
     <!-- Nexus to DB -->
@@ -95,10 +94,10 @@
 
   <!-- Orchestration Node -->
   <g filter="url(#nodeShadow)">
-    <rect x="680" y="175" width="100" height="44" rx="10" fill="#201210" stroke="#ff6b9d" stroke-width="1" stroke-dasharray="4 3"/>
-    <rect x="680" y="175" width="100" height="44" rx="10" fill="#ff6b9d" opacity="0.06"/>
-    <text x="730" y="193" text-anchor="middle" font-size="8" fill="#ff8db5" font-family="'Segoe UI', system-ui, sans-serif" font-weight="600" letter-spacing="1">DOCKER</text>
-    <text x="730" y="209" text-anchor="middle" font-size="10" fill="#f0f0f8" font-family="'Segoe UI', system-ui, sans-serif" font-weight="600" opacity="0.9">Orchestration</text>
+    <rect x="645" y="175" width="125" height="44" rx="10" fill="#201210" stroke="#ff6b9d" stroke-width="1" stroke-dasharray="4 3"/>
+    <rect x="645" y="175" width="125" height="44" rx="10" fill="#ff6b9d" opacity="0.06"/>
+    <text x="708" y="193" text-anchor="middle" font-size="8" fill="#ff8db5" font-family="'Segoe UI', system-ui, sans-serif" font-weight="600" letter-spacing="1">DOCKER</text>
+    <text x="708" y="209" text-anchor="middle" font-size="10" fill="#f0f0f8" font-family="'Segoe UI', system-ui, sans-serif" font-weight="600" opacity="0.9">Orchestration</text>
   </g>
 
   <!-- PostgreSQL Node -->
@@ -119,13 +118,20 @@
     <text x="45" y="14" text-anchor="middle" font-size="8" fill="#ff8890" font-family="'Segoe UI', system-ui, sans-serif" font-weight="600">Apple Music</text>
   </g>
 
-  <!-- ═══ PRISM CONNECTION ═══ -->
+  <!-- ═══ PRISM CONNECTION (external network) ═══ -->
   <g transform="translate(300, 370)">
     <rect x="0" y="0" width="200" height="36" rx="18" fill="#122420" stroke="#00d4aa" stroke-width="1.5"/>
     <rect x="0" y="0" width="200" height="36" rx="18" fill="#00d4aa" opacity="0.08"/>
     <text x="24" y="22" font-size="10" fill="#00d4aa" font-family="'Segoe UI', system-ui, sans-serif" font-weight="700" letter-spacing="1">PRISM</text>
-    <text x="78" y="22" font-size="10" fill="#7ab8a0" font-family="'Segoe UI', system-ui, sans-serif" font-weight="400">Pulse → Cortex → Synth</text>
+    <text y="22" font-size="10" fill="#7ab8a0" font-family="'Segoe UI', system-ui, sans-serif" font-weight="400">
+      <tspan x="78">Pulse</tspan>
+      <tspan x="107">&#183;</tspan>
+      <tspan x="116">Cortex</tspan>
+      <tspan x="151">&#183;</tspan>
+      <tspan x="160">Synth</tspan>
+    </text>
   </g>
+  <text x="400" y="415" text-anchor="middle" font-size="7" fill="#00d4aa" font-family="'Segoe UI', system-ui, sans-serif" opacity="0.5" letter-spacing="2">VIA PRISM-NETWORK (EXTERNAL)</text>
 
   <!-- 8-step pipeline -->
   <text x="400" y="430" text-anchor="middle" font-size="9" fill="#fbbf24" font-family="'Segoe UI', system-ui, sans-serif" opacity="0.6" letter-spacing="1">8-STAGE RECOMMENDATION PIPELINE</text>

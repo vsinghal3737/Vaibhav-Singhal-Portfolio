@@ -341,7 +341,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const folderData = [
         {
             title: 'Axiom',
-            subtitle: '4 services + Prism',
+            subtitle: '4 services',
             row: 'main',
             projects: [
                 {
@@ -354,7 +354,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         'Implemented semantic search via pgvector embeddings + hybrid ranking (full-text + vector similarity), workspace-scoped conversational RAG chat.',
                         'Designed job queue using PostgreSQL FOR UPDATE SKIP LOCKED — heartbeat reclamation, retry with backoff, dead-letter queue. No external message broker.',
                         'End-to-end SSE streaming: Worker → Cortex → Synth → Gateway → Client with sequence numbering for reconnect replay.',
-                        'Powered by Prism (shared AI platform) for multi-provider LLM execution, input normalization, and output rendering.'
+                        'Connects to Prism (independent AI platform) over Docker prism-network for multi-provider LLM execution, input normalization, and output rendering.'
                     ],
                     tags: ['Python','FastAPI','React','Next.js','TypeScript','PostgreSQL','pgvector','Docker'],
                     image: 'img/axiom.svg', fallback: 'img/axiom.svg',
@@ -363,14 +363,14 @@ document.addEventListener('DOMContentLoaded', () => {
                         { label: 'Axiom-api', url: 'https://github.com/vsinghal3737/Axiom-api' },
                         { label: 'Axiom-ui', url: 'https://github.com/vsinghal3737/Axiom-ui' },
                         { label: 'Axiom-nexus', url: 'https://github.com/vsinghal3737/Axiom-nexus' },
-                        { label: 'Orchestration', url: 'https://github.com/vsinghal3737/Axiom-orchestration' }
+                        { label: 'Axiom-orchestration', url: 'https://github.com/vsinghal3737/Axiom-orchestration' }
                     ]
                 },
             ]
         },
         {
             title: 'ZitherAi',
-            subtitle: '5 services + Prism',
+            subtitle: '5 services',
             row: 'main',
             projects: [
                 {
@@ -383,11 +383,17 @@ document.addEventListener('DOMContentLoaded', () => {
                         'Provider-agnostic Bridge service with circuit breakers per provider (error rate, p95 latency, rate limit headroom, cost) and automatic failover.',
                         'Fernet encryption (AES-128-CBC + HMAC) for OAuth tokens at rest with MultiFernet key rotation support.',
                         'Optimistic concurrency with version columns + atomic CAS on all mutable entities. Cursor-based pagination (not offset) for stable reads.',
-                        'Powered by Prism (shared AI platform) for LLM execution, mood/intent inference, and output rendering.'
+                        'Connects to Prism (independent AI platform) over Docker prism-network for LLM execution, mood/intent inference, and output rendering.'
                     ],
                     tags: ['Python','FastAPI','React','Next.js','TypeScript','PostgreSQL','Spotify API','Docker'],
                     image: 'img/zither.svg', fallback: 'img/zither.svg',
-                    links: []
+                    links: [
+                        { label: 'ZitherAi-api', url: 'https://github.com/vsinghal3737/ZitherAi-api' },
+                        { label: 'ZitherAi-ui', url: 'https://github.com/vsinghal3737/ZitherAi-ui' },
+                        { label: 'ZitherAi-nexus', url: 'https://github.com/vsinghal3737/ZitherAi-nexus' },
+                        { label: 'ZitherAi-bridge', url: 'https://github.com/vsinghal3737/ZitherAi-bridge' },
+                        { label: 'ZitherAi-orchestration', url: 'https://github.com/vsinghal3737/ZitherAi-orchestration' }
+                    ]
                 },
             ]
         },
@@ -423,20 +429,22 @@ document.addEventListener('DOMContentLoaded', () => {
         subtitle: 'Shared AI Platform',
         stats: '48 PRs · 366 Tests',
         services: [
-            { name: 'Pulse', role: 'Input', desc: 'Text, audio, PDF, images → StructuredContext' },
-            { name: 'Cortex', role: 'LLM Gateway', desc: 'OpenAI, Anthropic, Gemini + circuit breakers' },
-            { name: 'Synth', role: 'Output', desc: 'SSE streaming, TTS, PDF/DOCX assembly' }
+            { name: 'Pulse', role: 'Input', desc: 'Normalize text, audio, PDF, and image input' },
+            { name: 'Cortex', role: 'LLM Gateway', desc: 'Run OpenAI, Anthropic, and Gemini with fallbacks' },
+            { name: 'Synth', role: 'Output', desc: 'Render SSE, TTS, PDF, and DOCX output' }
         ],
         project: {
             title: 'Prism — Shared AI Platform',
             date: '2025 – Present',
-            summary: 'Reusable, stateless AI infrastructure layer powering multiple projects. Three services handle input normalization, multi-provider LLM execution, and output rendering — any project connects via HTTP + bearer token.',
+            summary: 'Reusable, stateless AI infrastructure layer powering multiple projects. Pulse, Cortex, and Synth are exposed as separate HTTP services, so consumer projects call only the capabilities they need.',
             bullets: [
                 'Pulse normalizes any input modality (text, audio via ffmpeg+Whisper, images via vision captioning, PDF/DOCX/XLSX) into deterministic StructuredContext JSON.',
                 'Cortex provides a universal AI gateway: 12 completion models across 3 providers with per-provider circuit breakers, fallback chains, and Decimal cost tracking.',
                 'Synth renders output as SSE-streamed text, sentence-boundary-buffered TTS audio, or assembled files (PDF, DOCX, HTML, CSV) with HTML sanitization.',
+                'Consumer projects call Pulse, Cortex, and Synth independently over HTTP. Pulse and Synth can optionally delegate to Cortex for model-backed transforms, but there is no required platform-wide service chain.',
                 'All services stateless by design — no database, horizontal scaling trivial. Bearer token + HMAC-SHA256 auth. Centralized cost metadata passthrough.',
                 'Strategy pattern for provider adapters — adding a new LLM provider is one file + one catalog entry, zero core changes.',
+                'Own Docker Compose orchestration creates prism-network — consumer projects (Axiom, ZitherAi) join as external network. Start Prism first, then consumers.',
                 'Currently powers Axiom (knowledge workspace) and ZitherAi (music recommendation).'
             ],
             tags: ['Python','FastAPI','OpenAI','Anthropic','Gemini','Docker','SSE','TTS'],
@@ -444,7 +452,8 @@ document.addEventListener('DOMContentLoaded', () => {
             links: [
                 { label: 'Pulse', url: 'https://github.com/vsinghal3737/pulse', platform: true },
                 { label: 'Cortex', url: 'https://github.com/vsinghal3737/cortex', platform: true },
-                { label: 'Synth', url: 'https://github.com/vsinghal3737/synth', platform: true }
+                { label: 'Synth', url: 'https://github.com/vsinghal3737/synth', platform: true },
+                { label: 'Prism-orchestration', url: 'https://github.com/vsinghal3737/prism-orchestration', platform: true }
             ]
         }
     };
@@ -504,13 +513,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     <span class="prism-subtitle">Shared AI Platform</span>
                 </div>
                 <div class="prism-services">
-                    ${prismData.services.map((s, i) => `
+                    ${prismData.services.map((s) => `
                         <div class="prism-service">
                             <span class="prism-service-role">${s.role}</span>
                             <span class="prism-service-name">${s.name}</span>
                             <span class="prism-service-desc">${s.desc}</span>
                         </div>
-                        ${i < prismData.services.length - 1 ? '<span class="prism-arrow">→</span>' : ''}
                     `).join('')}
                 </div>
                 <div class="prism-meta">
@@ -634,9 +642,13 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             lbLinks.style.display = 'none';
         }
-        lbDots.innerHTML = folder.projects.map((_, i) =>
-            `<button class="lb-dot${i === lbProjectIdx ? ' active' : ''}" data-i="${i}"></button>`
-        ).join('');
+        const hasMultipleProjects = folder.projects.length > 1;
+        lbDots.style.display = hasMultipleProjects ? '' : 'none';
+        lbDots.innerHTML = hasMultipleProjects
+            ? folder.projects.map((_, i) =>
+                `<button class="lb-dot${i === lbProjectIdx ? ' active' : ''}" data-i="${i}"></button>`
+            ).join('')
+            : '';
         lbPrev.disabled = lbProjectIdx <= 0;
         lbNext.disabled = lbProjectIdx >= folder.projects.length - 1;
     }
