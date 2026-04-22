@@ -429,18 +429,19 @@ document.addEventListener('DOMContentLoaded', () => {
         subtitle: 'Shared AI Platform',
         stats: '48 PRs · 366 Tests',
         services: [
-            { name: 'Pulse', role: 'Input', desc: 'Text, audio, PDF, images → StructuredContext' },
-            { name: 'Cortex', role: 'LLM Gateway', desc: 'OpenAI, Anthropic, Gemini + circuit breakers' },
-            { name: 'Synth', role: 'Output', desc: 'SSE streaming, TTS, PDF/DOCX assembly' }
+            { name: 'Pulse', role: 'Input', desc: 'Normalize text, audio, PDF, and image input' },
+            { name: 'Cortex', role: 'LLM Gateway', desc: 'Run OpenAI, Anthropic, and Gemini with fallbacks' },
+            { name: 'Synth', role: 'Output', desc: 'Render SSE, TTS, PDF, and DOCX output' }
         ],
         project: {
             title: 'Prism — Shared AI Platform',
             date: '2025 – Present',
-            summary: 'Reusable, stateless AI infrastructure layer powering multiple projects. Three services handle input normalization, multi-provider LLM execution, and output rendering — any project connects via HTTP + bearer token.',
+            summary: 'Reusable, stateless AI infrastructure layer powering multiple projects. Pulse, Cortex, and Synth are exposed as separate HTTP services, so consumer projects call only the capabilities they need.',
             bullets: [
                 'Pulse normalizes any input modality (text, audio via ffmpeg+Whisper, images via vision captioning, PDF/DOCX/XLSX) into deterministic StructuredContext JSON.',
                 'Cortex provides a universal AI gateway: 12 completion models across 3 providers with per-provider circuit breakers, fallback chains, and Decimal cost tracking.',
                 'Synth renders output as SSE-streamed text, sentence-boundary-buffered TTS audio, or assembled files (PDF, DOCX, HTML, CSV) with HTML sanitization.',
+                'Consumer projects call Pulse, Cortex, and Synth independently over HTTP. Pulse and Synth can optionally delegate to Cortex for model-backed transforms, but there is no required platform-wide service chain.',
                 'All services stateless by design — no database, horizontal scaling trivial. Bearer token + HMAC-SHA256 auth. Centralized cost metadata passthrough.',
                 'Strategy pattern for provider adapters — adding a new LLM provider is one file + one catalog entry, zero core changes.',
                 'Own Docker Compose orchestration creates prism-network — consumer projects (Axiom, ZitherAi) join as external network. Start Prism first, then consumers.',
@@ -512,13 +513,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     <span class="prism-subtitle">Shared AI Platform</span>
                 </div>
                 <div class="prism-services">
-                    ${prismData.services.map((s, i) => `
+                    ${prismData.services.map((s) => `
                         <div class="prism-service">
                             <span class="prism-service-role">${s.role}</span>
                             <span class="prism-service-name">${s.name}</span>
                             <span class="prism-service-desc">${s.desc}</span>
                         </div>
-                        ${i < prismData.services.length - 1 ? '<span class="prism-arrow">→</span>' : ''}
                     `).join('')}
                 </div>
                 <div class="prism-meta">

@@ -105,7 +105,13 @@
     <rect x="0" y="0" width="200" height="36" rx="18" fill="#122420" stroke="#00d4aa" stroke-width="1.5"/>
     <rect x="0" y="0" width="200" height="36" rx="18" fill="#00d4aa" opacity="0.08"/>
     <text x="24" y="22" font-size="10" fill="#00d4aa" font-family="'Segoe UI', system-ui, sans-serif" font-weight="700" letter-spacing="1">PRISM</text>
-    <text x="78" y="22" font-size="10" fill="#7ab8a0" font-family="'Segoe UI', system-ui, sans-serif" font-weight="400">Pulse → Cortex → Synth</text>
+    <text y="22" font-size="10" fill="#7ab8a0" font-family="'Segoe UI', system-ui, sans-serif" font-weight="400">
+      <tspan x="78">Pulse</tspan>
+      <tspan x="107">&#183;</tspan>
+      <tspan x="116">Cortex</tspan>
+      <tspan x="151">&#183;</tspan>
+      <tspan x="160">Synth</tspan>
+    </text>
   </g>
   <text x="560" y="445" text-anchor="middle" font-size="7" fill="#00d4aa" font-family="'Segoe UI', system-ui, sans-serif" opacity="0.5" letter-spacing="2">VIA PRISM-NETWORK (EXTERNAL)</text>
 
