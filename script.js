@@ -341,7 +341,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const folderData = [
         {
             title: 'Axiom',
-            subtitle: '4 services + Prism',
+            subtitle: '4 services',
             row: 'main',
             projects: [
                 {
@@ -354,7 +354,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         'Implemented semantic search via pgvector embeddings + hybrid ranking (full-text + vector similarity), workspace-scoped conversational RAG chat.',
                         'Designed job queue using PostgreSQL FOR UPDATE SKIP LOCKED — heartbeat reclamation, retry with backoff, dead-letter queue. No external message broker.',
                         'End-to-end SSE streaming: Worker → Cortex → Synth → Gateway → Client with sequence numbering for reconnect replay.',
-                        'Powered by Prism (shared AI platform) for multi-provider LLM execution, input normalization, and output rendering.'
+                        'Connects to Prism (independent AI platform) over Docker prism-network for multi-provider LLM execution, input normalization, and output rendering.'
                     ],
                     tags: ['Python','FastAPI','React','Next.js','TypeScript','PostgreSQL','pgvector','Docker'],
                     image: 'img/axiom.svg', fallback: 'img/axiom.svg',
@@ -370,7 +370,7 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         {
             title: 'ZitherAi',
-            subtitle: '5 services + Prism',
+            subtitle: '5 services',
             row: 'main',
             projects: [
                 {
@@ -383,7 +383,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         'Provider-agnostic Bridge service with circuit breakers per provider (error rate, p95 latency, rate limit headroom, cost) and automatic failover.',
                         'Fernet encryption (AES-128-CBC + HMAC) for OAuth tokens at rest with MultiFernet key rotation support.',
                         'Optimistic concurrency with version columns + atomic CAS on all mutable entities. Cursor-based pagination (not offset) for stable reads.',
-                        'Powered by Prism (shared AI platform) for LLM execution, mood/intent inference, and output rendering.'
+                        'Connects to Prism (independent AI platform) over Docker prism-network for LLM execution, mood/intent inference, and output rendering.'
                     ],
                     tags: ['Python','FastAPI','React','Next.js','TypeScript','PostgreSQL','Spotify API','Docker'],
                     image: 'img/zither.svg', fallback: 'img/zither.svg',
@@ -437,6 +437,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 'Synth renders output as SSE-streamed text, sentence-boundary-buffered TTS audio, or assembled files (PDF, DOCX, HTML, CSV) with HTML sanitization.',
                 'All services stateless by design — no database, horizontal scaling trivial. Bearer token + HMAC-SHA256 auth. Centralized cost metadata passthrough.',
                 'Strategy pattern for provider adapters — adding a new LLM provider is one file + one catalog entry, zero core changes.',
+                'Own Docker Compose orchestration creates prism-network — consumer projects (Axiom, ZitherAi) join as external network. Start Prism first, then consumers.',
                 'Currently powers Axiom (knowledge workspace) and ZitherAi (music recommendation).'
             ],
             tags: ['Python','FastAPI','OpenAI','Anthropic','Gemini','Docker','SSE','TTS'],
@@ -444,7 +445,8 @@ document.addEventListener('DOMContentLoaded', () => {
             links: [
                 { label: 'Pulse', url: 'https://github.com/vsinghal3737/pulse', platform: true },
                 { label: 'Cortex', url: 'https://github.com/vsinghal3737/cortex', platform: true },
-                { label: 'Synth', url: 'https://github.com/vsinghal3737/synth', platform: true }
+                { label: 'Synth', url: 'https://github.com/vsinghal3737/synth', platform: true },
+                { label: 'Orchestration', url: 'https://github.com/vsinghal3737/prism-orchestration', platform: true }
             ]
         }
     };
