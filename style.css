@@ -985,6 +985,43 @@ section {
   margin-top: 8px;
   max-width: 620px;
 }
+.job-headlines {
+  list-style: none;
+  padding: 0;
+  margin: 8px 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  max-width: 620px;
+}
+.job-headlines li {
+  color: var(--text-muted);
+  font-size: 0.82rem;
+  line-height: 1.45;
+  padding-left: 14px;
+  position: relative;
+}
+.job-headlines li::before {
+  content: "›";
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+  font-weight: 700;
+  font-size: 0.95rem;
+  line-height: 1.3;
+}
+.job-expand-cue {
+  display: inline-block;
+  margin-top: 8px;
+  font-size: 0.72rem;
+  font-family: var(--font-mono);
+  color: var(--accent);
+  opacity: 0.6;
+  transition: opacity 0.3s;
+}
+.job-header:hover .job-expand-cue {
+  opacity: 1;
+}
 /* ── Stat highlights on timeline cards ── */
 .job-highlights {
   display: flex;
