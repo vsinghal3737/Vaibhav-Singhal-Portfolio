@@ -284,11 +284,12 @@
               id="heroGreeting"
             ></p>
             <p class="hero-blurb reveal" style="--delay: 0.25s">
-              I build backend systems that serve millions &mdash; identity
-              platforms at <strong>Workday</strong>, voice AI at
-              <strong>LivePerson</strong>, serverless pipelines at
-              <strong>Black Knight</strong>. I care about resilient
-              architecture, clean APIs, and making other engineers faster.
+              I care about making teams faster &mdash; through better tooling,
+              clearer abstractions, and systems resilient enough that on-call
+              stays boring. Together with great engineers and leaders,
+              I&rsquo;ve shipped identity platforms at
+              <strong>Workday</strong>, voice AI at <strong>LivePerson</strong>,
+              and serverless pipelines at <strong>Black Knight</strong>.
             </p>
           </div>
         </div>
@@ -464,14 +465,14 @@
                       ><span class="job-tag">SCIM</span
                       ><span class="job-tag">OIDC</span
                       ><span class="job-tag">Multi-tenant</span
-                      ><span class="job-tag">CPS</span>
+                      ><span class="job-tag">Async Queues</span>
                     </div>
                     <p class="job-summary">
                       Owning the identity platform post-acquisition &mdash; SCIM
                       provisioning, unified OIDC auth, single logout, per-tenant
-                      schema isolation, and a resilient CPS publish queue with
-                      exponential backoff retries. Serving thousands of auth
-                      requests/min across Workday and Evisort.
+                      schema isolation, and a resilient DB-backed publish queue
+                      with exponential backoff retries. Serving thousands of
+                      auth requests/min across the platform.
                     </p>
                     <div class="job-highlights">
                       <div class="job-highlight">
@@ -625,25 +626,25 @@
                   </div>
                   <div class="exp-item">
                     <strong
-                      >Built CPS Publish Queue with retries and exponential
-                      backoff</strong
+                      >Built a DB-backed publish queue with retries and
+                      exponential backoff</strong
                     >
                     <ul>
                       <li>
-                        Designed a DB-backed task queue so all CPS publish
-                        operations (REGISTER, DEREGISTER, UPDATE, RECREATE) are
-                        enqueued asynchronously and processed by a dedicated
-                        worker.
+                        Designed an async task queue so downstream publish
+                        operations are enqueued and processed by a dedicated
+                        worker with ordered delivery guarantees.
                       </li>
                       <li>
                         Implemented exponential backoff retries (base 30s, max
-                        600s, 6 retries) &mdash; CPS publishes survive 12+ hours
-                        of downtime during quarterly hybrid patching.
+                        600s, 6 retries) &mdash; downstream publishes survive
+                        12+ hours of upstream downtime during quarterly
+                        maintenance windows.
                       </li>
                       <li>
-                        Built atomic RECREATE (deregister old &rarr; register
-                        new) with partial-failure recovery and snapshot-based
-                        DEREGISTER resilience.
+                        Built atomic re-registration (deregister old &rarr;
+                        register new) with partial-failure recovery and
+                        snapshot-based rollback resilience.
                       </li>
                       <li>
                         Reduced Sentry alerts from ~50 per task to max 6;
@@ -664,8 +665,8 @@
                     >
                     <ul>
                       <li>
-                        Presented SCIM, UPW, and unified authentication at
-                        Evisort Tech Demo and Eng Syncs.
+                        Presented SCIM provisioning, unified auth, and identity
+                        integration at company-wide engineering demos.
                       </li>
                       <li>
                         Documented workflows and recorded sessions to support
@@ -703,13 +704,13 @@
                   </div>
                   <div class="exp-item">
                     <strong
-                      >Led Operational Readiness Reviews (ORR) for the auth
+                      >Led operational readiness reviews for the auth
                       gateway</strong
                     >
                     <ul>
                       <li>
-                        Authored ORR documentation aligned with Workday
-                        reliability standards.
+                        Authored production-readiness documentation covering
+                        observability, alerting, and reliability standards.
                       </li>
                       <li>
                         Enabled Prometheus-based observability and alerting;

@@ -1321,6 +1321,15 @@ section {
   align-items: center;
   gap: 16px;
   margin: 12px 0 24px;
+  cursor: pointer;
+  padding: 10px 16px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--glass-border);
+  background: var(--glass);
+  transition: all 0.3s;
+}
+.earlier-divider:hover {
+  background: var(--glass-hover);
 }
 .earlier-divider span {
   font-family: var(--font-mono);
@@ -1338,7 +1347,7 @@ section {
   background: linear-gradient(90deg, var(--glass-border), transparent);
 }
 .earlier-toggle-icon {
-  display: none;
+  display: inline-block;
   color: var(--text-dim);
   transition: transform 0.3s;
   flex-shrink: 0;
@@ -1347,9 +1356,12 @@ section {
   transform: rotate(180deg);
 }
 .earlier-grid {
-  display: grid;
+  display: none;
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
+}
+.earlier-grid.earlier-expanded {
+  display: grid;
 }
 .earlier-card {
   position: relative;
@@ -3520,27 +3532,9 @@ html {
   .timeline-divider::before {
     display: none;
   }
-  /* Earlier experience: collapsible on mobile */
-  .earlier-grid {
-    display: none;
-  }
+  /* Earlier experience: single column on mobile */
   .earlier-grid.earlier-expanded {
-    display: grid;
     grid-template-columns: 1fr;
-  }
-  .earlier-divider {
-    cursor: pointer;
-    padding: 10px 16px;
-    border-radius: var(--radius-sm);
-    background: var(--glass);
-    border: 1px solid var(--glass-border);
-    transition: all 0.3s;
-  }
-  .earlier-divider:hover {
-    background: var(--glass-hover);
-  }
-  .earlier-divider .earlier-toggle-icon {
-    display: inline-block;
   }
   section {
     padding: 60px 0;

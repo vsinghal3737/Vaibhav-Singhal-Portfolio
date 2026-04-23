@@ -265,11 +265,8 @@ document.addEventListener('DOMContentLoaded', () => {
     if (earlierDivider) {
         const earlierGrid = document.querySelector('.earlier-grid');
         earlierDivider.addEventListener('click', () => {
-            const icon = earlierDivider.querySelector('.earlier-toggle-icon');
-            if (icon && getComputedStyle(icon).display !== 'none') {
-                earlierDivider.classList.toggle('earlier-open');
-                earlierGrid.classList.toggle('earlier-expanded');
-            }
+            earlierDivider.classList.toggle('earlier-open');
+            earlierGrid.classList.toggle('earlier-expanded');
         });
     }
 
