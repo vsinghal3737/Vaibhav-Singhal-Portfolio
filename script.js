@@ -154,7 +154,6 @@ document.addEventListener('DOMContentLoaded', () => {
         section: s,
         link: document.querySelector(`.nav-links a[href="#${s.id}"]`)
     })).filter(item => item.link);
-
     // ═══════════════ SCROLL HANDLER (throttled via RAF) ═══════════════
     let scrollTicking = false;
     window.addEventListener('scroll', () => {
@@ -858,8 +857,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // ═══════════════ DARK/LIGHT THEME TOGGLE ═══════════════
     const themeToggle = document.getElementById('themeToggle');
-    const savedTheme = localStorage.getItem('theme') ||
-        (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+    const savedTheme = localStorage.getItem('theme') || 'dark';
     document.documentElement.dataset.theme = savedTheme;
 
     themeToggle.addEventListener('click', () => {
@@ -869,6 +867,251 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // ═══════════════ VISITOR-AWARE GREETING ═══════════════
+    function initContactSignal() {
+        const canvas = document.getElementById('contactSignalCanvas');
+        if (!canvas) return;
+
+        const context = canvas.getContext('2d');
+        const section = canvas.closest('.contact-signal');
+        const cards = document.querySelectorAll('.contact-card');
+        const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        let particles = [];
+        let pointer = { x: 0.5, y: 0.5, active: false };
+        let width = 0;
+        let height = 0;
+        let frame = 0;
+        let running = false;
+        let animationFrame = 0;
+        let signalActive = false;
+        let activeLabel = 'CONNECT';
+
+        function buildSignalTargets(label) {
+            const glyphs = {
+                A: ['01110', '10001', '10001', '11111', '10001', '10001', '10001'],
+                B: ['11110', '10001', '10001', '11110', '10001', '10001', '11110'],
+                C: ['01111', '10000', '10000', '10000', '10000', '10000', '01111'],
+                D: ['11110', '10001', '10001', '10001', '10001', '10001', '11110'],
+                E: ['11111', '10000', '10000', '11110', '10000', '10000', '11111'],
+                G: ['01111', '10000', '10000', '10111', '10001', '10001', '01111'],
+                H: ['10001', '10001', '10001', '11111', '10001', '10001', '10001'],
+                I: ['11111', '00100', '00100', '00100', '00100', '00100', '11111'],
+                K: ['10001', '10010', '10100', '11000', '10100', '10010', '10001'],
+                L: ['10000', '10000', '10000', '10000', '10000', '10000', '11111'],
+                M: ['10001', '11011', '10101', '10101', '10001', '10001', '10001'],
+                N: ['10001', '11001', '10101', '10011', '10001', '10001', '10001'],
+                O: ['01110', '10001', '10001', '10001', '10001', '10001', '01110'],
+                R: ['11110', '10001', '10001', '11110', '10100', '10010', '10001'],
+                S: ['01111', '10000', '10000', '01110', '00001', '00001', '11110'],
+                T: ['11111', '00100', '00100', '00100', '00100', '00100', '00100'],
+                U: ['10001', '10001', '10001', '10001', '10001', '10001', '01110'],
+            };
+            const chars = label.replace(/[^A-Z]/g, '').split('').filter(char => glyphs[char]);
+            const normalized = chars.length ? chars : ['C', 'O', 'N', 'N', 'E', 'C', 'T'];
+            const columns = normalized.reduce((sum, char) => sum + glyphs[char][0].length + 1, -1);
+            const cell = Math.min(13, width / Math.max(columns + 2, 1), height / 18);
+            const textWidth = columns * cell;
+            const startX = width / 2 - textWidth / 2;
+            const startY = height * 0.36;
+            const targets = [];
+            let cursor = startX;
+
+            normalized.forEach((char) => {
+                const rows = glyphs[char];
+                rows.forEach((row, y) => {
+                    row.split('').forEach((mark, x) => {
+                        if (mark !== '1') return;
+                        for (let i = 0; i < 3; i += 1) {
+                            targets.push({
+                                x: cursor + x * cell + (Math.random() - 0.5) * cell * 0.36,
+                                y: startY + y * cell + (Math.random() - 0.5) * cell * 0.36,
+                            });
+                        }
+                    });
+                });
+                cursor += (rows[0].length + 1) * cell;
+            });
+
+            while (targets.length < 180) {
+                const target = targets[targets.length % Math.max(targets.length, 1)];
+                if (!target) break;
+                targets.push({
+                    x: target.x + (Math.random() - 0.5) * cell * 0.5,
+                    y: target.y + (Math.random() - 0.5) * cell * 0.5,
+                });
+            }
+
+            return targets;
+        }
+
+        function randomScatterTarget() {
+            return {
+                x: width * (0.08 + Math.random() * 0.84),
+                y: height * (0.16 + Math.random() * 0.56),
+            };
+        }
+
+        function createParticles() {
+            const count = Math.max(480, Math.floor(width / 3.2));
+            particles = Array.from({ length: count }, (_, index) => {
+                const point = randomScatterTarget();
+                const target = randomScatterTarget();
+                return {
+                    x: point.x,
+                    y: point.y,
+                    targetX: target.x,
+                    targetY: target.y,
+                    radius: 1 + Math.random() * 1.6,
+                    drift: 0.35 + Math.random() * 1.4,
+                    phase: index * 0.19 + Math.random() * 4,
+                    accent: Math.random() > 0.74,
+                };
+            });
+        }
+
+        function scatterParticles() {
+            signalActive = false;
+            particles.forEach((particle) => {
+                const target = randomScatterTarget();
+                particle.targetX = target.x;
+                particle.targetY = target.y;
+            });
+        }
+
+        function convergeParticles(label) {
+            const targets = buildSignalTargets(label);
+            signalActive = true;
+            particles.forEach((particle, index) => {
+                const targetIndex = Math.floor((index / Math.max(particles.length - 1, 1)) * Math.max(targets.length - 1, 0));
+                const target = targets[targetIndex] || randomScatterTarget();
+                particle.targetX = target.x + (Math.random() - 0.5) * 5;
+                particle.targetY = target.y + (Math.random() - 0.5) * 5;
+            });
+        }
+
+        function activateSignal(card) {
+            const nextLabel = card.textContent.trim().toUpperCase() || 'CONNECT';
+            if (signalActive && activeLabel === nextLabel) return;
+            activeLabel = nextLabel;
+            section.classList.add('active');
+            convergeParticles(activeLabel);
+        }
+
+        function movePointer(event) {
+            const rect = section.getBoundingClientRect();
+            pointer = {
+                x: (event.clientX - rect.left) / rect.width,
+                y: (event.clientY - rect.top) / rect.height,
+                active: true,
+            };
+        }
+
+        function releaseSignal() {
+            pointer.active = false;
+            if (!signalActive) return;
+            section.classList.remove('active');
+            scatterParticles();
+        }
+
+        function resize() {
+            const rect = canvas.getBoundingClientRect();
+            const ratio = Math.min(window.devicePixelRatio || 1, 2);
+            width = Math.max(1, rect.width);
+            height = Math.max(1, rect.height);
+            canvas.width = Math.floor(width * ratio);
+            canvas.height = Math.floor(height * ratio);
+            context.setTransform(ratio, 0, 0, ratio, 0, 0);
+            createParticles();
+        }
+
+        function draw() {
+            if (!running) {
+                animationFrame = 0;
+                return;
+            }
+
+            context.clearRect(0, 0, width, height);
+            const theme = document.documentElement.dataset.theme;
+            const base = theme === 'light' ? '25, 24, 33' : '232, 232, 240';
+            const accent = theme === 'light' ? '108, 99, 255' : '139, 131, 255';
+
+            particles.forEach((particle, index) => {
+                const ease = signalActive ? 0.062 : 0.018;
+                const pulse = Math.sin(frame * 0.045 + particle.phase) * 0.5 + 0.5;
+                const wanderX = Math.sin(frame * 0.01 * particle.drift + particle.phase) * (signalActive ? 0.05 : 0.34);
+                const wanderY = Math.cos(frame * 0.012 * particle.drift + particle.phase) * (signalActive ? 0.05 : 0.28);
+                particle.x += (particle.targetX - particle.x) * ease + wanderX;
+                particle.y += (particle.targetY - particle.y) * ease + wanderY;
+
+                if (!signalActive && index % 4 === frame % 4) {
+                    const dxTarget = particle.targetX - particle.x;
+                    const dyTarget = particle.targetY - particle.y;
+                    if (Math.sqrt(dxTarget * dxTarget + dyTarget * dyTarget) < 24) {
+                        const target = randomScatterTarget();
+                        particle.targetX = target.x;
+                        particle.targetY = target.y;
+                    }
+                }
+
+                const dx = particle.x - pointer.x * width;
+                const dy = particle.y - pointer.y * height;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+                const pull = pointer.active ? Math.max(0, 1 - dist / 220) : 0;
+                const px = particle.x + dx * pull * 0.06;
+                const py = particle.y + dy * pull * 0.06;
+                context.beginPath();
+                context.arc(px, py, particle.radius + pull * 1.4 + (signalActive ? pulse * 0.45 : 0), 0, Math.PI * 2);
+                context.fillStyle = particle.accent
+                    ? `rgba(${accent}, ${0.42 + pull * 0.28 + (signalActive ? 0.28 : 0)})`
+                    : `rgba(${base}, ${0.26 + pull * 0.28 + (signalActive ? 0.34 : 0)})`;
+                context.fill();
+
+                if (signalActive && index % 12 === 0) {
+                    context.beginPath();
+                    context.moveTo(px, py);
+                    context.lineTo(px + Math.sin(frame * 0.02 + particle.phase) * 12, py + Math.cos(frame * 0.018 + particle.phase) * 10);
+                    context.strokeStyle = `rgba(${accent}, ${0.06 + pulse * 0.08})`;
+                    context.lineWidth = 1;
+                    context.stroke();
+                }
+            });
+
+            frame += 1;
+            animationFrame = requestAnimationFrame(draw);
+        }
+
+        resize();
+        if (reducedMotion) {
+            running = true;
+            draw();
+            running = false;
+            return;
+        }
+
+        section.addEventListener('pointermove', movePointer);
+        section.addEventListener('mousemove', movePointer);
+        section.addEventListener('pointerleave', () => { pointer.active = false; });
+        section.addEventListener('mouseleave', () => { pointer.active = false; });
+        cards.forEach((card) => {
+            card.addEventListener('pointerenter', () => activateSignal(card));
+            card.addEventListener('mouseenter', () => activateSignal(card));
+            card.addEventListener('pointermove', movePointer);
+            card.addEventListener('mousemove', movePointer);
+            card.addEventListener('pointerleave', releaseSignal);
+            card.addEventListener('mouseleave', releaseSignal);
+            card.addEventListener('focus', () => activateSignal(card));
+            card.addEventListener('blur', releaseSignal);
+        });
+
+        const signalObserver = new IntersectionObserver((entries) => {
+            running = entries[0].isIntersecting;
+            if (running && !animationFrame) animationFrame = requestAnimationFrame(draw);
+        }, { threshold: 0.1 });
+        signalObserver.observe(section);
+        window.addEventListener('resize', resize);
+    }
+
+    initContactSignal();
+
     const greetingEl = document.getElementById('heroGreeting');
     if (greetingEl) {
         const hour = new Date().getHours();
@@ -925,7 +1168,7 @@ document.addEventListener('DOMContentLoaded', () => {
         { title: 'GitHub', hint: 'github.com/vsinghal3737', icon: '🔗', action: 'https://github.com/vsinghal3737' },
         { title: 'Resume', hint: 'Google Drive', icon: '📄', action: 'https://drive.google.com/drive/folders/14P5q0XW5jiU3eIH2igkKzJ6LDOcdwyKn?usp=sharing' },
         // Theme
-        { title: 'Toggle Theme', hint: 'Switch between dark and light mode', icon: '🎨', action: 'theme' },
+        { title: 'Toggle Theme', hint: 'Switch between dark and cream mode', icon: '🎨', action: 'theme' },
         { title: 'Back to Top', hint: 'Scroll to the top of the page', icon: '⬆️', action: '#hero' },
     ];
 
