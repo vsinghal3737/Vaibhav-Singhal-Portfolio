@@ -478,7 +478,7 @@ body:hover .cursor-glow {
   }
 }
 .hero-name {
-  font-size: clamp(2.2rem, 4vw, 3.2rem);
+  font-size: clamp(2.6rem, 5vw, 4.1rem);
   font-weight: 700;
   letter-spacing: -1px;
   line-height: 1.1;
@@ -652,41 +652,62 @@ body:hover .cursor-glow {
 .hero-btn:hover svg {
   opacity: 1;
 }
-.hero-btn-github {
-  border-color: rgba(139, 131, 255, 0.38);
-  background: linear-gradient(135deg, rgba(38, 39, 88, 0.96), rgba(71, 74, 186, 0.88), rgba(55, 190, 225, 0.78));
-  color: #fff;
-  font-weight: 600;
-  box-shadow:
-    0 4px 18px rgba(84, 111, 255, 0.24),
-    0 0 26px rgba(82, 199, 248, 0.1);
-}
-.hero-btn-github svg {
-  opacity: 1;
-}
-.hero-btn-github:hover {
-  border-color: rgba(139, 131, 255, 0.6);
-  background: linear-gradient(135deg, rgba(50, 51, 124, 1), rgba(88, 91, 214, 0.96), rgba(78, 211, 236, 0.88));
-  color: #fff;
-  box-shadow:
-    0 4px 28px rgba(84, 111, 255, 0.34),
-    0 0 36px rgba(82, 199, 248, 0.18);
-  transform: translateY(-2px);
-}
 .hero-btn-resume {
-  border: none;
-  background: var(--gradient-1);
-  color: #fff;
-  font-weight: 600;
-  box-shadow: 0 4px 20px rgba(108, 99, 255, 0.35);
+  --link-a-rgb: 108, 99, 255;
+  --link-b-rgb: 0, 212, 170;
+  --link-text: #5ed5f4;
+  --link-light-text: #4d65ef;
 }
-.hero-btn-resume svg {
+.hero-btn-github {
+  --link-a-rgb: 139, 131, 255;
+  --link-b-rgb: 82, 199, 248;
+  --link-text: #b7b2ff;
+  --link-light-text: #525bd8;
+}
+.hero-btn-linkedin {
+  --link-a-rgb: 40, 145, 255;
+  --link-b-rgb: 104, 204, 255;
+  --link-text: #76bcff;
+  --link-light-text: #0a66c2;
+}
+.hero-btn-email {
+  --link-a-rgb: 255, 112, 92;
+  --link-b-rgb: 255, 211, 92;
+  --link-text: #ff9f8f;
+  --link-light-text: #c83a2f;
+}
+.hero-btn-resume,
+.hero-btn-github,
+.hero-btn-linkedin,
+.hero-btn-email {
+  border-color: rgba(var(--link-a-rgb), 0.34);
+  background:
+    linear-gradient(135deg, rgba(var(--link-a-rgb), 0.11), rgba(var(--link-b-rgb), 0.07)),
+    var(--glass);
+  color: var(--link-text);
+  font-weight: 600;
+  box-shadow:
+    0 4px 18px rgba(var(--link-a-rgb), 0.08),
+    0 0 24px rgba(var(--link-b-rgb), 0.04);
+}
+.hero-btn-resume svg,
+.hero-btn-github svg,
+.hero-btn-linkedin svg,
+.hero-btn-email svg {
   opacity: 1;
 }
-.hero-btn-resume:hover {
-  background: var(--gradient-1);
-  color: #fff;
-  box-shadow: 0 4px 28px rgba(108, 99, 255, 0.5);
+.hero-btn-resume:hover,
+.hero-btn-github:hover,
+.hero-btn-linkedin:hover,
+.hero-btn-email:hover {
+  border-color: rgba(var(--link-a-rgb), 0.56);
+  background:
+    linear-gradient(135deg, rgba(var(--link-a-rgb), 0.18), rgba(var(--link-b-rgb), 0.12)),
+    var(--glass-hover);
+  color: var(--link-text);
+  box-shadow:
+    0 4px 26px rgba(var(--link-a-rgb), 0.16),
+    0 0 34px rgba(var(--link-b-rgb), 0.08);
   transform: translateY(-2px);
 }
 .scroll-indicator {
@@ -2876,39 +2897,77 @@ section {
 .contact-card:hover {
   color: var(--accent-bright);
 }
-.github-card {
-  border-color: rgba(139, 131, 255, 0.32);
-  box-shadow:
-    0 0 22px rgba(84, 111, 255, 0.14),
-    0 0 40px rgba(82, 199, 248, 0.05);
-}
-.github-card span {
-  background: linear-gradient(135deg, #f5f6ff 0%, #8b83ff 52%, #52c7f8 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  font-weight: 700;
-}
-.github-card:hover {
-  border-color: rgba(139, 131, 255, 0.55);
-  box-shadow:
-    0 0 34px rgba(84, 111, 255, 0.22),
-    0 0 56px rgba(82, 199, 248, 0.1);
-}
 .resume-card {
-  border-color: rgba(108, 99, 255, 0.3);
-  box-shadow: 0 0 20px rgba(108, 99, 255, 0.12);
+  --contact-a: #6c63ff;
+  --contact-b: #00d4aa;
+  --contact-a-rgb: 108, 99, 255;
+  --contact-b-rgb: 0, 212, 170;
 }
-.resume-card span {
-  background: var(--gradient-1);
+.github-card {
+  --contact-a: #8b83ff;
+  --contact-b: #52c7f8;
+  --contact-a-rgb: 139, 131, 255;
+  --contact-b-rgb: 82, 199, 248;
+}
+.linkedin-card {
+  --contact-a: #78c7ff;
+  --contact-b: #0a66c2;
+  --contact-a-rgb: 40, 145, 255;
+  --contact-b-rgb: 104, 204, 255;
+}
+.email-card {
+  --contact-a: #ff8a7a;
+  --contact-b: #ffd35c;
+  --contact-a-rgb: 255, 112, 92;
+  --contact-b-rgb: 255, 211, 92;
+}
+.resume-card,
+.github-card,
+.linkedin-card,
+.email-card {
+  border-color: rgba(var(--contact-a-rgb), 0.3);
+  background:
+    linear-gradient(135deg, rgba(var(--contact-a-rgb), 0.09), rgba(var(--contact-b-rgb), 0.045)),
+    var(--glass);
+  box-shadow:
+    0 0 22px rgba(var(--contact-a-rgb), 0.12),
+    0 0 40px rgba(var(--contact-b-rgb), 0.05);
+}
+.resume-card svg,
+.github-card svg,
+.linkedin-card svg,
+.email-card svg {
+  color: var(--contact-a);
+  stroke: var(--contact-a) !important;
+}
+.resume-card span,
+.github-card span,
+.linkedin-card span,
+.email-card span {
+  background: linear-gradient(135deg, var(--contact-a) 0%, var(--contact-b) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   font-weight: 700;
 }
-.resume-card:hover {
-  border-color: rgba(108, 99, 255, 0.5);
-  box-shadow: 0 0 30px rgba(108, 99, 255, 0.2);
+.linkedin-card span {
+  background: none;
+  color: #78c7ff;
+  -webkit-text-fill-color: #78c7ff;
+}
+.email-card span {
+  background: none;
+  color: #ff9f8f;
+  -webkit-text-fill-color: #ff9f8f;
+}
+.resume-card:hover,
+.github-card:hover,
+.linkedin-card:hover,
+.email-card:hover {
+  border-color: rgba(var(--contact-a-rgb), 0.52);
+  box-shadow:
+    0 0 32px rgba(var(--contact-a-rgb), 0.2),
+    0 0 54px rgba(var(--contact-b-rgb), 0.1);
 }
 
 /* ═══ BACK TO TOP ═══ */
@@ -3263,30 +3322,27 @@ footer {
   background: rgba(246, 238, 226, 0.58);
   border-color: rgba(0, 0, 0, 0.1);
 }
-[data-theme="light"] .hero-btn-resume {
-  background: var(--gradient-1);
-  border: none;
-  color: #fff;
-}
-[data-theme="light"] .hero-btn-github {
-  border-color: rgba(77, 83, 210, 0.28);
-  background: linear-gradient(135deg, #383d92 0%, #6271f6 52%, #32b7d5 100%);
-  color: #fff;
+[data-theme="light"] .hero-btn-resume,
+[data-theme="light"] .hero-btn-github,
+[data-theme="light"] .hero-btn-linkedin,
+[data-theme="light"] .hero-btn-email {
+  border-color: rgba(var(--link-a-rgb), 0.28);
+  background:
+    linear-gradient(135deg, rgba(var(--link-a-rgb), 0.16), rgba(var(--link-b-rgb), 0.1)),
+    rgba(246, 238, 226, 0.62);
+  color: var(--link-light-text);
   box-shadow:
-    0 4px 18px rgba(77, 83, 210, 0.18),
-    0 0 24px rgba(50, 183, 213, 0.12);
+    0 4px 18px rgba(var(--link-a-rgb), 0.12),
+    0 0 22px rgba(var(--link-b-rgb), 0.08);
 }
-[data-theme="light"] .github-card {
-  border-color: rgba(77, 83, 210, 0.2);
+[data-theme="light"] .resume-card,
+[data-theme="light"] .github-card,
+[data-theme="light"] .linkedin-card,
+[data-theme="light"] .email-card {
+  border-color: rgba(var(--contact-a-rgb), 0.22);
   box-shadow:
-    0 0 22px rgba(77, 83, 210, 0.1),
-    0 0 36px rgba(50, 183, 213, 0.06);
-}
-[data-theme="light"] .github-card span {
-  background: linear-gradient(135deg, #323775 0%, #5265e8 54%, #008fb2 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+    0 0 22px rgba(var(--contact-a-rgb), 0.09),
+    0 0 36px rgba(var(--contact-b-rgb), 0.06);
 }
 [data-theme="light"] .section-divider svg path,
 [data-theme="light"] .section-divider svg polygon {
@@ -3307,10 +3363,6 @@ footer {
   background: rgba(246, 238, 226, 0.5);
   border-color: rgba(0, 0, 0, 0.06);
 }
-[data-theme="light"] .nav-links {
-  background: rgba(236, 226, 211, 0.98);
-}
-
 /* ═══ HERO GREETING ═══ */
 .hero-greeting {
   font-family: var(--font-mono);
@@ -3546,6 +3598,9 @@ html {
     gap: 4px;
     border-bottom: 1px solid var(--glass-border);
   }
+  [data-theme="light"] .nav-links {
+    background: rgba(236, 226, 211, 0.98);
+  }
   .nav-links.open {
     display: flex;
   }
@@ -3764,9 +3819,6 @@ html {
   }
   .job-summary {
     max-width: 100%;
-  }
-  .hero-btn-resume {
-    border: 1px solid rgba(108, 99, 255, 0.3);
   }
   .edu-grid {
     grid-template-columns: 1fr;
