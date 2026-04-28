@@ -343,14 +343,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 {
                     title: 'Axiom — Knowledge Workspace',
                     date: '2025 – Present',
-                    summary: 'Cloud-native knowledge workspace with Obsidian-like note management, AI-powered RAG search, and a production-grade processing pipeline. 134 PRs merged, 961 tests.',
+                    summary: 'Cloud-native knowledge workspace with markdown notes, AI-powered RAG search, queue-backed processing, and a Prism-backed AI gateway path.',
                     bullets: [
                         'Architected 4 product services: REST API (FastAPI/SQLModel), React UI (Next.js 14), LLM orchestrator (Nexus), and Docker orchestration.',
                         'Built rich editor with BlockNote, version history with snapshot/restore, wiki-style [[links]] with backlinks, soft-delete with cascade recovery.',
                         'Implemented semantic search via pgvector embeddings + hybrid ranking (full-text + vector similarity), workspace-scoped conversational RAG chat.',
                         'Designed job queue using PostgreSQL FOR UPDATE SKIP LOCKED — heartbeat reclamation, retry with backoff, dead-letter queue. No external message broker.',
-                        'End-to-end SSE streaming: Worker → Cortex → Synth → Gateway → Client with sequence numbering for reconnect replay.',
-                        'Connects to Prism (independent AI platform) over Docker prism-network for multi-provider LLM execution, input normalization, and output rendering.'
+                        'Runs through Axiom-orchestration: Docker Compose, nginx gateway on localhost:8080, health checks, env bootstrap tooling, and e2e harnesses.',
+                        'Nexus connects to Prism over Docker prism-network through prism-gateway for input normalization, LLM execution, and output rendering.'
                     ],
                     tags: ['Python','FastAPI','React','Next.js','TypeScript','PostgreSQL','pgvector','Docker'],
                     image: 'img/axiom.svg', fallback: 'img/axiom.svg',
@@ -372,14 +372,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 {
                     title: 'ZitherAi — AI Music Copilot',
                     date: '2026 – Present',
-                    summary: 'AI-powered music recommendation engine and playlist copilot. Conversational playlist generation across Spotify, YouTube Music, and Apple Music — without hosting a music catalog.',
+                    summary: 'AI-powered music recommendation engine and playlist copilot with provider adapters, taste modeling, and Prism-backed AI workflows.',
                     bullets: [
                         'Designed 5-service architecture: API (users/taste profiles), Nexus (8-stage recommendation pipeline), Bridge (stateless provider adapters), UI (chat-first React), and Docker orchestration.',
                         'Built 8-stage recommendation pipeline: Input → Intent Extraction → Candidate Retrieval → Enrichment → Ranking → Sequencing → Metadata → SSE Output.',
                         'Provider-agnostic Bridge service with circuit breakers per provider (error rate, p95 latency, rate limit headroom, cost) and automatic failover.',
                         'Fernet encryption (AES-128-CBC + HMAC) for OAuth tokens at rest with MultiFernet key rotation support.',
                         'Optimistic concurrency with version columns + atomic CAS on all mutable entities. Cursor-based pagination (not offset) for stable reads.',
-                        'Connects to Prism (independent AI platform) over Docker prism-network for LLM execution, mood/intent inference, and output rendering.'
+                        'ZitherAi-orchestration owns the local gateway on localhost:8180, routing /api, /nexus, /bridge, /pulse, /cortex, and /synthesizer lanes.',
+                        'Nexus and Bridge connect to Prism over prism-network through prism-gateway for LLM execution, mood/intent inference, and output rendering.'
                     ],
                     tags: ['Python','FastAPI','React','Next.js','TypeScript','PostgreSQL','Spotify API','Docker'],
                     image: 'img/zither.svg', fallback: 'img/zither.svg',
@@ -422,34 +423,34 @@ document.addEventListener('DOMContentLoaded', () => {
     // Prism platform data (rendered as connecting strip, not a folder)
     const prismData = {
         title: 'Prism',
-        subtitle: 'Shared AI Platform',
-        stats: '48 PRs · 366 Tests',
+        subtitle: 'Gatewayed AI Platform',
+        stats: '3 Services + Gateway',
         services: [
-            { name: 'Pulse', role: 'Input', desc: 'Normalize text, audio, PDF, and image input' },
-            { name: 'Cortex', role: 'LLM Gateway', desc: 'Run OpenAI, Anthropic, and Gemini with fallbacks' },
-            { name: 'Synth', role: 'Output', desc: 'Render SSE, TTS, PDF, and DOCX output' }
+            { name: 'Pulse', role: 'Input', desc: 'Normalize text, files, audio, and image input' },
+            { name: 'Cortex', role: 'LLM Executor', desc: 'Run OpenAI, Anthropic, Gemini, STT, TTS, and vision' },
+            { name: 'Synthesizer', role: 'Output', desc: 'Render SSE text, TTS audio, PDF, DOCX, and CSV output' }
         ],
         project: {
-            title: 'Prism — Shared AI Platform',
+            title: 'Prism — Reusable AI Microservices Layer',
             date: '2025 – Present',
-            summary: 'Reusable, stateless AI infrastructure layer powering multiple projects. Pulse, Cortex, and Synth are exposed as separate HTTP services, so consumer projects call only the capabilities they need.',
+            summary: 'Reusable, stateless AI infrastructure layer powering Axiom, ZitherAi, and future products through a stable Prism gateway.',
             bullets: [
                 'Pulse normalizes any input modality (text, audio via ffmpeg+Whisper, images via vision captioning, PDF/DOCX/XLSX) into deterministic StructuredContext JSON.',
-                'Cortex provides a universal AI gateway: 12 completion models across 3 providers with per-provider circuit breakers, fallback chains, and Decimal cost tracking.',
-                'Synth renders output as SSE-streamed text, sentence-boundary-buffered TTS audio, or assembled files (PDF, DOCX, HTML, CSV) with HTML sanitization.',
-                'Consumer projects call Pulse, Cortex, and Synth independently over HTTP. Pulse and Synth can optionally delegate to Cortex for model-backed transforms, but there is no required platform-wide service chain.',
-                'All services stateless by design — no database, horizontal scaling trivial. Bearer token + HMAC-SHA256 auth. Centralized cost metadata passthrough.',
+                'Cortex is the AI executor for completions, embeddings, speech-to-text, text-to-speech, and vision with provider retries and fallbacks.',
+                'Synthesizer renders output as SSE-streamed text, sentence-boundary-buffered TTS audio, or assembled files (PDF, DOCX, HTML, CSV) with HTML sanitization.',
+                'Prism-orchestration exposes gateway routes at /pulse/v1, /cortex/v1, and /synthesizer/v1, with host access on localhost:8280 and Docker DNS at prism-gateway.',
+                'All services are stateless by design — no database, no persistent coordination, and simple horizontal scaling.',
                 'Strategy pattern for provider adapters — adding a new LLM provider is one file + one catalog entry, zero core changes.',
-                'Own Docker Compose orchestration creates prism-network — consumer projects (Axiom, ZitherAi) join as external network. Start Prism first, then consumers.',
-                'Currently powers Axiom (knowledge workspace) and ZitherAi (music recommendation).'
+                'The orchestration Makefile validates env readiness, service-token alignment, gateway health, deep authenticated health, and smoke requests.',
+                'Consumer products join prism-network as an external network; Axiom and ZitherAi auto-start Prism when their local orchestration needs it.'
             ],
             tags: ['Python','FastAPI','OpenAI','Anthropic','Gemini','Docker','SSE','TTS'],
             image: 'img/prism.svg', fallback: 'img/prism.svg',
             links: [
-                { label: 'Pulse', url: 'https://github.com/vsinghal3737/pulse', platform: true },
-                { label: 'Cortex', url: 'https://github.com/vsinghal3737/cortex', platform: true },
-                { label: 'Synth', url: 'https://github.com/vsinghal3737/synth', platform: true },
-                { label: 'Prism-orchestration', url: 'https://github.com/vsinghal3737/prism-orchestration', platform: true }
+                { label: 'Prism-pulse', url: 'https://github.com/vsinghal3737/Prism-pulse', platform: true },
+                { label: 'Prism-cortex', url: 'https://github.com/vsinghal3737/Prism-cortex', platform: true },
+                { label: 'Prism-synthesizer', url: 'https://github.com/vsinghal3737/Prism-synthesizer', platform: true },
+                { label: 'Prism-orchestration', url: 'https://github.com/vsinghal3737/Prism-orchestration', platform: true }
             ]
         }
     };
@@ -506,7 +507,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="prism-label">
                     <span class="prism-icon">⚡</span>
                     <span class="prism-title">PRISM</span>
-                    <span class="prism-subtitle">Shared AI Platform</span>
+                    <span class="prism-subtitle">Gatewayed AI Platform</span>
                 </div>
                 <div class="prism-services">
                     ${prismData.services.map((s) => `
