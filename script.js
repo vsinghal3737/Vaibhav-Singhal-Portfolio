@@ -353,7 +353,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         'Nexus connects to Prism over Docker prism-network through prism-gateway for input normalization, LLM execution, and output rendering.'
                     ],
                     tags: ['Python','FastAPI','React','Next.js','TypeScript','PostgreSQL','pgvector','Docker'],
-                    image: 'img/axiom.svg', fallback: 'img/axiom.svg',
+                    image: 'img/axiom.svg?v=material-2026', fallback: 'img/axiom.svg?v=material-2026',
                     links: [
                         { label: 'my-notes (v1)', url: 'https://github.com/vsinghal3737/my-notes' },
                         { label: 'Axiom-api', url: 'https://github.com/vsinghal3737/Axiom-api' },
@@ -383,7 +383,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         'Nexus and Bridge connect to Prism over prism-network through prism-gateway for LLM execution, mood/intent inference, and output rendering.'
                     ],
                     tags: ['Python','FastAPI','React','Next.js','TypeScript','PostgreSQL','Spotify API','Docker'],
-                    image: 'img/zither.svg', fallback: 'img/zither.svg',
+                    image: 'img/zither.svg?v=material-2026', fallback: 'img/zither.svg?v=material-2026',
                     links: [
                         { label: 'ZitherAi-api', url: 'https://github.com/vsinghal3737/ZitherAi-api' },
                         { label: 'ZitherAi-ui', url: 'https://github.com/vsinghal3737/ZitherAi-ui' },
@@ -445,7 +445,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 'Consumer products join prism-network as an external network; Axiom and ZitherAi auto-start Prism when their local orchestration needs it.'
             ],
             tags: ['Python','FastAPI','OpenAI','Anthropic','Gemini','Docker','SSE','TTS'],
-            image: 'img/prism.svg', fallback: 'img/prism.svg',
+            image: 'img/prism.svg?v=material-2026', fallback: 'img/prism.svg?v=material-2026',
             links: [
                 { label: 'Prism-pulse', url: 'https://github.com/vsinghal3737/Prism-pulse', platform: true },
                 { label: 'Prism-cortex', url: 'https://github.com/vsinghal3737/Prism-cortex', platform: true },
@@ -814,7 +814,7 @@ document.addEventListener('DOMContentLoaded', () => {
         confettiCanvas.width = window.innerWidth;
         confettiCanvas.height = window.innerHeight;
         const particles = [];
-        const colors = ['#6c63ff','#00d4aa','#ff6b9d','#febc2e','#28c840','#fff'];
+        const colors = ['#8b83ff','#00d4aa','#ff7cab','#dfe9ff','#b8b5ff','#ffffff'];
         for (let i = 0; i < 200; i++) {
             particles.push({
                 x: Math.random() * confettiCanvas.width,
@@ -859,11 +859,16 @@ document.addEventListener('DOMContentLoaded', () => {
     // ═══════════════ DARK/LIGHT THEME TOGGLE ═══════════════
     const themeToggle = document.getElementById('themeToggle');
     const savedTheme = localStorage.getItem('theme') || 'dark';
-    document.documentElement.dataset.theme = savedTheme;
+    function applyTheme(theme) {
+        document.documentElement.dataset.theme = theme;
+        window.dispatchEvent(new CustomEvent('portfolio-theme-change', { detail: { theme } }));
+    }
+
+    applyTheme(savedTheme);
 
     themeToggle.addEventListener('click', () => {
         const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
-        document.documentElement.dataset.theme = next;
+        applyTheme(next);
         localStorage.setItem('theme', next);
     });
 
@@ -1032,8 +1037,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
             context.clearRect(0, 0, width, height);
             const theme = document.documentElement.dataset.theme;
-            const base = theme === 'light' ? '25, 24, 33' : '232, 232, 240';
-            const accent = theme === 'light' ? '108, 99, 255' : '139, 131, 255';
+            const base = theme === 'light' ? '42, 38, 46' : '235, 242, 255';
+            const accent = theme === 'light' ? '0, 143, 120' : '0, 212, 170';
 
             particles.forEach((particle, index) => {
                 const ease = signalActive ? 0.062 : 0.018;
@@ -1169,7 +1174,7 @@ document.addEventListener('DOMContentLoaded', () => {
         { title: 'GitHub', hint: 'github.com/vsinghal3737', icon: '🔗', action: 'https://github.com/vsinghal3737' },
         { title: 'Resume', hint: 'Google Drive', icon: '📄', action: 'https://drive.google.com/drive/folders/14P5q0XW5jiU3eIH2igkKzJ6LDOcdwyKn?usp=sharing' },
         // Theme
-        { title: 'Toggle Theme', hint: 'Switch between dark and cream mode', icon: '🎨', action: 'theme' },
+        { title: 'Toggle Theme', hint: 'Switch between obsidian and marble mode', icon: '🎨', action: 'theme' },
         { title: 'Back to Top', hint: 'Scroll to the top of the page', icon: '⬆️', action: '#hero' },
     ];
 
