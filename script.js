@@ -339,6 +339,9 @@ document.addEventListener('DOMContentLoaded', () => {
             title: 'Axiom',
             subtitle: '4 services',
             row: 'main',
+            variant: 'axiom',
+            moduleTagline: 'Knowledge Vault',
+            services: ['API', 'UI', 'Nexus', 'Docker'],
             projects: [
                 {
                     title: 'Axiom — Knowledge Workspace',
@@ -353,7 +356,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         'Nexus connects to Prism over Docker prism-network through prism-gateway for input normalization, LLM execution, and output rendering.'
                     ],
                     tags: ['Python','FastAPI','React','Next.js','TypeScript','PostgreSQL','pgvector','Docker'],
-                    image: 'img/axiom.svg', fallback: 'img/axiom.svg',
+                    image: 'img/axiom.svg?v=material-2026', fallback: 'img/axiom.svg?v=material-2026',
                     links: [
                         { label: 'my-notes (v1)', url: 'https://github.com/vsinghal3737/my-notes' },
                         { label: 'Axiom-api', url: 'https://github.com/vsinghal3737/Axiom-api' },
@@ -368,6 +371,9 @@ document.addEventListener('DOMContentLoaded', () => {
             title: 'ZitherAi',
             subtitle: '5 services',
             row: 'main',
+            variant: 'zither',
+            moduleTagline: 'Sound Library',
+            services: ['API', 'UI', 'Nexus', 'Bridge', 'Prism'],
             projects: [
                 {
                     title: 'ZitherAi — AI Music Copilot',
@@ -383,7 +389,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         'Nexus and Bridge connect to Prism over prism-network through prism-gateway for LLM execution, mood/intent inference, and output rendering.'
                     ],
                     tags: ['Python','FastAPI','React','Next.js','TypeScript','PostgreSQL','Spotify API','Docker'],
-                    image: 'img/zither.svg', fallback: 'img/zither.svg',
+                    image: 'img/zither.svg?v=material-2026', fallback: 'img/zither.svg?v=material-2026',
                     links: [
                         { label: 'ZitherAi-api', url: 'https://github.com/vsinghal3737/ZitherAi-api' },
                         { label: 'ZitherAi-ui', url: 'https://github.com/vsinghal3737/ZitherAi-ui' },
@@ -445,7 +451,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 'Consumer products join prism-network as an external network; Axiom and ZitherAi auto-start Prism when their local orchestration needs it.'
             ],
             tags: ['Python','FastAPI','OpenAI','Anthropic','Gemini','Docker','SSE','TTS'],
-            image: 'img/prism.svg', fallback: 'img/prism.svg',
+            image: 'img/prism.svg?v=material-2026', fallback: 'img/prism.svg?v=material-2026',
             links: [
                 { label: 'Prism-pulse', url: 'https://github.com/vsinghal3737/Prism-pulse', platform: true },
                 { label: 'Prism-cortex', url: 'https://github.com/vsinghal3737/Prism-cortex', platform: true },
@@ -467,27 +473,75 @@ document.addEventListener('DOMContentLoaded', () => {
         folderData.forEach((folder, fi) => {
             const count = folder.projects.length;
             const el = document.createElement('div');
-            el.className = 'folder reveal';
+            const isMainProject = folder.row === 'main';
+            el.className = isMainProject
+                ? `project-module project-module--${folder.variant} reveal`
+                : 'folder reveal';
             el.style.setProperty('--delay', `${fi * 0.1}s`);
-            el.innerHTML = `
-                <div class="folder-visual">
-                    <div class="folder-back"></div>
-                    <div class="folder-tab"></div>
-                    <div class="folder-cards">
-                        ${folder.projects.map((p, pi) => `
-                            <div class="folder-card" data-fan="${count}-${pi}" data-fi="${fi}" data-pi="${pi}">
-                                <img src="${p.fallback}" alt="${p.title}" loading="lazy"/>
-                                <div class="folder-card-overlay"></div>
-                                <span class="folder-card-label">${p.title}</span>
-                            </div>
-                        `).join('')}
+            el.dataset.fi = fi;
+            el.dataset.pi = '0';
+            el.setAttribute('role', 'button');
+            el.setAttribute('tabindex', '0');
+            el.setAttribute('aria-label', `Open ${folder.title} project details`);
+            if (isMainProject) {
+                const project = folder.projects[0];
+                const chips = folder.services || project.tags.slice(0, 4);
+                el.innerHTML = `
+                    <div class="project-module-spotlight"></div>
+                    <div class="project-module-stage">
+                        <div class="module-backplate"></div>
+                        <div class="module-motion module-motion--${folder.variant}" aria-hidden="true">
+                            ${folder.variant === 'zither' ? `
+                                <span class="module-ring module-ring-1"></span>
+                                <span class="module-ring module-ring-2"></span>
+                                <span class="module-wave module-wave-1"></span>
+                                <span class="module-wave module-wave-2"></span>
+                                <span class="module-wave module-wave-3"></span>
+                            ` : `
+                                <span class="module-link module-link-1"></span>
+                                <span class="module-link module-link-2"></span>
+                                <span class="module-link module-link-3"></span>
+                                <span class="module-node module-node-1"></span>
+                                <span class="module-node module-node-2"></span>
+                                <span class="module-node module-node-3"></span>
+                            `}
+                        </div>
+                        <button class="project-module-action" type="button" data-fi="${fi}" data-pi="0" aria-label="Open ${folder.title} project details">
+                            <img class="project-module-sheet" src="${project.fallback}" alt="${project.title}" loading="lazy"/>
+                            <span class="project-module-sheet-glare"></span>
+                        </button>
+                        <div class="module-chips" aria-hidden="true">
+                            ${chips.map((chip) => `<span class="module-chip">${chip}</span>`).join('')}
+                        </div>
                     </div>
-                    <div class="folder-front"></div>
-                </div>
-                <h3 class="folder-title">${folder.title}</h3>
-                <p class="folder-count">${folder.subtitle || (count + ' ' + (count === 1 ? 'project' : 'projects'))}</p>
-                <span class="folder-hint">Hover to explore</span>
-            `;
+                    <div class="project-module-copy">
+                        <span class="project-module-kicker">${folder.moduleTagline}</span>
+                        <h3 class="folder-title">${folder.title}</h3>
+                        <p class="folder-count">${folder.subtitle}</p>
+                        <span class="folder-hint">Hover to explore</span>
+                    </div>
+                `;
+            } else {
+                el.innerHTML = `
+                    <div class="folder-visual">
+                        <div class="folder-back"></div>
+                        <div class="folder-tab"></div>
+                        <div class="folder-cards">
+                            ${folder.projects.map((p, pi) => `
+                                <div class="folder-card" data-fan="${count}-${pi}" data-fi="${fi}" data-pi="${pi}">
+                                    <img src="${p.fallback}" alt="${p.title}" loading="lazy"/>
+                                    <div class="folder-card-overlay"></div>
+                                    <span class="folder-card-label">${p.title}</span>
+                                </div>
+                            `).join('')}
+                        </div>
+                        <div class="folder-front"></div>
+                    </div>
+                    <h3 class="folder-title">${folder.title}</h3>
+                    <p class="folder-count">${folder.subtitle || (count + ' ' + (count === 1 ? 'project' : 'projects'))}</p>
+                    <span class="folder-hint">Hover to explore</span>
+                `;
+            }
             if (folder.row === 'main') {
                 mainRow.appendChild(el);
             } else {
@@ -531,21 +585,58 @@ document.addEventListener('DOMContentLoaded', () => {
             openLightbox(prismFi, 0);
         });
 
+        document.querySelectorAll('.project-module-action').forEach(button => {
+            button.addEventListener('click', (e) => {
+                e.stopPropagation();
+                openLightbox(+button.dataset.fi, +button.dataset.pi);
+            });
+        });
+
         const projectDivider = document.createElement('div');
         projectDivider.className = 'project-divider';
         folderGrid.appendChild(projectDivider);
 
         folderGrid.appendChild(catRow);
 
+        if (!isTouch) {
+            document.querySelectorAll('.project-module').forEach(module => {
+                module.addEventListener('pointermove', (e) => {
+                    const rect = module.getBoundingClientRect();
+                    module.style.setProperty('--mx', `${((e.clientX - rect.left) / rect.width) * 100}%`);
+                    module.style.setProperty('--my', `${((e.clientY - rect.top) / rect.height) * 100}%`);
+                    module.style.setProperty('--rx', `${((e.clientY - rect.top) / rect.height - 0.5) * -4}deg`);
+                    module.style.setProperty('--ry', `${((e.clientX - rect.left) / rect.width - 0.5) * 5}deg`);
+                });
+                module.addEventListener('pointerleave', () => {
+                    module.style.removeProperty('--rx');
+                    module.style.removeProperty('--ry');
+                });
+            });
+        }
+
         // On touch devices: tap folder to toggle hover state
         if (isTouch) {
-            let openFolder = null;
+            let openProjectSurface = null;
             document.querySelectorAll('.folder').forEach(f => {
                 f.addEventListener('click', (e) => {
                     if (e.target.closest('.folder-card')) return; // let card clicks through
-                    if (openFolder && openFolder !== f) openFolder.classList.remove('folder-open');
+                    e.stopPropagation();
+                    if (openProjectSurface && openProjectSurface !== f) {
+                        openProjectSurface.classList.remove('folder-open', 'module-open');
+                    }
                     f.classList.toggle('folder-open');
-                    openFolder = f.classList.contains('folder-open') ? f : null;
+                    openProjectSurface = f.classList.contains('folder-open') ? f : null;
+                });
+            });
+            document.querySelectorAll('.project-module').forEach(module => {
+                module.addEventListener('click', (e) => {
+                    if (e.target.closest('.project-module-action')) return;
+                    e.stopPropagation();
+                    if (openProjectSurface && openProjectSurface !== module) {
+                        openProjectSurface.classList.remove('folder-open', 'module-open');
+                    }
+                    module.classList.toggle('module-open');
+                    openProjectSurface = module.classList.contains('module-open') ? module : null;
                 });
             });
             // CSS: .folder-open triggers same visual as :hover
@@ -554,14 +645,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 .folder-open .folder-back { transform: translate(-50%,-50%) rotateX(-15deg) !important; }
                 .folder-open .folder-tab { transform: rotateX(-25deg) translateY(-2px) !important; }
                 .folder-open .folder-front { transform: translateX(-50%) rotateX(25deg) translateY(8px) !important; }
-                .folder-open .folder-card[data-fan="1-0"] { transform: translateY(-85px) translateX(0) rotate(0deg) scale(1.05) !important; opacity:1 !important; }
-                .folder-open .folder-card[data-fan="2-0"] { transform: translateY(-80px) translateX(-32px) rotate(-8deg) scale(1) !important; opacity:1 !important; }
-                .folder-open .folder-card[data-fan="2-1"] { transform: translateY(-80px) translateX(32px) rotate(8deg) scale(1) !important; opacity:1 !important; transition-delay:80ms !important; }
-                .folder-open .folder-card[data-fan="3-0"] { transform: translateY(-80px) translateX(-50px) rotate(-12deg) scale(1) !important; opacity:1 !important; }
-                .folder-open .folder-card[data-fan="3-1"] { transform: translateY(-90px) translateX(0) rotate(0deg) scale(1) !important; opacity:1 !important; transition-delay:80ms !important; }
-                .folder-open .folder-card[data-fan="3-2"] { transform: translateY(-80px) translateX(50px) rotate(12deg) scale(1) !important; opacity:1 !important; transition-delay:160ms !important; }
+                .folder-open .folder-card[data-fan="1-0"] { transform: translateY(-66px) translateX(0) rotate(0deg) scale(1) !important; opacity:1 !important; }
+                .folder-open .folder-card[data-fan="2-0"] { transform: translateY(-62px) translateX(-28px) rotate(-8deg) scale(0.96) !important; opacity:1 !important; }
+                .folder-open .folder-card[data-fan="2-1"] { transform: translateY(-62px) translateX(28px) rotate(8deg) scale(0.96) !important; opacity:1 !important; transition-delay:80ms !important; }
+                .folder-open .folder-card[data-fan="3-0"] { transform: translateY(-62px) translateX(-42px) rotate(-12deg) scale(0.96) !important; opacity:1 !important; }
+                .folder-open .folder-card[data-fan="3-1"] { transform: translateY(-70px) translateX(0) rotate(0deg) scale(0.96) !important; opacity:1 !important; transition-delay:80ms !important; }
+                .folder-open .folder-card[data-fan="3-2"] { transform: translateY(-62px) translateX(42px) rotate(12deg) scale(0.96) !important; opacity:1 !important; transition-delay:160ms !important; }
                 .folder-open .folder-title { transform: translateY(4px) !important; }
                 .folder-open .folder-hint { opacity:0 !important; transform: translateY(10px) !important; }
+                .module-open .project-module-action { transform: translate(-50%, -54%) rotateX(0deg) rotateZ(0deg) scale(0.88) !important; }
+                .module-open .module-chip { opacity:0.72 !important; }
+                .module-open .folder-hint { opacity:0 !important; transform: translateY(10px) !important; }
             `;
             document.head.appendChild(touchStyle);
         }
@@ -600,12 +694,16 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.style.overflow = '';
     }
 
-    function updateLightbox() {
+    function getLightboxFolder() {
         // Handle virtual Prism folder (index beyond folderData)
         const isPrism = lbFolderIdx >= folderData.length;
-        const folder = isPrism
+        return isPrism
             ? { title: prismData.title, projects: [prismData.project] }
             : folderData[lbFolderIdx];
+    }
+
+    function updateLightbox() {
+        const folder = getLightboxFolder();
         if (!folder) return;
         const p = folder.projects[lbProjectIdx];
         if (!p) return;
@@ -651,18 +749,34 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if (lb) {
-        // Card click → open lightbox
+        // Whole project surfaces open the lightbox; inner cards still pick a specific project.
         document.addEventListener('click', (e) => {
-            const card = e.target.closest('.folder-card');
-            if (!card) return;
+            const card = e.target.closest('.folder-card, .project-module-action');
+            const surface = card || e.target.closest('.folder, .project-module');
+            if (!surface) return;
             e.stopPropagation();
-            openLightbox(+card.dataset.fi, +card.dataset.pi);
+            openLightbox(+surface.dataset.fi, +surface.dataset.pi);
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key !== 'Enter' && e.key !== ' ') return;
+            const surface = e.target.closest('.folder, .project-module');
+            if (!surface || e.target.closest('.folder-card, .project-module-action')) return;
+            e.preventDefault();
+            openLightbox(+surface.dataset.fi, +surface.dataset.pi);
         });
 
         lbClose.addEventListener('click', closeLightbox);
         lb.querySelector('.lb-backdrop').addEventListener('click', closeLightbox);
         lbPrev.addEventListener('click', (e) => { e.stopPropagation(); if (lbProjectIdx > 0) { lbProjectIdx--; updateLightbox(); } });
-        lbNext.addEventListener('click', (e) => { e.stopPropagation(); if (lbProjectIdx < folderData[lbFolderIdx].projects.length - 1) { lbProjectIdx++; updateLightbox(); } });
+        lbNext.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const folder = getLightboxFolder();
+            if (folder && lbProjectIdx < folder.projects.length - 1) {
+                lbProjectIdx++;
+                updateLightbox();
+            }
+        });
         lbDots.addEventListener('click', (e) => {
             const dot = e.target.closest('.lb-dot');
             if (dot) { lbProjectIdx = +dot.dataset.i; updateLightbox(); }
@@ -672,7 +786,8 @@ document.addEventListener('DOMContentLoaded', () => {
         document.addEventListener('keydown', (e) => {
             if (!lb.classList.contains('open')) return;
             if (e.key === 'Escape') closeLightbox();
-            if (e.key === 'ArrowRight' && lbProjectIdx < folderData[lbFolderIdx].projects.length - 1) { lbProjectIdx++; updateLightbox(); }
+            const folder = getLightboxFolder();
+            if (e.key === 'ArrowRight' && folder && lbProjectIdx < folder.projects.length - 1) { lbProjectIdx++; updateLightbox(); }
             if (e.key === 'ArrowLeft' && lbProjectIdx > 0) { lbProjectIdx--; updateLightbox(); }
         });
     }
@@ -814,7 +929,7 @@ document.addEventListener('DOMContentLoaded', () => {
         confettiCanvas.width = window.innerWidth;
         confettiCanvas.height = window.innerHeight;
         const particles = [];
-        const colors = ['#6c63ff','#00d4aa','#ff6b9d','#febc2e','#28c840','#fff'];
+        const colors = ['#8b83ff','#00d4aa','#ff7cab','#dfe9ff','#b8b5ff','#ffffff'];
         for (let i = 0; i < 200; i++) {
             particles.push({
                 x: Math.random() * confettiCanvas.width,
@@ -859,11 +974,16 @@ document.addEventListener('DOMContentLoaded', () => {
     // ═══════════════ DARK/LIGHT THEME TOGGLE ═══════════════
     const themeToggle = document.getElementById('themeToggle');
     const savedTheme = localStorage.getItem('theme') || 'dark';
-    document.documentElement.dataset.theme = savedTheme;
+    function applyTheme(theme) {
+        document.documentElement.dataset.theme = theme;
+        window.dispatchEvent(new CustomEvent('portfolio-theme-change', { detail: { theme } }));
+    }
+
+    applyTheme(savedTheme);
 
     themeToggle.addEventListener('click', () => {
         const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
-        document.documentElement.dataset.theme = next;
+        applyTheme(next);
         localStorage.setItem('theme', next);
     });
 
@@ -1032,8 +1152,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
             context.clearRect(0, 0, width, height);
             const theme = document.documentElement.dataset.theme;
-            const base = theme === 'light' ? '25, 24, 33' : '232, 232, 240';
-            const accent = theme === 'light' ? '108, 99, 255' : '139, 131, 255';
+            const base = theme === 'light' ? '42, 38, 46' : '235, 242, 255';
+            const accent = theme === 'light' ? '0, 143, 120' : '0, 212, 170';
 
             particles.forEach((particle, index) => {
                 const ease = signalActive ? 0.062 : 0.018;
@@ -1169,7 +1289,7 @@ document.addEventListener('DOMContentLoaded', () => {
         { title: 'GitHub', hint: 'github.com/vsinghal3737', icon: '🔗', action: 'https://github.com/vsinghal3737' },
         { title: 'Resume', hint: 'Google Drive', icon: '📄', action: 'https://drive.google.com/drive/folders/14P5q0XW5jiU3eIH2igkKzJ6LDOcdwyKn?usp=sharing' },
         // Theme
-        { title: 'Toggle Theme', hint: 'Switch between dark and cream mode', icon: '🎨', action: 'theme' },
+        { title: 'Toggle Theme', hint: 'Switch between obsidian and marble mode', icon: '🎨', action: 'theme' },
         { title: 'Back to Top', hint: 'Scroll to the top of the page', icon: '⬆️', action: '#hero' },
     ];
 

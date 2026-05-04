@@ -1,15 +1,28 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 520">
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="0.8" y2="1">
-      <stop offset="0%" stop-color="#18120a"/>
-      <stop offset="50%" stop-color="#201810"/>
-      <stop offset="100%" stop-color="#141008"/>
+      <stop offset="0%" stop-color="#07090f"/>
+      <stop offset="50%" stop-color="#121827"/>
+      <stop offset="100%" stop-color="#05070c"/>
     </linearGradient>
     <linearGradient id="titleGrad" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0%" stop-color="#f59e0b"/>
-      <stop offset="50%" stop-color="#fbbf24"/>
-      <stop offset="100%" stop-color="#fde68a"/>
+      <stop offset="0%" stop-color="#8b83ff"/>
+      <stop offset="50%" stop-color="#b8b5ff"/>
+      <stop offset="100%" stop-color="#eef6ff"/>
     </linearGradient>
+    <linearGradient id="shine" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0"/>
+      <stop offset="48%" stop-color="#ffffff" stop-opacity="0.26"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="rim" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#8b83ff" stop-opacity="0"/>
+      <stop offset="50%" stop-color="#dfe9ff" stop-opacity="0.22"/>
+      <stop offset="100%" stop-color="#00d4aa" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="glassBlur">
+      <feGaussianBlur stdDeviation="0.35"/>
+    </filter>
     <filter id="glowSoft">
       <feGaussianBlur stdDeviation="12" result="blur"/>
       <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
@@ -18,7 +31,7 @@
       <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#000" flood-opacity="0.5"/>
     </filter>
     <marker id="arrowAmber" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-      <path d="M 0 0 L 10 5 L 0 10 z" fill="#f59e0b" opacity="0.6"/>
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#8b83ff" opacity="0.6"/>
     </marker>
     <marker id="arrowTeal" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
       <path d="M 0 0 L 10 5 L 0 10 z" fill="#00d4aa" opacity="0.6"/>
@@ -27,6 +40,8 @@
 
   <!-- Background -->
   <rect width="800" height="520" fill="url(#bg)"/>
+  <path d="M -90 125 C 110 54 270 58 480 126 S 708 194 890 82 L 890 178 C 684 252 520 214 332 164 S 84 172 -90 244 Z" fill="url(#shine)" opacity="0.18"/>
+  <rect x="22" y="22" width="756" height="476" rx="26" fill="none" stroke="url(#rim)" stroke-width="1.1" opacity="0.7"/>
 
   <!-- Subtle grid dots -->
   <g opacity="0.07">
@@ -37,25 +52,25 @@
   </g>
 
   <!-- Ambient glow blobs -->
-  <circle cx="200" cy="200" r="180" fill="#f59e0b" opacity="0.04" filter="url(#glowSoft)"/>
-  <circle cx="600" cy="250" r="160" fill="#fbbf24" opacity="0.035" filter="url(#glowSoft)"/>
+  <circle cx="200" cy="200" r="180" fill="#8b83ff" opacity="0.04" filter="url(#glowSoft)"/>
+  <circle cx="600" cy="250" r="160" fill="#b8b5ff" opacity="0.035" filter="url(#glowSoft)"/>
   <circle cx="400" cy="400" r="140" fill="#00d4aa" opacity="0.03" filter="url(#glowSoft)"/>
 
   <!-- Title -->
   <text x="400" y="60" text-anchor="middle" font-size="36" font-weight="800" fill="url(#titleGrad)" font-family="'Segoe UI', system-ui, -apple-system, sans-serif" letter-spacing="10">AXIOM</text>
-  <text x="400" y="84" text-anchor="middle" font-size="11" fill="#a08850" font-family="'Segoe UI', system-ui, sans-serif" letter-spacing="4" font-weight="400">KNOWLEDGE WORKSPACE PLATFORM</text>
+  <text x="400" y="84" text-anchor="middle" font-size="11" fill="#aeb6ca" font-family="'Segoe UI', system-ui, sans-serif" letter-spacing="4" font-weight="400">KNOWLEDGE WORKSPACE PLATFORM</text>
 
   <!-- Connection lines -->
   <g stroke-width="1.5" fill="none" opacity="0.45">
     <!-- UI to API / Nexus -->
-    <line x1="400" y1="180" x2="240" y2="230" stroke="#f59e0b"/>
-    <line x1="400" y1="180" x2="560" y2="230" stroke="#f59e0b"/>
+    <line x1="400" y1="180" x2="240" y2="230" stroke="#8b83ff"/>
+    <line x1="400" y1="180" x2="560" y2="230" stroke="#8b83ff"/>
     <!-- API <-> Nexus dashed -->
-    <line x1="310" y1="258" x2="490" y2="258" stroke="#f59e0b" stroke-dasharray="4 4"/>
+    <line x1="310" y1="258" x2="490" y2="258" stroke="#8b83ff" stroke-dasharray="4 4"/>
     <!-- API to DB (straight down) -->
-    <line x1="240" y1="285" x2="240" y2="340" stroke="#f59e0b" stroke-dasharray="3 3" opacity="0.6"/>
+    <line x1="240" y1="285" x2="240" y2="340" stroke="#8b83ff" stroke-dasharray="3 3" opacity="0.6"/>
     <!-- Nexus to DB (diagonal) -->
-    <line x1="560" y1="285" x2="310" y2="340" stroke="#f59e0b" stroke-dasharray="3 3" opacity="0.6"/>
+    <line x1="560" y1="285" x2="310" y2="340" stroke="#8b83ff" stroke-dasharray="3 3" opacity="0.6"/>
     <!-- Nexus to PRISM -->
     <line x1="560" y1="285" x2="560" y2="400" stroke="#00d4aa" stroke-dasharray="6 3" marker-end="url(#arrowTeal)"/>
   </g>
@@ -64,31 +79,31 @@
 
   <!-- UI Node -->
   <g filter="url(#nodeShadow)">
-    <rect x="345" y="130" width="110" height="50" rx="10" fill="#201810" stroke="#f59e0b" stroke-width="1.5"/>
-    <rect x="345" y="130" width="110" height="50" rx="10" fill="#f59e0b" opacity="0.08"/>
-    <text x="400" y="150" text-anchor="middle" font-size="9" fill="#fbbf24" font-family="'Segoe UI', system-ui, sans-serif" font-weight="600" letter-spacing="1">REACT / NEXT.JS</text>
+    <rect x="345" y="130" width="110" height="50" rx="10" fill="#121827" stroke="#8b83ff" stroke-width="1.5"/>
+    <rect x="345" y="130" width="110" height="50" rx="10" fill="#8b83ff" opacity="0.08"/>
+    <text x="400" y="150" text-anchor="middle" font-size="9" fill="#b8b5ff" font-family="'Segoe UI', system-ui, sans-serif" font-weight="600" letter-spacing="1">REACT / NEXT.JS</text>
     <text x="400" y="169" text-anchor="middle" font-size="15" fill="#f0f0f8" font-family="'Segoe UI', system-ui, sans-serif" font-weight="700">UI</text>
   </g>
 
   <!-- API Node -->
   <g filter="url(#nodeShadow)">
-    <rect x="170" y="230" width="140" height="55" rx="10" fill="#201810" stroke="#f59e0b" stroke-width="1.5"/>
-    <rect x="170" y="230" width="140" height="55" rx="10" fill="#f59e0b" opacity="0.08"/>
-    <text x="240" y="250" text-anchor="middle" font-size="9" fill="#fbbf24" font-family="'Segoe UI', system-ui, sans-serif" font-weight="600" letter-spacing="1">FASTAPI / SQLMODEL</text>
+    <rect x="170" y="230" width="140" height="55" rx="10" fill="#121827" stroke="#8b83ff" stroke-width="1.5"/>
+    <rect x="170" y="230" width="140" height="55" rx="10" fill="#8b83ff" opacity="0.08"/>
+    <text x="240" y="250" text-anchor="middle" font-size="9" fill="#b8b5ff" font-family="'Segoe UI', system-ui, sans-serif" font-weight="600" letter-spacing="1">FASTAPI / SQLMODEL</text>
     <text x="240" y="272" text-anchor="middle" font-size="15" fill="#f0f0f8" font-family="'Segoe UI', system-ui, sans-serif" font-weight="700">API</text>
   </g>
 
   <!-- Nexus Node -->
   <g filter="url(#nodeShadow)">
-    <rect x="490" y="230" width="140" height="55" rx="10" fill="#201810" stroke="#f59e0b" stroke-width="1.5"/>
-    <rect x="490" y="230" width="140" height="55" rx="10" fill="#f59e0b" opacity="0.08"/>
-    <text x="560" y="250" text-anchor="middle" font-size="9" fill="#fbbf24" font-family="'Segoe UI', system-ui, sans-serif" font-weight="600" letter-spacing="1">LLM ORCHESTRATOR</text>
+    <rect x="490" y="230" width="140" height="55" rx="10" fill="#121827" stroke="#8b83ff" stroke-width="1.5"/>
+    <rect x="490" y="230" width="140" height="55" rx="10" fill="#8b83ff" opacity="0.08"/>
+    <text x="560" y="250" text-anchor="middle" font-size="9" fill="#b8b5ff" font-family="'Segoe UI', system-ui, sans-serif" font-weight="600" letter-spacing="1">LLM ORCHESTRATOR</text>
     <text x="560" y="272" text-anchor="middle" font-size="15" fill="#f0f0f8" font-family="'Segoe UI', system-ui, sans-serif" font-weight="700">Nexus</text>
   </g>
 
   <!-- Orchestration Node -->
   <g filter="url(#nodeShadow)">
-    <rect x="645" y="175" width="125" height="44" rx="10" fill="#201210" stroke="#ff6b9d" stroke-width="1" stroke-dasharray="4 3"/>
+    <rect x="645" y="175" width="125" height="44" rx="10" fill="#17101a" stroke="#ff6b9d" stroke-width="1" stroke-dasharray="4 3"/>
     <rect x="645" y="175" width="125" height="44" rx="10" fill="#ff6b9d" opacity="0.06"/>
     <text x="708" y="193" text-anchor="middle" font-size="8" fill="#ff8db5" font-family="'Segoe UI', system-ui, sans-serif" font-weight="600" letter-spacing="1">DOCKER</text>
     <text x="708" y="209" text-anchor="middle" font-size="11" fill="#f0f0f8" font-family="'Segoe UI', system-ui, sans-serif" font-weight="600" opacity="0.9">Orchestration</text>
@@ -96,16 +111,16 @@
 
   <!-- PostgreSQL Node -->
   <g filter="url(#nodeShadow)">
-    <rect x="155" y="340" width="170" height="36" rx="8" fill="#201810" stroke="#f59e0b" stroke-width="1" opacity="0.7"/>
-    <text x="240" y="363" text-anchor="middle" font-size="10" fill="#fbbf24" font-family="'Segoe UI', system-ui, sans-serif" font-weight="600" opacity="0.85">PostgreSQL + pgvector</text>
+    <rect x="155" y="340" width="170" height="36" rx="8" fill="#121827" stroke="#8b83ff" stroke-width="1" opacity="0.7"/>
+    <text x="240" y="363" text-anchor="middle" font-size="10" fill="#b8b5ff" font-family="'Segoe UI', system-ui, sans-serif" font-weight="600" opacity="0.85">PostgreSQL + pgvector</text>
   </g>
 
   <!-- ═══ PRISM CONNECTION (external network) ═══ -->
   <g transform="translate(460, 400)">
-    <rect x="0" y="0" width="200" height="36" rx="18" fill="#122420" stroke="#00d4aa" stroke-width="1.5"/>
+    <rect x="0" y="0" width="200" height="36" rx="18" fill="#0b2a27" stroke="#00d4aa" stroke-width="1.5"/>
     <rect x="0" y="0" width="200" height="36" rx="18" fill="#00d4aa" opacity="0.08"/>
     <text x="24" y="22" font-size="10" fill="#00d4aa" font-family="'Segoe UI', system-ui, sans-serif" font-weight="700" letter-spacing="1">PRISM</text>
-    <text y="22" font-size="10" fill="#7ab8a0" font-family="'Segoe UI', system-ui, sans-serif" font-weight="400">
+    <text y="22" font-size="10" fill="#9fd4c7" font-family="'Segoe UI', system-ui, sans-serif" font-weight="400">
       <tspan x="78">Pulse</tspan>
       <tspan x="107">&#183;</tspan>
       <tspan x="116">Cortex</tspan>
@@ -116,61 +131,61 @@
   <text x="560" y="445" text-anchor="middle" font-size="7" fill="#00d4aa" font-family="'Segoe UI', system-ui, sans-serif" opacity="0.5" letter-spacing="2">VIA PRISM-NETWORK (EXTERNAL)</text>
 
   <!-- Knowledge pipeline -->
-  <text x="400" y="455" text-anchor="middle" font-size="9" fill="#fbbf24" font-family="'Segoe UI', system-ui, sans-serif" opacity="0.6" letter-spacing="1">RAG PROCESSING PIPELINE</text>
+  <text x="400" y="455" text-anchor="middle" font-size="9" fill="#b8b5ff" font-family="'Segoe UI', system-ui, sans-serif" opacity="0.6" letter-spacing="1">RAG PROCESSING PIPELINE</text>
 
   <g transform="translate(55, 465)" opacity="0.65">
-    <rect x="0" y="0" width="65" height="16" rx="8" fill="#f59e0b" opacity="0.15"/>
-    <text x="32" y="11" text-anchor="middle" font-size="6.5" fill="#fcd34d" font-family="'Segoe UI', system-ui, sans-serif">Request</text>
-    <text x="72" y="11" fill="#f59e0b" font-size="8">→</text>
-    <rect x="80" y="0" width="55" height="16" rx="8" fill="#f59e0b" opacity="0.15"/>
-    <text x="107" y="11" text-anchor="middle" font-size="6.5" fill="#fcd34d" font-family="'Segoe UI', system-ui, sans-serif">Auth</text>
-    <text x="142" y="11" fill="#f59e0b" font-size="8">→</text>
-    <rect x="150" y="0" width="68" height="16" rx="8" fill="#f59e0b" opacity="0.15"/>
-    <text x="184" y="11" text-anchor="middle" font-size="6.5" fill="#fcd34d" font-family="'Segoe UI', system-ui, sans-serif">Enqueue</text>
-    <text x="225" y="11" fill="#f59e0b" font-size="8">→</text>
-    <rect x="233" y="0" width="65" height="16" rx="8" fill="#f59e0b" opacity="0.15"/>
-    <text x="265" y="11" text-anchor="middle" font-size="6.5" fill="#fcd34d" font-family="'Segoe UI', system-ui, sans-serif">Resolve</text>
-    <text x="305" y="11" fill="#f59e0b" font-size="8">→</text>
-    <rect x="313" y="0" width="60" height="16" rx="8" fill="#f59e0b" opacity="0.15"/>
-    <text x="343" y="11" text-anchor="middle" font-size="6.5" fill="#fcd34d" font-family="'Segoe UI', system-ui, sans-serif">Embed</text>
-    <text x="380" y="11" fill="#f59e0b" font-size="8">→</text>
-    <rect x="388" y="0" width="60" height="16" rx="8" fill="#f59e0b" opacity="0.15"/>
-    <text x="418" y="11" text-anchor="middle" font-size="6.5" fill="#fcd34d" font-family="'Segoe UI', system-ui, sans-serif">Search</text>
-    <text x="455" y="11" fill="#f59e0b" font-size="8">→</text>
-    <rect x="463" y="0" width="75" height="16" rx="8" fill="#f59e0b" opacity="0.15"/>
-    <text x="500" y="11" text-anchor="middle" font-size="6.5" fill="#fcd34d" font-family="'Segoe UI', system-ui, sans-serif">Assemble</text>
-    <text x="545" y="11" fill="#f59e0b" font-size="8">→</text>
-    <rect x="553" y="0" width="65" height="16" rx="8" fill="#f59e0b" opacity="0.15"/>
-    <text x="585" y="11" text-anchor="middle" font-size="6.5" fill="#fcd34d" font-family="'Segoe UI', system-ui, sans-serif">Stream</text>
+    <rect x="0" y="0" width="65" height="16" rx="8" fill="#8b83ff" opacity="0.15"/>
+    <text x="32" y="11" text-anchor="middle" font-size="6.5" fill="#dfe9ff" font-family="'Segoe UI', system-ui, sans-serif">Request</text>
+    <text x="72" y="11" fill="#8b83ff" font-size="8">→</text>
+    <rect x="80" y="0" width="55" height="16" rx="8" fill="#8b83ff" opacity="0.15"/>
+    <text x="107" y="11" text-anchor="middle" font-size="6.5" fill="#dfe9ff" font-family="'Segoe UI', system-ui, sans-serif">Auth</text>
+    <text x="142" y="11" fill="#8b83ff" font-size="8">→</text>
+    <rect x="150" y="0" width="68" height="16" rx="8" fill="#8b83ff" opacity="0.15"/>
+    <text x="184" y="11" text-anchor="middle" font-size="6.5" fill="#dfe9ff" font-family="'Segoe UI', system-ui, sans-serif">Enqueue</text>
+    <text x="225" y="11" fill="#8b83ff" font-size="8">→</text>
+    <rect x="233" y="0" width="65" height="16" rx="8" fill="#8b83ff" opacity="0.15"/>
+    <text x="265" y="11" text-anchor="middle" font-size="6.5" fill="#dfe9ff" font-family="'Segoe UI', system-ui, sans-serif">Resolve</text>
+    <text x="305" y="11" fill="#8b83ff" font-size="8">→</text>
+    <rect x="313" y="0" width="60" height="16" rx="8" fill="#8b83ff" opacity="0.15"/>
+    <text x="343" y="11" text-anchor="middle" font-size="6.5" fill="#dfe9ff" font-family="'Segoe UI', system-ui, sans-serif">Embed</text>
+    <text x="380" y="11" fill="#8b83ff" font-size="8">→</text>
+    <rect x="388" y="0" width="60" height="16" rx="8" fill="#8b83ff" opacity="0.15"/>
+    <text x="418" y="11" text-anchor="middle" font-size="6.5" fill="#dfe9ff" font-family="'Segoe UI', system-ui, sans-serif">Search</text>
+    <text x="455" y="11" fill="#8b83ff" font-size="8">→</text>
+    <rect x="463" y="0" width="75" height="16" rx="8" fill="#8b83ff" opacity="0.15"/>
+    <text x="500" y="11" text-anchor="middle" font-size="6.5" fill="#dfe9ff" font-family="'Segoe UI', system-ui, sans-serif">Assemble</text>
+    <text x="545" y="11" fill="#8b83ff" font-size="8">→</text>
+    <rect x="553" y="0" width="65" height="16" rx="8" fill="#8b83ff" opacity="0.15"/>
+    <text x="585" y="11" text-anchor="middle" font-size="6.5" fill="#dfe9ff" font-family="'Segoe UI', system-ui, sans-serif">Stream</text>
   </g>
 
   <!-- Legend -->
   <g transform="translate(30, 500)" opacity="0.7">
-    <rect x="0" y="0" width="10" height="10" rx="2" stroke="#f59e0b" stroke-width="1.2" fill="none"/>
-    <text x="16" y="9" font-size="9" fill="#b0a070" font-family="'Segoe UI', system-ui, sans-serif">Product Services</text>
+    <rect x="0" y="0" width="10" height="10" rx="2" stroke="#8b83ff" stroke-width="1.2" fill="none"/>
+    <text x="16" y="9" font-size="9" fill="#aeb6ca" font-family="'Segoe UI', system-ui, sans-serif">Product Services</text>
     <rect x="120" y="0" width="10" height="10" rx="2" stroke="#00d4aa" stroke-width="1.2" fill="none"/>
-    <text x="136" y="9" font-size="9" fill="#b0a070" font-family="'Segoe UI', system-ui, sans-serif">AI Platform (Prism)</text>
+    <text x="136" y="9" font-size="9" fill="#aeb6ca" font-family="'Segoe UI', system-ui, sans-serif">AI Platform (Prism)</text>
     <rect x="275" y="0" width="10" height="10" rx="2" stroke="#ff6b9d" stroke-width="1" fill="none" stroke-dasharray="3 2"/>
-    <text x="291" y="9" font-size="9" fill="#b0a070" font-family="'Segoe UI', system-ui, sans-serif">Infrastructure</text>
+    <text x="291" y="9" font-size="9" fill="#aeb6ca" font-family="'Segoe UI', system-ui, sans-serif">Infrastructure</text>
   </g>
 
   <!-- Microservices badge -->
   <g transform="translate(600, 500)">
-    <rect x="0" y="-12" width="130" height="22" rx="11" fill="#f59e0b" opacity="0.15" stroke="#f59e0b" stroke-width="0.5" stroke-opacity="0.4"/>
-    <text x="65" y="2" text-anchor="middle" font-size="10" fill="#fcd34d" font-family="'Segoe UI', system-ui, sans-serif" font-weight="600">4 Microservices</text>
+    <rect x="0" y="-12" width="130" height="22" rx="11" fill="#8b83ff" opacity="0.15" stroke="#8b83ff" stroke-width="0.5" stroke-opacity="0.4"/>
+    <text x="65" y="2" text-anchor="middle" font-size="10" fill="#dfe9ff" font-family="'Segoe UI', system-ui, sans-serif" font-weight="600">4 Microservices</text>
   </g>
 
   <!-- Feature tags -->
   <g transform="translate(50, 340)" opacity="0.75">
-    <rect x="0" y="0" width="85" height="20" rx="10" fill="#f59e0b" opacity="0.15"/>
-    <text x="42" y="14" text-anchor="middle" font-size="8" fill="#fcd34d" font-family="'Segoe UI', system-ui, sans-serif" font-weight="500">RAG Search</text>
+    <rect x="0" y="0" width="85" height="20" rx="10" fill="#8b83ff" opacity="0.15"/>
+    <text x="42" y="14" text-anchor="middle" font-size="8" fill="#dfe9ff" font-family="'Segoe UI', system-ui, sans-serif" font-weight="500">RAG Search</text>
   </g>
   <g transform="translate(50, 365)" opacity="0.75">
-    <rect x="0" y="0" width="95" height="20" rx="10" fill="#f59e0b" opacity="0.15"/>
-    <text x="47" y="14" text-anchor="middle" font-size="8" fill="#fcd34d" font-family="'Segoe UI', system-ui, sans-serif" font-weight="500">SSE Streaming</text>
+    <rect x="0" y="0" width="95" height="20" rx="10" fill="#8b83ff" opacity="0.15"/>
+    <text x="47" y="14" text-anchor="middle" font-size="8" fill="#dfe9ff" font-family="'Segoe UI', system-ui, sans-serif" font-weight="500">SSE Streaming</text>
   </g>
   <g transform="translate(50, 390)" opacity="0.75">
-    <rect x="0" y="0" width="105" height="20" rx="10" fill="#f59e0b" opacity="0.15"/>
-    <text x="52" y="14" text-anchor="middle" font-size="8" fill="#fcd34d" font-family="'Segoe UI', system-ui, sans-serif" font-weight="500">Version History</text>
+    <rect x="0" y="0" width="105" height="20" rx="10" fill="#8b83ff" opacity="0.15"/>
+    <text x="52" y="14" text-anchor="middle" font-size="8" fill="#dfe9ff" font-family="'Segoe UI', system-ui, sans-serif" font-weight="500">Version History</text>
   </g>
 </svg>

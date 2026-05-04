@@ -16,3 +16,7 @@ Desktop.ini
 
 # Node (if ever added)
 node_modules/
+
+# Local tooling and verification scratch
+.githooks/
+tmp/
