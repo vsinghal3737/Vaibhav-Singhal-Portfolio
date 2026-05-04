@@ -339,6 +339,9 @@ document.addEventListener('DOMContentLoaded', () => {
             title: 'Axiom',
             subtitle: '4 services',
             row: 'main',
+            variant: 'axiom',
+            moduleTagline: 'Knowledge Vault',
+            services: ['API', 'UI', 'Nexus', 'Docker'],
             projects: [
                 {
                     title: 'Axiom — Knowledge Workspace',
@@ -368,6 +371,9 @@ document.addEventListener('DOMContentLoaded', () => {
             title: 'ZitherAi',
             subtitle: '5 services',
             row: 'main',
+            variant: 'zither',
+            moduleTagline: 'Sound Library',
+            services: ['API', 'UI', 'Nexus', 'Bridge', 'Prism'],
             projects: [
                 {
                     title: 'ZitherAi — AI Music Copilot',
@@ -467,27 +473,75 @@ document.addEventListener('DOMContentLoaded', () => {
         folderData.forEach((folder, fi) => {
             const count = folder.projects.length;
             const el = document.createElement('div');
-            el.className = 'folder reveal';
+            const isMainProject = folder.row === 'main';
+            el.className = isMainProject
+                ? `project-module project-module--${folder.variant} reveal`
+                : 'folder reveal';
             el.style.setProperty('--delay', `${fi * 0.1}s`);
-            el.innerHTML = `
-                <div class="folder-visual">
-                    <div class="folder-back"></div>
-                    <div class="folder-tab"></div>
-                    <div class="folder-cards">
-                        ${folder.projects.map((p, pi) => `
-                            <div class="folder-card" data-fan="${count}-${pi}" data-fi="${fi}" data-pi="${pi}">
-                                <img src="${p.fallback}" alt="${p.title}" loading="lazy"/>
-                                <div class="folder-card-overlay"></div>
-                                <span class="folder-card-label">${p.title}</span>
-                            </div>
-                        `).join('')}
+            el.dataset.fi = fi;
+            el.dataset.pi = '0';
+            el.setAttribute('role', 'button');
+            el.setAttribute('tabindex', '0');
+            el.setAttribute('aria-label', `Open ${folder.title} project details`);
+            if (isMainProject) {
+                const project = folder.projects[0];
+                const chips = folder.services || project.tags.slice(0, 4);
+                el.innerHTML = `
+                    <div class="project-module-spotlight"></div>
+                    <div class="project-module-stage">
+                        <div class="module-backplate"></div>
+                        <div class="module-motion module-motion--${folder.variant}" aria-hidden="true">
+                            ${folder.variant === 'zither' ? `
+                                <span class="module-ring module-ring-1"></span>
+                                <span class="module-ring module-ring-2"></span>
+                                <span class="module-wave module-wave-1"></span>
+                                <span class="module-wave module-wave-2"></span>
+                                <span class="module-wave module-wave-3"></span>
+                            ` : `
+                                <span class="module-link module-link-1"></span>
+                                <span class="module-link module-link-2"></span>
+                                <span class="module-link module-link-3"></span>
+                                <span class="module-node module-node-1"></span>
+                                <span class="module-node module-node-2"></span>
+                                <span class="module-node module-node-3"></span>
+                            `}
+                        </div>
+                        <button class="project-module-action" type="button" data-fi="${fi}" data-pi="0" aria-label="Open ${folder.title} project details">
+                            <img class="project-module-sheet" src="${project.fallback}" alt="${project.title}" loading="lazy"/>
+                            <span class="project-module-sheet-glare"></span>
+                        </button>
+                        <div class="module-chips" aria-hidden="true">
+                            ${chips.map((chip) => `<span class="module-chip">${chip}</span>`).join('')}
+                        </div>
                     </div>
-                    <div class="folder-front"></div>
-                </div>
-                <h3 class="folder-title">${folder.title}</h3>
-                <p class="folder-count">${folder.subtitle || (count + ' ' + (count === 1 ? 'project' : 'projects'))}</p>
-                <span class="folder-hint">Hover to explore</span>
-            `;
+                    <div class="project-module-copy">
+                        <span class="project-module-kicker">${folder.moduleTagline}</span>
+                        <h3 class="folder-title">${folder.title}</h3>
+                        <p class="folder-count">${folder.subtitle}</p>
+                        <span class="folder-hint">Hover to explore</span>
+                    </div>
+                `;
+            } else {
+                el.innerHTML = `
+                    <div class="folder-visual">
+                        <div class="folder-back"></div>
+                        <div class="folder-tab"></div>
+                        <div class="folder-cards">
+                            ${folder.projects.map((p, pi) => `
+                                <div class="folder-card" data-fan="${count}-${pi}" data-fi="${fi}" data-pi="${pi}">
+                                    <img src="${p.fallback}" alt="${p.title}" loading="lazy"/>
+                                    <div class="folder-card-overlay"></div>
+                                    <span class="folder-card-label">${p.title}</span>
+                                </div>
+                            `).join('')}
+                        </div>
+                        <div class="folder-front"></div>
+                    </div>
+                    <h3 class="folder-title">${folder.title}</h3>
+                    <p class="folder-count">${folder.subtitle || (count + ' ' + (count === 1 ? 'project' : 'projects'))}</p>
+                    <span class="folder-hint">Hover to explore</span>
+                `;
+            }
             if (folder.row === 'main') {
                 mainRow.appendChild(el);
             } else {
@@ -531,21 +585,56 @@ document.addEventListener('DOMContentLoaded', () => {
             openLightbox(prismFi, 0);
         });
 
+        document.querySelectorAll('.project-module-action').forEach(button => {
+            button.addEventListener('click', (e) => {
+                e.stopPropagation();
+                openLightbox(+button.dataset.fi, +button.dataset.pi);
+            });
+        });
+
         const projectDivider = document.createElement('div');
         projectDivider.className = 'project-divider';
         folderGrid.appendChild(projectDivider);
 
         folderGrid.appendChild(catRow);
 
+        if (!isTouch) {
+            document.querySelectorAll('.project-module').forEach(module => {
+                module.addEventListener('pointermove', (e) => {
+                    const rect = module.getBoundingClientRect();
+                    module.style.setProperty('--mx', `${((e.clientX - rect.left) / rect.width) * 100}%`);
+                    module.style.setProperty('--my', `${((e.clientY - rect.top) / rect.height) * 100}%`);
+                    module.style.setProperty('--rx', `${((e.clientY - rect.top) / rect.height - 0.5) * -4}deg`);
+                    module.style.setProperty('--ry', `${((e.clientX - rect.left) / rect.width - 0.5) * 5}deg`);
+                });
+                module.addEventListener('pointerleave', () => {
+                    module.style.removeProperty('--rx');
+                    module.style.removeProperty('--ry');
+                });
+            });
+        }
+
         // On touch devices: tap folder to toggle hover state
         if (isTouch) {
-            let openFolder = null;
+            let openProjectSurface = null;
             document.querySelectorAll('.folder').forEach(f => {
                 f.addEventListener('click', (e) => {
                     if (e.target.closest('.folder-card')) return; // let card clicks through
-                    if (openFolder && openFolder !== f) openFolder.classList.remove('folder-open');
+                    if (openProjectSurface && openProjectSurface !== f) {
+                        openProjectSurface.classList.remove('folder-open', 'module-open');
+                    }
                     f.classList.toggle('folder-open');
-                    openFolder = f.classList.contains('folder-open') ? f : null;
+                    openProjectSurface = f.classList.contains('folder-open') ? f : null;
+                });
+            });
+            document.querySelectorAll('.project-module').forEach(module => {
+                module.addEventListener('click', (e) => {
+                    if (e.target.closest('.project-module-action')) return;
+                    if (openProjectSurface && openProjectSurface !== module) {
+                        openProjectSurface.classList.remove('folder-open', 'module-open');
+                    }
+                    module.classList.toggle('module-open');
+                    openProjectSurface = module.classList.contains('module-open') ? module : null;
                 });
             });
             // CSS: .folder-open triggers same visual as :hover
@@ -554,14 +643,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 .folder-open .folder-back { transform: translate(-50%,-50%) rotateX(-15deg) !important; }
                 .folder-open .folder-tab { transform: rotateX(-25deg) translateY(-2px) !important; }
                 .folder-open .folder-front { transform: translateX(-50%) rotateX(25deg) translateY(8px) !important; }
-                .folder-open .folder-card[data-fan="1-0"] { transform: translateY(-85px) translateX(0) rotate(0deg) scale(1.05) !important; opacity:1 !important; }
-                .folder-open .folder-card[data-fan="2-0"] { transform: translateY(-80px) translateX(-32px) rotate(-8deg) scale(1) !important; opacity:1 !important; }
-                .folder-open .folder-card[data-fan="2-1"] { transform: translateY(-80px) translateX(32px) rotate(8deg) scale(1) !important; opacity:1 !important; transition-delay:80ms !important; }
-                .folder-open .folder-card[data-fan="3-0"] { transform: translateY(-80px) translateX(-50px) rotate(-12deg) scale(1) !important; opacity:1 !important; }
-                .folder-open .folder-card[data-fan="3-1"] { transform: translateY(-90px) translateX(0) rotate(0deg) scale(1) !important; opacity:1 !important; transition-delay:80ms !important; }
-                .folder-open .folder-card[data-fan="3-2"] { transform: translateY(-80px) translateX(50px) rotate(12deg) scale(1) !important; opacity:1 !important; transition-delay:160ms !important; }
+                .folder-open .folder-card[data-fan="1-0"] { transform: translateY(-66px) translateX(0) rotate(0deg) scale(1) !important; opacity:1 !important; }
+                .folder-open .folder-card[data-fan="2-0"] { transform: translateY(-62px) translateX(-28px) rotate(-8deg) scale(0.96) !important; opacity:1 !important; }
+                .folder-open .folder-card[data-fan="2-1"] { transform: translateY(-62px) translateX(28px) rotate(8deg) scale(0.96) !important; opacity:1 !important; transition-delay:80ms !important; }
+                .folder-open .folder-card[data-fan="3-0"] { transform: translateY(-62px) translateX(-42px) rotate(-12deg) scale(0.96) !important; opacity:1 !important; }
+                .folder-open .folder-card[data-fan="3-1"] { transform: translateY(-70px) translateX(0) rotate(0deg) scale(0.96) !important; opacity:1 !important; transition-delay:80ms !important; }
+                .folder-open .folder-card[data-fan="3-2"] { transform: translateY(-62px) translateX(42px) rotate(12deg) scale(0.96) !important; opacity:1 !important; transition-delay:160ms !important; }
                 .folder-open .folder-title { transform: translateY(4px) !important; }
                 .folder-open .folder-hint { opacity:0 !important; transform: translateY(10px) !important; }
+                .module-open .project-module-action { transform: translate(-50%, -54%) rotateX(0deg) rotateZ(0deg) scale(0.88) !important; }
+                .module-open .module-chip { opacity:0.72 !important; }
+                .module-open .folder-hint { opacity:0 !important; transform: translateY(10px) !important; }
             `;
             document.head.appendChild(touchStyle);
         }
@@ -651,12 +743,21 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if (lb) {
-        // Card click → open lightbox
+        // Whole project surfaces open the lightbox; inner cards still pick a specific project.
         document.addEventListener('click', (e) => {
-            const card = e.target.closest('.folder-card');
-            if (!card) return;
+            const card = e.target.closest('.folder-card, .project-module-action');
+            const surface = card || e.target.closest('.folder, .project-module');
+            if (!surface) return;
             e.stopPropagation();
-            openLightbox(+card.dataset.fi, +card.dataset.pi);
+            openLightbox(+surface.dataset.fi, +surface.dataset.pi);
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key !== 'Enter' && e.key !== ' ') return;
+            const surface = e.target.closest('.folder, .project-module');
+            if (!surface || e.target.closest('.folder-card, .project-module-action')) return;
+            e.preventDefault();
+            openLightbox(+surface.dataset.fi, +surface.dataset.pi);
         });
 
         lbClose.addEventListener('click', closeLightbox);
