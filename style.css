@@ -4333,58 +4333,65 @@ footer {
 }
 [data-theme="light"] .project-module {
   background:
-    radial-gradient(circle at var(--mx, 50%) var(--my, 12%), rgba(var(--module-accent-rgb), 0.1), transparent 28%),
-    radial-gradient(circle at 85% 84%, rgba(var(--module-secondary-rgb), 0.06), transparent 30%),
-    linear-gradient(124deg, rgba(255, 250, 241, 0.42), transparent 35%, rgba(88, 78, 90, 0.045) 76%, transparent 100%),
+    radial-gradient(circle at var(--mx, 50%) var(--my, 12%), rgba(var(--module-accent-rgb), 0.07), transparent 24%),
+    radial-gradient(circle at 85% 84%, rgba(var(--module-secondary-rgb), 0.04), transparent 28%),
+    linear-gradient(124deg, rgba(255, 250, 241, 0.78), transparent 32%, rgba(118, 104, 86, 0.035) 76%, transparent 100%),
     var(--material-texture),
-    linear-gradient(145deg, rgba(244, 236, 224, 0.8), rgba(218, 207, 193, 0.64)),
-    var(--glass);
-  border-color: rgba(var(--module-accent-rgb), 0.22);
+    linear-gradient(145deg, rgba(248, 241, 231, 0.96), rgba(230, 221, 207, 0.93));
+  border-color: rgba(116, 104, 88, 0.28);
   box-shadow:
-    0 20px 56px rgba(72, 61, 50, 0.14),
-    0 0 28px rgba(var(--module-accent-rgb), 0.06),
+    0 18px 52px rgba(72, 61, 50, 0.16),
+    0 0 22px rgba(var(--module-accent-rgb), 0.045),
     inset 0 1px 0 var(--material-rim),
     inset 0 -1px 0 rgba(106, 96, 82, 0.08);
 }
 [data-theme="light"] .project-module::before {
   background:
-    linear-gradient(90deg, transparent, rgba(255, 250, 241, 0.58), transparent) top / 100% 1px no-repeat,
-    linear-gradient(180deg, rgba(255, 250, 241, 0.28), transparent 36%),
-    radial-gradient(circle at 8% 16%, rgba(var(--module-accent-rgb), 0.09), transparent 26%),
-    radial-gradient(circle at 92% 80%, rgba(var(--module-secondary-rgb), 0.07), transparent 30%);
+    linear-gradient(90deg, transparent, rgba(255, 250, 241, 0.7), transparent) top / 100% 1px no-repeat,
+    linear-gradient(180deg, rgba(255, 250, 241, 0.32), transparent 34%),
+    radial-gradient(circle at 8% 16%, rgba(var(--module-accent-rgb), 0.052), transparent 24%),
+    radial-gradient(circle at 92% 80%, rgba(var(--module-secondary-rgb), 0.04), transparent 28%);
 }
 [data-theme="light"] .project-module::after {
-  background: linear-gradient(118deg, transparent 37%, rgba(255, 250, 241, 0.34) 48%, transparent 58%);
-  opacity: 0.13;
+  background: linear-gradient(118deg, transparent 37%, rgba(255, 250, 241, 0.42) 48%, transparent 58%);
+  opacity: 0.1;
 }
 [data-theme="light"] .project-module:hover,
 [data-theme="light"] .project-module:focus-within,
 [data-theme="light"] .project-module.module-open {
-  border-color: rgba(var(--module-accent-rgb), 0.34);
+  border-color: rgba(var(--module-accent-rgb), 0.28);
   box-shadow:
-    0 24px 64px rgba(72, 61, 50, 0.16),
+    0 22px 62px rgba(72, 61, 50, 0.18),
     0 0 34px rgba(var(--module-accent-rgb), 0.08),
     0 0 24px rgba(var(--module-secondary-rgb), 0.055),
     inset 0 1px 0 var(--material-rim);
 }
 [data-theme="light"] .module-backplate {
+  top: 34px;
+  width: 146px;
+  height: 82px;
   background:
-    radial-gradient(circle at 35% 34%, rgba(var(--module-accent-rgb), 0.12), transparent 28%),
-    linear-gradient(135deg, rgba(var(--module-secondary-rgb), 0.07), transparent 54%),
-    rgba(228, 217, 202, 0.72);
-  border-color: rgba(var(--module-accent-rgb), 0.18);
+    linear-gradient(135deg, rgba(255, 250, 241, 0.5), transparent 42%),
+    radial-gradient(circle at 35% 34%, rgba(var(--module-accent-rgb), 0.055), transparent 28%),
+    rgba(235, 226, 213, 0.54);
+  border-color: rgba(116, 104, 88, 0.12);
   box-shadow:
-    0 22px 46px rgba(72, 61, 50, 0.16),
-    inset 0 1px 0 rgba(255, 250, 241, 0.58);
+    0 12px 30px rgba(72, 61, 50, 0.11),
+    inset 0 1px 0 rgba(255, 250, 241, 0.7);
+  opacity: 0.44;
 }
 [data-theme="light"] .project-module-action {
-  background: rgba(246, 238, 226, 0.5);
+  border: 1px solid rgba(116, 104, 88, 0.26);
+  background:
+    linear-gradient(145deg, rgba(255, 250, 241, 0.32), rgba(205, 195, 181, 0.16)),
+    rgba(246, 238, 226, 0.76);
   box-shadow:
-    0 18px 34px rgba(72, 61, 50, 0.16),
-    0 0 22px rgba(var(--module-accent-rgb), 0.09);
+    0 18px 34px rgba(72, 61, 50, 0.2),
+    0 0 18px rgba(var(--module-accent-rgb), 0.07),
+    inset 0 1px 0 rgba(255, 250, 241, 0.55);
 }
 [data-theme="light"] .project-module-sheet {
-  filter: saturate(0.98) contrast(1.02) brightness(1.04);
+  filter: saturate(1.02) contrast(1.1) brightness(0.98);
 }
 [data-theme="light"] .project-module-sheet-glare {
   background:
@@ -4413,6 +4420,29 @@ footer {
   box-shadow:
     0 10px 20px rgba(72, 61, 50, 0.12),
     inset 0 1px 0 rgba(255, 250, 241, 0.62);
+}
+[data-theme="light"] .module-motion {
+  opacity: 0.12;
+}
+[data-theme="light"] .module-ring {
+  border-color: rgba(var(--module-secondary-rgb), 0.12);
+  box-shadow: none;
+}
+[data-theme="light"] .module-wave {
+  opacity: 0.18;
+  filter: none;
+}
+[data-theme="light"] .module-link,
+[data-theme="light"] .module-node {
+  opacity: 0.12;
+}
+[data-theme="light"] .project-module:hover .module-ring,
+[data-theme="light"] .project-module:focus-within .module-ring,
+[data-theme="light"] .project-module.module-open .module-ring,
+[data-theme="light"] .project-module:hover .module-wave,
+[data-theme="light"] .project-module:focus-within .module-wave,
+[data-theme="light"] .project-module.module-open .module-wave {
+  opacity: 0.16;
 }
 [data-theme="light"] .module-link,
 [data-theme="light"] .module-node,

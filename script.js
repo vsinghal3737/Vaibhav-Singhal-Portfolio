@@ -620,6 +620,7 @@ document.addEventListener('DOMContentLoaded', () => {
             document.querySelectorAll('.folder').forEach(f => {
                 f.addEventListener('click', (e) => {
                     if (e.target.closest('.folder-card')) return; // let card clicks through
+                    e.stopPropagation();
                     if (openProjectSurface && openProjectSurface !== f) {
                         openProjectSurface.classList.remove('folder-open', 'module-open');
                     }
@@ -630,6 +631,7 @@ document.addEventListener('DOMContentLoaded', () => {
             document.querySelectorAll('.project-module').forEach(module => {
                 module.addEventListener('click', (e) => {
                     if (e.target.closest('.project-module-action')) return;
+                    e.stopPropagation();
                     if (openProjectSurface && openProjectSurface !== module) {
                         openProjectSurface.classList.remove('folder-open', 'module-open');
                     }
@@ -692,12 +694,16 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.style.overflow = '';
     }
 
-    function updateLightbox() {
+    function getLightboxFolder() {
         // Handle virtual Prism folder (index beyond folderData)
         const isPrism = lbFolderIdx >= folderData.length;
-        const folder = isPrism
+        return isPrism
             ? { title: prismData.title, projects: [prismData.project] }
             : folderData[lbFolderIdx];
+    }
+
+    function updateLightbox() {
+        const folder = getLightboxFolder();
         if (!folder) return;
         const p = folder.projects[lbProjectIdx];
         if (!p) return;
@@ -763,7 +769,14 @@ document.addEventListener('DOMContentLoaded', () => {
         lbClose.addEventListener('click', closeLightbox);
         lb.querySelector('.lb-backdrop').addEventListener('click', closeLightbox);
         lbPrev.addEventListener('click', (e) => { e.stopPropagation(); if (lbProjectIdx > 0) { lbProjectIdx--; updateLightbox(); } });
-        lbNext.addEventListener('click', (e) => { e.stopPropagation(); if (lbProjectIdx < folderData[lbFolderIdx].projects.length - 1) { lbProjectIdx++; updateLightbox(); } });
+        lbNext.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const folder = getLightboxFolder();
+            if (folder && lbProjectIdx < folder.projects.length - 1) {
+                lbProjectIdx++;
+                updateLightbox();
+            }
+        });
         lbDots.addEventListener('click', (e) => {
             const dot = e.target.closest('.lb-dot');
             if (dot) { lbProjectIdx = +dot.dataset.i; updateLightbox(); }
@@ -773,7 +786,8 @@ document.addEventListener('DOMContentLoaded', () => {
         document.addEventListener('keydown', (e) => {
             if (!lb.classList.contains('open')) return;
             if (e.key === 'Escape') closeLightbox();
-            if (e.key === 'ArrowRight' && lbProjectIdx < folderData[lbFolderIdx].projects.length - 1) { lbProjectIdx++; updateLightbox(); }
+            const folder = getLightboxFolder();
+            if (e.key === 'ArrowRight' && folder && lbProjectIdx < folder.projects.length - 1) { lbProjectIdx++; updateLightbox(); }
             if (e.key === 'ArrowLeft' && lbProjectIdx > 0) { lbProjectIdx--; updateLightbox(); }
         });
     }
