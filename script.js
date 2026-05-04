@@ -1390,9 +1390,10 @@ document.addEventListener('DOMContentLoaded', () => {
             cmdActiveIdx = Math.max(cmdActiveIdx - 1, 0);
             items.forEach((el, i) => el.classList.toggle('active', i === cmdActiveIdx));
             items[cmdActiveIdx]?.scrollIntoView({ block: 'nearest' });
-        } else if (e.key === 'Enter' && cmdActiveIdx >= 0) {
+        } else if (e.key === 'Enter') {
             e.preventDefault();
-            if (cmdFiltered[cmdActiveIdx]) executeCmdItem(cmdFiltered[cmdActiveIdx]);
+            const selectedIdx = cmdActiveIdx >= 0 ? cmdActiveIdx : 0;
+            if (cmdFiltered[selectedIdx]) executeCmdItem(cmdFiltered[selectedIdx]);
         }
     });
 
