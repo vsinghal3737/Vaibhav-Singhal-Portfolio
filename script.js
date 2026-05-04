@@ -11,7 +11,10 @@ document.addEventListener('DOMContentLoaded', () => {
         // initPage during fade-out (opacity fade is GPU-composited, won't stutter)
         requestAnimationFrame(initPage);
         // Run deferred inits after the fade-out completes (600ms transition)
-        setTimeout(() => deferredInits.forEach(fn => fn()), 650);
+        setTimeout(() => {
+            deferredInits.forEach(fn => fn());
+            window.dispatchEvent(new CustomEvent('portfolio-loader-hidden'));
+        }, 650);
     }
     // Don't hide until bar animation finishes (1.8s)
     window.addEventListener('load', () => setTimeout(hideLoader, 1900));
@@ -131,6 +134,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const navToggle = document.querySelector('.nav-toggle');
     const navLinks = document.querySelector('.nav-links');
     const sections = document.querySelectorAll('section[id]');
+    const scrollInd = document.querySelector('.scroll-indicator');
 
     navToggle.setAttribute('aria-expanded', 'false');
     function closeNav() { navToggle.classList.remove('active'); navLinks.classList.remove('open'); navToggle.setAttribute('aria-expanded', 'false'); }
@@ -154,6 +158,26 @@ document.addEventListener('DOMContentLoaded', () => {
         section: s,
         link: document.querySelector(`.nav-links a[href="#${s.id}"]`)
     })).filter(item => item.link);
+    let sectionBounds = [];
+    let resizeTicking = false;
+    function refreshSectionBounds() {
+        sectionBounds = sectionLinks.map(({ section, link }) => ({
+            link,
+            top: section.offsetTop,
+            bottom: section.offsetTop + section.offsetHeight
+        }));
+    }
+    refreshSectionBounds();
+    requestAnimationFrame(refreshSectionBounds);
+    setTimeout(refreshSectionBounds, 600);
+    window.addEventListener('resize', () => {
+        if (resizeTicking) return;
+        resizeTicking = true;
+        requestAnimationFrame(() => {
+            refreshSectionBounds();
+            resizeTicking = false;
+        });
+    }, { passive: true });
     // ═══════════════ SCROLL HANDLER (throttled via RAF) ═══════════════
     let scrollTicking = false;
     window.addEventListener('scroll', () => {
@@ -161,14 +185,13 @@ document.addEventListener('DOMContentLoaded', () => {
             scrollTicking = true;
             requestAnimationFrame(() => {
                 const h = document.documentElement.scrollHeight - window.innerHeight;
-                scrollBar.style.width = (h > 0 ? (window.scrollY / h) * 100 : 0) + '%';
+                scrollBar.style.transform = `scaleX(${h > 0 ? window.scrollY / h : 0})`;
                 backToTop.classList.toggle('visible', window.scrollY > 400);
-                const scrollInd = document.querySelector('.scroll-indicator');
                 if (scrollInd) scrollInd.classList.toggle('hidden', window.scrollY > 400);
                 navbar.classList.toggle('scrolled', window.scrollY > 50);
                 const sy = window.scrollY + 120;
-                sectionLinks.forEach(({ section, link }) => {
-                    link.classList.toggle('active', sy >= section.offsetTop && sy < section.offsetTop + section.offsetHeight);
+                sectionBounds.forEach(({ top, bottom, link }) => {
+                    link.classList.toggle('active', sy >= top && sy < bottom);
                 });
                 scrollTicking = false;
             });
@@ -181,8 +204,7 @@ document.addEventListener('DOMContentLoaded', () => {
             (function glowLoop() {
                 curX += (glowX - curX) * 0.12;
                 curY += (glowY - curY) * 0.12;
-                cursorGlow.style.left = curX + 'px';
-                cursorGlow.style.top = curY + 'px';
+                cursorGlow.style.transform = `translate3d(${curX}px, ${curY}px, 0) translate(-50%, -50%)`;
                 requestAnimationFrame(glowLoop);
             })();
         });
@@ -597,6 +619,7 @@ document.addEventListener('DOMContentLoaded', () => {
         folderGrid.appendChild(projectDivider);
 
         folderGrid.appendChild(catRow);
+        requestAnimationFrame(refreshSectionBounds);
 
         if (!isTouch) {
             document.querySelectorAll('.project-module').forEach(module => {
@@ -1284,7 +1307,7 @@ document.addEventListener('DOMContentLoaded', () => {
         { title: '!Xobile Programming Language', hint: 'Python, Prolog, Compiler Design', icon: '📂', action: '#projects' },
         { title: 'Hadoop Cluster', hint: 'Hadoop, MapReduce, Python, HDFS', icon: '📂', action: '#projects' },
         // Links
-        { title: 'Email', hint: 'vsvsinghal3737@gmail.com', icon: '✉️', action: 'mailto:vsvsinghal3737@gmail.com' },
+        { title: 'Gmail', hint: 'vsvsinghal3737@gmail.com', icon: '✉️', action: 'https://mail.google.com/mail/?view=cm&fs=1&to=vsvsinghal3737@gmail.com' },
         { title: 'LinkedIn', hint: 'linkedin.com/in/-singhal-vaibhav-/', icon: '🔗', action: 'https://linkedin.com/in/-singhal-vaibhav-/' },
         { title: 'GitHub', hint: 'github.com/vsinghal3737', icon: '🔗', action: 'https://github.com/vsinghal3737' },
         { title: 'Resume', hint: 'Google Drive', icon: '📄', action: 'https://drive.google.com/drive/folders/14P5q0XW5jiU3eIH2igkKzJ6LDOcdwyKn?usp=sharing' },
