@@ -54,7 +54,7 @@
       href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="style.css?v=sections-2026d" />
+    <link rel="stylesheet" href="style.css?v=sections-2026e" />
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -410,7 +410,12 @@
             </svg>
             LinkedIn
           </a>
-          <a href="mailto:vsvsinghal3737@gmail.com" class="hero-btn hero-btn-email magnetic">
+          <a
+            href="https://mail.google.com/mail/?view=cm&fs=1&to=vsvsinghal3737@gmail.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="hero-btn hero-btn-email magnetic"
+          >
             <svg
               width="18"
               height="18"
@@ -424,7 +429,7 @@
               />
               <polyline points="22,6 12,13 2,6" />
             </svg>
-            Email
+            Gmail
           </a>
         </div>
       </div>
@@ -2127,7 +2132,9 @@
             ><span>LinkedIn</span>
           </a>
           <a
-            href="mailto:vsvsinghal3737@gmail.com"
+            href="https://mail.google.com/mail/?view=cm&fs=1&to=vsvsinghal3737@gmail.com"
+            target="_blank"
+            rel="noopener noreferrer"
             class="contact-card glass-card tilt-card magnetic email-card"
           >
             <svg
@@ -2150,7 +2157,7 @@
                 d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
               />
               <polyline points="22,6 12,13 2,6" /></svg
-            ><span>Email</span>
+            ><span>Gmail</span>
           </a>
         </div>
       </div>
@@ -2177,7 +2184,7 @@
       </svg>
     </button>
 
-    <script src="script.js?v=sections-2026c"></script>
+    <script src="script.js?v=sections-2026e"></script>
 
     <!-- Spline 3D Robot — skip on narrow screens & reduced-motion -->
     <script type="module">
@@ -2190,10 +2197,7 @@
         "(prefers-reduced-motion: reduce)",
       ).matches;
 
-      if (tooNarrow || prefersStill) {
-        loader.classList.add("loaded");
-        scene.style.display = "none";
-      } else {
+      function startRobotScene() {
         import("https://unpkg.com/@splinetool/runtime@0.9.490/build/runtime.js")
           .then(({ Application }) => {
             const app = new Application(canvas);
@@ -2211,6 +2215,24 @@
             loader.classList.add("loaded");
             scene.style.display = "none";
           });
+      }
+
+      if (tooNarrow || prefersStill) {
+        loader.classList.add("loaded");
+        scene.style.display = "none";
+      } else {
+        window.addEventListener(
+          "portfolio-loader-hidden",
+          () => {
+            const start = () => startRobotScene();
+            if ("requestIdleCallback" in window) {
+              requestIdleCallback(start, { timeout: 1200 });
+            } else {
+              setTimeout(start, 250);
+            }
+          },
+          { once: true },
+        );
       }
     </script>
   </body>

@@ -186,15 +186,36 @@ code {
 .loader-logo {
   width: 140px;
   height: 60px;
+  overflow: visible;
+  transform: translateZ(0);
 }
 .loader-text {
-  stroke-dasharray: 300;
-  stroke-dashoffset: 300;
-  animation: drawLogo 1.5s ease forwards;
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation:
+    loaderMarkIn 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards,
+    loaderMarkBreathe 1.8s ease-in-out 0.7s infinite;
 }
-@keyframes drawLogo {
+@keyframes loaderMarkIn {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 7px, 0) scale(0.98);
+  }
   to {
-    stroke-dashoffset: 0;
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+@keyframes loaderMarkBreathe {
+  0%,
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    opacity: 0.82;
+    transform: translate3d(0, 0, 0) scale(1.015);
   }
 }
 .loader-bar {
@@ -207,14 +228,17 @@ code {
 }
 .loader-bar-fill {
   height: 100%;
-  width: 0;
+  width: 100%;
   background: var(--gradient-1);
   border-radius: 2px;
+  transform: scaleX(0);
+  transform-origin: left center;
+  will-change: transform;
   animation: loaderFill 1.8s ease forwards;
 }
 @keyframes loaderFill {
   to {
-    width: 100%;
+    transform: scaleX(1);
   }
 }
 
@@ -224,10 +248,12 @@ code {
   top: 0;
   left: 0;
   height: 3px;
-  width: 0;
+  width: 100%;
   background: var(--gradient-1);
   z-index: 10001;
-  transition: width 0.1s linear;
+  transform: scaleX(0);
+  transform-origin: left center;
+  will-change: transform;
 }
 
 /* ═══ CURSOR GLOW ═══ */
@@ -239,10 +265,10 @@ code {
   background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
   pointer-events: none;
   z-index: 1;
-  transform: translate(-50%, -50%);
+  transform: translate3d(0, 0, 0) translate(-50%, -50%);
   opacity: 0;
   transition: opacity 0.5s ease;
-  will-change: left, top;
+  will-change: transform;
 }
 body:hover .cursor-glow {
   opacity: 1;
@@ -427,11 +453,8 @@ body:hover .cursor-glow {
   inset: 0;
   z-index: 1; /* between mesh-bg (0) and all sections (2) */
   opacity: 0;
-  transition:
-    opacity 1.2s ease,
-    filter 0.7s ease;
+  transition: opacity 1.2s ease;
   pointer-events: none; /* let clicks pass through to page content */
-  filter: saturate(1.2) contrast(1.08) brightness(0.9) hue-rotate(6deg) drop-shadow(0 0 36px rgba(var(--accent2-rgb), 0.26));
   mix-blend-mode: screen;
 }
 .robot-scene.ready {
@@ -439,7 +462,6 @@ body:hover .cursor-glow {
 }
 [data-theme="light"] .robot-scene.ready {
   opacity: 0.12;
-  filter: saturate(0.62) contrast(0.9) brightness(1.34) sepia(0.06) drop-shadow(0 0 28px rgba(255, 255, 255, 0.42));
   mix-blend-mode: multiply;
 }
 .robot-scene canvas {
