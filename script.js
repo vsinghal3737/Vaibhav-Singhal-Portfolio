@@ -1369,7 +1369,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const target = document.querySelector(item.action);
             if (target) target.scrollIntoView({ behavior: 'smooth' });
         } else if (item.action.startsWith('http') || item.action.startsWith('mailto:')) {
-            window.open(item.action, '_blank');
+            window.open(item.action, '_blank', 'noopener,noreferrer');
         }
     }
 
