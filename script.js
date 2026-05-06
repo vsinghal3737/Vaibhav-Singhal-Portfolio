@@ -368,14 +368,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 {
                     title: 'Axiom — Knowledge Workspace',
                     date: '2025 – Present',
-                    summary: 'Cloud-native knowledge workspace with markdown notes, AI-powered RAG search, queue-backed processing, and a Prism-backed AI gateway path.',
+                    summary: 'Cloud-native knowledge workspace with markdown notes, graph/canvas/table surfaces, Review Inbox workflows, Daily Sparks, and Prism-backed AI reasoning.',
                     bullets: [
-                        'Architected 4 product services: REST API (FastAPI/SQLModel), React UI (Next.js 14), LLM orchestrator (Nexus), and Docker orchestration.',
-                        'Built rich editor with BlockNote, version history with snapshot/restore, wiki-style [[links]] with backlinks, soft-delete with cascade recovery.',
-                        'Implemented semantic search via pgvector embeddings + hybrid ranking (full-text + vector similarity), workspace-scoped conversational RAG chat.',
-                        'Designed job queue using PostgreSQL FOR UPDATE SKIP LOCKED — heartbeat reclamation, retry with backoff, dead-letter queue. No external message broker.',
-                        'Runs through Axiom-orchestration: Docker Compose, nginx gateway on localhost:8080, health checks, env bootstrap tooling, and e2e harnesses.',
-                        'Nexus connects to Prism over Docker prism-network through prism-gateway for input normalization, LLM execution, and output rendering.'
+                        'Architected 4 product services: REST API (FastAPI/SQLModel), Next.js UI, Nexus AI gateway, and Docker/nginx orchestration.',
+                        'Built editor workflows with BlockNote, wiki-style links/backlinks, version history, tabs, soft-delete recovery, import/export, and workspace search.',
+                        'Shipped graph-native knowledge surfaces: Graph View, Canvas, Tables, Suggested Links, Links Panel, Semantic Graph Edges, and Graph-to-Canvas flows.',
+                        'Implemented AI-native review and synthesis features: Review Inbox, duplicate/stale review generation, Multi-note Synthesis, Smart Paste, Weekly Reports, and Daily Sparks.',
+                        'Added Knowledge Q&A reasoning mode with explicit retrieval steps, source metadata, streamed/persisted reasoning chains, and safe note-opening behavior.',
+                        'Runs through Axiom-orchestration with localhost gateway, health checks, e2e lanes, CI guardrails, and Prism network wiring.'
                     ],
                     tags: ['Python','FastAPI','React','Next.js','TypeScript','PostgreSQL','pgvector','Docker'],
                     image: 'img/axiom.svg?v=material-2026', fallback: 'img/axiom.svg?v=material-2026',
@@ -400,15 +400,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 {
                     title: 'ZitherAi — AI Music Copilot',
                     date: '2026 – Present',
-                    summary: 'AI-powered music recommendation engine and playlist copilot with provider adapters, taste modeling, and Prism-backed AI workflows.',
+                    summary: 'AI-powered music brain and playlist copilot with provider adapters, taste modeling, synthesis, discovery, library views, duplicate clusters, and Prism-backed AI workflows.',
                     bullets: [
-                        'Designed 5-service architecture: API (users/taste profiles), Nexus (8-stage recommendation pipeline), Bridge (stateless provider adapters), UI (chat-first React), and Docker orchestration.',
-                        'Built 8-stage recommendation pipeline: Input → Intent Extraction → Candidate Retrieval → Enrichment → Ranking → Sequencing → Metadata → SSE Output.',
-                        'Provider-agnostic Bridge service with circuit breakers per provider (error rate, p95 latency, rate limit headroom, cost) and automatic failover.',
+                        'Designed 5-service architecture: API (users/taste/library), Nexus music brain, Bridge stateless provider adapters, Next.js UI, and Docker orchestration.',
+                        'Shipped AI music workflows: Explainable Recommendations, Playlist Synthesis, Smart Discovery, AI DJ Briefing, and prompt reuse through a Prompt Library.',
+                        'Built library intelligence surfaces: Taste Graph, Taste Conflict Review, Saved Library Views, Playlist/Import History, and Duplicate Playlist/Track Clusters.',
+                        'Provider-agnostic Bridge service supports YouTube, Spotify, and Apple Music with paginated imports, provider-specific limits, and circuit-breaker boundaries.',
                         'Fernet encryption (AES-128-CBC + HMAC) for OAuth tokens at rest with MultiFernet key rotation support.',
                         'Optimistic concurrency with version columns + atomic CAS on all mutable entities. Cursor-based pagination (not offset) for stable reads.',
-                        'ZitherAi-orchestration owns the local gateway on localhost:8180, routing /api, /nexus, /bridge, /pulse, /cortex, and /synthesizer lanes.',
-                        'Nexus and Bridge connect to Prism over prism-network through prism-gateway for LLM execution, mood/intent inference, and output rendering.'
+                        'ZitherAi-orchestration owns gateway routing, real env startup behavior, e2e mock lanes, and Prism network wiring for shared AI calls.'
                     ],
                     tags: ['Python','FastAPI','React','Next.js','TypeScript','PostgreSQL','Spotify API','Docker'],
                     image: 'img/zither.svg?v=material-2026', fallback: 'img/zither.svg?v=material-2026',
@@ -461,14 +461,15 @@ document.addEventListener('DOMContentLoaded', () => {
         project: {
             title: 'Prism — Reusable AI Microservices Layer',
             date: '2025 – Present',
-            summary: 'Reusable, stateless AI infrastructure layer powering Axiom, ZitherAi, and future products through a stable Prism gateway.',
+            summary: 'Reusable, stateless AI infrastructure layer powering Axiom, ZitherAi, and future products through a stable gateway and orchestration-owned dev/e2e stack.',
             bullets: [
                 'Pulse normalizes any input modality (text, audio via ffmpeg+Whisper, images via vision captioning, PDF/DOCX/XLSX) into deterministic StructuredContext JSON.',
                 'Cortex is the AI executor for completions, embeddings, speech-to-text, text-to-speech, and vision with provider retries and fallbacks.',
                 'Synthesizer renders output as SSE-streamed text, sentence-boundary-buffered TTS audio, or assembled files (PDF, DOCX, HTML, CSV) with HTML sanitization.',
-                'Prism-orchestration exposes gateway routes at /pulse/v1, /cortex/v1, and /synthesizer/v1, with host access on localhost:8280 and Docker DNS at prism-gateway.',
+                'Prism-orchestration owns local dev/e2e token defaults, gateway routes at /pulse/v1, /cortex/v1, and /synthesizer/v1, and Docker DNS at prism-gateway.',
                 'All services are stateless by design — no database, no persistent coordination, and simple horizontal scaling.',
                 'Strategy pattern for provider adapters — adding a new LLM provider is one file + one catalog entry, zero core changes.',
+                'Compose policy checks guard against sensitive fallbacks, non-loopback dev ports, privileged mode, Linux capabilities, and Docker socket mounts.',
                 'The orchestration Makefile validates env readiness, service-token alignment, gateway health, deep authenticated health, and smoke requests.',
                 'Consumer products join prism-network as an external network; Axiom and ZitherAi auto-start Prism when their local orchestration needs it.'
             ],
@@ -1280,7 +1281,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Sections
         { title: 'Work Experience', hint: 'Workday, LivePerson, Black Knight', icon: '💼', action: '#experience' },
         { title: 'Technical Skills', hint: 'Python, Java, Kafka, Kubernetes...', icon: '⚡', action: '#skills' },
-        { title: 'Projects', hint: 'Axiom, RosterData, LSA, Hadoop...', icon: '🚀', action: '#projects' },
+        { title: 'Projects', hint: 'Axiom, ZitherAi, Prism, RosterData...', icon: '🚀', action: '#projects' },
         { title: 'Education', hint: 'ASU, GGSIPU, GNDIT', icon: '🎓', action: '#education' },
         { title: 'Certifications', hint: 'CCA-175, PCAP, OCA, GCP', icon: '📜', action: '#certifications' },
         { title: 'Contact', hint: 'LinkedIn, GitHub, Email', icon: '📬', action: '#contact' },
@@ -1301,6 +1302,9 @@ document.addEventListener('DOMContentLoaded', () => {
         { title: 'Docker', hint: 'Backend — Advanced', icon: '🔧', action: '#skills' },
         { title: 'Redis', hint: 'Data & Cloud — Expert', icon: '🔧', action: '#skills' },
         // Projects
+        { title: 'Axiom', hint: 'Knowledge workspace, graph/canvas/table AI surfaces', icon: '📂', action: '#projects' },
+        { title: 'ZitherAi', hint: 'AI music copilot, discovery, library intelligence', icon: '📂', action: '#projects' },
+        { title: 'Prism', hint: 'Reusable AI microservices gateway', icon: '📂', action: '#projects' },
         { title: 'RosterData — Ice Hockey', hint: 'Python, Scrapy, PostgreSQL, AWS', icon: '📂', action: '#projects' },
         { title: 'LSA Classification', hint: 'Python, scikit-learn, Flask, GCP', icon: '📂', action: '#projects' },
         { title: 'Diabetes Classifier', hint: 'Python, Pandas, scikit-learn', icon: '📂', action: '#projects' },
